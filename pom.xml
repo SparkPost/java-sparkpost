@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.sparkpost</groupId>
-  <artifactId>java-sparkpost</artifactId>
+  <groupId>com.messagesystems</groupId>
+  <artifactId>sparkpostsdk</artifactId>
   <version>0.1.0</version>
   <packaging>jar</packaging>
   <name>SparkPost Java client library</name>
@@ -56,7 +56,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>java-sparkpost-${project.version}</finalName>
+    <finalName>sparkpostsdk-${project.version}</finalName>
     <plugins>
       <!-- generate Java source from WSDL -->
       <plugin>
