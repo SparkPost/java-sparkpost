@@ -20,22 +20,28 @@ public class SPRestConn {
 
     private SPClient client = null;
     private String endpoint = null;
-    private String authKey = null;
+    private int responseCode = 0 ;
+
+    /**
+     * @return the responseCode
+     */
+    public int getResponseCode() {
+        return responseCode;
+    }
 
     public enum Method {
 
         GET, POST, PUT, DELETE
     }
 
-    public SPRestConn(SPClient client, String authKey)
+    public SPRestConn(SPClient client)
             throws SparkpostSdkException {
-        this(client, authKey, null /*means:set to default endpoint */);
+        this(client, null /*means:set to default endpoint */);
     }
 
-    public SPRestConn(SPClient client, String authKey, String endpoint)
+    public SPRestConn(SPClient client, String endpoint)
             throws SparkpostSdkException {
         this.client = client;
-        this.authKey = authKey;
         if (endpoint == null) {
             this.endpoint = defaultApiEndpoint;
         } else {
@@ -46,11 +52,6 @@ public class SPRestConn {
             }
         }
 
-    }
-
-    public void SetAuthKey(String key) {
-        this.authKey = key;
-        logger.debug("Auth key now: " + this.authKey);
     }
 
     /**
@@ -72,31 +73,38 @@ public class SPRestConn {
             // (HttpUrlConnection doesn't connect to the server until we've
             //  got one of its streams)
             conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("Authorization", this.authKey);
+            conn.setRequestProperty("Authorization", this.client.GetAuthKey());
             conn.setRequestProperty("Content-Type", "application/json");
             switch (method) {
                 case GET:
                     conn.setRequestMethod("GET");
+                    logger.debug("GET " + url);
                     break;
                 case POST:
                     conn.setRequestMethod("POST");
                     // we write the POST data to the "output" stream:
                     conn.setDoOutput(true);
+                    logger.debug("POST " + path);
                     break;
                 case PUT:
                     conn.setRequestMethod("PUT");
+                    // we write the POST data to the "output" stream:
+                    conn.setDoOutput(true);
+                    logger.debug("PUT " + path);
                     break;
                 case DELETE:
                     conn.setRequestMethod("DELETE");
+                    logger.debug("DELETE " + path);
+                    break;
                 default:
                     throw new SparkpostSdkException("Invalid Method");
             }
         } catch (MalformedURLException ex) {
-            throw new SparkpostSdkException("Invalid path: " + path, ex);
+            throw new SparkpostSdkException("Invalid path: " + path + ex.toString());
         } catch (ProtocolException ex) {
-            throw new SparkpostSdkException("Invalid method:", ex);
+            throw new SparkpostSdkException("Invalid method:" + ex.toString());
         } catch (IOException ex) {
-            throw new SparkpostSdkException("Error with connection to " + path, ex);
+            throw new SparkpostSdkException("Error with connection to " + path + ex.toString());
         }
         return conn;
     }
@@ -106,7 +114,7 @@ public class SPRestConn {
         String lenStr = Integer.toString(data.getBytes().length);
         conn.setRequestProperty("Content-Length", lenStr);
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        logger.debug("Sending POST data (" + lenStr + " bytes): " + data);
+        logger.debug("Sending data (" + lenStr + " bytes): " + data);
         // Send data
         DataOutputStream wr;
         try {
@@ -115,7 +123,7 @@ public class SPRestConn {
             wr.flush();
             wr.close();
         } catch (IOException ex) {
-            throw new SparkpostSdkException("Error writing POST data:", ex);
+            throw new SparkpostSdkException("Error sending request data:" + ex.toString());
         }
     }
 
@@ -130,14 +138,14 @@ public class SPRestConn {
             // send the request, and start reading the response.
             // getResponseCode() blocks until the response code is read from the
             // stream from the server
-            int respCode = conn.getResponseCode();
+            this.responseCode = conn.getResponseCode();
 
-            if (respCode != 200) {
+            if (this.responseCode != 200) {
                 String respMessage = conn.getResponseMessage();
-                throw new SparkpostSdkException("Server says: " + respCode + " " + respMessage);
+                throw new SparkpostSdkException("Server says: " + this.responseCode + " " + respMessage);
             }
         } catch (IOException ex) {
-            throw new SparkpostSdkException("Connection error:", ex);
+            throw new SparkpostSdkException("Connection error:" + ex.toString());
         }
     }
 
@@ -161,7 +169,7 @@ public class SPRestConn {
             response.setResponseCode(conn.getResponseCode());
             return response;
         } catch (IOException ex) {
-            throw new SparkpostSdkException("Error reading server response: ", ex);
+            throw new SparkpostSdkException("Error reading server response: " + ex.toString());
         } finally {
             try {
                 if (rd != null) {
@@ -196,5 +204,21 @@ public class SPRestConn {
 
     public SPResponse post(String path, String json) throws SparkpostSdkException {
         return doHttpMethod(path, Method.POST, json);
+    }
+
+    /**
+     *
+     * @param path
+     * @param json
+     * @return
+     * @throws SparkpostSdkException
+     */
+    public SPResponse put(String path, String json) throws SparkpostSdkException {
+        return doHttpMethod(path, Method.PUT, json);
+    }
+
+    public SPResponse delete(String path)
+            throws SparkpostSdkException {
+        return doHttpMethod(path, Method.DELETE, null);
     }
 }

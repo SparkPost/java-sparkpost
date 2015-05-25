@@ -10,6 +10,7 @@
             </goals>
             <properties>
                 <Env.SPARKPOST_API_KEY>f3df2db4314b93b6778bf849c26b9df142992717</Env.SPARKPOST_API_KEY>
+                <Env.SPARKPOST_SENDER_EMAIL>testing@sparkpost.asterevents.com</Env.SPARKPOST_SENDER_EMAIL>
                 
             </properties>
         </action>
@@ -25,6 +26,7 @@
             <properties>
                 <test>${packageClassName}</test>
                 <Env.SPARKPOST_API_KEY>f3df2db4314b93b6778bf849c26b9df142992717</Env.SPARKPOST_API_KEY>
+                <Env.SPARKPOST_SENDER_EMAIL>testing@sparkpost.asterevents.com</Env.SPARKPOST_SENDER_EMAIL>
                 
             </properties>
         </action>
@@ -38,6 +40,7 @@
             </goals>
             <properties>
                 <Env.SPARKPOST_API_KEY>f3df2db4314b93b6778bf849c26b9df142992717</Env.SPARKPOST_API_KEY>
+                <Env.SPARKPOST_SENDER_EMAIL>testing@sparkpost.asterevents.com</Env.SPARKPOST_SENDER_EMAIL>
                 
             </properties>
         </action>
@@ -66,6 +69,7 @@
             </goals>
             <properties>
                 <Env.SPARKPOST_API_KEY>f3df2db4314b93b6778bf849c26b9df142992717</Env.SPARKPOST_API_KEY>
+                <Env.SPARKPOST_SENDER_EMAIL>testing@sparkpost.asterevents.com</Env.SPARKPOST_SENDER_EMAIL>
                 <test>${packageClassName}</test>
                 <forkMode>once</forkMode>
                 <maven.surefire.debug>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</maven.surefire.debug>
