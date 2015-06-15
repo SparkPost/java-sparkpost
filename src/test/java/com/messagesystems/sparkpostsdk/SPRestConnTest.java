@@ -20,6 +20,8 @@ import static org.junit.Assert.*;
  */
 public class SPRestConnTest {
 
+    private static final Logger logger = Logger.getLogger(SPRestConnTest.class);
+
     static SPClient client = null;
 
     public SPRestConnTest() {
@@ -36,7 +38,7 @@ public class SPRestConnTest {
         if (client.getFromEmail() == null || client.getFromEmail().isEmpty()) {
             fail("SPARKPOST_SENDER_EMAIL must be defined as an environment variable.");
         }
-        System.out.println(client);
+        logger.info(client);
     }
 
     @AfterClass
@@ -56,7 +58,7 @@ public class SPRestConnTest {
      */
     @Test
     public void testGet() {
-        System.out.println("---- get");
+        logger.info("---- SPRestConnTest.testGet");
         try {
             SPRestConn conn = new SPRestConn(client);
             conn.get("metrics");
@@ -64,7 +66,7 @@ public class SPRestConnTest {
             conn.get("webhooks");
 
         } catch (SparkpostSdkException ex) {
-            System.out.println(ex.toString());
+            logger.info(ex.toString());
             fail(ex.toString());
         }
     }
@@ -74,7 +76,7 @@ public class SPRestConnTest {
      */
     @Test
     public void testPost() {
-        System.out.println("---- post");
+        logger.info("---- SPRestConnTest.testPost");
         String sendJson = "{\n"
                 + "    \"recipients\": [ { \"address\": { \"email\": \"grava@messagesystems.com\", }, } ],\n"
                 + "    \"content\": {\n"
@@ -87,7 +89,7 @@ public class SPRestConnTest {
             SPRestConn conn = new SPRestConn(client);
             conn.post("transmissions?num_rcpt_errors=3", sendJson);
         } catch (SparkpostSdkException ex) {
-            System.out.println(ex.toString());
+            logger.info(ex.toString());
             fail(ex.toString());
         }
 
@@ -98,13 +100,13 @@ public class SPRestConnTest {
      */
     @Test
     public void testPut() {
-        System.out.println("---- put");
+        logger.info("---- SPRestConnTest.testPut");
         String sendJson = "{\n  \"options\":{\n  \"open_tracking\": true\n  }\n}\n";
         try {
             SPRestConn conn = new SPRestConn(client);
             conn.put("templates/thankyou", sendJson);
         } catch (SparkpostSdkException ex) {
-            System.out.println(ex.toString());
+            logger.info(ex.toString());
             fail(ex.toString());
         }
     }
@@ -114,23 +116,21 @@ public class SPRestConnTest {
      */
     @Test
     public void testDelete() {
-        System.out.println("---- delete");
+        logger.info("---- SPRestConnTest.testDelete");
         SPRestConn conn = null;
 
         try {
             conn = new SPRestConn(client);
             conn.delete("templates/templateTHATdoesntEXIST");
+            if (conn.getLastResponse().getResponseCode() == 404) {
+                logger.info("As expected: template not found.");
+            } else {
+                throw new SparkpostSdkException("prog error");
+            }
 
         } catch (SparkpostSdkException ex) {
-            if (conn == null || conn.getResponseCode() != 404) {
-                System.out.println(ex.toString());
-                fail(ex.toString());
-            } else {
-                System.out.println("As expected: template not found.");
-            }
-        }
-        if (conn == null || conn.getResponseCode() != 404) {
-            fail("prog error");
+            logger.info(ex.toString());
+            fail(ex.toString());
         }
     }
 

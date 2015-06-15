@@ -15,25 +15,14 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+/** DTO for storing the 'options' field in a template.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+public class SPDTOTemplateOptions extends SPDTOBase {
+
+    public Boolean open_tracking = null;
+    public Boolean click_tracking = null;
+    public Boolean transactional = null;
+    public Boolean sandbox = null ;
 }

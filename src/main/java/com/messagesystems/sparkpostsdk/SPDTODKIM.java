@@ -15,25 +15,18 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+import com.google.gson.annotations.SerializedName;
+
+/** DTO for storing DKIM information.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+public class SPDTODKIM extends SPDTOBase {
+
+    @SerializedName("private")
+    public String privateKey;
+    @SerializedName("public")
+    public String publicKey;
+    public String selector ;
+    public String headers ;
 }

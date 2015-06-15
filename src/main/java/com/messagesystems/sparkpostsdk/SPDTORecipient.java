@@ -15,25 +15,20 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+import java.util.Map;
+import com.google.gson.annotations.SerializedName;
+
+/** DTO for storing a recipient.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
+public class SPDTORecipient extends SPDTOBase {
+
+    public SPDTOAddress address = null ;
     
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+    public String return_path = null;
+    public String[] tags = null;
+    public Map<String, String> metadata = null;
+    public Map<String, String> substitution_data = null;
+
 }

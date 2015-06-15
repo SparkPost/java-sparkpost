@@ -15,25 +15,20 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
- *
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+/** Base class for all DTOs. DO NOT USE DIRECTLY. 
+ *  This base class takes care of the JSON serialization.
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
+public class SPDTOBase {
+
+    public String toJson() {
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                //.excludeFieldsWithoutExposeAnnotation()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        return gson.toJson(this) ;
     }
 }

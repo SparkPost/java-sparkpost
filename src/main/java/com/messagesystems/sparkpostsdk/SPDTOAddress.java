@@ -15,25 +15,19 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+/** DTO for storing an address (email, name, header_to)
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
+public class SPDTOAddress extends SPDTOBase {
+
+    public String email = null;
+    public String name = null;
+    public String header_to = null;
+
+    SPDTOAddress(String email, String name, String header_to) {
+        this.email = email;
+        this.name = name;
+        this.header_to = header_to;
     }
 }

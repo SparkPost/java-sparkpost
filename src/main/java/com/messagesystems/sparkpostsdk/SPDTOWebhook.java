@@ -15,25 +15,15 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+/** DTO for storing info about a webhook.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
+public class SPDTOWebhook extends SPDTOBase {
     
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
+    String name ;
+    String target ;
+    String auth_token ;
+    String[] events ;
     
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
 }

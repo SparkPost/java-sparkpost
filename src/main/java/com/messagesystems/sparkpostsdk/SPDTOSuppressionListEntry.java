@@ -15,25 +15,15 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+/** DTO for storing an entry in a suppression list.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+public class SPDTOSuppressionListEntry extends SPDTOBase {
+
+    public String email;
+    public boolean transactional;
+    public boolean non_transactional;
+    public String source;
+    public String description;
 }

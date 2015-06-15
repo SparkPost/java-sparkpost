@@ -15,25 +15,11 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+/** DTO for storing a stored recipient list (just the list ID).
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+public class SPDTOStoredRecipientList extends SPDTOBase {
+ 
+    public String list_id = null ;
 }

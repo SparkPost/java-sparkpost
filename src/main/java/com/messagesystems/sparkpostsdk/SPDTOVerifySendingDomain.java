@@ -15,25 +15,11 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+/** DTO for storing a Sending Domain verification request.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+public class SPDTOVerifySendingDomain extends SPDTOBase {
+    public Boolean dkim_verify = null ;
+    public Boolean spf_verify = null ;
 }

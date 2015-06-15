@@ -15,25 +15,19 @@
 
 package com.messagesystems.sparkpostsdk;
 
-/**
+import java.util.Map;
+
+/** DTO for storing a template.
  *
  * @author grava
  */
-public class SparkpostSdkException extends Exception {
-    // Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+public class SPDTOTemplate extends SPDTOBase {
+
+    public String id = null;
+    public SPDTOTemplateContent content = null ;
+    public Boolean published = null ;
+    public String name = null;
+    public String description = null;
+    public SPDTOTemplateOptions options = null ;
+
 }
