@@ -63,7 +63,7 @@ public class SPResourceTemplateTest {
        
         tpl.name = "_TMP_TEMPLATE_TEST" ;
         tpl.content = new SPDTOTemplateContent() ;
-        tpl.content.from = client.getFromEmail() ;
+        tpl.content.from = new SPDTOAddress(client.getFromEmail(),"me",null);
         tpl.content.html = "Hello!" ;
         tpl.content.subject =  "Template Test" ;
         try {
