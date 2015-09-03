@@ -1,3 +1,5 @@
+![SparkPost Logo](https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg)
+
 # SparkPost Java SDK
 
 Use this repository in Java applications to easily access the SparkPost Email APIs in your application.
