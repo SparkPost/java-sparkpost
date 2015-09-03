@@ -6,10 +6,12 @@ Use this repository in Java applications to easily access the SparkPost Email AP
 
 1. Clone the repository
   `git clone https://github.com/sparkpost/java-sparkpost`
+ 
+2. Build with Maven `mvn clean install`
 
-2. [OPTIONAL] Import project into Eclipse
-
-  File -> Import -> Maven -> Existing Maven Projects
+3. [OPTIONAL] Import project into Eclipse
+	* Setup Lombok in Eclipse `./tools/bin/setupLombok.sh`
+   * File -> Import -> Maven -> Existing Maven Projects
 
 3. Build the .jar file via CLI:
   `mvn -DskipTests package`
