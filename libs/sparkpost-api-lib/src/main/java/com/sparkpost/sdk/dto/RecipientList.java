@@ -17,16 +17,26 @@ package com.sparkpost.sdk.dto;
 
 import java.util.Map;
 
-/** DTO for storing a recipient list.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing a recipient list.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class RecipientList extends Base {
 
-    public String id = null;
-    public String name = null;
-    public String description = null;
-    public Map<String, String> attributes = null;
-    public Recipient[] recipients = null;
+	private String id = null;
+
+	private String name = null;
+
+	private String description = null;
+
+	private Map<String, String> attributes = null;
+
+	private Recipient[] recipients = null;
 
 }

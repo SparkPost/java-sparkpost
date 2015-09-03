@@ -15,73 +15,71 @@
 
 package com.sparkpost.sdk;
 
-/** The response for the SparkPost server, as returned by @a SPRestConn
+/**
+ * The response for the SparkPost server, as returned by @a SPRestConn
  *
  * @author grava
  */
 public class Response {
 
-    private String request = null;
-    private String requestId = null;
-    private int responseCode = -1;
-    private String responseMessage = null;
-    private String json = null;
+	private String request = null;
+	private String requestId = null;
+	private int responseCode = -1;
+	private String responseMessage = null;
+	private String json = null;
 
-    public void setRequest(String request) {
-        this.request = request;
-    }
+	public void setRequest(String request) {
+		this.request = request;
+	}
 
-    public String getRequest() {
-        return request;
-    }
+	public String getRequest() {
+		return request;
+	}
 
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
+	public void setRequestId(String requestId) {
+		this.requestId = requestId;
+	}
 
-    public String getRequestId() {
-        return requestId;
-    }
+	public String getRequestId() {
+		return requestId;
+	}
 
-    public void setResponseCode(int responseCode) {
-        this.responseCode = responseCode;
-    }
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
 
-    public int getResponseCode() {
-        return responseCode;
-    }
+	public int getResponseCode() {
+		return responseCode;
+	}
 
-    public void setResponseMessage(String responseMessage) {
-        this.responseMessage = responseMessage;
-    }
+	public void setResponseMessage(String responseMessage) {
+		this.responseMessage = responseMessage;
+	}
 
-    public String getResponseMessage() {
-        return responseMessage;
-    }
+	public String getResponseMessage() {
+		return responseMessage;
+	}
 
-    public void setResponseBody(String json) {
-        this.json = json;
-    }
+	public void setResponseBody(String json) {
+		this.json = json;
+	}
 
-    public String getResponseBody() {
-        return this.json;
-    }
+	public String getResponseBody() {
+		return this.json;
+	}
 
-    public void reset() {
-        request = null;
-        requestId = null;
-        responseCode = -1;
-        responseMessage = null;
-        json = null;
-    }
+	public void reset() {
+		request = null;
+		requestId = null;
+		responseCode = -1;
+		responseMessage = null;
+		json = null;
+	}
 
-    @Override
-    public String toString() {
-        return "Request:" + request
-                + ",RequestId:" + requestId
-                + ",ResponseCode:" + responseCode
-                + ",ResponseMessage:" + responseMessage
-                + ",json=" + json;
-    }
+	@Override
+	public String toString() {
+		return "Request:" + request + ",RequestId:" + requestId + ",ResponseCode:" + responseCode + ",ResponseMessage:"
+				+ responseMessage + ",json=" + json;
+	}
 
 }

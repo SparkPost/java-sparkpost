@@ -29,21 +29,23 @@ import org.apache.log4j.Logger;
 public class Client {
 
 	private static final Logger logger = Logger.getLogger(Client.class);
+
 	private String authKey = null;
+
 	private String fromEmail = null;
 
 	public Client() {
 	}
 
 	public Client(String key) {
-		SetAuthKey(key);
+		setAuthKey(key);
 	}
 
 	/**
 	 *
 	 * @param key
 	 */
-	public final void SetAuthKey(String key) {
+	public final void setAuthKey(String key) {
 		this.authKey = key;
 		logger.debug("Auth key now: " + this.authKey);
 	}

@@ -15,11 +15,18 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing a stored recipient list (just the list ID).
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing a stored recipient list (just the list ID).
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class StoredRecipientList extends Base {
- 
-    public String list_id = null ;
+
+	private String list_id = null;
+
 }

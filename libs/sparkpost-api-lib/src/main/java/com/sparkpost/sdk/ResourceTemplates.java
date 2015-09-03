@@ -15,65 +15,59 @@
 
 package com.sparkpost.sdk;
 
+import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.Template;
 import com.sparkpost.sdk.dto.TemplateSubstitutionData;
 
-/** Resource collection that is a 1-to-1 match to the Templates  SparkPost API.<br>
+/**
+ * Resource collection that is a 1-to-1 match to the Templates SparkPost API.
  * <br>
- * See <a href="https://www.sparkpost.com/api#/reference/templates/">Templates API</a>
+ * <br>
+ * See <a href="https://www.sparkpost.com/api#/reference/templates/">Templates
+ * API</a>
  *
  * @author grava
  */
 public class ResourceTemplates {
 
-    public static Response create(
-            RestConn conn, Template tpl)
-            throws SparkpostSdkException {
+	public static Response create(RestConn conn, Template tpl) throws SparkpostSdkException {
 
-        String json = tpl.toJson();
-        return conn.post("templates", json);
-    }
+		String json = tpl.toJson();
+		return conn.post("templates", json);
+	}
 
-    static public Response retrieve(
-            RestConn conn, String id, Boolean draft)
-            throws SparkpostSdkException {
+	public static Response retrieve(RestConn conn, String id, Boolean draft) throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("templates/" + id);
-        ep.addParam("draft", draft);
-        return conn.get(ep.toString());
-    }
+		Endpoint ep = new Endpoint("templates/" + id);
+		ep.addParam("draft", draft);
+		return conn.get(ep.toString());
+	}
 
-    static public Response listAll(RestConn conn)
-            throws SparkpostSdkException {
+	public static Response listAll(RestConn conn) throws SparkpostSdkException {
 
-        return conn.get("templates/");
-    }
+		return conn.get("templates/");
+	}
 
-    static public Response update(
-            RestConn conn, String id, Boolean updatePublished, Template tpl)
-            throws SparkpostSdkException {
+	public static Response update(RestConn conn, String id, Boolean updatePublished, Template tpl)
+			throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("templates/" + id);
-        ep.addParam("update_published", updatePublished);
-        String json = tpl.toJson();
-        return conn.put(ep.toString(), json);
-    }
+		Endpoint ep = new Endpoint("templates/" + id);
+		ep.addParam("update_published", updatePublished);
+		String json = tpl.toJson();
+		return conn.put(ep.toString(), json);
+	}
 
-    static public Response preview(
-            RestConn conn, String id, Boolean draft,
-            TemplateSubstitutionData subst) 
-            throws SparkpostSdkException {
+	public static Response preview(RestConn conn, String id, Boolean draft, TemplateSubstitutionData subst)
+			throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("templates/" + id + "/preview");
-        ep.addParam("draft", draft);
-        String json = subst.toJson();
-        return conn.put(ep.toString(), json);
-    }
+		Endpoint ep = new Endpoint("templates/" + id + "/preview");
+		ep.addParam("draft", draft);
+		String json = subst.toJson();
+		return conn.put(ep.toString(), json);
+	}
 
-    static public Response delete(
-            RestConn conn, String id) 
-            throws SparkpostSdkException {
+	public static Response delete(RestConn conn, String id) throws SparkpostSdkException {
 
-        return conn.delete("templates/"+id);
-    }
+		return conn.delete("templates/" + id);
+	}
 }

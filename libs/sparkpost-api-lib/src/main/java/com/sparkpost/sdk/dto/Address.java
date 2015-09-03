@@ -15,19 +15,27 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing an address (email, name, header_to)
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing an address (email, name, header_to)
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Address extends Base {
 
-    public String email = null;
-    public String name = null;
-    public String header_to = null;
+	private String email = null;
+	
+	private String name = null;
+	
+	private String header_to = null;
 
-    public Address(String email, String name, String header_to) {
-        this.email = email;
-        this.name = name;
-        this.header_to = header_to;
-    }
+	public Address(String email, String name, String header_to) {
+		this.email = email;
+		this.name = name;
+		this.header_to = header_to;
+	}
 }

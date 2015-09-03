@@ -15,15 +15,21 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing info about a webhook.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing info about a webhook.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Webhook extends Base {
-    
-    String name ;
-    String target ;
-    String auth_token ;
-    String[] events ;
-    
+
+	private String name;
+	private String target;
+	private String auth_token;
+	private String[] events;
+
 }

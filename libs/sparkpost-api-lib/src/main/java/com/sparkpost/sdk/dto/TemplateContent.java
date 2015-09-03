@@ -17,22 +17,32 @@ package com.sparkpost.sdk.dto;
 
 import java.util.Map;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /** DTO for storing the 'content' field in a template
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class TemplateContent extends Base {
 
-    public String html = null;
-    public String text = null;
-    public String subject = null;
-    public Address from = null;
-    public String reply_to = null;
-    public Map<String, String> headers = null;
+	private String html = null;
+	
+	private String text = null;
+	
+	private String subject = null;
+	
+	private Address from = null;
+	
+	private String reply_to = null;
+	
+	private Map<String, String> headers = null;
 
     /** Alternatively, the email_rfc822 may be used *instead* of all the other fields.
      *  The email_rfc822 field is mutually exclusive with all of the above fields.
      */
-    public String email_rfc822 = null;
+	private String email_rfc822 = null;
 
 }

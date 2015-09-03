@@ -15,15 +15,25 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing an entry in a suppression list.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing an entry in a suppression list.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class SuppressionListEntry extends Base {
 
-    public String email;
-    public boolean transactional;
-    public boolean non_transactional;
-    public String source;
-    public String description;
+	private String email;
+
+	private boolean transactional;
+
+	private boolean non_transactional;
+
+	private String source;
+
+	private String description;
 }

@@ -15,11 +15,20 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing a sending domain (domain and dkim info).
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing a sending domain (domain and dkim info).
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class SendingDomain extends Base {
-    public String domain ;
-    public DKIM dkim ; 
+
+	private String domain;
+
+	private DKIM dkim;
+
 }

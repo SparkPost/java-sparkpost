@@ -17,16 +17,24 @@ package com.sparkpost.sdk.dto;
 
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /** DTO for storing DKIM information.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class DKIM extends Base {
 
     @SerializedName("private")
-    public String privateKey;
+    private String privateKey;
+    
     @SerializedName("public")
-    public String publicKey;
-    public String selector ;
-    public String headers ;
+    private String publicKey;
+    
+    private String selector;
+    
+    private String headers;
 }

@@ -15,57 +15,59 @@
 
 package com.sparkpost.sdk;
 
-/** Used internally to the Sparkpost SDK to write URL queries.
+/**
+ * Used internally to the Sparkpost SDK to write URL queries.
  *
  * @author grava
  */
 class Endpoint {
 
-    private StringBuilder sb;
-    private int paramCount;
+	private StringBuilder sb;
 
-    public Endpoint(String endpoint) {
-        sb = new StringBuilder();
-        sb.append(endpoint);
-        paramCount = 0;
-    }
+	private int paramCount;
 
-    private void addString(String name, String val) {
-        if (paramCount == 0) {
-            sb.append('?');
-        } else {
-            sb.append('&');
-        }
-        sb.append(name);
-        sb.append('=');
-        sb.append(val);
-        paramCount++;
-    }
+	public Endpoint(String endpoint) {
+		sb = new StringBuilder();
+		sb.append(endpoint);
+		paramCount = 0;
+	}
 
-    public Endpoint addParam(String name, String val) {
-        if (val != null) {
-            addString(name, val);
-        }
-        return this;
-    }
+	private void addString(String name, String val) {
+		if (paramCount == 0) {
+			sb.append('?');
+		} else {
+			sb.append('&');
+		}
+		sb.append(name);
+		sb.append('=');
+		sb.append(val);
+		paramCount++;
+	}
 
-    public Endpoint addParam(String name, Integer val) {
-        if (val != null) {
-            addString(name, val.toString());
-        }
-        return this;
-    }
+	public Endpoint addParam(String name, String val) {
+		if (val != null) {
+			addString(name, val);
+		}
+		return this;
+	}
 
-    public Endpoint addParam(String name, Boolean val) {
-        if (val != null) {
-            addString(name, val.toString());
-        }
-        return this;
-    }
+	public Endpoint addParam(String name, Integer val) {
+		if (val != null) {
+			addString(name, val.toString());
+		}
+		return this;
+	}
 
-    @Override
-    public String toString() {
-        return sb.toString();
-    }
+	public Endpoint addParam(String name, Boolean val) {
+		if (val != null) {
+			addString(name, val.toString());
+		}
+		return this;
+	}
+
+	@Override
+	public String toString() {
+		return sb.toString();
+	}
 
 }

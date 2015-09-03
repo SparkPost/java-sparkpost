@@ -17,11 +17,18 @@ package com.sparkpost.sdk.dto;
 
 import java.util.Map;
 
-/** DTO for storing substitution data (list of key=value).
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing substitution data (list of key=value).
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class TemplateSubstitutionData extends Base {
-        public Map<String, String> substitution_data = null;
+
+	private Map<String, String> substitution_data = null;
 
 }

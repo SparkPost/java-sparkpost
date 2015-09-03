@@ -15,35 +15,51 @@
 
 package com.sparkpost.sdk.dto;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
-/** DTO for a transmission using an array of recipients.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for a transmission using an array of recipients.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class TransmissionWithRecipientArray extends Base {
 
-    public String id = null;
-    public String state = null;
-    public TemplateOptions options = null;
+	private String id = null;
 
-    @SerializedName("recipients")
-    public Recipient[] recipientArray = null;
+	private String state = null;
 
-    public String campaign_id = null;
-    public String description = null;
-    public Map<String, String> metadata = null;
-    public Map<String, String> substitution_data = null;
-    public String return_path = null;
+	private TemplateOptions options = null;
 
-    @SerializedName("content")
-    public StoredTemplate storedTemplate = null;
+	@SerializedName("recipients")
+	private List<Recipient> recipientArray = null;
 
-    public Integer total_recipients = null;
-    public Integer num_generated = null;
-    public Integer num_failed_generation = null;
-    public Integer num_invalid_recipients = null;
+	private String campaign_id = null;
+
+	private String description = null;
+
+	private Map<String, String> metadata = null;
+
+	private Map<String, String> substitution_data = null;
+
+	private String return_path = null;
+
+	@SerializedName("content")
+	private StoredTemplate storedTemplate = null;
+
+	private Integer total_recipients = null;
+
+	private Integer num_generated = null;
+
+	private Integer num_failed_generation = null;
+
+	private Integer num_invalid_recipients = null;
 
 }

@@ -19,32 +19,46 @@ import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 /** DTO for a transmission using a recipient list id (a recipient list stored at
  * the server)
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class TransmissionWithRecipientList extends Base {
 
-    public String id = null;
-    public String state = null;
-    public TemplateOptions options = null;
+	private String id = null;
+	
+	private String state = null;
+	
+	private TemplateOptions options = null;
 
     @SerializedName("recipients")
-    public StoredRecipientList recipientList = null;
+    private StoredRecipientList recipientList = null;
 
-    public String campaign_id = null;
-    public String description = null;
-    public Map<String, String> metadata = null;
-    public Map<String, String> substitution_data = null;
-    public String return_path = null;
+    private String campaign_id = null;
+    
+    private String description = null;
+    
+    private Map<String, String> metadata = null;
+    
+    private Map<String, String> substitution_data = null;
+    
+    private String return_path = null;
 
     @SerializedName("content")
-    public StoredTemplate storedTemplate = null;
+    private StoredTemplate storedTemplate = null;
 
-    public Integer total_recipients = null;
-    public Integer num_generated = null;
-    public Integer num_failed_generation = null;
-    public Integer num_invalid_recipients = null;
+    private Integer total_recipients = null;
+    
+    private Integer num_generated = null;
+    
+    private Integer num_failed_generation = null;
+    
+    private Integer num_invalid_recipients = null;
 
 }

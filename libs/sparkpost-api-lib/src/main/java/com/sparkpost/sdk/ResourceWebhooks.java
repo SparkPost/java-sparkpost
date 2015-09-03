@@ -15,70 +15,59 @@
 
 package com.sparkpost.sdk;
 
+import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.Webhook;
 
-/** Resource collection that is a 1-to-1 match to the Webhooks SparkPost API.<br>
+/**
+ * Resource collection that is a 1-to-1 match to the Webhooks SparkPost API.<br>
  * <br>
- * See <a href="https://www.sparkpost.com/api#/reference/webhooks/">Webhooks API</a>
+ * See <a href="https://www.sparkpost.com/api#/reference/webhooks/">Webhooks
+ * API</a>
  *
  * @author grava
  */
 public class ResourceWebhooks {
 
-    static public Response listSampleValuesAndEvents(
-            RestConn conn)
-            throws SparkpostSdkException {
+	public static Response listSampleValuesAndEvents(RestConn conn) throws SparkpostSdkException {
 
-        return conn.get("webhooks/events/documentation");
-    }
+		return conn.get("webhooks/events/documentation");
+	}
 
-    static public Response getSamplePayloadForEvents(
-            RestConn conn, String events)
-            throws SparkpostSdkException {
+	public static Response getSamplePayloadForEvents(RestConn conn, String events) throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("webhooks/events/samples");
-        ep.addParam("events", events);
-        return conn.get(ep.toString());
-    }
+		Endpoint ep = new Endpoint("webhooks/events/samples");
+		ep.addParam("events", events);
+		return conn.get(ep.toString());
+	}
 
-    static public Response listAll(
-            RestConn conn, String timezone)
-            throws SparkpostSdkException {
+	public static Response listAll(RestConn conn, String timezone) throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("webhooks");
-        ep.addParam("timezone", timezone);
-        return conn.get(ep.toString());
-    }
+		Endpoint ep = new Endpoint("webhooks");
+		ep.addParam("timezone", timezone);
+		return conn.get(ep.toString());
+	}
 
-    static public Response create(
-            RestConn conn, Webhook webhook)
-            throws SparkpostSdkException {
+	public static Response create(RestConn conn, Webhook webhook) throws SparkpostSdkException {
 
-        String json = webhook.toJson();
-        return conn.post("webhooks", json);
-    }
+		String json = webhook.toJson();
+		return conn.post("webhooks", json);
+	}
 
-    static public Response describe(
-            RestConn conn, String id, String timezone) 
-            throws SparkpostSdkException {
+	public static Response describe(RestConn conn, String id, String timezone) throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("webhooks/" + id);
-        ep.addParam("timezone", timezone);
-        return conn.get(ep.toString());
-    }
+		Endpoint ep = new Endpoint("webhooks/" + id);
+		ep.addParam("timezone", timezone);
+		return conn.get(ep.toString());
+	}
 
-    static public Response update(
-            RestConn conn, String id, Webhook webhook)
-            throws SparkpostSdkException {
-     
-        String json = webhook.toJson();
-        return conn.post("webhooks/"+id, json);
-    }
+	public static Response update(RestConn conn, String id, Webhook webhook) throws SparkpostSdkException {
 
-    static public Response delete(
-            RestConn conn, String id ) 
-            throws SparkpostSdkException {
+		String json = webhook.toJson();
+		return conn.post("webhooks/" + id, json);
+	}
 
-        return conn.delete("webhooks/"+id);
-    }
+	public static Response delete(RestConn conn, String id) throws SparkpostSdkException {
+
+		return conn.delete("webhooks/" + id);
+	}
 }

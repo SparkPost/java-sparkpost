@@ -17,17 +17,26 @@ package com.sparkpost.sdk.dto;
 
 import java.util.Map;
 
-/** DTO for storing a recipient.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing a recipient.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Recipient extends Base {
 
-    public Address address = null ;
-    
-    public String return_path = null;
-    public String[] tags = null;
-    public Map<String, String> metadata = null;
-    public Map<String, String> substitution_data = null;
+	private Address address = null;
+
+	private String return_path = null;
+
+	private String[] tags = null;
+
+	private Map<String, String> metadata = null;
+
+	private Map<String, String> substitution_data = null;
 
 }

@@ -15,11 +15,19 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing a Sending Domain verification request.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing a Sending Domain verification request.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class VerifySendingDomain extends Base {
-    public Boolean dkim_verify = null ;
-    public Boolean spf_verify = null ;
+	
+	private Boolean dkim_verify = null;
+	
+	private Boolean spf_verify = null;
 }

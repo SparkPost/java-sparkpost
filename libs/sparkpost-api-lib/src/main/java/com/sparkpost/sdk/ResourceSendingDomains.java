@@ -16,51 +16,47 @@
 package com.sparkpost.sdk;
 
 import com.sparkpost.sdk.dto.SendingDomain;
+import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.VerifySendingDomain;
 
-/** Resource collection that is a 1-to-1 match to the Sending Domains SparkPost API.<br>
+/**
+ * Resource collection that is a 1-to-1 match to the Sending Domains SparkPost
+ * API.<br>
  * <br>
- * See <a href="https://www.sparkpost.com/api#/reference/sending-domains/">Sending Domains API</a>
+ * See
+ * <a href="https://www.sparkpost.com/api#/reference/sending-domains/">Sending
+ * Domains API</a>
  *
  * @author grava
  */
 public class ResourceSendingDomains {
 
-    static public Response create(
-            RestConn conn, SendingDomain domain)
-            throws SparkpostSdkException {
+	public static Response create(RestConn conn, SendingDomain domain) throws SparkpostSdkException {
 
-        String json = domain.toJson();
-        return conn.post("sending-domains", json);
-    }
+		String json = domain.toJson();
+		return conn.post("sending-domains", json);
+	}
 
-    static public Response retrieve(
-            RestConn conn, String domainName)
-            throws SparkpostSdkException {
+	public static Response retrieve(RestConn conn, String domainName) throws SparkpostSdkException {
 
-        return conn.get("sending-domains/" + domainName);
-    }
+		return conn.get("sending-domains/" + domainName);
+	}
 
-    static public Response list(
-            RestConn conn)
-            throws SparkpostSdkException {
+	public static Response list(RestConn conn) throws SparkpostSdkException {
 
-        return conn.get("sending-domains/");
-    }
+		return conn.get("sending-domains/");
+	}
 
-    static public Response update(
-            RestConn conn, String domainName, SendingDomain domain)
-            throws SparkpostSdkException {
+	public static Response update(RestConn conn, String domainName, SendingDomain domain) throws SparkpostSdkException {
 
-        String json = domain.toJson();
-        return conn.put("sending-domains/" + domainName, json);
-    }
+		String json = domain.toJson();
+		return conn.put("sending-domains/" + domainName, json);
+	}
 
-    static public Response verify(
-            RestConn conn, String domainName, VerifySendingDomain verify)
-            throws SparkpostSdkException {
+	public static Response verify(RestConn conn, String domainName, VerifySendingDomain verify)
+			throws SparkpostSdkException {
 
-        String json = verify.toJson();
-        return conn.post("sending-domains/" + domainName + "/verify", json);
-    }
+		String json = verify.toJson();
+		return conn.post("sending-domains/" + domainName + "/verify", json);
+	}
 }

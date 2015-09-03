@@ -94,7 +94,7 @@
 					<configuration>
 						<!-- for Jacoco and JMockit -->
 						<argLine>${argLine}
-							-javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/1.4/jmockit-1.4.jar</argLine>
+							-javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/1.7/jmockit-1.7.jar</argLine>
 						<useSystemClassLoader>true</useSystemClassLoader>
 						<systemProperties>
 							<property>

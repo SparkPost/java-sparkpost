@@ -15,14 +15,23 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing the 'options' field in a template.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing the 'options' field in a template.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class TemplateOptions extends Base {
 
-    public Boolean open_tracking = null;
-    public Boolean click_tracking = null;
-    public Boolean transactional = null;
-    public Boolean sandbox = null ;
+	private Boolean open_tracking = null;
+	
+	private Boolean click_tracking = null;
+	
+	private Boolean transactional = null;
+	
+	private Boolean sandbox = null;
 }

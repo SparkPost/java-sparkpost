@@ -15,40 +15,39 @@
 
 package com.sparkpost.sdk;
 
+import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
 
-/** Resource collection that is a 1-to-1 match to the Transmissions SparkPost API.<br>
+/**
+ * Resource collection that is a 1-to-1 match to the Transmissions SparkPost
+ * API.<br>
  * <br>
- * See <a href="https://www.sparkpost.com/api#/reference/transmissions/">Transmissions API</a>
+ * See <a href="https://www.sparkpost.com/api#/reference/transmissions/">
+ * Transmissions API</a>
  *
  * @author grava
  */
 public class ResourceTransmissions {
 
-    static public Response create(
-            RestConn conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
-            throws SparkpostSdkException {
+	public static Response create(RestConn conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
+			throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("transmissions");
-        ep.addParam("num_rcpt_errors", numRcptErrors);
-        String json = trans.toJson();
-        return conn.post(ep.toString(), json);
-    }
+		Endpoint ep = new Endpoint("transmissions");
+		ep.addParam("num_rcpt_errors", numRcptErrors);
+		String json = trans.toJson();
+		return conn.post(ep.toString(), json);
+	}
 
-    static public Response retrieve(
-            RestConn conn, String id)
-            throws SparkpostSdkException {
+	public static Response retrieve(RestConn conn, String id) throws SparkpostSdkException {
 
-        return conn.get("transmissions/" + id);
-    }
+		return conn.get("transmissions/" + id);
+	}
 
-    static public Response list(
-            RestConn conn, String campaignId, String templateId) 
-            throws SparkpostSdkException {
+	public static Response list(RestConn conn, String campaignId, String templateId) throws SparkpostSdkException {
 
-        Endpoint ep = new Endpoint("transmissions");
-        ep.addParam("campaign_id", campaignId);
-        ep.addParam("template_id", templateId);
-        return conn.get(ep.toString());
-    }
+		Endpoint ep = new Endpoint("transmissions");
+		ep.addParam("campaign_id", campaignId);
+		ep.addParam("template_id", templateId);
+		return conn.get(ep.toString());
+	}
 }

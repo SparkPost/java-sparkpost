@@ -13,30 +13,30 @@
  * language governing permissions and limitations under the License.
  */
 
-package com.sparkpost.sdk;
+package com.sparkpost.sdk.dto;
 
 /**
  *
  * @author grava
  */
 public class SparkpostSdkException extends Exception {
-    
+
 	private static final long serialVersionUID = 4017633480414265142L;
 
 	// Parameterless Constructor
-    public SparkpostSdkException() {}
-    
-    // Constructor that accepts a message
-    public SparkpostSdkException( String message )
-    {
-        super( message ) ;
-    }
-    
-        public SparkpostSdkException( Throwable cause ) {
-        super ( cause ) ;
-    }
-        
-    public SparkpostSdkException( String message, Throwable cause ) {
-        super (message, cause ) ;
-    }
+	public SparkpostSdkException() {
+	}
+
+	// Constructor that accepts a message
+	public SparkpostSdkException(String message) {
+		super(message);
+	}
+
+	public SparkpostSdkException(Throwable cause) {
+		super(cause);
+	}
+
+	public SparkpostSdkException(String message, Throwable cause) {
+		super(message, cause);
+	}
 }

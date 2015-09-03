@@ -15,17 +15,28 @@
 
 package com.sparkpost.sdk.dto;
 
-/** DTO for storing a template.
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * DTO for storing a template.
  *
  * @author grava
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Template extends Base {
 
-    public String id = null;
-    public TemplateContent content = null ;
-    public Boolean published = null ;
-    public String name = null;
-    public String description = null;
-    public TemplateOptions options = null ;
+	private String id = null;
+
+	private TemplateContent content = null;
+
+	private Boolean published = null;
+
+	private String name = null;
+
+	private String description = null;
+
+	private TemplateOptions options = null;
 
 }

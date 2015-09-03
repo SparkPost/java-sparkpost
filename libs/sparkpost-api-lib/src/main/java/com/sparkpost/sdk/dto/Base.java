@@ -18,17 +18,20 @@ package com.sparkpost.sdk.dto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/** Base class for all DTOs. DO NOT USE DIRECTLY. 
- *  This base class takes care of the JSON serialization.
+/**
+ * Base class for all DTOs. DO NOT USE DIRECTLY. This base class takes care of
+ * the JSON serialization.
+ * 
  * @author grava
  */
 public class Base {
 
-    public String toJson() {
-        GsonBuilder gsonBuilder = new GsonBuilder()
-                //.excludeFieldsWithoutExposeAnnotation()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
-        return gson.toJson(this) ;
-    }
+	public String toJson() {
+		GsonBuilder gsonBuilder = new GsonBuilder()
+				// .excludeFieldsWithoutExposeAnnotation()
+				.setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		Gson gson = gsonBuilder.setPrettyPrinting().create();
+
+		return gson.toJson(this);
+	}
 }
