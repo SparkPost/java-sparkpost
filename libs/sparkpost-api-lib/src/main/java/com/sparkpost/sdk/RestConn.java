@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -124,7 +125,7 @@ public class RestConn {
 			// (HttpUrlConnection doesn't connect to the server until we've
 			// got one of its streams)
 			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestProperty("Authorization", this.client.GetAuthKey());
+			conn.setRequestProperty("Authorization", this.client.getAuthKey());
 			conn.setRequestProperty("Content-Type", "application/json");
 			switch (method) {
 			case GET:
@@ -162,7 +163,13 @@ public class RestConn {
 
 	// Send HTTP data (payload) to server
 	private void sendData(HttpURLConnection conn, String data) throws SparkpostSdkException {
-		String lenStr = Integer.toString(data.getBytes().length);
+		String lenStr;
+		try {
+			lenStr = Integer.toString(data.getBytes("UTF-8").length);
+		} catch (UnsupportedEncodingException e) {
+			// This should never happen. UTF-8 should always be available
+			throw new SparkpostSdkException(e);
+		}
 		conn.setRequestProperty("Content-Length", lenStr);
 		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 		logger.debug("Sending data (" + lenStr + " bytes): " + data);
@@ -209,7 +216,7 @@ public class RestConn {
 		BufferedReader rd = null;
 		try {
 			// Buffer the result into a string:
-			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 			StringBuilder sb = new StringBuilder();
 			String line;
 			while ((line = rd.readLine()) != null) {

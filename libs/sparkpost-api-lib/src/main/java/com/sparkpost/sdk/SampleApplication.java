@@ -27,6 +27,8 @@ import com.sparkpost.sdk.dto.Template;
 import com.sparkpost.sdk.dto.TemplateContent;
 import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
 
+import lombok.Data;
+
 /**
  * This sample application creates a template, stores it at the server, and then
  * creates a transmission using the stored template.
@@ -52,7 +54,7 @@ public class SampleApplication {
 		// Create a client object:
 		// ---------------------------------------------------
 		Client client = new Client(System.getenv("SPARKPOST_API_KEY"));
-		if (client.GetAuthKey() == null || client.GetAuthKey().isEmpty()) {
+		if (client.getAuthKey() == null || client.getAuthKey().isEmpty()) {
 			System.err.println("API_KEY must be defined as an environment variable.");
 			return;
 		}
@@ -86,8 +88,9 @@ public class SampleApplication {
 	// Data Transfer Object for parsing a
 	// 200 Response to a Template Create Request.
 	// For use by gson.fromJson() in createTemplate()
-	private class SPDTOResponse200_TemplateCreate {
+	private class Response200_TemplateCreate {
 
+		@Data
 		class _Results {
 
 			String id;
@@ -113,9 +116,9 @@ public class SampleApplication {
 		}
 
 		String json = response.getResponseBody();
-		SPDTOResponse200_TemplateCreate dto;
-		dto = gson.fromJson(json, SPDTOResponse200_TemplateCreate.class);
-		System.out.println("Server says template was created with ID: " + dto.results.id);
+		Response200_TemplateCreate dto;
+		dto = gson.fromJson(json, Response200_TemplateCreate.class);
+		System.out.println("Server says template was created with ID: " + dto.results.getId());
 
 		return dto.results.id;
 	}
@@ -125,11 +128,12 @@ public class SampleApplication {
 	// For use by gson.fromJson() in createTransmission()
 	private class Response200_TransmissionCreate {
 
+		@Data
 		class _Results {
 
-			int total_rejected_recipients;
-			int total_accepted_recipients;
-			String id;
+			private int total_rejected_recipients;
+			private int total_accepted_recipients;
+			private String id;
 		}
 
 		_Results results;

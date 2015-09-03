@@ -50,7 +50,7 @@ public class Client {
 		logger.debug("Auth key now: " + this.authKey);
 	}
 
-	public String GetAuthKey() {
+	public String getAuthKey() {
 		return this.authKey;
 	}
 

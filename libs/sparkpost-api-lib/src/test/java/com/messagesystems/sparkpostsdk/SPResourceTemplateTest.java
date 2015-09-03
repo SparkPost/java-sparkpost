@@ -7,6 +7,7 @@ package com.messagesystems.sparkpostsdk;
 
 import static org.junit.Assert.fail;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -38,11 +39,11 @@ public class SPResourceTemplateTest {
 	public static void setUpClass() {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 		client = new Client(System.getenv("SPARKPOST_API_KEY"));
-		if (client.GetAuthKey() == null || client.GetAuthKey().isEmpty()) {
+		if (StringUtils.isEmpty(client.getAuthKey())) {
 			fail("SPARKPOST_API_KEY must be defined as an environment variable.");
 		}
 		client.setFromEmail(System.getenv("SPARKPOST_SENDER_EMAIL"));
-		if (client.getFromEmail() == null || client.getFromEmail().isEmpty()) {
+		if (StringUtils.isEmpty(client.getFromEmail())) {
 			fail("SPARKPOST_SENDER_EMAIL must be defined as an environment variable.");
 		}
 		System.out.println(client);

@@ -5,8 +5,11 @@
  */
 package com.messagesystems.sparkpostsdk;
 
-import org.apache.log4j.Logger;
+import static org.junit.Assert.fail;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,8 +19,6 @@ import org.junit.Test;
 import com.sparkpost.sdk.Client;
 import com.sparkpost.sdk.RestConn;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
-
-import static org.junit.Assert.*;
 
 /**
  *
@@ -36,11 +37,11 @@ public class SPRestConnTest {
 	public static void setUpClass() {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 		client = new Client(System.getenv("SPARKPOST_API_KEY"));
-		if (client.GetAuthKey() == null || client.GetAuthKey().isEmpty()) {
+		if (StringUtils.isEmpty(client.getAuthKey())) {
 			fail("SPARKPOST_API_KEY must be defined as an environment variable.");
 		}
 		client.setFromEmail(System.getenv("SPARKPOST_SENDER_EMAIL"));
-		if (client.getFromEmail() == null || client.getFromEmail().isEmpty()) {
+		if (StringUtils.isEmpty(client.getFromEmail())) {
 			fail("SPARKPOST_SENDER_EMAIL must be defined as an environment variable.");
 		}
 		logger.info(client);

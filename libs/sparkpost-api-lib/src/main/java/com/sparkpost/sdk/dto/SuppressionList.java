@@ -15,6 +15,8 @@
 
 package com.sparkpost.sdk.dto;
 
+import java.util.List;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,6 +29,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class SuppressionList extends Base {
 
-	private SuppressionListEntry[] recipients = null;
+	private List<SuppressionListEntry> recipients = null;
 	
 }

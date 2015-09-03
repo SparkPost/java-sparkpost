@@ -131,12 +131,24 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- !!! DISABLED UNTIL I CAN CLEAN UP CODE !!! <plugin> <groupId>org.codehaus.mojo</groupId> 
-				<artifactId>findbugs-maven-plugin</artifactId> <version>3.0.2</version> <configuration> 
-				<excludeFilterFile>${basedir}/../../findbugs-exclude.xml</excludeFilterFile> 
-				</configuration> <executions> Ensures that FindBugs inspects source code 
-				when project is compiled. <execution> <id>analyze-compile</id> <phase>compile</phase> 
-				<goals> <goal>check</goal> </goals> </execution> </executions> </plugin> -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<excludeFilterFile>${basedir}/../../findbugs-exclude.xml</excludeFilterFile>
+				</configuration>
+				<executions>
+					<!-- Ensures that FindBugs inspects source code when project is compiled. -->
+					<execution>
+						<id>analyze-compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 

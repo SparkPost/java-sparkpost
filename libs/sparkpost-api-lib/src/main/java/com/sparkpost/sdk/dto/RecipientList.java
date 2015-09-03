@@ -15,6 +15,7 @@
 
 package com.sparkpost.sdk.dto;
 
+import java.util.List;
 import java.util.Map;
 
 import lombok.Data;
@@ -37,6 +38,6 @@ public class RecipientList extends Base {
 
 	private Map<String, String> attributes = null;
 
-	private Recipient[] recipients = null;
+	private List<Recipient> recipients = null;
 
 }
