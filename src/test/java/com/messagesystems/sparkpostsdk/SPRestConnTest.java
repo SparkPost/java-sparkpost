@@ -12,6 +12,11 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.sparkpost.sdk.Client;
+import com.sparkpost.sdk.RestConn;
+import com.sparkpost.sdk.SparkpostSdkException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -22,7 +27,7 @@ public class SPRestConnTest {
 
     private static final Logger logger = Logger.getLogger(SPRestConnTest.class);
 
-    static SPClient client = null;
+    static Client client = null;
 
     public SPRestConnTest() {
     }
@@ -30,7 +35,7 @@ public class SPRestConnTest {
     @BeforeClass
     public static void setUpClass() {
         Logger.getRootLogger().setLevel(Level.DEBUG);
-        client = new SPClient(System.getenv("SPARKPOST_API_KEY"));
+        client = new Client(System.getenv("SPARKPOST_API_KEY"));
         if (client.GetAuthKey() == null || client.GetAuthKey().isEmpty()) {
             fail("SPARKPOST_API_KEY must be defined as an environment variable.");
         }
@@ -60,7 +65,7 @@ public class SPRestConnTest {
     public void testGet() {
         logger.info("---- SPRestConnTest.testGet");
         try {
-            SPRestConn conn = new SPRestConn(client);
+            RestConn conn = new RestConn(client);
             conn.get("metrics");
             conn.get("transmissions");
             conn.get("webhooks");
@@ -86,7 +91,7 @@ public class SPRestConnTest {
                 + "    }\n"
                 + "}";
         try {
-            SPRestConn conn = new SPRestConn(client);
+            RestConn conn = new RestConn(client);
             conn.post("transmissions?num_rcpt_errors=3", sendJson);
         } catch (SparkpostSdkException ex) {
             logger.info(ex.toString());
@@ -103,7 +108,7 @@ public class SPRestConnTest {
         logger.info("---- SPRestConnTest.testPut");
         String sendJson = "{\n  \"options\":{\n  \"open_tracking\": true\n  }\n}\n";
         try {
-            SPRestConn conn = new SPRestConn(client);
+            RestConn conn = new RestConn(client);
             conn.put("templates/thankyou", sendJson);
         } catch (SparkpostSdkException ex) {
             logger.info(ex.toString());
@@ -117,10 +122,10 @@ public class SPRestConnTest {
     @Test
     public void testDelete() {
         logger.info("---- SPRestConnTest.testDelete");
-        SPRestConn conn = null;
+        RestConn conn = null;
 
         try {
-            conn = new SPRestConn(client);
+            conn = new RestConn(client);
             conn.delete("templates/templateTHATdoesntEXIST");
             if (conn.getLastResponse().getResponseCode() == 404) {
                 logger.info("As expected: template not found.");
