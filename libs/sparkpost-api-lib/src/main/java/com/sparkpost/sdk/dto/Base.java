@@ -26,11 +26,32 @@ import com.google.gson.GsonBuilder;
  */
 public class Base {
 
+	/**
+	 * Generate JSON for this request
+	 * 
+	 * @return json of object
+	 */
 	public String toJson() {
+		return toJson(false);
+	}
+	
+
+	/**
+	 * 
+	 * @param prettyPrint true to render json pretty printed
+	 * 
+	 * @return json of object
+	 */
+	public String toJson(boolean prettyPrint) {
 		GsonBuilder gsonBuilder = new GsonBuilder()
 				// .excludeFieldsWithoutExposeAnnotation()
 				.setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-		Gson gson = gsonBuilder.setPrettyPrinting().create();
+		Gson gson;
+		if (prettyPrint) {
+			gson = gsonBuilder.setPrettyPrinting().create();
+		} else {
+			gson = gsonBuilder.create();
+		}
 
 		return gson.toJson(this);
 	}
