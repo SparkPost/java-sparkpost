@@ -11,9 +11,9 @@
 	<url>/apps/sparkpost-attachment-app/</url>
 
 	<dependencies>
-		
-		<!-- the following two dependencies are required for correct jmockit operation
-			under maven see http://code.google.com/p/jmockit/issues/detail?id=128 comment
+
+		<!-- the following two dependencies are required for correct jmockit operation 
+			under maven see http://code.google.com/p/jmockit/issues/detail?id=128 comment 
 			#8 -->
 		<dependency>
 			<groupId>com.googlecode.jmockit</groupId>
@@ -25,7 +25,7 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
+		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>annotations</artifactId>
 		</dependency>

@@ -17,57 +17,59 @@ package com.sparkpost.sdk;
 
 import org.apache.log4j.Logger;
 
-/** The SPClient class stores everything specific to the SparkPost client:<BR>
- *  <ul>
- *  <li> The Authorization Key
- *  <li> The "From:" email address
- *  </ul>
+/**
+ * The SPClient class stores everything specific to the SparkPost client:<BR>
+ * <ul>
+ * <li>The Authorization Key
+ * <li>The "From:" email address
+ * </ul>
  *
  * @author grava
  */
 public class Client {
 
-    private static final Logger logger = Logger.getLogger(Client.class);
-    private String authKey = null;
-    private String fromEmail = null ;
+	private static final Logger logger = Logger.getLogger(Client.class);
+	private String authKey = null;
+	private String fromEmail = null;
 
-    public Client() {
-    }
+	public Client() {
+	}
 
-    public Client(String key) {
-        SetAuthKey(key);
-    }
+	public Client(String key) {
+		SetAuthKey(key);
+	}
 
-    /**
-     *
-     * @param key
-     */
-    public final void SetAuthKey(String key) {
-        this.authKey = key;
-        logger.debug("Auth key now: " + this.authKey);
-    }
+	/**
+	 *
+	 * @param key
+	 */
+	public final void SetAuthKey(String key) {
+		this.authKey = key;
+		logger.debug("Auth key now: " + this.authKey);
+	}
 
-    public String GetAuthKey() {
-        return this.authKey;
-    }
+	public String GetAuthKey() {
+		return this.authKey;
+	}
 
-    /**
-     * @return the fromEmail
-     */
-    public String getFromEmail() {
-        return fromEmail;
-    }
+	/**
+	 * @return the fromEmail
+	 */
+	public String getFromEmail() {
+		return fromEmail;
+	}
 
-    /**
-     * @param fromEmail the fromEmail to set
-     */
-    public void setFromEmail(String fromEmail) {
-        this.fromEmail = fromEmail;
-    }
-    
-    @Override
-    public String toString() {
-        return "Auth key: " + this.authKey + ", From Email: " + this.fromEmail ;
-    }
+	/**
+	 * @param fromEmail
+	 *            the fromEmail to set
+	 */
+	public void setFromEmail(String fromEmail) {
+		this.fromEmail = fromEmail;
+	}
+
+	@Override
+	public String toString() {
+		return "Auth key: " + this.authKey + ", From Email: " + this.fromEmail;
+	}
 
 }
