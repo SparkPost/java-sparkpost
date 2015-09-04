@@ -2,7 +2,21 @@
 
 Use this repository in Java applications to easily access the SparkPost Email APIs in your application.
 
-## Installation
+## Getting Started
+
+The SparkPost Java API is available in this [Maven Repository](http://maven.apache.org/download.cgi):
+
+__NOTE: This is not published to Maven Repo yet!!!__
+
+`````
+<dependency>
+	<groupId>com.sparkpost</groupId>
+	<artifactId>client-server-protocol-lib</artifactId>
+	<version>0.8-SNAPSHOT</version>
+</dependency>
+`````
+
+## Building SparkPost4J
 
 1. Clone the repository
   `git clone https://github.com/sparkpost/java-sparkpost`
@@ -20,7 +34,7 @@ Use this repository in Java applications to easily access the SparkPost Email AP
 
 5. Obtain a valid SparkPost API Key from [SparkPost](https://sparkpost.com) and place into the `sparkpostsdk.properties` file using `src/main/resources/sparkpost.properties` file as a starting template
 
-## TODO: Getting Started
+
 
 ## TODO: Examples
 

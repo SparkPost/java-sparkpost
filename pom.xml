@@ -7,23 +7,42 @@
 	<version>0.8-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>*** SparkPost Java Code ***</name>
-	<url>/</url>
+
+	<url>https://www.sparkpost.com</url>
+
 	<organization>
 		<name>Sparkpost</name>
 		<url>https://sparkpost.com</url>
 	</organization>
-	<!-- <scm> <connection>scm:https://github.com/SparkPost/java-sparkpost.git</connection> 
-		<developerConnection>scm:https://github.com/SparkPost/java-sparkpost.git</developerConnection> 
-		</scm> -->
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>git@github.com/SparkPost/java-sparkpost.git</url>
+		<connection>scm:git:git@github.com:SparkPost/java-sparkpost.git</connection>
+		<developerConnection>scm:git:git@github.com:SparkPost/java-sparkpost.git</developerConnection>
+	</scm>
+
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/SparkPost/java-sparkpost/issues</url>
 	</issueManagement>
+
 	<prerequisites>
 		<maven>2.0.4</maven>
 	</prerequisites>
 
-
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
 
 	<build>
 		<resources>
@@ -67,6 +86,29 @@
 						<!-- <additionalBuildcommands> <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand> 
 							</additionalBuildcommands> -->
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.3</version>
+					<configuration>
+						<show>public</show>
+						<nohelp>true</nohelp>
+						<author>true</author>
+						<version>true</version>
+						<use>true</use>
+						<windowtitle>SparkPost Java</windowtitle>
+						<doctitle><![CDATA[<h1>SparkPost Java</h1>]]></doctitle>
+						<bottom><![CDATA[<i>Copyright &#169; 20151 Message Systems, Inc. All Rights Reserved.</i>]]></bottom>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -158,6 +200,8 @@
 	</modules>
 
 	<dependencyManagement>
+		<!-- Dependencies defined in this root pom are used by most other project. -->
+
 		<dependencies>
 			<!-- THIRD PARTY LIBRARIES -->
 			<dependency>
@@ -263,19 +307,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<spring.version>4.0.2.RELEASE</spring.version>
-
-		<!-- RPM Properties -->
-
-		<!-- linux account username -->
-		<rpm.username>sparkpost</rpm.username>
-
-		<!-- linux group that username belongs to -->
-		<rpm.groupname>sparkpost</rpm.groupname>
-	</properties>
 
 </project>
