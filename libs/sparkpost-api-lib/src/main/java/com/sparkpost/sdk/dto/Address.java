@@ -15,6 +15,8 @@
 
 package com.sparkpost.sdk.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,15 +29,20 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Address extends Base {
 
-	private String email = null;
+	private String email;
 	
-	private String name = null;
+	private String name;
 	
-	private String header_to = null;
+	@SerializedName("header_to")
+	private String headerTo;
 
-	public Address(String email, String name, String header_to) {
+	public Address(String email) {
+		this.email = email;
+	}
+	
+	public Address(String email, String name, String headerTo) {
 		this.email = email;
 		this.name = name;
-		this.header_to = header_to;
+		this.headerTo = headerTo;
 	}
 }

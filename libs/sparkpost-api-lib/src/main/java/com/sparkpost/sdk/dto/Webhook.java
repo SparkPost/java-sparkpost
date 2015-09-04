@@ -17,6 +17,8 @@ package com.sparkpost.sdk.dto;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -33,7 +35,8 @@ public class Webhook extends Base {
 	
 	private String target;
 	
-	private String auth_token;
+	@SerializedName("auth_token")
+	private String authToken;
 	
 	private List<String> events;
 

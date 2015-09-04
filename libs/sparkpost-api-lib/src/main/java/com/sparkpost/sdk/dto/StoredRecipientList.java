@@ -15,6 +15,8 @@
 
 package com.sparkpost.sdk.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,6 +29,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class StoredRecipientList extends Base {
 
-	private String list_id = null;
+	@SerializedName("list_id")
+	private String listId = null;
 
 }

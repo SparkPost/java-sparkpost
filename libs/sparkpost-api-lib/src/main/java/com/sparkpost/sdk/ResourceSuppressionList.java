@@ -30,17 +30,12 @@ import com.sparkpost.sdk.dto.SuppressionListEntry;
  */
 public class ResourceSuppressionList {
 
-	public static Response insertOrUpdate(RestConn conn, String email, SuppressionListEntry entry)
+	public static Response insertOrUpdate(RestConn conn, String email, final SuppressionListEntry entry)
 			throws SparkpostSdkException {
 
 		// we need a copy because we don't want the email field in the json:
-		SuppressionListEntry copy = new SuppressionListEntry();
+		SuppressionListEntry copy = new SuppressionListEntry(entry);
 		copy.setEmail(null);
-		// TODO
-		// copy.setNon_transactional(entry.getNon_transactional());
-		// copy.setTransactional(entry.getTransactional());
-		copy.setSource(entry.getSource());
-		copy.setDescription(entry.getDescription());
 
 		String json = copy.toJson();
 		return conn.put("suppression-list/" + email, json);

@@ -17,6 +17,8 @@ package com.sparkpost.sdk.dto;
 
 import java.util.Map;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -36,13 +38,16 @@ public class TemplateContent extends Base {
 	
 	private Address from = null;
 	
-	private String reply_to = null;
+	@SerializedName("reply_to")
+	private String replyTo = null;
 	
 	private Map<String, String> headers = null;
 
-    /** Alternatively, the email_rfc822 may be used *instead* of all the other fields.
+    /** 
+     * Alternatively, the email_rfc822 may be used *instead* of all the other fields.
      *  The email_rfc822 field is mutually exclusive with all of the above fields.
      */
-	private String email_rfc822 = null;
+	@SerializedName("email_rfc822")
+	private String emailRFC822 = null;
 
 }

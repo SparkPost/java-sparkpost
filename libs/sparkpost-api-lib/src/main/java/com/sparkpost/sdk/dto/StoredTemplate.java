@@ -15,6 +15,8 @@
 
 package com.sparkpost.sdk.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,7 +29,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class StoredTemplate extends Base {
 
-	private String template_id;
+	@SerializedName("template_id")
+	private String templateId;
 
-	private Boolean use_draft_template;
+	@SerializedName("use_draft_template")
+	private Boolean useDraftTemplate;
 }

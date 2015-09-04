@@ -17,6 +17,8 @@ package com.sparkpost.sdk.dto;
 
 import java.util.Map;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -29,6 +31,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TemplateSubstitutionData extends Base {
 
-	private Map<String, String> substitution_data = null;
+	@SerializedName("substitution_data")
+	private Map<String, String> substitutionData;
 
 }

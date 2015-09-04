@@ -18,6 +18,8 @@ package com.sparkpost.sdk.dto;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -32,12 +34,14 @@ public class Recipient extends Base {
 
 	private Address address = null;
 
-	private String return_path = null;
+	@SerializedName("return_path")
+	private String returnPath = null;
 
 	private List<String> tags = null;
 
 	private Map<String, String> metadata = null;
 
-	private Map<String, String> substitution_data = null;
+	@SerializedName("substitution_data")
+	private Map<String, String> substitutionData = null;
 
 }

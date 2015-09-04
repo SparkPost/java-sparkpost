@@ -15,6 +15,8 @@
 
 package com.sparkpost.sdk.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,7 +29,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class VerifySendingDomain extends Base {
 	
-	private Boolean dkim_verify = null;
+	@SerializedName("dkim_verify")
+	private Boolean dkimVerify = null;
 	
-	private Boolean spf_verify = null;
+	@SerializedName("spf_verify")
+	private Boolean spfVerify = null;
 }

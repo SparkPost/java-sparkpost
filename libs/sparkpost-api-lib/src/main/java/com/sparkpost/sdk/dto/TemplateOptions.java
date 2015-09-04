@@ -15,6 +15,8 @@
 
 package com.sparkpost.sdk.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,11 +29,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TemplateOptions extends Base {
 
-	private Boolean open_tracking = null;
+	@SerializedName("open_tracking")
+	private Boolean openTracking;
 	
-	private Boolean click_tracking = null;
+	@SerializedName("click_tracking")
+	private Boolean clickTracking;
 	
-	private Boolean transactional = null;
+	private Boolean transactional;
 	
-	private Boolean sandbox = null;
+	private Boolean sandbox;
 }

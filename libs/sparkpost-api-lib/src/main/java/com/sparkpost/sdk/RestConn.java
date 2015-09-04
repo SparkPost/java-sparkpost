@@ -47,11 +47,11 @@ public class RestConn {
 	 */
 	public final static String defaultApiEndpoint = "https://api.sparkpost.com/api/v1/";
 
-	private Client client = null;
+	private Client client;
 
-	private String endpoint = null;
+	private String endpoint;
 
-	private Response lastResponse = null;
+	private Response lastResponse;
 
 	/**
 	 * Retrieve the response from the last HTTP request
@@ -95,7 +95,7 @@ public class RestConn {
 	 */
 	public RestConn(Client client, String endpoint) throws SparkpostSdkException {
 		this.client = client;
-		if (endpoint == null) {
+		if (StringUtils.isAnyEmpty(endpoint)) {
 			this.endpoint = defaultApiEndpoint;
 		} else {
 			if (endpoint.endsWith("/")) {
@@ -108,7 +108,7 @@ public class RestConn {
 	}
 
 	/**
-	 * Create a connection object but doesn't actually connect to the server
+	 * Create a connection object but doesn't actually connect to the server.
 	 *
 	 * @param path
 	 *            URL suffix to be appended to the object's endpoint
@@ -127,15 +127,16 @@ public class RestConn {
 			// (HttpUrlConnection doesn't connect to the server until we've
 			// got one of its streams)
 			conn = (HttpURLConnection) url.openConnection();
-			
+
 			if (StringUtils.isNotEmpty(client.getAuthKey())) {
 				conn.setRequestProperty("Authorization", this.client.getAuthKey());
 			} else if (StringUtils.isNotEmpty(client.getUsername()) && StringUtils.isNotEmpty(client.getPassword())) {
 				Base64 b = new Base64();
-			    String encoding = b.encodeAsString((client.getUsername() + ":" + client.getPassword()).getBytes("UTF-8"));
-			    conn.setRequestProperty("Authorization", "Basic " + encoding);
+				String encoding = b
+						.encodeAsString((client.getUsername() + ":" + client.getPassword()).getBytes("UTF-8"));
+				conn.setRequestProperty("Authorization", "Basic " + encoding);
 			}
-			
+
 			conn.setRequestProperty("Content-Type", "application/json");
 			switch (method) {
 			case GET:
@@ -177,18 +178,17 @@ public class RestConn {
 		try {
 			lenStr = Integer.toString(data.getBytes("UTF-8").length);
 		} catch (UnsupportedEncodingException e) {
-			// This should never happen. UTF-8 should always be available
+			// This should never happen. UTF-8 should always be available but we have
+			// to catch it so pass it on if it fails.
 			throw new SparkpostSdkException(e);
 		}
 		conn.setRequestProperty("Content-Length", lenStr);
-		conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+		conn.setRequestProperty("Content-Type", "application/json");
 		logger.debug("Sending data (" + lenStr + " bytes): " + data);
 		// Send data. At this point connection to server may not be established,
 		// but writing data to it will trigger the connection.
-		try (
-			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
-		){
-			
+		try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream());) {
+
 			wr.writeBytes(data);
 			wr.flush();
 		} catch (IOException ex) {
@@ -223,12 +223,10 @@ public class RestConn {
 
 	// Read response body from server
 	private Response receiveResponse(HttpURLConnection conn) throws SparkpostSdkException {
-		//BufferedReader rd = null;
-		try (
-				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-		){
+
+		StringBuilder sb = new StringBuilder();
+		try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));) {
 			// Buffer the result into a string:
-			StringBuilder sb = new StringBuilder();
 			String line;
 			while ((line = rd.readLine()) != null) {
 				sb.append(line);
@@ -243,9 +241,9 @@ public class RestConn {
 			// an error.
 			lastResponse.setResponseBody("");
 		} catch (IOException ex) {
-			throw new SparkpostSdkException("Error reading server response: " + ex.toString());
-		} 
-		
+			throw new SparkpostSdkException("Error reading server response: " + ex.toString() + ": " + sb.toString());
+		}
+
 		return lastResponse;
 	}
 
@@ -256,10 +254,10 @@ public class RestConn {
 		try {
 			lastResponse.reset();
 			lastResponse.setRequest(path);
-			conn = createConnectionObject(path, method);// throws
-														// SparkpostSdkException
-			sendRequest(conn, data); // throws SparkpostSdkException
+			conn = createConnectionObject(path, method);
+			sendRequest(conn, data);
 			receiveResponse(conn);
+
 			logger.debug("Server Response:" + lastResponse);
 			return lastResponse;
 		} finally {

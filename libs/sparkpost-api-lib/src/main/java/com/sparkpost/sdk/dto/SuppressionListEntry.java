@@ -36,4 +36,16 @@ public class SuppressionListEntry extends Base {
 	private String source;
 
 	private String description;
+	
+	public SuppressionListEntry() {
+		
+	}
+	
+	public SuppressionListEntry(SuppressionListEntry entry) {
+		this.email = entry.email;
+		this.transactional = entry.transactional;
+		this.source = entry.source;
+		this.description = entry.description;
+	}
+	
 }

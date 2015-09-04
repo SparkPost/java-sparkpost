@@ -40,7 +40,8 @@ public class TransmissionWithRecipientList extends Base {
     @SerializedName("recipients")
     private StoredRecipientList recipientList = null;
 
-    private String campaign_id = null;
+    @SerializedName("campaign_id")
+    private String campaignId = null;
     
     private String description = null;
     
@@ -48,17 +49,22 @@ public class TransmissionWithRecipientList extends Base {
     
     private Map<String, String> substitution_data = null;
     
-    private String return_path = null;
+    @SerializedName("return_path")
+    private String returnPath = null;
 
     @SerializedName("content")
     private StoredTemplate storedTemplate = null;
 
-    private Integer total_recipients = null;
+    @SerializedName("total_recipients")
+    private Integer totalRecipients = null;
     
-    private Integer num_generated = null;
+    @SerializedName("num_generated")
+    private Integer numGenerated = null;
     
-    private Integer num_failed_generation = null;
+    @SerializedName("num_failed_generation")
+    private Integer numFailedGeneration = null;
     
-    private Integer num_invalid_recipients = null;
+    @SerializedName("num_invalid_recipients")
+    private Integer numInvalidRecipients = null;
 
 }

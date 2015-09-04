@@ -15,6 +15,10 @@
 
 package com.sparkpost;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -26,6 +30,7 @@ import com.sparkpost.sdk.ResourceTransmissions;
 import com.sparkpost.sdk.Response;
 import com.sparkpost.sdk.RestConn;
 import com.sparkpost.sdk.dto.Address;
+import com.sparkpost.sdk.dto.Recipient;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.StoredTemplate;
 import com.sparkpost.sdk.dto.Template;
@@ -59,13 +64,14 @@ public class SampleApplication {
 		// Create a client object:
 		// ---------------------------------------------------
 		Client client = new Client(System.getenv("SPARKPOST_API_KEY"));
-		if (client.getAuthKey() == null || client.getAuthKey().isEmpty()) {
-			System.err.println("API_KEY must be defined as an environment variable.");
+		if (StringUtils.isEmpty(client.getAuthKey())) {
+			System.err.println("SPARKPOST_API_KEY must be defined as an environment variable.");
+			System.err.println("Visit https://app.sparkpost.com/account/credentials to create your API Key.");
 			return;
 		}
 
 		client.setFromEmail(System.getenv("SPARKPOST_SENDER_EMAIL"));
-		if (client.getFromEmail() == null || client.getFromEmail().isEmpty()) {
+		if (StringUtils.isEmpty(client.getFromEmail())) {
 			System.err.println("SPARKPOST_SENDER_EMAIL must be defined as an environment variable.");
 			return;
 		}
@@ -106,15 +112,18 @@ public class SampleApplication {
 
 	// Create a template and store it at the server:
 	private static String createTemplate(Client client, RestConn conn) throws SparkpostSdkException {
-		Response response;
+		
 		Template tpl = new Template();
 		tpl.setName("_TMP_TEMPLATE_TEST");
-		tpl.setContent(new TemplateContent());
-		tpl.getContent().setFrom(new Address(client.getFromEmail(), "Testing", null));
-		tpl.getContent().setHtml("Hello!");
-		tpl.getContent().setSubject("Template Test");
-		response = ResourceTemplates.create(conn, tpl);
-
+		
+		TemplateContent templateContent = new TemplateContent();
+		Address fromAddress = new Address(client.getFromEmail(), "Testing", null);
+		templateContent.setFrom(fromAddress);
+		templateContent.setHtml("Hello!");
+		templateContent.setSubject("Template Test");
+		tpl.setContent(templateContent);
+		
+		Response response = ResourceTemplates.create(conn, tpl);
 		if (response.getResponseCode() != 200) {
 			System.err.println("Could not create template.");
 			return null;
@@ -147,23 +156,30 @@ public class SampleApplication {
 	// Create a transmission using the stored template:
 	private static String createTransmission(Client client, RestConn conn, String templateId)
 			throws SparkpostSdkException {
+
 		TransmissionWithRecipientArray trans = new TransmissionWithRecipientArray();
-		trans.setCampaign_id("sample_app_trans_test");
-		trans.setReturn_path(client.getFromEmail());
-		// TODO
-		// trans.recipientArray = new Recipient[1];
-		// trans.recipientArray[0] = new Recipient();
-		// trans.recipientArray[0].return_path = client.getFromEmail();
-		// trans.recipientArray[0].address = new
-		// Address("grava@messagesystems.com", "Guillaume Rava", null);
-		trans.setStoredTemplate(new StoredTemplate());
-		trans.getStoredTemplate().setTemplate_id(templateId);
-		trans.getStoredTemplate().setUse_draft_template(true);
+		trans.setCampaignId("sample_app_trans_test");
+		trans.setReturnPath(client.getFromEmail());
+
+		List<Recipient> recipArray = new ArrayList<Recipient>();
+		trans.setRecipientArray(recipArray);
+
+		Recipient recipient = new Recipient();
+		recipient.setReturnPath(client.getFromEmail());
+		recipient.setAddress(new Address(client.getFromEmail()));
+		recipArray.add(recipient);
+		
+		StoredTemplate storedTemplate = new StoredTemplate();
+		storedTemplate.setTemplateId(templateId);
+		storedTemplate.setUseDraftTemplate(true);
+		trans.setStoredTemplate(storedTemplate);
+
 		Response response = ResourceTransmissions.create(conn, null, trans);
 		if (response.getResponseCode() != 200) {
 			System.err.println("Could not create transmission.");
 			return null;
 		}
+		
 		String json = response.getResponseBody();
 		Response200_TransmissionCreate dto;
 		dto = gson.fromJson(json, Response200_TransmissionCreate.class);

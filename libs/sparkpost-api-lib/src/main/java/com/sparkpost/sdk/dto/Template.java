@@ -27,16 +27,16 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Template extends Base {
 
-	private String id = null;
+	private String id;
 
-	private TemplateContent content = null;
+	private TemplateContent content;
 
-	private Boolean published = null;
+	private Boolean published;
 
-	private String name = null;
+	private String name;
 
-	private String description = null;
+	private String description;
 
-	private TemplateOptions options = null;
+	private TemplateOptions options;
 
 }
