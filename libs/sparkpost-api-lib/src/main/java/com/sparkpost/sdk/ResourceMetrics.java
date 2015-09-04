@@ -27,11 +27,11 @@ import com.sparkpost.sdk.dto.SparkpostSdkException;
  */
 public class ResourceMetrics {
 
-	static public Response getDiscoverabilityLinks(RestConn conn) throws SparkpostSdkException {
+	public static Response getDiscoverabilityLinks(RestConn conn) throws SparkpostSdkException {
 		return conn.get("metrics/");
 	}
 
-	static public Response getDeliverabilityMetricsSummary(RestConn conn, String from, String to, String domains,
+	public static Response getDeliverabilityMetricsSummary(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone)
 					throws SparkpostSdkException {
 
@@ -48,12 +48,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDeliverabilityMetricsByDomain(RestConn conn, String from, String to, String domains,
+	public static Response getDeliverabilityMetricsByDomain(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit,
 			String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/domain");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -69,12 +68,11 @@ public class ResourceMetrics {
 
 	}
 
-	static public Response getDeliverabilityMetricsByCampaign(RestConn conn, String from, String to, String domains,
+	public static Response getDeliverabilityMetricsByCampaign(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit,
 			String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/campaign");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -89,12 +87,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDeliverabilityMetricsByTemplate(RestConn conn, String from, String to, String domains,
+	public static Response getDeliverabilityMetricsByTemplate(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit,
 			String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/template");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -109,12 +106,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDeliverabilityMetricsByWatchedDomain(RestConn conn, String from, String to,
+	public static Response getDeliverabilityMetricsByWatchedDomain(RestConn conn, String from, String to,
 			String domains, String campaigns, String templates, String sandbox, String metrics, String timezone,
 			String limit, String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/watched-domain");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -129,12 +125,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getTimeSeriesMetrics(RestConn conn, String from, String to, String domains, String campaigns,
+	public static Response getTimeSeriesMetrics(RestConn conn, String from, String to, String domains, String campaigns,
 			String templates, String sandbox, String precision, String metrics, String timezone)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/time-series");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -148,12 +143,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getBounceReasonMetrics(RestConn conn, String from, String to, String domains,
+	public static Response getBounceReasonMetrics(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -167,12 +161,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getBounceReasonMetricsByDomain(RestConn conn, String from, String to, String domains,
+	public static Response getBounceReasonMetricsByDomain(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason/domain");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -186,12 +179,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getBounceClassificationMetrics(RestConn conn, String from, String to, String domains,
+	public static Response getBounceClassificationMetrics(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/bounce-classification");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -205,12 +197,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getRejectionReasonMetrics(RestConn conn, String from, String to, String domains,
+	public static Response getRejectionReasonMetrics(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -223,12 +214,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getRejectionReasonMetricsByDomain(RestConn conn, String from, String to, String domains,
+	public static Response getRejectionReasonMetricsByDomain(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason/domain");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -241,12 +231,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDelayReasonMetrics(RestConn conn, String from, String to, String domains,
+	public static Response getDelayReasonMetrics(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/delay-reason");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -259,12 +248,11 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDelayReasonMetricsByDomain(RestConn conn, String from, String to, String domains,
+	public static Response getDelayReasonMetricsByDomain(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/delay-reason/domain");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -277,11 +265,10 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getEngagementDetails(RestConn conn, String from, String to, String timezone, String metrics,
+	public static Response getEngagementDetails(RestConn conn, String from, String to, String timezone, String metrics,
 			String campaigns, String templates, String limit) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/link-name");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("timezone", timezone);
@@ -293,11 +280,10 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDeliveriesByAttempt(RestConn conn, String from, String to, String domains,
+	public static Response getDeliveriesByAttempt(RestConn conn, String from, String to, String domains,
 			String campaigns, String templates, String sandbox, String timezone) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/attempt");
-		//int count = 0;
 		ep.addParam("from", from);
 		ep.addParam("to", to);
 		ep.addParam("domains", domains);
@@ -308,20 +294,18 @@ public class ResourceMetrics {
 		return conn.get(ep.toString());
 	}
 
-	static public Response getCampaignsList(RestConn conn, String match, String limit) throws SparkpostSdkException {
+	public static Response getCampaignsList(RestConn conn, String match, String limit) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/campaigns");
-		//int count = 0;
 		ep.addParam("match", match);
 		ep.addParam("limit", limit);
 
 		return conn.get(ep.toString());
 	}
 
-	static public Response getDomainsList(RestConn conn, String match, String limit) throws SparkpostSdkException {
+	public static Response getDomainsList(RestConn conn, String match, String limit) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/domains");
-		//int count = 0;
 		ep.addParam("match", match);
 		ep.addParam("limit", limit);
 

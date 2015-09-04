@@ -25,6 +25,8 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.sparkpost.sdk.dto.SparkpostSdkException;
@@ -125,7 +127,15 @@ public class RestConn {
 			// (HttpUrlConnection doesn't connect to the server until we've
 			// got one of its streams)
 			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestProperty("Authorization", this.client.getAuthKey());
+			
+			if (StringUtils.isNotEmpty(client.getAuthKey())) {
+				conn.setRequestProperty("Authorization", this.client.getAuthKey());
+			} else if (StringUtils.isNotEmpty(client.getUsername()) && StringUtils.isNotEmpty(client.getPassword())) {
+				Base64 b = new Base64();
+			    String encoding = b.encodeAsString(new String(client.getUsername() + ":" + client.getPassword()).getBytes());
+			    conn.setRequestProperty("Authorization", "Basic " + encoding);
+			}
+			
 			conn.setRequestProperty("Content-Type", "application/json");
 			switch (method) {
 			case GET:
@@ -175,12 +185,12 @@ public class RestConn {
 		logger.debug("Sending data (" + lenStr + " bytes): " + data);
 		// Send data. At this point connection to server may not be established,
 		// but writing data to it will trigger the connection.
-		DataOutputStream wr;
-		try {
-			wr = new DataOutputStream(conn.getOutputStream());
+		try (
+			DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+		){
+			
 			wr.writeBytes(data);
 			wr.flush();
-			wr.close();
 		} catch (IOException ex) {
 			throw new SparkpostSdkException("Error sending request data:" + ex.toString());
 		}
@@ -213,10 +223,11 @@ public class RestConn {
 
 	// Read response body from server
 	private Response receiveResponse(HttpURLConnection conn) throws SparkpostSdkException {
-		BufferedReader rd = null;
-		try {
+		//BufferedReader rd = null;
+		try (
+				BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+		){
 			// Buffer the result into a string:
-			rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 			StringBuilder sb = new StringBuilder();
 			String line;
 			while ((line = rd.readLine()) != null) {
@@ -233,14 +244,8 @@ public class RestConn {
 			lastResponse.setResponseBody("");
 		} catch (IOException ex) {
 			throw new SparkpostSdkException("Error reading server response: " + ex.toString());
-		} finally {
-			try {
-				if (rd != null) {
-					rd.close();
-				}
-			} catch (IOException ex) {
-			}
-		}
+		} 
+		
 		return lastResponse;
 	}
 

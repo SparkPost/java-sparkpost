@@ -30,9 +30,13 @@ public class Client {
 
 	private static final Logger logger = Logger.getLogger(Client.class);
 
-	private String authKey = null;
+	private String authKey;
+	
+	private String username;
+		
+	private String password;
 
-	private String fromEmail = null;
+	private String fromEmail;
 
 	public Client() {
 	}
@@ -53,6 +57,23 @@ public class Client {
 	public String getAuthKey() {
 		return this.authKey;
 	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 
 	/**
 	 * @return the fromEmail
