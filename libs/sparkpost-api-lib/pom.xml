@@ -22,6 +22,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5</version>
+		</dependency>
 
 		<!-- the following two dependencies are required for correct jmockit operation 
 			under maven see http://code.google.com/p/jmockit/issues/detail?id=128 comment 
