@@ -1,4 +1,4 @@
-![SparkPost Logo](https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg =75x)
+<img src="https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg" width="100px"/>
 
 # SparkPost Java SDK
 
