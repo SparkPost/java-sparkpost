@@ -132,7 +132,7 @@ public class RestConn {
 				conn.setRequestProperty("Authorization", this.client.getAuthKey());
 			} else if (StringUtils.isNotEmpty(client.getUsername()) && StringUtils.isNotEmpty(client.getPassword())) {
 				Base64 b = new Base64();
-			    String encoding = b.encodeAsString(new String(client.getUsername() + ":" + client.getPassword()).getBytes());
+			    String encoding = b.encodeAsString((client.getUsername() + ":" + client.getPassword()).getBytes("UTF-8"));
 			    conn.setRequestProperty("Authorization", "Basic " + encoding);
 			}
 			

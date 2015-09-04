@@ -10,7 +10,7 @@
 	<artifactId>apps</artifactId>
 	<packaging>pom</packaging>
 	<name>Sparkpost Examples</name>
-	<url>/appss/</url>
+	<url>/apps/</url>
 	<modules>
 		<module>sparkpost-attachment-app</module>
 	</modules>

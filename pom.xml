@@ -260,7 +260,7 @@
 			<!-- INTERNAL LIBRARIES -->
 			<dependency>
 				<groupId>com.sparkpost</groupId>
-				<artifactId>client-server-protocol-lib</artifactId>
+				<artifactId>sparkpost-api-lib</artifactId>
 				<version>0.8-SNAPSHOT</version>
 			</dependency>
 
