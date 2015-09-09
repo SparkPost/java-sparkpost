@@ -51,7 +51,9 @@ public class Client {
 	 */
 	public final void setAuthKey(String key) {
 		this.authKey = key;
-		logger.debug("Auth key now: " + this.authKey);
+		if (logger.isDebugEnabled()) {
+			logger.debug("Auth key now: " + this.authKey);
+		}
 	}
 
 	public String getAuthKey() {

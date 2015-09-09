@@ -27,7 +27,7 @@ import com.google.gson.GsonBuilder;
 import com.sparkpost.sdk.Client;
 import com.sparkpost.sdk.ResourceTemplates;
 import com.sparkpost.sdk.ResourceTransmissions;
-import com.sparkpost.sdk.RestConn;
+import com.sparkpost.sdk.RestConnection;
 import com.sparkpost.sdk.dto.AddressAttributes;
 import com.sparkpost.sdk.dto.RecipientAttributes;
 import com.sparkpost.sdk.dto.Response;
@@ -79,7 +79,7 @@ public class SampleApplication {
 		// ---------------------------------------------------
 		// Create a connection object:
 		// ---------------------------------------------------
-		RestConn conn = new RestConn(client);
+		RestConnection conn = new RestConnection(client);
 
 		// ---------------------------------------------------
 		// Create a template and store it at the server:
@@ -111,7 +111,7 @@ public class SampleApplication {
 	}
 
 	// Create a template and store it at the server:
-	private static String createTemplate(Client client, RestConn conn) throws SparkpostSdkException {
+	private static String createTemplate(Client client, RestConnection conn) throws SparkpostSdkException {
 		
 		TemplateAttributes tpl = new TemplateAttributes();
 		tpl.setName("_TMP_TEMPLATE_TEST");
@@ -154,7 +154,7 @@ public class SampleApplication {
 	}
 
 	// Create a transmission using the stored template:
-	private static String createTransmission(Client client, RestConn conn, String templateId)
+	private static String createTransmission(Client client, RestConnection conn, String templateId)
 			throws SparkpostSdkException {
 
 		TransmissionWithRecipientArray trans = new TransmissionWithRecipientArray();

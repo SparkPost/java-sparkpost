@@ -13,4 +13,6 @@ import lombok.Data;
 public class VerifyResponse {
 	
 	private DKIMResults results;
+	
+	
 }

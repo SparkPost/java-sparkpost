@@ -17,7 +17,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sparkpost.sdk.Client;
-import com.sparkpost.sdk.RestConn;
+import com.sparkpost.sdk.RestConnection;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
 
 /**
@@ -66,7 +66,7 @@ public class SPRestConnTest {
 	public void testGet() {
 		logger.info("---- SPRestConnTest.testGet");
 		try {
-			RestConn conn = new RestConn(client);
+			RestConnection conn = new RestConnection(client);
 			conn.get("metrics");
 			conn.get("transmissions");
 			conn.get("webhooks");
@@ -89,7 +89,7 @@ public class SPRestConnTest {
 				+ "        \"subject\": \"SPRestConnTest.java Unit Test\" ,\n" + "        \"text\": \"TEST\",\n"
 				+ "    }\n" + "}";
 		try {
-			RestConn conn = new RestConn(client);
+			RestConnection conn = new RestConnection(client);
 			conn.post("transmissions?num_rcpt_errors=3", sendJson);
 		} catch (SparkpostSdkException ex) {
 			logger.info(ex.toString());
@@ -106,7 +106,7 @@ public class SPRestConnTest {
 		logger.info("---- SPRestConnTest.testPut");
 		String sendJson = "{\n  \"options\":{\n  \"open_tracking\": true\n  }\n}\n";
 		try {
-			RestConn conn = new RestConn(client);
+			RestConnection conn = new RestConnection(client);
 			conn.put("templates/thankyou", sendJson);
 		} catch (SparkpostSdkException ex) {
 			logger.info(ex.toString());
@@ -120,10 +120,10 @@ public class SPRestConnTest {
 	@Test
 	public void testDelete() {
 		logger.info("---- SPRestConnTest.testDelete");
-		RestConn conn = null;
+		RestConnection conn = null;
 
 		try {
-			conn = new RestConn(client);
+			conn = new RestConnection(client);
 			conn.delete("templates/templateTHATdoesntEXIST");
 			if (conn.getLastResponse().getResponseCode() == 404) {
 				logger.info("As expected: template not found.");

@@ -31,25 +31,25 @@ import com.sparkpost.sdk.dto.TemplateSubstitutionData;
  */
 public class ResourceTemplates {
 
-	public static Response create(RestConn conn, TemplateAttributes tpl) throws SparkpostSdkException {
+	public static Response create(RestConnection conn, TemplateAttributes tpl) throws SparkpostSdkException {
 
 		String json = tpl.toJson();
 		return conn.post("templates", json);
 	}
 
-	public static Response retrieve(RestConn conn, String id, Boolean draft) throws SparkpostSdkException {
+	public static Response retrieve(RestConnection conn, String id, Boolean draft) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
 		ep.addParam("draft", draft);
 		return conn.get(ep.toString());
 	}
 
-	public static Response listAll(RestConn conn) throws SparkpostSdkException {
+	public static Response listAll(RestConnection conn) throws SparkpostSdkException {
 
 		return conn.get("templates/");
 	}
 
-	public static Response update(RestConn conn, String id, Boolean updatePublished, TemplateAttributes tpl)
+	public static Response update(RestConnection conn, String id, Boolean updatePublished, TemplateAttributes tpl)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
@@ -58,7 +58,7 @@ public class ResourceTemplates {
 		return conn.put(ep.toString(), json);
 	}
 
-	public static Response preview(RestConn conn, String id, Boolean draft, TemplateSubstitutionData subst)
+	public static Response preview(RestConnection conn, String id, Boolean draft, TemplateSubstitutionData subst)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id + "/preview");
@@ -67,7 +67,7 @@ public class ResourceTemplates {
 		return conn.put(ep.toString(), json);
 	}
 
-	public static Response delete(RestConn conn, String id) throws SparkpostSdkException {
+	public static Response delete(RestConnection conn, String id) throws SparkpostSdkException {
 
 		return conn.delete("templates/" + id);
 	}

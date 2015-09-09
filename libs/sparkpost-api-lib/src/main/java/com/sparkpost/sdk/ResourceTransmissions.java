@@ -30,7 +30,7 @@ import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
  */
 public class ResourceTransmissions {
 
-	public static Response create(RestConn conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
+	public static Response create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("transmissions");
@@ -39,12 +39,12 @@ public class ResourceTransmissions {
 		return conn.post(ep.toString(), json);
 	}
 
-	public static Response retrieve(RestConn conn, String id) throws SparkpostSdkException {
+	public static Response retrieve(RestConnection conn, String id) throws SparkpostSdkException {
 
 		return conn.get("transmissions/" + id);
 	}
 
-	public static Response list(RestConn conn, String campaignId, String templateId) throws SparkpostSdkException {
+	public static Response list(RestConnection conn, String campaignId, String templateId) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("transmissions");
 		ep.addParam("campaign_id", campaignId);

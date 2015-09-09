@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import com.sparkpost.sdk.Client;
 import com.sparkpost.sdk.ResourceTemplates;
-import com.sparkpost.sdk.RestConn;
+import com.sparkpost.sdk.RestConnection;
 import com.sparkpost.sdk.dto.AddressAttributes;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.TemplateAttributes;
@@ -67,7 +67,7 @@ public class SPResourceTemplateTest {
 	@Test
 	public void testPostCreateTemplate() {
 		System.out.println("---- SPResourceTemplateTest.testPostCreateTemplate");
-		RestConn conn = null;
+		RestConnection conn = null;
 		TemplateAttributes tpl = new TemplateAttributes();
 
 		tpl.setName("_TMP_TEMPLATE_TEST");
@@ -76,7 +76,7 @@ public class SPResourceTemplateTest {
 		tpl.getContent().setHtml("Hello!");
 		tpl.getContent().setSubject("Template Test");
 		try {
-			conn = new RestConn(client);
+			conn = new RestConnection(client);
 			ResourceTemplates.create(conn, tpl);
 
 		} catch (SparkpostSdkException ex) {

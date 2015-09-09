@@ -32,29 +32,29 @@ import com.sparkpost.sdk.dto.VerifyAttributes;
  */
 public class ResourceSendingDomains {
 
-	public static Response create(RestConn conn, SendingDomain domain) throws SparkpostSdkException {
+	public static Response create(RestConnection conn, SendingDomain domain) throws SparkpostSdkException {
 
 		String json = domain.toJson();
 		return conn.post("sending-domains", json);
 	}
 
-	public static Response retrieve(RestConn conn, String domainName) throws SparkpostSdkException {
+	public static Response retrieve(RestConnection conn, String domainName) throws SparkpostSdkException {
 
 		return conn.get("sending-domains/" + domainName);
 	}
 
-	public static Response list(RestConn conn) throws SparkpostSdkException {
+	public static Response list(RestConnection conn) throws SparkpostSdkException {
 
 		return conn.get("sending-domains/");
 	}
 
-	public static Response update(RestConn conn, String domainName, SendingDomain domain) throws SparkpostSdkException {
+	public static Response update(RestConnection conn, String domainName, SendingDomain domain) throws SparkpostSdkException {
 
 		String json = domain.toJson();
 		return conn.put("sending-domains/" + domainName, json);
 	}
 
-	public static Response verify(RestConn conn, String domainName, VerifyAttributes verify)
+	public static Response verify(RestConnection conn, String domainName, VerifyAttributes verify)
 			throws SparkpostSdkException {
 
 		String json = verify.toJson();
