@@ -15,8 +15,9 @@
 
 package com.sparkpost.sdk;
 
+import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
-import com.sparkpost.sdk.dto.Template;
+import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateSubstitutionData;
 
 /**
@@ -30,7 +31,7 @@ import com.sparkpost.sdk.dto.TemplateSubstitutionData;
  */
 public class ResourceTemplates {
 
-	public static Response create(RestConn conn, Template tpl) throws SparkpostSdkException {
+	public static Response create(RestConn conn, TemplateAttributes tpl) throws SparkpostSdkException {
 
 		String json = tpl.toJson();
 		return conn.post("templates", json);
@@ -48,7 +49,7 @@ public class ResourceTemplates {
 		return conn.get("templates/");
 	}
 
-	public static Response update(RestConn conn, String id, Boolean updatePublished, Template tpl)
+	public static Response update(RestConn conn, String id, Boolean updatePublished, TemplateAttributes tpl)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id);

@@ -15,56 +15,29 @@
 
 package com.sparkpost.sdk.dto;
 
-import java.util.Map;
-
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/** DTO for a transmission using a recipient list id (a recipient list stored at
+/**
+ * DTO for a transmission using a recipient list id (a recipient list stored at
  * the server)
  *
  * @author grava
  */
 @Data
-@EqualsAndHashCode(callSuper=true)
-public class TransmissionWithRecipientList extends Base {
+@EqualsAndHashCode(callSuper = true)
+public class TransmissionWithRecipientList extends TransmissionBase {
 
-	private String id = null;
-	
-	private String state = null;
-	
-	private TemplateOptions options = null;
-
-    @SerializedName("recipients")
-    private StoredRecipientList recipientList = null;
-
-    @SerializedName("campaign_id")
-    private String campaignId = null;
-    
-    private String description = null;
-    
-    private Map<String, String> metadata = null;
-    
-    private Map<String, String> substitution_data = null;
-    
-    @SerializedName("return_path")
-    private String returnPath = null;
-
-    @SerializedName("content")
-    private StoredTemplate storedTemplate = null;
-
-    @SerializedName("total_recipients")
-    private Integer totalRecipients = null;
-    
-    @SerializedName("num_generated")
-    private Integer numGenerated = null;
-    
-    @SerializedName("num_failed_generation")
-    private Integer numFailedGeneration = null;
-    
-    @SerializedName("num_invalid_recipients")
-    private Integer numInvalidRecipients = null;
+	/**
+	 * Specify a stored recipient list or specify recipients inline. When using
+	 * a stored recipient list, specify the "list_id" as described in Using a
+	 * Stored Recipient List. Otherwise, provide the recipients inline using the
+	 * fields described in the Recipient List API documentation for Recipient
+	 * Attributes.
+	 */
+	@SerializedName("recipients")
+	private StoredRecipientList recipientList = null;
 
 }

@@ -15,9 +15,10 @@
 
 package com.sparkpost.sdk;
 
+import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.SendingDomain;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
-import com.sparkpost.sdk.dto.VerifySendingDomain;
+import com.sparkpost.sdk.dto.VerifyAttributes;
 
 /**
  * Resource collection that is a 1-to-1 match to the Sending Domains SparkPost
@@ -53,7 +54,7 @@ public class ResourceSendingDomains {
 		return conn.put("sending-domains/" + domainName, json);
 	}
 
-	public static Response verify(RestConn conn, String domainName, VerifySendingDomain verify)
+	public static Response verify(RestConn conn, String domainName, VerifyAttributes verify)
 			throws SparkpostSdkException {
 
 		String json = verify.toJson();

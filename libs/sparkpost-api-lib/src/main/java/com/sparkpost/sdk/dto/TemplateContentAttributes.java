@@ -28,7 +28,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper=true)
-public class TemplateContent extends Base {
+public class TemplateContentAttributes extends Base {
 
 	private String html = null;
 	
@@ -36,7 +36,7 @@ public class TemplateContent extends Base {
 	
 	private String subject = null;
 	
-	private Address from = null;
+	private AddressAttributes from = null;
 	
 	@SerializedName("reply_to")
 	private String replyTo = null;

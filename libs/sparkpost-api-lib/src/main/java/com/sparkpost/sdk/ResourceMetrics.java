@@ -15,6 +15,7 @@
 
 package com.sparkpost.sdk;
 
+import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
 
 /**

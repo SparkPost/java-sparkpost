@@ -27,14 +27,14 @@ import com.google.gson.GsonBuilder;
 import com.sparkpost.sdk.Client;
 import com.sparkpost.sdk.ResourceTemplates;
 import com.sparkpost.sdk.ResourceTransmissions;
-import com.sparkpost.sdk.Response;
 import com.sparkpost.sdk.RestConn;
-import com.sparkpost.sdk.dto.Address;
-import com.sparkpost.sdk.dto.Recipient;
+import com.sparkpost.sdk.dto.AddressAttributes;
+import com.sparkpost.sdk.dto.RecipientAttributes;
+import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.StoredTemplate;
-import com.sparkpost.sdk.dto.Template;
-import com.sparkpost.sdk.dto.TemplateContent;
+import com.sparkpost.sdk.dto.TemplateAttributes;
+import com.sparkpost.sdk.dto.TemplateContentAttributes;
 import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
 
 import lombok.Data;
@@ -113,11 +113,11 @@ public class SampleApplication {
 	// Create a template and store it at the server:
 	private static String createTemplate(Client client, RestConn conn) throws SparkpostSdkException {
 		
-		Template tpl = new Template();
+		TemplateAttributes tpl = new TemplateAttributes();
 		tpl.setName("_TMP_TEMPLATE_TEST");
 		
-		TemplateContent templateContent = new TemplateContent();
-		Address fromAddress = new Address(client.getFromEmail(), "Testing", null);
+		TemplateContentAttributes templateContent = new TemplateContentAttributes();
+		AddressAttributes fromAddress = new AddressAttributes(client.getFromEmail(), "Testing", null);
 		templateContent.setFrom(fromAddress);
 		templateContent.setHtml("Hello!");
 		templateContent.setSubject("Template Test");
@@ -161,12 +161,12 @@ public class SampleApplication {
 		trans.setCampaignId("sample_app_trans_test");
 		trans.setReturnPath(client.getFromEmail());
 
-		List<Recipient> recipArray = new ArrayList<Recipient>();
+		List<RecipientAttributes> recipArray = new ArrayList<RecipientAttributes>();
 		trans.setRecipientArray(recipArray);
 
-		Recipient recipient = new Recipient();
+		RecipientAttributes recipient = new RecipientAttributes();
 		recipient.setReturnPath(client.getFromEmail());
-		recipient.setAddress(new Address(client.getFromEmail()));
+		recipient.setAddress(new AddressAttributes(client.getFromEmail()));
 		recipArray.add(recipient);
 		
 		StoredTemplate storedTemplate = new StoredTemplate();

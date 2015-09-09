@@ -23,11 +23,9 @@ public class SparkpostSdkException extends Exception {
 
 	private static final long serialVersionUID = 4017633480414265142L;
 
-	// Parameterless Constructor
 	public SparkpostSdkException() {
 	}
 
-	// Constructor that accepts a message
 	public SparkpostSdkException(String message) {
 		super(message);
 	}

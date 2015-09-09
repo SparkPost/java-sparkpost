@@ -20,21 +20,42 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/** DTO for storing DKIM information.
+/**
+ * DKIM uses a pair of public and private keys to authenticate your emails.
  *
  * @author grava
  */
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper = true)
 public class DKIM extends Base {
 
-    @SerializedName("private")
-    private String privateKey;
-    
-    @SerializedName("public")
-    private String publicKey;
-    
-    private String selector;
-    
-    private String headers;
+	/**
+	 * DKIM private key
+	 * 
+	 * The private key will be used to create the DKIM Signature.
+	 */
+	@SerializedName("private")
+	private String privateKey;
+
+	/**
+	 * DKIM public key
+	 * 
+	 * The public key will be retrieved from DNS of the sending domain.
+	 */
+	@SerializedName("public")
+	private String publicKey;
+
+	/**
+	 * DomainKey selector
+	 * 
+	 * The DomainKey selector will be used to indicate the DKIM public key location.
+	 */
+	private String selector;
+
+	/**
+	 * Header fields to be included in the DKIM signature
+	 * 
+	 * Header fields are separated by a colon. Example: "from:to:subject:date"
+	 */
+	private String headers;
 }

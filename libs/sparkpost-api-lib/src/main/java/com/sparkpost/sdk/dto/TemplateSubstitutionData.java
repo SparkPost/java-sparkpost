@@ -30,7 +30,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TemplateSubstitutionData extends Base {
-
+	
 	@SerializedName("substitution_data")
 	private Map<String, String> substitutionData;
 

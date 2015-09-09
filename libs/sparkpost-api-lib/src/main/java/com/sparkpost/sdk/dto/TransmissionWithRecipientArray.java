@@ -16,7 +16,6 @@
 package com.sparkpost.sdk.dto;
 
 import java.util.List;
-import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -30,43 +29,17 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TransmissionWithRecipientArray extends Base {
+public class TransmissionWithRecipientArray extends TransmissionBase {
 
-	private String id = null;
-
-	private String state = null;
-
-	private TemplateOptions options = null;
-
+	/**
+	 * Inline recipient objects or object containing stored recipient list ID
+	 * 
+	 * Specify a stored recipient list or specify recipients inline. When using
+	 * a stored recipient list, specify the "list_id" as described in Using a
+	 * Stored Recipient List. Otherwise, provide the recipients inline using the
+	 * fields described in the Recipient List API documentation for Recipient
+	 * Attributes.
+	 */
 	@SerializedName("recipients")
-	private List<Recipient> recipientArray = null;
-
-	@SerializedName("campaign_id")
-	private String campaignId = null;
-
-	private String description = null;
-
-	private Map<String, String> metadata = null;
-
-	@SerializedName("recipients")
-	private Map<String, String> substitution_data = null;
-
-	@SerializedName("return_path")
-	private String returnPath = null;
-
-	@SerializedName("content")
-	private StoredTemplate storedTemplate = null;
-
-	@SerializedName("total_recipients")
-	private Integer totalRecipients = null;
-
-	@SerializedName("num_generated")
-	private Integer numGenerated = null;
-
-	@SerializedName("num_failed_generation")
-	private Integer numFailedGeneration = null;
-
-	@SerializedName("num_invalid_recipients")
-	private Integer numInvalidRecipients = null;
-
+	private List<RecipientAttributes> recipientArray = null;
 }

@@ -21,21 +21,43 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * DTO for storing the 'options' field in a template.
+ * DTO for storing an address (email, name, header_to)
  *
  * @author grava
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class TemplateOptions extends Base {
+public class AddressAttributes extends Base {
 
-	@SerializedName("open_tracking")
-	private Boolean openTracking;
+	public AddressAttributes() {
+		
+	}
 	
-	@SerializedName("click_tracking")
-	private Boolean clickTracking;
+	public AddressAttributes(String email) {
+		this.email = email;
+	}
 	
-	private Boolean transactional;
+	public AddressAttributes(String email, String name, String headerTo) {
+		this.email = email;
+		this.name = name;
+		this.headerTo = headerTo;
+	}
 	
-	private Boolean sandbox;
+	
+	/**
+	 * Valid email address
+	 */
+	private String email;
+	
+	/**
+	 * User-friendly name for the email address
+	 */
+	private String name;
+	
+	/**
+	 * Email address to display in the "To" header instead of address.email (for BCC)
+	 */
+	@SerializedName("header_to")
+	private String headerTo;
+
 }

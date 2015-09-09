@@ -13,73 +13,35 @@
  * language governing permissions and limitations under the License.
  */
 
-package com.sparkpost.sdk;
+package com.sparkpost.sdk.dto;
+
+import com.google.gson.annotations.SerializedName;
+
+import lombok.Data;
 
 /**
  * The response for the SparkPost server, as returned by @a SPRestConn
  *
  * @author grava
  */
+@Data
 public class Response {
 
 	private String request = null;
 	private String requestId = null;
 	private int responseCode = -1;
 	private String responseMessage = null;
-	private String json = null;
+	
+	@SerializedName("json")
+	private String responseBody = null;
 
-	public void setRequest(String request) {
-		this.request = request;
-	}
-
-	public String getRequest() {
-		return request;
-	}
-
-	public void setRequestId(String requestId) {
-		this.requestId = requestId;
-	}
-
-	public String getRequestId() {
-		return requestId;
-	}
-
-	public void setResponseCode(int responseCode) {
-		this.responseCode = responseCode;
-	}
-
-	public int getResponseCode() {
-		return responseCode;
-	}
-
-	public void setResponseMessage(String responseMessage) {
-		this.responseMessage = responseMessage;
-	}
-
-	public String getResponseMessage() {
-		return responseMessage;
-	}
-
-	public void setResponseBody(String json) {
-		this.json = json;
-	}
-
-	public String getResponseBody() {
-		return this.json;
-	}
 
 	public void reset() {
 		request = null;
 		requestId = null;
 		responseCode = -1;
 		responseMessage = null;
-		json = null;
-	}
-
-	@Override
-	public String toString() {
-		return "Request:" + request + ",RequestId:" + requestId + ",ResponseCode:" + responseCode + ",ResponseMessage:"
-				+ responseMessage + ",json=" + json;
+		responseBody = null;
 	}
 
 }
