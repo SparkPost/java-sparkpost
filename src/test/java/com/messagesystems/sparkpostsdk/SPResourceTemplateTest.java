@@ -13,6 +13,15 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.sparkpost.sdk.Client;
+import com.sparkpost.sdk.ResourceTemplates;
+import com.sparkpost.sdk.RestConn;
+import com.sparkpost.sdk.SparkpostSdkException;
+import com.sparkpost.sdk.dto.Address;
+import com.sparkpost.sdk.dto.Template;
+import com.sparkpost.sdk.dto.TemplateContent;
+
 import static org.junit.Assert.*;
 
 /**
@@ -21,7 +30,7 @@ import static org.junit.Assert.*;
  */
 public class SPResourceTemplateTest {
 
-    static SPClient client = null;
+    static Client client = null;
 
     public SPResourceTemplateTest() {
     }
@@ -29,7 +38,7 @@ public class SPResourceTemplateTest {
     @BeforeClass
     public static void setUpClass() {
         Logger.getRootLogger().setLevel(Level.DEBUG);
-        client = new SPClient(System.getenv("SPARKPOST_API_KEY"));
+        client = new Client(System.getenv("SPARKPOST_API_KEY"));
         if (client.GetAuthKey() == null || client.GetAuthKey().isEmpty()) {
             fail("SPARKPOST_API_KEY must be defined as an environment variable.");
         }
@@ -58,17 +67,17 @@ public class SPResourceTemplateTest {
     @Test
     public void testPostCreateTemplate() {
         System.out.println("---- SPResourceTemplateTest.testPostCreateTemplate");
-        SPRestConn conn = null;
-        SPDTOTemplate tpl = new SPDTOTemplate() ;
+        RestConn conn = null;
+        Template tpl = new Template() ;
        
         tpl.name = "_TMP_TEMPLATE_TEST" ;
-        tpl.content = new SPDTOTemplateContent() ;
-        tpl.content.from = new SPDTOAddress(client.getFromEmail(),"me",null);
+        tpl.content = new TemplateContent() ;
+        tpl.content.from = new Address(client.getFromEmail(),"me",null);
         tpl.content.html = "Hello!" ;
         tpl.content.subject =  "Template Test" ;
         try {
-            conn = new SPRestConn(client);
-            SPResourceTemplates.create(conn, tpl);
+            conn = new RestConn(client);
+            ResourceTemplates.create(conn, tpl);
 
         } catch (SparkpostSdkException ex) {
             System.out.println(ex.toString());
