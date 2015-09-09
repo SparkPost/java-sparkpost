@@ -20,22 +20,35 @@ __NOTE: This is not published to Maven Repo yet!!!__
 
 ## Building SparkPost4J
 
+### Prerequisites
+
+1. Download and install [Java JDK](https://java.com/en/download/) >= 1.7
+
+2. Download and setup [Maven](https://maven.apache.org/) >= 3.3
+
+3. Setup an account at [SparkPost.com](http://sparkpost.com)
+
+4. Create API Key in your [SparkPost Account](https://app.sparkpost.com/account/credentials)
+
+4. For examples to run you will need to setup the following environment variables:
+	* `SPARKPOST_API_KEY="YOUR_SPARKPOST_API_KEY"`
+   * `SPARKPOST_SENDER_EMAIL="YOUR_EMAIL_FROM_ADDRESS"`
+
+5. Optionally setup [Eclipse](https://eclipse.org/) (will need Maven Plugin to import project)
+
+
+### Building
+
 1. Clone the repository
   `git clone https://github.com/sparkpost/java-sparkpost`
  
 2. Build with Maven `mvn clean install`
 
 3. [OPTIONAL] Import project into Eclipse
-	* Setup Lombok in Eclipse `./tools/bin/setupLombok.sh`
+	* Setup Lombok in Eclipse `./tools/bin/setupLombok.sh` (browse to and select eclipse.ini)
+	* Restart Eclipse
    * File -> Import -> Maven -> Existing Maven Projects
-
-3. Build the .jar file via CLI:
-  `mvn -DskipTests package`
-
-4. Add the .jar file and dependencies (<a href="http://commons.apache.org/proper/commons-beanutils/">Apache Commons BeanUtils</a>, <a href="http://logging.apache.org/log4j/1.2/">Apache log4j 1.x</a>, and <a href="https://code.google.com/p/google-gson/">Google Gson</a>) to your class path
-
-5. Obtain a valid SparkPost API Key from [SparkPost](https://sparkpost.com) and place into the `sparkpostsdk.properties` file using `src/main/resources/sparkpost.properties` file as a starting template
-
+   * See "Prerequisites" above for environment variables needed for running examples
 
 
 ## TODO: Examples
