@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class VerifyStatus extends Base {
+public class StatusAttributes extends Base {
 	/**
 	 * 
 	 */

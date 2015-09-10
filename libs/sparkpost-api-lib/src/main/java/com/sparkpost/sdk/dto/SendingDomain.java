@@ -24,6 +24,11 @@ public class SendingDomain extends Base {
 	 * The domain name will be used as the "From:" header address in the email.
 	 */
 	private String domain;
+	
+	/**
+	 * Status details, including whether this domain's ownership has been verified
+	 */
+	private StatusAttributes status;
 
 	/**
 	 * DKIM key configuration

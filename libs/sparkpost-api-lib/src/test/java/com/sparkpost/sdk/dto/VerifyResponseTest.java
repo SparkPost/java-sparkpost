@@ -69,7 +69,7 @@ public class VerifyResponseTest {
 			"      \"postmaster_at_status\": \"pending\"\n" + 
 			"    },\n" + 
 		 */
-		VerifyStatus status = results.getStatus();
+		StatusAttributes status = results.getStatus();
 		Assert.assertNotNull(status);
 		Assert.assertFalse(status.getOwnershipVerified());
 		Assert.assertEquals(status.getSpfStatus(), "pending");
@@ -112,9 +112,9 @@ public class VerifyResponseTest {
 		DKIMResults result2 = otherVerifyResponse.getResults();
 		Assert.assertNotNull(result2);
 		
-		VerifyStatus status1 = result1.getStatus();
+		StatusAttributes status1 = result1.getStatus();
 		Assert.assertNotNull(status1);
-		VerifyStatus status2 = result2.getStatus();
+		StatusAttributes status2 = result2.getStatus();
 		Assert.assertNotNull(status2);
 		
 		//Assert.assertFalse(status.getOwnershipVerified());

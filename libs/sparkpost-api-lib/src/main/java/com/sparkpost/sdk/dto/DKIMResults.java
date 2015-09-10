@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class DKIMResults extends Base {
 
-	private VerifyStatus status;
+	private StatusAttributes status;
 	
 	private DKIM dkim;
 	
