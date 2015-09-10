@@ -1,12 +1,5 @@
 package com.sparkpost.sdk.dto;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasEntry;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.After;
