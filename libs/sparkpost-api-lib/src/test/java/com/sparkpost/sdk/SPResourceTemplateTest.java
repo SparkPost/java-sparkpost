@@ -17,7 +17,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sparkpost.sdk.dto.AddressAttributes;
-import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateContentAttributes;
 

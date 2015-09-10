@@ -1,18 +1,3 @@
-/* Copyright 2014 Message Systems, Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License").
- * You may not use this software except in compliance with the License.
- *
- * A copy of the License is located at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0.html
- *
- * or in the "license" file accompanying this software. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
- * ANY KIND, either express or implied. See the License for the specific
- * language governing permissions and limitations under the License.
- */
-
 package com.sparkpost;
 
 import java.util.ArrayList;
@@ -28,10 +13,10 @@ import com.sparkpost.sdk.Client;
 import com.sparkpost.sdk.ResourceTemplates;
 import com.sparkpost.sdk.ResourceTransmissions;
 import com.sparkpost.sdk.RestConnection;
+import com.sparkpost.sdk.SparkpostSdkException;
 import com.sparkpost.sdk.dto.AddressAttributes;
 import com.sparkpost.sdk.dto.RecipientAttributes;
 import com.sparkpost.sdk.dto.Response;
-import com.sparkpost.sdk.dto.SparkpostSdkException;
 import com.sparkpost.sdk.dto.StoredTemplate;
 import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateContentAttributes;
@@ -43,7 +28,6 @@ import lombok.Data;
  * This sample application creates a template, stores it at the server, and then
  * creates a transmission using the stored template.
  *
- * @author grava
  */
 public class SampleApplication {
 

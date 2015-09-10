@@ -19,6 +19,7 @@ import org.junit.Test;
 import com.google.gson.Gson;
 
 public class RecipientAttributesTest {
+	
 	private String RECIPIENT_ATTRIBUTES_JSON = " {\n" + 
 			"      \"return_path\": \"123@bounces.flintstone.com\",\n" + 
 			"      \"address\": {\n" + 
@@ -38,6 +39,8 @@ public class RecipientAttributesTest {
 			"        \"customer_type\": \"Platinum\"\n" + 
 			"      }\n" + 
 			"    }";
+	
+	private List<String> expected = Arrays.asList("greeting", "prehistoric", "fred", "flintstone");
 	
 	@BeforeClass
 	public static void setUpClass() {
@@ -73,7 +76,6 @@ public class RecipientAttributesTest {
 		Assert.assertEquals(addressAttributes.getName(), "Wilma Flintstone");
 		
 		List<String> tags = recipientAttributes.getTags();
-		List<String> expected = Arrays.asList("greeting", "prehistoric", "fred", "flintstone");
 		Assert.assertTrue(tags.containsAll(expected));
 		
 		 Map<String, String> metadata = recipientAttributes.getMetadata();
@@ -107,7 +109,6 @@ public class RecipientAttributesTest {
 		Assert.assertEquals(addressAttributes.getName(), addressAttributes2.getName());
 		
 		List<String> tags = recipientAttributes2.getTags();
-		List<String> expected = Arrays.asList("greeting", "prehistoric", "fred", "flintstone");
 		Assert.assertTrue(tags.containsAll(expected));
 		
 		 Map<String, String> metadata = recipientAttributes2.getMetadata();
