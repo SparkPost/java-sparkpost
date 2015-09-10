@@ -36,7 +36,6 @@ public class SuppressionListEntry extends Base {
 		public static final String COMPLIANCE = "Compliance";
 	}
 	
-	
 	public SuppressionListEntry() {
 		
 	}
@@ -44,10 +43,12 @@ public class SuppressionListEntry extends Base {
 	public SuppressionListEntry(SuppressionListEntry entry) {
 		this.email = entry.email;
 		this.transactional = entry.transactional;
+		this.non_transactional = entry.non_transactional;
 		this.source = entry.source;
 		this.description = entry.description;
+		
 	}
-
+	
 	/**
 	 * 
 	 */

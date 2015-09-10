@@ -18,6 +18,7 @@ package com.sparkpost.sdk.dto;
 import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * The response for the SparkPost server, as returned by @a SPRestConn
@@ -25,7 +26,8 @@ import lombok.Data;
  * @author grava
  */
 @Data
-public class Response {
+@EqualsAndHashCode(callSuper = true)
+public class Response extends Base{
 
 	private String request = null;
 	private String requestId = null;

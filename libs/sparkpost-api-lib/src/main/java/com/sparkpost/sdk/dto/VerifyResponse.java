@@ -1,6 +1,7 @@
 package com.sparkpost.sdk.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * The verify resource validates the specified verification field types.
@@ -10,7 +11,8 @@ import lombok.Data;
  * 
  */
 @Data
-public class VerifyResponse {
+@EqualsAndHashCode(callSuper = true)
+public class VerifyResponse extends Base {
 	
 	private DKIMResults results;
 	

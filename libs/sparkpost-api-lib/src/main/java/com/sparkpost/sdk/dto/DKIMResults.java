@@ -1,43 +1,14 @@
 package com.sparkpost.sdk.dto;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class DKIMResults {
+@EqualsAndHashCode(callSuper = true)
+public class DKIMResults extends Base {
 
-	/**
-	 * 
-	 */
-	private Boolean ownershipVerified;
+	private VerifyStatus status;
 	
-	/**
-	 * 
-	 */
-	private String spfStatus;
-	
-	/**
-	 * 
-	 */
-	private DNSAttributes dns;
-	
-	/**
-	 * 
-	 */
-	private String complianceStatus;
-	
-	/**
-	 * 
-	 */
-	private String dkimStatus;
-	
-	/**
-	 * 
-	 */
-	private String abuseAtStatus;
-	
-	/**
-	 * 
-	 */
-	private String postmasterAtStatus;
+	private DKIM dkim;
 	
 }
