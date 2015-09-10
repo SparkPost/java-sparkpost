@@ -50,7 +50,7 @@ public class SuppressionListTest {
 	 * 
 	 */
 	@Test
-	public void testDecodeStoredTemplate() {
+	public void testDecodeSuppressionList() {
 		Gson gson = new Gson();
 		SuppressionList suppressionList = gson.fromJson(SUPPRESSION_LIST_JSON, SuppressionList.class);
 		Assert.assertNotNull(suppressionList);		
@@ -58,6 +58,26 @@ public class SuppressionListTest {
 		List<SuppressionListEntry> recipients = suppressionList.getRecipients();
 		// Internal state will be tested in SuppressionListEntry unit tests
 		Assert.assertNotNull(suppressionList);
+		Assert.assertEquals(recipients.size(), 2);
+	}
+	
+	/**
+	 * 
+	 */
+	@Test
+	public void testSuppressionListRoundTrip() {
+		Gson gson = new Gson();
+		SuppressionList suppressionList = gson.fromJson(SUPPRESSION_LIST_JSON, SuppressionList.class);
+		Assert.assertNotNull(suppressionList);		
+		
+		String suppressionList_json = suppressionList.toJson();
+		SuppressionList suppressionList2 = gson.fromJson(suppressionList_json, SuppressionList.class);
+		Assert.assertNotNull(suppressionList2);		
+		
+		
+		List<SuppressionListEntry> recipients = suppressionList2.getRecipients();
+		// Internal state will be tested in SuppressionListEntry unit tests
+		Assert.assertNotNull(suppressionList2);
 		Assert.assertEquals(recipients.size(), 2);
 	}
 }

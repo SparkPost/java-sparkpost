@@ -12,10 +12,10 @@ import org.junit.Test;
 import com.google.gson.Gson;
 
 public class StoredTemplateTest {
-private String STORED_TEMPLATE_JSON = "{\n" + 
-		"                \"template_id\": \"christmas_offer\",\n" + 
-		"                \"use_draft_template\": true\n" + 
-		"              }";
+	private String STORED_TEMPLATE_JSON = "{\n" + 
+			"                \"template_id\": \"christmas_offer\",\n" + 
+			"                \"use_draft_template\": true\n" + 
+			"              }";
 	
 	@BeforeClass
 	public static void setUpClass() {
