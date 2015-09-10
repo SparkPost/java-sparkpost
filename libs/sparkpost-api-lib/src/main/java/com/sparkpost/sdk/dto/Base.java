@@ -28,7 +28,6 @@ public class Base {
 	 */
 	public String toJson(boolean prettyPrint) {
 		GsonBuilder gsonBuilder = new GsonBuilder()
-				// .excludeFieldsWithoutExposeAnnotation()
 				.setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		Gson gson;
 		if (prettyPrint) {

@@ -17,7 +17,6 @@ public class OptionsAttributesTest {
 			+ "      \"open_tracking\": true,\n"
 			+ "      \"click_tracking\": true,\n"
 			+ "      \"transactional\": true,\n" 
-			+ "      \"sandbox\": true,\n" 
 			+ "      \"skip_suppression\": true\n" 
 			+ "}";
 
@@ -50,7 +49,6 @@ public class OptionsAttributesTest {
 		Assert.assertEquals(optionsAttributes.getStartTime(), "some start time");
 		Assert.assertTrue(optionsAttributes.getClickTracking());
 		Assert.assertTrue(optionsAttributes.getOpenTracking());
-		Assert.assertTrue(optionsAttributes.getSandbox());
 		Assert.assertTrue(optionsAttributes.getSkipSuppression());
 		Assert.assertTrue(optionsAttributes.getTransactional());
 		
@@ -71,7 +69,6 @@ public class OptionsAttributesTest {
 		Assert.assertEquals(optionsAttributes.getStartTime(), optionsAttributes2.getStartTime());
 		Assert.assertEquals(optionsAttributes.getClickTracking(), optionsAttributes2.getClickTracking());
 		Assert.assertEquals(optionsAttributes.getOpenTracking(), optionsAttributes2.getOpenTracking());
-		Assert.assertEquals(optionsAttributes.getSandbox(), optionsAttributes2.getSandbox());
 		Assert.assertEquals(optionsAttributes.getSkipSuppression(), optionsAttributes2.getSkipSuppression());
 		Assert.assertEquals(optionsAttributes.getTransactional(), optionsAttributes2.getTransactional());
 		

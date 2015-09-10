@@ -1,5 +1,7 @@
 package com.sparkpost.sdk.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,7 +29,7 @@ public class SuppressionListEntry extends Base {
 	public SuppressionListEntry(SuppressionListEntry entry) {
 		this.email = entry.email;
 		this.transactional = entry.transactional;
-		this.non_transactional = entry.non_transactional;
+		this.nonTransactional = entry.nonTransactional;
 		this.source = entry.source;
 		this.description = entry.description;
 		
@@ -50,7 +52,8 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * At a minimum, transactional or non_transactional is required upon creation of the entry.
 	 */
-	private boolean non_transactional;
+	@SerializedName("non_transactional")
+	private boolean nonTransactional;
 
 	/**
 	 * Source responsible for inserting the list entry. Valid values include: FBL, List Unsubscribe, Bounce Rule, Unsubscribe Link, Manually Added, Compliance

@@ -76,7 +76,7 @@ public class TransmissionBase extends Base {
 	 * Webhook events.
 	 */
 	@SerializedName("substitution_data")
-	private Map<String, String> substitution_data = null;
+	private Map<String, String> substitutionData = null;
 
 	/**
 	 * Email to use for envelope FROM ( Note: SparkPost Elite only )

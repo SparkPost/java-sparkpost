@@ -51,11 +51,6 @@ public class OptionsAttributes extends Base {
 	private Boolean transactional = false;
 
 	/**
-	 * Whether or not to use the sandbox sending domain ( Note: SparkPost only )
-	 */
-	private Boolean sandbox = false;
-
-	/**
 	 * Unlike most other options, this flag is omitted on a GET transmission
 	 * response unless the flag's value is true.
 	 * 

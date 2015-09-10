@@ -17,7 +17,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDeliverabilityMetricsSummary(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone)
+			String campaigns, String templates,String metrics, String timezone)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability");
@@ -26,7 +26,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 
@@ -34,7 +33,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDeliverabilityMetricsByDomain(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit,
+			String campaigns, String templates, String metrics, String timezone, String limit,
 			String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/domain");
@@ -43,7 +42,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -54,7 +52,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDeliverabilityMetricsByCampaign(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit,
+			String campaigns, String templates, String metrics, String timezone, String limit,
 			String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/campaign");
@@ -63,7 +61,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -73,7 +70,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDeliverabilityMetricsByTemplate(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit,
+			String campaigns, String templates, String metrics, String timezone, String limit,
 			String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/template");
@@ -82,7 +79,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -92,7 +88,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDeliverabilityMetricsByWatchedDomain(RestConnection conn, String from, String to,
-			String domains, String campaigns, String templates, String sandbox, String metrics, String timezone,
+			String domains, String campaigns, String templates, String metrics, String timezone,
 			String limit, String order_by) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/watched-domain");
@@ -101,7 +97,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -111,7 +106,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getTimeSeriesMetrics(RestConnection conn, String from, String to, String domains, String campaigns,
-			String templates, String sandbox, String precision, String metrics, String timezone)
+			String templates, String precision, String metrics, String timezone)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/time-series");
@@ -120,7 +115,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("precision", precision);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
@@ -129,7 +123,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getBounceReasonMetrics(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit)
+			String campaigns, String templates, String metrics, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason");
@@ -138,7 +132,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -147,7 +140,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getBounceReasonMetricsByDomain(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit)
+			String campaigns, String templates, String metrics, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason/domain");
@@ -156,7 +149,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -165,7 +157,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getBounceClassificationMetrics(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String metrics, String timezone, String limit)
+			String campaigns, String templates, String metrics, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/bounce-classification");
@@ -174,7 +166,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
@@ -183,7 +174,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getRejectionReasonMetrics(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String timezone, String limit)
+			String campaigns, String templates, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason");
@@ -192,7 +183,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
@@ -200,7 +190,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getRejectionReasonMetricsByDomain(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String timezone, String limit)
+			String campaigns, String templates, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason/domain");
@@ -209,7 +199,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
@@ -217,7 +206,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDelayReasonMetrics(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String timezone, String limit)
+			String campaigns, String templates, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/delay-reason");
@@ -226,7 +215,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
@@ -234,7 +222,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDelayReasonMetricsByDomain(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String timezone, String limit)
+			String campaigns, String templates, String timezone, String limit)
 					throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/delay-reason/domain");
@@ -243,7 +231,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
@@ -266,7 +253,7 @@ public class ResourceMetrics {
 	}
 
 	public static Response getDeliveriesByAttempt(RestConnection conn, String from, String to, String domains,
-			String campaigns, String templates, String sandbox, String timezone) throws SparkpostSdkException {
+			String campaigns, String templates, String timezone) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("metrics/deliverability/attempt");
 		ep.addParam("from", from);
@@ -274,7 +261,6 @@ public class ResourceMetrics {
 		ep.addParam("domains", domains);
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
-		ep.addParam("sandbox", sandbox);
 		ep.addParam("timezone", timezone);
 		return conn.get(ep.toString());
 	}

@@ -1,9 +1,7 @@
 package com.sparkpost.sdk;
 
-import org.apache.log4j.Logger;
-
 /**
- * The SPClient class stores everything specific to the SparkPost client:<BR>
+ * The Client class stores everything specific to the SparkPost client:<BR>
  * <ul>
  * <li>The Authorization Key
  * <li>The "From:" email address
@@ -12,8 +10,6 @@ import org.apache.log4j.Logger;
  * @author grava
  */
 public class Client {
-
-	private static final Logger logger = Logger.getLogger(Client.class);
 
 	private String authKey;
 	
@@ -36,9 +32,6 @@ public class Client {
 	 */
 	public final void setAuthKey(String key) {
 		this.authKey = key;
-		if (logger.isDebugEnabled()) {
-			logger.debug("Auth key now: " + this.authKey);
-		}
 	}
 
 	public String getAuthKey() {
