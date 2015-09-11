@@ -98,7 +98,7 @@ public class TransmissionBase extends Base {
 	 * Maximum size - 15MBs
 	 */
 	@SerializedName("content")
-	private StoredTemplate storedTemplate = null;
+	private TemplateContentAttributes contentAttributes = null;
 
 	/**
 	 * Computed total recipients

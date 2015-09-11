@@ -153,10 +153,10 @@ public class SampleApplication {
 		recipient.setAddress(new AddressAttributes(client.getFromEmail()));
 		recipArray.add(recipient);
 		
-		StoredTemplate storedTemplate = new StoredTemplate();
-		storedTemplate.setTemplateId(templateId);
-		storedTemplate.setUseDraftTemplate(true);
-		trans.setStoredTemplate(storedTemplate);
+		TemplateContentAttributes template = new TemplateContentAttributes();
+		template.setTemplateId(templateId);
+		template.setUseDraftTemplate(true);
+		trans.setContentAttributes(template);
 
 		Response response = ResourceTransmissions.create(conn, null, trans);
 		if (response.getResponseCode() != 200) {

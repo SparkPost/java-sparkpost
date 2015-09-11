@@ -17,10 +17,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sparkpost.sdk.dto.AddressAttributes;
+import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateContentAttributes;
 
 /**
+ *
  *
  * @author grava
  */
@@ -73,7 +75,7 @@ public class SPResourceTemplateTest {
 		tpl.getContent().setSubject("Template Test");
 		try {
 			conn = new RestConnection(client);
-			ResourceTemplates.create(conn, tpl);
+			Response response = ResourceTemplates.create(conn, tpl);
 
 		} catch (SparkpostSdkException ex) {
 			System.out.println(ex.toString());

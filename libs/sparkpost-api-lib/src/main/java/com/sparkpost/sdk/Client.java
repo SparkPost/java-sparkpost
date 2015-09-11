@@ -27,8 +27,9 @@ public class Client {
 	}
 
 	/**
-	 *
-	 * @param key
+	 * You can create and API Key here <a href="here https://app.sparkpost.com/account/credentials">SparkPost</a>
+	 * 
+	 * @param key SparkPost API Key
 	 */
 	public final void setAuthKey(String key) {
 		this.authKey = key;
@@ -72,7 +73,7 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Auth key: " + this.authKey + ", From Email: " + this.fromEmail;
+		return "clinet[email: " + this.fromEmail;
 	}
 
 }
