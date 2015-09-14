@@ -1,0 +1,17 @@
+<FindBugsFilter>
+
+	<Match>
+		<!-- Reason for exclusion: This is code from a third party. -->
+		<Class name="org.slf4j.impl.StaticLoggerBinder" />
+	</Match>
+
+	<Match>
+		<!-- Reason for exclusion: All bugs in test classes, except for JUnit-specific 
+			bugs -->
+		<Class name="~.*\.*Test" />
+		<Not>
+			<Bug code="IJU" />
+		</Not>
+	</Match>
+
+</FindBugsFilter>
