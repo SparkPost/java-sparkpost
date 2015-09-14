@@ -1,17 +1,3 @@
-/* Copyright 2014 Message Systems, Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License").
- * You may not use this software except in compliance with the License.
- *
- * A copy of the License is located at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0.html
- *
- * or in the "license" file accompanying this software. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
- * ANY KIND, either express or implied. See the License for the specific
- * language governing permissions and limitations under the License.
- */
 package com.sparkpost.sdk;
 
 import java.io.BufferedReader;
@@ -29,16 +15,16 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
-import com.sparkpost.sdk.dto.SparkpostSdkException;
+import com.sparkpost.sdk.dto.Response;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
  *
  * @author grava
  */
-public class RestConn {
+public class RestConnection {
 
-	private static final Logger logger = Logger.getLogger(RestConn.class);
+	private static final Logger logger = Logger.getLogger(RestConnection.class);
 
 	/**
 	 * Default endpoint to use for connections :
@@ -79,7 +65,7 @@ public class RestConn {
 	 *            Client object to use (in particular for authentication info)
 	 * @throws SparkpostSdkException
 	 */
-	public RestConn(Client client) throws SparkpostSdkException {
+	public RestConnection(Client client) throws SparkpostSdkException {
 		this(client, null /* means:set to default endpoint */);
 	}
 
@@ -93,7 +79,7 @@ public class RestConn {
 	 *            Endpoint to use instead of the default defaultApiEndpoint
 	 * @throws SparkpostSdkException
 	 */
-	public RestConn(Client client, String endpoint) throws SparkpostSdkException {
+	public RestConnection(Client client, String endpoint) throws SparkpostSdkException {
 		this.client = client;
 		if (StringUtils.isAnyEmpty(endpoint)) {
 			this.endpoint = defaultApiEndpoint;
@@ -141,23 +127,31 @@ public class RestConn {
 			switch (method) {
 			case GET:
 				conn.setRequestMethod("GET");
-				logger.debug("GET " + url);
+				if (logger.isDebugEnabled()) {
+					logger.debug("GET " + url);
+				}
 				break;
 			case POST:
 				conn.setRequestMethod("POST");
 				// we write the POST data to the "output" stream:
 				conn.setDoOutput(true);
-				logger.debug("POST " + path);
+				if (logger.isDebugEnabled()) {
+					logger.debug("POST " + path);
+				}
 				break;
 			case PUT:
 				conn.setRequestMethod("PUT");
 				// we write the POST data to the "output" stream:
 				conn.setDoOutput(true);
-				logger.debug("PUT " + path);
+				if (logger.isDebugEnabled()) {
+					logger.debug("PUT " + path);
+				}
 				break;
 			case DELETE:
 				conn.setRequestMethod("DELETE");
-				logger.debug("DELETE " + path);
+				if (logger.isDebugEnabled()) {
+					logger.debug("DELETE " + path);
+				}
 				break;
 			default:
 				throw new SparkpostSdkException("Invalid Method");
@@ -184,7 +178,10 @@ public class RestConn {
 		}
 		conn.setRequestProperty("Content-Length", lenStr);
 		conn.setRequestProperty("Content-Type", "application/json");
-		logger.debug("Sending data (" + lenStr + " bytes): " + data);
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("Sending data (" + lenStr + " bytes): " + data);
+		}
 		// Send data. At this point connection to server may not be established,
 		// but writing data to it will trigger the connection.
 		try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream());) {
@@ -258,7 +255,9 @@ public class RestConn {
 			sendRequest(conn, data);
 			receiveResponse(conn);
 
-			logger.debug("Server Response:" + lastResponse);
+			if (logger.isDebugEnabled()) {
+				logger.debug("Server Response:" + lastResponse);
+			}
 			return lastResponse;
 		} finally {
 			if (conn != null) {

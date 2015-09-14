@@ -36,6 +36,7 @@ __NOTE: This is not published to Maven Repo yet!!!__
 
 5. Optionally setup [Eclipse](https://eclipse.org/) (will need Maven Plugin to import project)
 
+6. Optionally setup [IntelliJ](https://www.jetbrains.com/idea/)
 
 ### Building
 
@@ -44,12 +45,23 @@ __NOTE: This is not published to Maven Repo yet!!!__
  
 2. Build with Maven `mvn clean install`
 
-3. [OPTIONAL] Import project into Eclipse
+### GUI Editors
+
+#### Eclipse
+
+It is easiest if you build the project on the command-line first before importing project into Eclipse.
+
+* Import project into Eclipse
 	* Setup Lombok in Eclipse `./tools/bin/setupLombok.sh` (browse to and select eclipse.ini)
 	* Restart Eclipse
    * File -> Import -> Maven -> Existing Maven Projects
    * See "Prerequisites" above for environment variables needed for running examples
 
+#### IntelliJ
+
+* Import project into IntelliJ
+	* File -> New -> Project from Existing Sources
+	* Download and install the Lombok plugin https://plugins.jetbrains.com/plugin/6317
 
 ## TODO: Examples
 

@@ -16,15 +16,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sparkpost.sdk.Client;
-import com.sparkpost.sdk.ResourceTemplates;
-import com.sparkpost.sdk.RestConn;
-import com.sparkpost.sdk.dto.Address;
-import com.sparkpost.sdk.dto.SparkpostSdkException;
-import com.sparkpost.sdk.dto.Template;
-import com.sparkpost.sdk.dto.TemplateContent;
+import com.sparkpost.sdk.dto.AddressAttributes;
+import com.sparkpost.sdk.dto.Response;
+import com.sparkpost.sdk.dto.TemplateAttributes;
+import com.sparkpost.sdk.dto.TemplateContentAttributes;
 
 /**
+ *
  *
  * @author grava
  */
@@ -67,17 +65,17 @@ public class SPResourceTemplateTest {
 	@Test
 	public void testPostCreateTemplate() {
 		System.out.println("---- SPResourceTemplateTest.testPostCreateTemplate");
-		RestConn conn = null;
-		Template tpl = new Template();
+		RestConnection conn = null;
+		TemplateAttributes tpl = new TemplateAttributes();
 
 		tpl.setName("_TMP_TEMPLATE_TEST");
-		tpl.setContent(new TemplateContent());
-		tpl.getContent().setFrom(new Address(client.getFromEmail(), "me", null));
+		tpl.setContent(new TemplateContentAttributes());
+		tpl.getContent().setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
 		tpl.getContent().setHtml("Hello!");
 		tpl.getContent().setSubject("Template Test");
 		try {
-			conn = new RestConn(client);
-			ResourceTemplates.create(conn, tpl);
+			conn = new RestConnection(client);
+			Response response = ResourceTemplates.create(conn, tpl);
 
 		} catch (SparkpostSdkException ex) {
 			System.out.println(ex.toString());

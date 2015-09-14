@@ -1,21 +1,6 @@
-/* Copyright 2014 Message Systems, Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License").
- * You may not use this software except in compliance with the License.
- *
- * A copy of the License is located at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0.html
- *
- * or in the "license" file accompanying this software. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
- * ANY KIND, either express or implied. See the License for the specific
- * language governing permissions and limitations under the License.
- */
-
 package com.sparkpost.sdk;
 
-import com.sparkpost.sdk.dto.SparkpostSdkException;
+import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
 
 /**
@@ -29,7 +14,7 @@ import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
  */
 public class ResourceTransmissions {
 
-	public static Response create(RestConn conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
+	public static Response create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("transmissions");
@@ -38,12 +23,12 @@ public class ResourceTransmissions {
 		return conn.post(ep.toString(), json);
 	}
 
-	public static Response retrieve(RestConn conn, String id) throws SparkpostSdkException {
+	public static Response retrieve(RestConnection conn, String id) throws SparkpostSdkException {
 
 		return conn.get("transmissions/" + id);
 	}
 
-	public static Response list(RestConn conn, String campaignId, String templateId) throws SparkpostSdkException {
+	public static Response list(RestConnection conn, String campaignId, String templateId) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("transmissions");
 		ep.addParam("campaign_id", campaignId);

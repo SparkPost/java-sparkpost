@@ -1,22 +1,7 @@
-/* Copyright 2014 Message Systems, Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License").
- * You may not use this software except in compliance with the License.
- *
- * A copy of the License is located at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0.html
- *
- * or in the "license" file accompanying this software. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
- * ANY KIND, either express or implied. See the License for the specific
- * language governing permissions and limitations under the License.
- */
-
 package com.sparkpost.sdk;
 
-import com.sparkpost.sdk.dto.SparkpostSdkException;
-import com.sparkpost.sdk.dto.Template;
+import com.sparkpost.sdk.dto.Response;
+import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateSubstitutionData;
 
 /**
@@ -30,25 +15,25 @@ import com.sparkpost.sdk.dto.TemplateSubstitutionData;
  */
 public class ResourceTemplates {
 
-	public static Response create(RestConn conn, Template tpl) throws SparkpostSdkException {
+	public static Response create(RestConnection conn, TemplateAttributes tpl) throws SparkpostSdkException {
 
 		String json = tpl.toJson();
 		return conn.post("templates", json);
 	}
 
-	public static Response retrieve(RestConn conn, String id, Boolean draft) throws SparkpostSdkException {
+	public static Response retrieve(RestConnection conn, String id, Boolean draft) throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
 		ep.addParam("draft", draft);
 		return conn.get(ep.toString());
 	}
 
-	public static Response listAll(RestConn conn) throws SparkpostSdkException {
+	public static Response listAll(RestConnection conn) throws SparkpostSdkException {
 
 		return conn.get("templates/");
 	}
 
-	public static Response update(RestConn conn, String id, Boolean updatePublished, Template tpl)
+	public static Response update(RestConnection conn, String id, Boolean updatePublished, TemplateAttributes tpl)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
@@ -57,7 +42,7 @@ public class ResourceTemplates {
 		return conn.put(ep.toString(), json);
 	}
 
-	public static Response preview(RestConn conn, String id, Boolean draft, TemplateSubstitutionData subst)
+	public static Response preview(RestConnection conn, String id, Boolean draft, TemplateSubstitutionData subst)
 			throws SparkpostSdkException {
 
 		Endpoint ep = new Endpoint("templates/" + id + "/preview");
@@ -66,7 +51,7 @@ public class ResourceTemplates {
 		return conn.put(ep.toString(), json);
 	}
 
-	public static Response delete(RestConn conn, String id) throws SparkpostSdkException {
+	public static Response delete(RestConnection conn, String id) throws SparkpostSdkException {
 
 		return conn.delete("templates/" + id);
 	}
