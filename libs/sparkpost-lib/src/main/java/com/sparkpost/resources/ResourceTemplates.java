@@ -3,6 +3,7 @@ package com.sparkpost.resources;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateAttributes;
+import com.sparkpost.model.TemplateListResponse;
 import com.sparkpost.model.TemplateSubstitutionData;
 import com.sparkpost.transport.RestConnection;
 
@@ -30,9 +31,11 @@ public class ResourceTemplates {
 		return conn.get(ep.toString());
 	}
 
-	public static Response listAll(RestConnection conn) throws SparkPostException {
+	public static TemplateListResponse listAll(RestConnection conn) throws SparkPostException {
+		Response response = conn.get("templates/");
+		TemplateListResponse listResponse = (TemplateListResponse)TemplateListResponse.decode(response, TemplateListResponse.class);
 
-		return conn.get("templates/");
+		return listResponse;
 	}
 
 	public static Response update(RestConnection conn, String id, Boolean updatePublished, TemplateAttributes tpl)

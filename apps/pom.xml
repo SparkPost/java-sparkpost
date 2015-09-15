@@ -12,6 +12,6 @@
 	<name>SparkPost Examples</name>
 	<url>/apps/</url>
 	<modules>
-		<module>sparkpost-attachment-app</module>
+		<module>sparkpost-samples-app</module>
 	</modules>
 </project>

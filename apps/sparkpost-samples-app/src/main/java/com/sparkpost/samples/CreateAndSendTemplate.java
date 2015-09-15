@@ -35,6 +35,11 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 		createTemplate();
 	}
 	
+	/**
+	 * Demonstrates how to store an email template in SparkPost
+	 * 
+	 * @throws SparkPostException
+	 */
 	public void createTemplate() throws SparkPostException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("createTemplate()");
@@ -53,7 +58,6 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 		if (logger.isDebugEnabled()) {
 			logger.debug("Create Template Response: " + response);
 		}
-		
 	}
 	
 	public void sendEmail(String templateName, List<String> recipients) {
@@ -61,13 +65,6 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 			logger.debug("sendEmail(...)");
 		}
 		
-		
-		
 	}
-	
-	public void deleteTemplate(String tempalteId) {
-		
-	}
-	
 	
 }
