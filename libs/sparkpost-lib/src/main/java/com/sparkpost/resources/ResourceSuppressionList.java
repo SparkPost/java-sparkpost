@@ -1,6 +1,6 @@
 package com.sparkpost.resources;
 
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Response;
 import com.sparkpost.model.SuppressionList;
 import com.sparkpost.model.SuppressionListEntry;
@@ -18,7 +18,7 @@ import com.sparkpost.transport.RestConnection;
 public class ResourceSuppressionList {
 
 	public static Response insertOrUpdate(RestConnection conn, String email, final SuppressionListEntry entry)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		// we need a copy because we don't want the email field in the json:
 		SuppressionListEntry copy = new SuppressionListEntry(entry);
@@ -29,14 +29,14 @@ public class ResourceSuppressionList {
 	}
 
 	public static Response insertOrUpdateBulk(RestConnection conn, SuppressionList suppressionList)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		String json = suppressionList.toJson();
 		return conn.put("suppression-list/", json);
 	}
 
 	public static Response search(RestConnection conn, String to, String from, String types, String limit)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		Endpoint ep = new Endpoint("suppression-list");
 		ep.addParam("to", to);
@@ -46,12 +46,12 @@ public class ResourceSuppressionList {
 		return conn.get(ep.toString());
 	}
 
-	public static Response check(RestConnection conn, String email) throws SparkpostException {
+	public static Response check(RestConnection conn, String email) throws SparkPostException {
 
 		return conn.get("suppression-list/" + email);
 	}
 
-	public static Response remove(RestConnection conn, String email) throws SparkpostException {
+	public static Response remove(RestConnection conn, String email) throws SparkPostException {
 
 		return conn.delete("suppression-list/" + email);
 	}

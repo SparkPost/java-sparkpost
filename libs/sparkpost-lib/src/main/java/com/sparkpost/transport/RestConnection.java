@@ -16,7 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Response;
 
 /**
@@ -65,9 +65,9 @@ public class RestConnection {
 	 *
 	 * @param client
 	 *            Client object to use (in particular for authentication info)
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	public RestConnection(Client client) throws SparkpostException {
+	public RestConnection(Client client) throws SparkPostException {
 		this(client, null /* means:set to default endpoint */);
 	}
 
@@ -79,9 +79,9 @@ public class RestConnection {
 	 *            Client object to use (in particular for authentication info)
 	 * @param endpoint
 	 *            Endpoint to use instead of the default defaultApiEndpoint
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	public RestConnection(Client client, String endpoint) throws SparkpostException {
+	public RestConnection(Client client, String endpoint) throws SparkPostException {
 		this.client = client;
 		if (StringUtils.isAnyEmpty(endpoint)) {
 			this.endpoint = defaultApiEndpoint;
@@ -103,9 +103,9 @@ public class RestConnection {
 	 * @param method
 	 *            HTTP method for the connection
 	 * @return the connection object
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	private HttpURLConnection createConnectionObject(String path, Method method) throws SparkpostException {
+	private HttpURLConnection createConnectionObject(String path, Method method) throws SparkPostException {
 		HttpURLConnection conn;
 		try {
 			URL url;
@@ -156,27 +156,27 @@ public class RestConnection {
 				}
 				break;
 			default:
-				throw new SparkpostException("Invalid Method");
+				throw new SparkPostException("Invalid Method");
 			}
 		} catch (MalformedURLException ex) {
-			throw new SparkpostException("Invalid path: " + path + ex.toString());
+			throw new SparkPostException("Invalid path: " + path + ex.toString());
 		} catch (ProtocolException ex) {
-			throw new SparkpostException("Invalid method:" + ex.toString());
+			throw new SparkPostException("Invalid method:" + ex.toString());
 		} catch (IOException ex) {
-			throw new SparkpostException("Error with connection to " + path + ex.toString());
+			throw new SparkPostException("Error with connection to " + path + ex.toString());
 		}
 		return conn;
 	}
 
 	// Send HTTP data (payload) to server
-	private void sendData(HttpURLConnection conn, String data) throws SparkpostException {
+	private void sendData(HttpURLConnection conn, String data) throws SparkPostException {
 		String lenStr;
 		try {
 			lenStr = Integer.toString(data.getBytes("UTF-8").length);
 		} catch (UnsupportedEncodingException e) {
 			// This should never happen. UTF-8 should always be available but we have
 			// to catch it so pass it on if it fails.
-			throw new SparkpostException(e);
+			throw new SparkPostException(e);
 		}
 		conn.setRequestProperty("Content-Length", lenStr);
 		conn.setRequestProperty("Content-Type", "application/json");
@@ -191,12 +191,12 @@ public class RestConnection {
 			wr.writeBytes(data);
 			wr.flush();
 		} catch (IOException ex) {
-			throw new SparkpostException("Error sending request data:" + ex.toString());
+			throw new SparkPostException("Error sending request data:" + ex.toString());
 		}
 	}
 
 	// Send HTTP request to server
-	private void sendRequest(HttpURLConnection conn, String data) throws SparkpostException {
+	private void sendRequest(HttpURLConnection conn, String data) throws SparkPostException {
 
 		if (data != null) {
 			sendData(conn, data);
@@ -216,12 +216,12 @@ public class RestConnection {
 			lastResponse.setResponseMessage(msg);
 
 		} catch (IOException ex) {
-			throw new SparkpostException("Connection error:" + ex.toString());
+			throw new SparkPostException("Connection error:" + ex.toString());
 		}
 	}
 
 	// Read response body from server
-	private Response receiveResponse(HttpURLConnection conn) throws SparkpostException {
+	private Response receiveResponse(HttpURLConnection conn) throws SparkPostException {
 
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));) {
@@ -240,7 +240,7 @@ public class RestConnection {
 			// an error.
 			lastResponse.setResponseBody("");
 		} catch (IOException ex) {
-			throw new SparkpostException("Error reading server response: " + ex.toString() + ": " + sb.toString());
+			throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString());
 		}
 
 		return lastResponse;
@@ -248,7 +248,7 @@ public class RestConnection {
 
 	// This method actually performs an HTTP request.
 	// It is called by get(), put(), post() and delete() below
-	private Response doHttpMethod(String path, Method method, String data) throws SparkpostException {
+	private Response doHttpMethod(String path, Method method, String data) throws SparkPostException {
 		HttpURLConnection conn = null;
 		try {
 			lastResponse.reset();
@@ -276,9 +276,9 @@ public class RestConnection {
 	 * @param path
 	 *            API endpoint to send the request to.
 	 * @return Server response to the request.
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	public Response get(String path) throws SparkpostException {
+	public Response get(String path) throws SparkPostException {
 		return doHttpMethod(path, Method.GET, null);
 	}
 
@@ -292,9 +292,9 @@ public class RestConnection {
 	 * @param json
 	 *            POST data block to send with the request. May be null.
 	 * @return Server response to the request.
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	public Response post(String path, String json) throws SparkpostException {
+	public Response post(String path, String json) throws SparkPostException {
 		return doHttpMethod(path, Method.POST, json);
 	}
 
@@ -308,9 +308,9 @@ public class RestConnection {
 	 * @param json
 	 *            PUT data block to send with the request. May be null.
 	 * @return Server response to the request.
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	public Response put(String path, String json) throws SparkpostException {
+	public Response put(String path, String json) throws SparkPostException {
 		return doHttpMethod(path, Method.PUT, json);
 	}
 
@@ -322,9 +322,9 @@ public class RestConnection {
 	 * @param path
 	 *            API endpoint to send the request to.
 	 * @return Server response to the request.
-	 * @throws SparkpostException
+	 * @throws SparkPostException
 	 */
-	public Response delete(String path) throws SparkpostException {
+	public Response delete(String path) throws SparkPostException {
 		return doHttpMethod(path, Method.DELETE, null);
 	}
 }

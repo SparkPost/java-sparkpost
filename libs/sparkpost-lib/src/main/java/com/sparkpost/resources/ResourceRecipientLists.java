@@ -1,6 +1,6 @@
 package com.sparkpost.resources;
 
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.RecipientList;
 import com.sparkpost.model.Response;
 import com.sparkpost.transport.RestConnection;
@@ -18,7 +18,7 @@ import com.sparkpost.transport.RestConnection;
 public class ResourceRecipientLists {
 
 	static public Response create(RestConnection conn, Integer maxNumberOfRecipientErrors, RecipientList recipientList)
-			throws SparkpostException {
+			throws SparkPostException {
 		String json = recipientList.toJson();
 		Endpoint ep = new Endpoint("recipient-lists");
 		ep.addParam("num_rcpt_errors", maxNumberOfRecipientErrors);
@@ -26,17 +26,17 @@ public class ResourceRecipientLists {
 	}
 
 	static public Response retrieve(RestConnection conn, String recipientListId, Boolean showRecipients)
-			throws SparkpostException {
+			throws SparkPostException {
 		Endpoint ep = new Endpoint("recipient-lists/" + recipientListId);
 		ep.addParam("show_recipients", showRecipients);
 		return conn.get(ep.toString());
 	}
 
-	static public Response listAll(RestConnection conn) throws SparkpostException {
+	static public Response listAll(RestConnection conn) throws SparkPostException {
 		return conn.get("recipient-lists");
 	}
 
-	static public Response delete(RestConnection conn, String recipientListId) throws SparkpostException {
+	static public Response delete(RestConnection conn, String recipientListId) throws SparkPostException {
 		String path = "recipient-lists/" + recipientListId;
 		return conn.delete(path);
 	}

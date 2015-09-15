@@ -1,6 +1,6 @@
 package com.sparkpost.resources;
 
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateSubstitutionData;
@@ -17,26 +17,26 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceTemplates {
 
-	public static Response create(RestConnection conn, TemplateAttributes tpl) throws SparkpostException {
+	public static Response create(RestConnection conn, TemplateAttributes tpl) throws SparkPostException {
 
 		String json = tpl.toJson();
 		return conn.post("templates", json);
 	}
 
-	public static Response retrieve(RestConnection conn, String id, Boolean draft) throws SparkpostException {
+	public static Response retrieve(RestConnection conn, String id, Boolean draft) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
 		ep.addParam("draft", draft);
 		return conn.get(ep.toString());
 	}
 
-	public static Response listAll(RestConnection conn) throws SparkpostException {
+	public static Response listAll(RestConnection conn) throws SparkPostException {
 
 		return conn.get("templates/");
 	}
 
 	public static Response update(RestConnection conn, String id, Boolean updatePublished, TemplateAttributes tpl)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
 		ep.addParam("update_published", updatePublished);
@@ -45,7 +45,7 @@ public class ResourceTemplates {
 	}
 
 	public static Response preview(RestConnection conn, String id, Boolean draft, TemplateSubstitutionData subst)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		Endpoint ep = new Endpoint("templates/" + id + "/preview");
 		ep.addParam("draft", draft);
@@ -53,7 +53,7 @@ public class ResourceTemplates {
 		return conn.put(ep.toString(), json);
 	}
 
-	public static Response delete(RestConnection conn, String id) throws SparkpostException {
+	public static Response delete(RestConnection conn, String id) throws SparkPostException {
 
 		return conn.delete("templates/" + id);
 	}

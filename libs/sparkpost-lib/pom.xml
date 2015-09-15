@@ -8,7 +8,7 @@
 	</parent>
 	<!-- <version>0.8-SNAPSHOT</version> -->
 	<artifactId>sparkpost-lib</artifactId>
-	<name>Sparkpost Library</name>
+	<name>SparkPost Library</name>
 	<url>/libs/sparkpost-lib/</url>
 
 	<dependencies>

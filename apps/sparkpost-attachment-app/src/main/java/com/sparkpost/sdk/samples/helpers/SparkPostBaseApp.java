@@ -10,7 +10,7 @@ import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.samples.CreateAndSendTemplate;
 
 public class SparkPostBaseApp {
@@ -27,15 +27,15 @@ public class SparkPostBaseApp {
 		this.loadProperties();
 	}
 
-	protected Client newConfiguredClient() throws SparkpostException, IOException {
+	protected Client newConfiguredClient() throws SparkPostException, IOException {
 		
 		Client client = new Client(properties.getProperty("SPARKPOST_API_KEY"));
 		if (StringUtils.isEmpty(client.getAuthKey())) {
-			throw new SparkpostException("SPARKPOST_API_KEY must be defined in " + CONFIG_FILE + ".");
+			throw new SparkPostException("SPARKPOST_API_KEY must be defined in " + CONFIG_FILE + ".");
 		}
 		client.setFromEmail(properties.getProperty("SPARKPOST_SENDER_EMAIL"));
 		if (StringUtils.isEmpty(client.getFromEmail())) {
-			throw new SparkpostException("SPARKPOST_SENDER_EMAIL must be defined in " + CONFIG_FILE + ".");
+			throw new SparkPostException("SPARKPOST_SENDER_EMAIL must be defined in " + CONFIG_FILE + ".");
 		}
 		
 		if (logger.isDebugEnabled()) {

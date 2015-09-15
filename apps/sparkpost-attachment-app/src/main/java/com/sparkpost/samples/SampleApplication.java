@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sparkpost.Client;
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.RecipientAttributes;
 import com.sparkpost.model.Response;
@@ -32,7 +32,7 @@ public class SampleApplication {
 
 	private static Gson gson;
 
-	public static void main(String[] args) throws SparkpostException {
+	public static void main(String[] args) throws SparkPostException {
 		// Set to DEBUG so we can see what the SparkPost SDK is doing:
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
@@ -94,7 +94,7 @@ public class SampleApplication {
 	}
 
 	// Create a template and store it at the server:
-	private static String createTemplate(Client client, RestConnection conn) throws SparkpostException {
+	private static String createTemplate(Client client, RestConnection conn) throws SparkPostException {
 		
 		TemplateAttributes tpl = new TemplateAttributes();
 		tpl.setName("_TMP_TEMPLATE_TEST");
@@ -138,7 +138,7 @@ public class SampleApplication {
 
 	// Create a transmission using the stored template:
 	private static String createTransmission(Client client, RestConnection conn, String templateId)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		TransmissionWithRecipientArray trans = new TransmissionWithRecipientArray();
 		trans.setCampaignId("sample_app_trans_test");

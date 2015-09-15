@@ -1,6 +1,6 @@
 package com.sparkpost.resources;
 
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Response;
 import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.transport.RestConnection;
@@ -17,7 +17,7 @@ import com.sparkpost.transport.RestConnection;
 public class ResourceTransmissions {
 
 	public static Response create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
-			throws SparkpostException {
+			throws SparkPostException {
 
 		Endpoint ep = new Endpoint("transmissions");
 		ep.addParam("num_rcpt_errors", numRcptErrors);
@@ -25,12 +25,12 @@ public class ResourceTransmissions {
 		return conn.post(ep.toString(), json);
 	}
 
-	public static Response retrieve(RestConnection conn, String id) throws SparkpostException {
+	public static Response retrieve(RestConnection conn, String id) throws SparkPostException {
 
 		return conn.get("transmissions/" + id);
 	}
 
-	public static Response list(RestConnection conn, String campaignId, String templateId) throws SparkpostException {
+	public static Response list(RestConnection conn, String campaignId, String templateId) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("transmissions");
 		ep.addParam("campaign_id", campaignId);

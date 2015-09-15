@@ -7,7 +7,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
-import com.sparkpost.exception.SparkpostException;
+import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateAttributes;
@@ -22,7 +22,7 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 
 	private Client client;
 	
-	public static void main(String[] args) throws SparkpostException, IOException {
+	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
 		CreateAndSendTemplate templateTest = new CreateAndSendTemplate();
@@ -30,12 +30,12 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 		
 	}
 	
-	private void runApp() throws SparkpostException, IOException {
+	private void runApp() throws SparkPostException, IOException {
 		client = this.newConfiguredClient();
 		createTemplate();
 	}
 	
-	public void createTemplate() throws SparkpostException {
+	public void createTemplate() throws SparkPostException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("createTemplate()");
 		}

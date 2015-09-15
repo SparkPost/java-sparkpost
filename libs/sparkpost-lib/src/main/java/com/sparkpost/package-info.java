@@ -22,7 +22,7 @@
  * <li> list() matches the list endpoint in the transmission API
  * </ul>
  * See the 
- * <a href="https://www.sparkpost.com/api#/reference/transmissions"> Sparkpost Transmission API</a>.  <br>
+ * <a href="https://www.sparkpost.com/api#/reference/transmissions"> SparkPost Transmission API</a>.  <br>
  * <br>
  * <h1> Data Transfer Objects </h1><br>
  * A DTO class is a container of fields which intent is to be serialized into
@@ -52,7 +52,7 @@
  * <li> Client
  * <li> RestConnection
  * <li> Response
- * <li> SparkpostException
+ * <li> SparkPostException
  * </ul>
  * <br>
  * Client define information specific to the SparkPost client: the
@@ -61,7 +61,7 @@
  * from the SparkPost server. All of the resources methods (see above) take
  * for first parameter an RestConnection object.<br>
  * The Response class describes a response received by the SparkPost server.<br>
- * And finally the SparkpostException is the custom exception for this library.<br>
+ * And finally the SparkPostException is the custom exception for this library.<br>
  * <br>
  * <br>
  * See The SampleApplication class for an example of creating a template,
