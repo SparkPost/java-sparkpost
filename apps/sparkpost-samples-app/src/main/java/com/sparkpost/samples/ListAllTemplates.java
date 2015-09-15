@@ -29,15 +29,16 @@ public class ListAllTemplates  extends SparkPostBaseApp {
 
 		ListAllTemplates app = new ListAllTemplates();
 		app.runApp();
-		
 	}
 	
 	private void runApp() throws SparkPostException, IOException {
 		client = this.newConfiguredClient();
-		RestConnection connection = new RestConnection(client);
+		RestConnection connection = new RestConnection(client, getEndPoint());
 		TemplateListResponse listResponse = ResourceTemplates.listAll(connection);
 		
 		List<TemplateItem> results = listResponse.getResults();
+		
+		// Print out the templates
 		System.out.println("Found " + results.size() + " tempaltes");
 		for (TemplateItem item : results) {
 			System.out.println("\tName \"" + item.getName() + "\" updated " + item.getLastUpdateTime());

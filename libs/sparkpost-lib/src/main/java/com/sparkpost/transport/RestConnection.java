@@ -17,6 +17,7 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.model.Response;
 
 /**
@@ -223,6 +224,11 @@ public class RestConnection {
 	// Read response body from server
 	private Response receiveResponse(HttpURLConnection conn) throws SparkPostException {
 
+		if (!conn.getContentType().equalsIgnoreCase("application/json")) {
+			throw new SparkPostIllegalServerResponseException("Unexpected content type (" + conn.getContentType() + ") from " + conn.getURL());
+		}
+		
+		
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));) {
 			// Buffer the result into a string:
@@ -260,6 +266,8 @@ public class RestConnection {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Server Response:" + lastResponse);
 			}
+			
+			
 			return lastResponse;
 		} finally {
 			if (conn != null) {

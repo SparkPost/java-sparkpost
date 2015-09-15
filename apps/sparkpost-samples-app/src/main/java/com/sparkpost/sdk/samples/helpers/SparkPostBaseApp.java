@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.samples.CreateAndSendTemplate;
+import com.sparkpost.transport.RestConnection;
 
 public class SparkPostBaseApp {
 
@@ -43,6 +44,12 @@ public class SparkPostBaseApp {
 		}
 		
 		return client;
+	}
+	
+	public String getEndPoint() {
+		String endpoint = this.properties.getProperty("SPARKPOST_BASE_URL", RestConnection.defaultApiEndpoint);
+		
+		return endpoint;
 	}
 	
 	/**

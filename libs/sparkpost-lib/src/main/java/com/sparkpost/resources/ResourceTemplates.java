@@ -34,7 +34,6 @@ public class ResourceTemplates {
 	public static TemplateListResponse listAll(RestConnection conn) throws SparkPostException {
 		Response response = conn.get("templates/");
 		TemplateListResponse listResponse = (TemplateListResponse)TemplateListResponse.decode(response, TemplateListResponse.class);
-
 		return listResponse;
 	}
 

@@ -44,7 +44,6 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 		if (logger.isDebugEnabled()) {
 			logger.debug("createTemplate()");
 		}
-		RestConnection conn = null;
 		TemplateAttributes tpl = new TemplateAttributes();
 
 		tpl.setName("_TMP_TEMPLATE_TEST");
@@ -52,8 +51,8 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 		tpl.getContent().setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
 		tpl.getContent().setHtml("Hello!");
 		tpl.getContent().setSubject("Template Test");
-		conn = new RestConnection(client);
-		Response response = ResourceTemplates.create(conn, tpl);
+		RestConnection connection = new RestConnection(client, getEndPoint());
+		Response response = ResourceTemplates.create(connection, tpl);
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("Create Template Response: " + response);
