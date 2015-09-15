@@ -1,8 +1,10 @@
-package com.sparkpost.sdk;
+package com.sparkpost.sdk.resources;
 
 import com.sparkpost.sdk.dto.Response;
 import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateSubstitutionData;
+import com.sparkpost.sdk.exception.SparkpostSdkException;
+import com.sparkpost.sdk.transport.RestConnection;
 
 /**
  * Resource collection that is a 1-to-1 match to the Templates SparkPost API.

@@ -1,4 +1,4 @@
-package com.sparkpost.sdk;
+package com.sparkpost.sdk.resources;
 
 import org.apache.http.client.utils.URIBuilder;
 
@@ -7,7 +7,7 @@ import org.apache.http.client.utils.URIBuilder;
  *
  * @author grava
  */
-class Endpoint {
+public class Endpoint {
 
 	private URIBuilder uriBuilder;
 

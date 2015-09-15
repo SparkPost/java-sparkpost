@@ -1,4 +1,4 @@
-package com.sparkpost.sdk;
+package com.sparkpost.sdk.exception;
 
 /**
  *

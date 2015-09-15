@@ -14,8 +14,11 @@ import lombok.EqualsAndHashCode;
 public class Response extends Base{
 
 	private String request = null;
+	
 	private String requestId = null;
+	
 	private int responseCode = -1;
+	
 	private String responseMessage = null;
 	
 	@SerializedName("json")

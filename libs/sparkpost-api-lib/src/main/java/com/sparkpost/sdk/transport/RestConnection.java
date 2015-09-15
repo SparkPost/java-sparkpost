@@ -1,4 +1,4 @@
-package com.sparkpost.sdk;
+package com.sparkpost.sdk.transport;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -15,7 +15,9 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.sparkpost.sdk.Client;
 import com.sparkpost.sdk.dto.Response;
+import com.sparkpost.sdk.exception.SparkpostSdkException;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.

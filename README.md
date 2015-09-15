@@ -1,5 +1,7 @@
 <a href="http://sparkpost.com"><img src="https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg" width="200px"/></a>
 
+You can sign up for a Stripe account at https://sparkpost.com
+
 # SparkPost Java SDK
 
 Use this repository in Java applications to easily access the SparkPost Email APIs in your application.
@@ -10,13 +12,13 @@ The SparkPost Java API is available in this [Maven Repository](http://maven.apac
 
 __NOTE: This is not published to Maven Repo yet!!!__
 
-`````
+```xml
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>client-server-protocol-lib</artifactId>
 	<version>0.8-SNAPSHOT</version>
 </dependency>
-`````
+```
 
 ## Building SparkPost4J
 

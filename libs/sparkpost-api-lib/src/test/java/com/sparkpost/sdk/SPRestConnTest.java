@@ -16,6 +16,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sparkpost.sdk.exception.SparkpostSdkException;
+import com.sparkpost.sdk.transport.RestConnection;
+
 /**
  *
  * @author grava

@@ -10,17 +10,16 @@ import org.apache.log4j.Logger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sparkpost.sdk.Client;
-import com.sparkpost.sdk.ResourceTemplates;
-import com.sparkpost.sdk.ResourceTransmissions;
-import com.sparkpost.sdk.RestConnection;
-import com.sparkpost.sdk.SparkpostSdkException;
 import com.sparkpost.sdk.dto.AddressAttributes;
 import com.sparkpost.sdk.dto.RecipientAttributes;
 import com.sparkpost.sdk.dto.Response;
-import com.sparkpost.sdk.dto.StoredTemplate;
 import com.sparkpost.sdk.dto.TemplateAttributes;
 import com.sparkpost.sdk.dto.TemplateContentAttributes;
 import com.sparkpost.sdk.dto.TransmissionWithRecipientArray;
+import com.sparkpost.sdk.exception.SparkpostSdkException;
+import com.sparkpost.sdk.resources.ResourceTemplates;
+import com.sparkpost.sdk.resources.ResourceTransmissions;
+import com.sparkpost.sdk.transport.RestConnection;
 
 import lombok.Data;
 
