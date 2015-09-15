@@ -2,13 +2,13 @@
 
 You can sign up for a Stripe account at https://sparkpost.com
 
-# SparkPost Java SDK
+# SparkPost Java Library
 
-Use this repository in Java applications to easily access the SparkPost Email APIs in your application.
+Use this repository in Java applications to easily access the SparkPost Email Library in your application.
 
 ## Getting Started
 
-The SparkPost Java API is available in this [Maven Repository](http://maven.apache.org/download.cgi):
+The SparkPost Java Library is available in this [Maven Repository](http://maven.apache.org/download.cgi):
 
 __NOTE: This is not published to Maven Repo yet!!!__
 

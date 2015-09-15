@@ -3,23 +3,20 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.sparkpost</groupId>
-		<artifactId>apps</artifactId>
+		<artifactId>libs</artifactId>
 		<version>0.8-SNAPSHOT</version>
 	</parent>
-	<artifactId>sparkpost-attachment-app</artifactId>
-	<name>Example of encoding attachments in and email</name>
-	<url>/apps/sparkpost-attachment-app/</url>
+	<!-- <version>0.8-SNAPSHOT</version> -->
+	<artifactId>sparkpost-lib</artifactId>
+	<name>Sparkpost Library</name>
+	<url>/libs/sparkpost-lib/</url>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.sparkpost</groupId>
-			<artifactId>sparkpost-lib</artifactId>
-		</dependency>
-		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -30,6 +27,7 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5</version>
 		</dependency>
+
 		<!-- the following two dependencies are required for correct jmockit operation 
 			under maven see http://code.google.com/p/jmockit/issues/detail?id=128 comment 
 			#8 -->
@@ -42,6 +40,14 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.findbugs</groupId>

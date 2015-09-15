@@ -3,7 +3,7 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sparkpost</groupId>
-	<artifactId>sparkpost-sdk</artifactId>
+	<artifactId>sparkpost</artifactId>
 	<version>0.8-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>*** SparkPost Java Code ***</name>
@@ -260,7 +260,7 @@
 			<!-- INTERNAL LIBRARIES -->
 			<dependency>
 				<groupId>com.sparkpost</groupId>
-				<artifactId>sparkpost-api-lib</artifactId>
+				<artifactId>sparkpost-lib</artifactId>
 				<version>0.8-SNAPSHOT</version>
 			</dependency>
 
