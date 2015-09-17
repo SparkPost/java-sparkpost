@@ -1,6 +1,7 @@
 package com.sparkpost.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,6 +19,7 @@ public class DKIM extends Base {
 	 * 
 	 * The private key will be used to create the DKIM Signature.
 	 */
+	@Description(value="The private key will be used to create the DKIM Signature.")
 	@SerializedName("private")
 	private String privateKey;
 
@@ -26,6 +28,7 @@ public class DKIM extends Base {
 	 * 
 	 * The public key will be retrieved from DNS of the sending domain.
 	 */
+	@Description(value="The public key will be retrieved from DNS of the sending domain.")
 	@SerializedName("public")
 	private String publicKey;
 
@@ -34,6 +37,7 @@ public class DKIM extends Base {
 	 * 
 	 * The DomainKey selector will be used to indicate the DKIM public key location.
 	 */
+	@Description(value="The DomainKey selector will be used to indicate the DKIM public key location.")
 	private String selector;
 
 	/**
@@ -41,5 +45,6 @@ public class DKIM extends Base {
 	 * 
 	 * Header fields are separated by a colon. Example: "from:to:subject:date"
 	 */
+	@Description(value="Header fields are separated by a colon.",sample={"from:to:subject:date"})
 	private String headers;
 }

@@ -1,5 +1,7 @@
 package com.sparkpost.model;
 
+import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -23,11 +25,13 @@ public class SendingDomain extends Base {
 	 * 
 	 * The domain name will be used as the "From:" header address in the email.
 	 */
+	@Description(value="Name of the sending domain. The domain name will be used as the \"From:\" header address in the email.",sample={"from_address@example.com"})
 	private String domain;
 	
 	/**
 	 * Status details, including whether this domain's ownership has been verified
 	 */
+	@Description(value="Status details, including whether this domain's ownership has been verified")
 	private StatusAttributes status;
 
 	/**
@@ -35,6 +39,7 @@ public class SendingDomain extends Base {
 	 * 
 	 * For a full description, see the DKIM Attributes.
 	 */
+	@Description(value="DKIM key configuration. For a full description, see the DKIM Attributes.")
 	private DKIM dkim;
 
 }

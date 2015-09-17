@@ -13,5 +13,6 @@
 	<url>/apps/</url>
 	<modules>
 		<module>sparkpost-samples-app</module>
+		<module>sparkpost-documentor-app</module>
 	</modules>
 </project>

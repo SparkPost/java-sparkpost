@@ -1,6 +1,7 @@
 package com.sparkpost.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +23,7 @@ public class TransmissionWithRecipientList extends TransmissionBase {
 	 * fields described in the Recipient List API documentation for Recipient
 	 * Attributes.
 	 */
+	@Description(value=" DTO for a transmission using a recipient list id (a recipient list stored at the server)")
 	@SerializedName("recipients")
 	private StoredRecipientList recipientList = null;
 

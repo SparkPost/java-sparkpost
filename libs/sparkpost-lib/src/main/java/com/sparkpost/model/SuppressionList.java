@@ -2,6 +2,8 @@ package com.sparkpost.model;
 
 import java.util.List;
 
+import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -30,6 +32,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class SuppressionList extends Base {
 
+	@Description(value="A suppression list - or exclusion list, as it is sometimes called - stores a recipient's opt-out preferences.")
 	private List<SuppressionListEntry> recipients = null;
 
 }

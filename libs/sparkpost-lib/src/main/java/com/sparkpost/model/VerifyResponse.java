@@ -1,5 +1,7 @@
 package com.sparkpost.model;
 
+import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -14,6 +16,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class VerifyResponse extends Base {
 	
+	@Description(value="")
 	private DKIMResults results;
 	
 	

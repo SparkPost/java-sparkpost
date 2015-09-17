@@ -1,6 +1,7 @@
 package com.sparkpost.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,6 +21,7 @@ public class StoredRecipientList extends Base {
 	 * 
 	 * Specify this field when using a stored recipient list.
 	 */
+	@Description(value="Identifier of the stored recipient list to use. Specify this field when using a stored recipient list.")
 	@SerializedName("list_id")
 	private String listId = null;
 

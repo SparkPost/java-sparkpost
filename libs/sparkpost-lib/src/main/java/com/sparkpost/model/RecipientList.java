@@ -3,6 +3,8 @@ package com.sparkpost.model;
 import java.util.List;
 import java.util.Map;
 
+import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,6 +27,7 @@ public class RecipientList extends Base {
 	 * 
 	 * If an id is not specified, one is generated. Maximum length - 64 bytes
 	 */
+	@Description(value="Short, unique, recipient list identifier. Maximum length - 64 bytes")
 	private String id = null;
 
 	/**
@@ -32,6 +35,7 @@ public class RecipientList extends Base {
 	 * 
 	 * If a name is not specified, then defaults to the same value as id. Maximum length - 64 bytes
 	 */
+	@Description(value=" Short, pretty/readable recipient list display name, not required to be unique. Maximum length - 64 bytes")
 	private String name = null;
 
 	/**
@@ -39,6 +43,7 @@ public class RecipientList extends Base {
 	 * 
 	 * Maximum length - 1024 bytes
 	 */
+	@Description(value="Detailed description of the recipient list. Maximum length - 1024 bytes")
 	private String description = null;
 
 	/**
@@ -46,6 +51,7 @@ public class RecipientList extends Base {
 	 * 
 	 * This JSON object allows users to store arbitrary metadata related to this list. This data is not used by the API. It is only for the user.
 	 */
+	@Description(value=" Recipient list attribute object")
 	private Map<String, String> attributes = null;
 
 	/**
@@ -53,6 +59,7 @@ public class RecipientList extends Base {
 	 * 
 	 * For a full description, see the Recipient Attributes.
 	 */
+	@Description(value=" List of recipient objects")
 	private List<RecipientAttributes> recipients = null;
 
 }

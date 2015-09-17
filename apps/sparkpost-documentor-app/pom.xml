@@ -3,20 +3,23 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.sparkpost</groupId>
-		<artifactId>libs</artifactId>
+		<artifactId>apps</artifactId>
 		<version>0.8-SNAPSHOT</version>
 	</parent>
-	<!-- <version>0.8-SNAPSHOT</version> -->
-	<artifactId>sparkpost-lib</artifactId>
-	<name>SparkPost Library</name>
-	<url>/libs/sparkpost-lib/</url>
+	<artifactId>sparkpost-documentor-app</artifactId>
+	<name>Generates Markdown of Protocol</name>
+	<url>/apps/sparkpost-documentor-app/</url>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.sparkpost</groupId>
+			<artifactId>sparkpost-lib</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -27,7 +30,6 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.5</version>
 		</dependency>
-
 		<!-- the following two dependencies are required for correct jmockit operation 
 			under maven see http://code.google.com/p/jmockit/issues/detail?id=128 comment 
 			#8 -->
@@ -42,14 +44,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>annotations</artifactId>
 		</dependency>
@@ -61,6 +55,15 @@
 		<dependency>
 			<groupId>com.yepher.jsondoc</groupId>
 			<artifactId>annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.yepher.jsondoc</groupId>
+			<artifactId>documentor</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.10</version>
 		</dependency>
 	</dependencies>
 

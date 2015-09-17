@@ -18,7 +18,7 @@ import com.sparkpost.transport.RestConnection;
 
 public class CreateAndSendTemplate extends SparkPostBaseApp {
 
-	static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+	private static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
 
 	private Client client;
 	
@@ -46,7 +46,7 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 		}
 		TemplateAttributes tpl = new TemplateAttributes();
 
-		tpl.setName("_TMP_TEMPLATE_TEST");
+		tpl.setName(SAMPLE_TEMPLATE_NAME);
 		tpl.setContent(new TemplateContentAttributes());
 		tpl.getContent().setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
 		tpl.getContent().setHtml("Hello!");

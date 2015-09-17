@@ -1,6 +1,7 @@
 package com.sparkpost.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,6 +39,7 @@ public class SuppressionListEntry extends Base {
 	/**
 	 * 
 	 */
+	@Description(value="")
 	private String email;
 
 	/**
@@ -45,6 +47,7 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * At a minimum, transactional or non_transactional is required upon creation of the entry.
 	 */
+	@Description(value="Whether the recipient requested to not receive any transactional messages. At a minimum, transactional or non_transactional is required upon creation of the entry.")
 	private boolean transactional;
 
 	/**
@@ -52,6 +55,7 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * At a minimum, transactional or non_transactional is required upon creation of the entry.
 	 */
+	@Description(value="Whether the recipient requested to not receive any non-transactional messages. At a minimum, transactional or non_transactional is required upon creation of the entry.")
 	@SerializedName("non_transactional")
 	private boolean nonTransactional;
 
@@ -62,11 +66,13 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * See StatusTypes
 	 */
+	@Description(value="Source responsible for inserting the list entry. Valid values include: FBL, List Unsubscribe, Bounce Rule, Unsubscribe Link, Manually Added, Compliance. Defaults to Manually Added on create")
 	private String source = StatusTypes.MANUALLY_ADDED;
 
 	/**
 	 * Short explanation of the suppression
 	 */
+	@Description(value="Short explanation of the suppression")
 	private String description;
 		
 }

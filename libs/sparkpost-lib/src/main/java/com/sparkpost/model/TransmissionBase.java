@@ -3,6 +3,7 @@ package com.sparkpost.model;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
+import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +25,7 @@ public class TransmissionBase extends Base {
 	 * 
 	 * A unique ID is generated for each transmission on submission.
 	 */
+	@Description(value="ID of the transmission. A unique ID is generated for each transmission on submission.")
 	private String id = null;
 
 	/**
@@ -33,6 +35,7 @@ public class TransmissionBase extends Base {
 	 * 
 	 * See TransmissionStates
 	 */
+	@Description(value="State of the transmission. Valid responses are \"submitted\", \"Generating\", \"Success\", or \"Canceled\".")
 	private String state = null;
 
 	/**
@@ -40,6 +43,7 @@ public class TransmissionBase extends Base {
 	 * 
 	 * For a full description, see the Options Attributes.
 	 */
+	@Description(value="Object in which transmission options are defined. For a full description, see the Options Attributes.")
 	private OptionsAttributes options = null;
 
 	/**
@@ -47,6 +51,7 @@ public class TransmissionBase extends Base {
 	 * 
 	 * Maximum length - 64 bytes
 	 */
+	@Description(value="Name of the campaign. Maximum length - 64 bytes")
 	@SerializedName("campaign_id")
 	private String campaignId = null;
 
@@ -55,6 +60,7 @@ public class TransmissionBase extends Base {
 	 * 
 	 * Maximum length - 1024 bytes
 	 */
+	@Description(value="Description of the transmission. Maximum length - 1024 bytes")
 	private String description = null;
 
 	/**
@@ -66,6 +72,7 @@ public class TransmissionBase extends Base {
 	 * metadata taking precedence over transmission metadata when there are
 	 * conflicts.
 	 */
+	@Description(value="Transmission level metadata containing key/value pairs")
 	private Map<String, String> metadata = null;
 
 	/**
@@ -75,6 +82,7 @@ public class TransmissionBase extends Base {
 	 * substitution data. Unlike metadata, substitution data is not included in
 	 * Webhook events.
 	 */
+	@Description(value="Key/value pairs that are provided to the substitution engine")
 	@SerializedName("substitution_data")
 	private Map<String, String> substitutionData = null;
 
@@ -85,6 +93,7 @@ public class TransmissionBase extends Base {
 	 * optionally be specified inside of the address object of a specific
 	 * recipient in order to give the recipient a unique envelope MAIL FROM.
 	 */
+	@Description(value="Email to use for envelope FROM ( Note: SparkPost Elite only )")
 	@SerializedName("return_path")
 	private String returnPath = null;
 
@@ -97,30 +106,35 @@ public class TransmissionBase extends Base {
 	 * described in the Templates API documentation for Content Attributes.
 	 * Maximum size - 15MBs
 	 */
+	@Description(value="Content that will be used to construct a message. Maximum size - 15MBs")
 	@SerializedName("content")
 	private TemplateContentAttributes contentAttributes = null;
 
 	/**
 	 * Computed total recipients
 	 */
+	@Description(value="Computed total recipients")
 	@SerializedName("total_recipients")
 	@Getter private Integer totalRecipients = null;
 
 	/**
 	 * Computed total number of messages generated
 	 */
+	@Description(value="Computed total number of messages generated")
 	@SerializedName("num_generated")
 	private Integer numGenerated = null;
 
 	/**
 	 * Computed total number of failed messages
 	 */
+	@Description(value="Computed total number of failed messages")
 	@SerializedName("num_failed_generation")
 	private Integer numFailedGeneration = null;
 
 	/**
 	 * Number of recipients that failed input validation
 	 */
+	@Description(value="Number of recipients that failed input validation")
 	@SerializedName("num_invalid_recipients")
 	private Integer numInvalidRecipients = null;
 }

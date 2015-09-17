@@ -34,7 +34,7 @@ SPARKPOST_SENDER_EMAIL=noreply@example.com
 ##
 # 
 ##
-SPARKPOST_FROM=from_address@example.com
+SPARKPOST_FROM=source@example.com
 
 
 ##
@@ -43,6 +43,6 @@ SPARKPOST_FROM=from_address@example.com
 # A comma delimited list of email addresses to send to
 #
 ##
-SPARKPOST_RECIPIENTS=recipient_one@example.com, recipient_two@example.com
+SPARKPOST_RECIPIENTS=test1@yepher.com, test2@ypeher.com
 
 

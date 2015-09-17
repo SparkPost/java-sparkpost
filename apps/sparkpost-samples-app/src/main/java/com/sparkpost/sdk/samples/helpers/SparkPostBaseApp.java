@@ -16,6 +16,8 @@ import com.sparkpost.transport.RestConnection;
 
 public class SparkPostBaseApp {
 
+	public static final String SAMPLE_TEMPLATE_NAME = "_TMP_TEMPLATE_TEST";
+	
 	private static final String CONFIG_FILE = "config.properties";
 	
 	private final Properties properties = new Properties();
