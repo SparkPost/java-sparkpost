@@ -65,21 +65,40 @@ It is easiest if you build the project on the command-line first before importin
 	* File -> New -> Project from Existing Sources
 	* Download and install the Lombok plugin https://plugins.jetbrains.com/plugin/6317
 
-## TODO: Examples
+## Send Email Example
 
-## TODO: Contributions
+```java
 
-## License: Apache 2
-Copyright (c) 2015
+private void sendEmail(String from, String[] recipients, String email) throws SparkPostException {
+	TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
+	
+	// Populate Recipients
+	List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
+	for (String recipient : recipients) {
+	RecipientAttributes recipientAttribs = new RecipientAttributes();
+		recipientAttribs.setAddress(new AddressAttributes(recipient));
+		recipientArray.add(recipientAttribs);
+	}
+	transmission.setRecipientArray(recipientArray);
+		
+	transmission.setReturnPath(from);
+		
+	// Populate Substitution Data
+	Map<String, String> substitutionData = new HashMap<String, String>();
+	substitutionData.put("from", from);
+	transmission.setSubstitutionData(substitutionData);
+	
+	// Populate Email Body
+	TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
+	contentAttributes.setEmailRFC822(email);
+	transmission.setContentAttributes(contentAttributes);
+	
+	// Send the Email
+	RestConnection connection = new RestConnection(client, getEndPoint());
+	Response response = ResourceTransmissions.create(connection, 0, transmission);
+	
+	logger.debug("Transmission Response: " + response);
+}
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+```
 
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
