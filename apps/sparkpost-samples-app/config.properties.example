@@ -42,6 +42,7 @@ SPARKPOST_FROM=from_address@example.com
 # SPARKPOST_RECIPIENTS
 # A comma delimited list of email addresses to send to
 #
+# Example: recipient_one@example.com, recipient_two@example.com
 ##
 SPARKPOST_RECIPIENTS=recipient_one@example.com, recipient_two@example.com
 

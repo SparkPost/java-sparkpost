@@ -246,7 +246,7 @@ public class RestConnection {
 			// an error.
 			lastResponse.setResponseBody("");
 		} catch (IOException ex) {
-			throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString());
+			throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + lastResponse.getResponseMessage() + ")");
 		}
 
 		return lastResponse;

@@ -15,6 +15,9 @@ import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
+/**
+ * Delete all test templates created by the sample code
+ */
 public class DeleteSampleTemplates extends SparkPostBaseApp {
 	static final Logger logger = Logger.getLogger(DeleteSampleTemplates.class);
 
@@ -36,15 +39,20 @@ public class DeleteSampleTemplates extends SparkPostBaseApp {
 		List<TemplateItem> results = listResponse.getResults();
 		
 		for (TemplateItem item : results) {
+			
+			// Delete any template with the name  "_TMP_TEMPLATE_TEST"
 			if (item.getName().equals(SAMPLE_TEMPLATE_NAME)) {
-				Response deleteResponse = ResourceTemplates.delete(connection, item.getId());
-				if (deleteResponse.getResponseCode() == 200) {
-					System.out.println("\tdeleted: " + item.getName() + " (" + item.getId() + ")");
-				} else {
-					System.out.println("\tError: Failed to delete: " + item.getName() + " (" + item.getId() + ") because " + deleteResponse.getResponseMessage());
-				}
+				deleteTemplate(connection, item.getId());
 			}
 		}
-		
+	}
+
+	private void deleteTemplate(RestConnection connection, String templateId) throws SparkPostException {
+		Response deleteResponse = ResourceTemplates.delete(connection, templateId);
+		if (deleteResponse.getResponseCode() == 200) {
+			System.out.println("\tdeleted: " + templateId);
+		} else {
+			System.out.println("\tError: Failed to delete: " +templateId + ") because " + deleteResponse.getResponseMessage());
+		}
 	}
 }

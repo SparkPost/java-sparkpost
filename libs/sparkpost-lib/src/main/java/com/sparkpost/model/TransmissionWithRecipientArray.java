@@ -29,4 +29,6 @@ public class TransmissionWithRecipientArray extends TransmissionBase {
 	@Description(value="Inline recipient objects or object containing stored recipient list ID")
 	@SerializedName("recipients")
 	private List<RecipientAttributes> recipientArray = null;
+	
+	
 }

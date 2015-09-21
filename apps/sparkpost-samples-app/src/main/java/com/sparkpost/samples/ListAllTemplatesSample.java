@@ -15,10 +15,10 @@ import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
 /**
- * List all templates stored in SparkPost
+ * List all templates stored in a SparkPost account
  *
  */
-public class ListAllTemplates extends SparkPostBaseApp {
+public class ListAllTemplatesSample extends SparkPostBaseApp {
 
 	static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
 
@@ -27,7 +27,7 @@ public class ListAllTemplates extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		ListAllTemplates app = new ListAllTemplates();
+		ListAllTemplatesSample app = new ListAllTemplatesSample();
 		app.runApp();
 	}
 	

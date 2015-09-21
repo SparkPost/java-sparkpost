@@ -3,6 +3,7 @@ package com.sparkpost.model;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.annotations.SerializedName;
 import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
@@ -61,5 +62,16 @@ public class RecipientList extends Base {
 	 */
 	@Description(value=" List of recipient objects")
 	private List<RecipientAttributes> recipients = null;
-
+	
+	@Description(value="The number of recipients in this list that have been accepted")
+	@SerializedName("total_accepted_recipients")
+	private int totalAcceptedRecipients;
+	
+	@Description(value="The number of recipients in this list that have been rejected")
+	@SerializedName("total_rejected_recipients")
+	private int totalRejectedRecipients;
+	
+	
+	
+	
 }

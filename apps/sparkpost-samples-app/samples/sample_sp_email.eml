@@ -1,0 +1,338 @@
+To: {{address.email}}
+Date: Fri, 18 Sep 2015 14:44:53 +0000
+MIME-Version: 1.0
+Subject: Sample email from SparkPost!
+From: {{from}}
+Content-type: multipart/alternative;
+	boundary="B_3525414310_144178646"
+
+> This message is in MIME format. Since your mail reader does not understand
+this format, some or all of this message may not be legible.
+
+--B_3525414310_144178646
+Content-type: text/plain;
+	charset="ISO-8859-1"
+Content-transfer-encoding: quoted-printable
+
+=20
+This is my first test message sent from SparkPost.com!
+WooHoo!!!
+=20
+ <https://spgo.io/e/bEizwgN1bxLXDIpOBQHsXg~~/AAAF8QA~/RgRX3qhlP0EIAGr9eSmN8=
+
+e
+tCCgABZSP8VRAEuWpSH2NocmlzLndpbHNvbkBtZXNzYWdlc3lzdGVtcy5jb21QDm15LWZpcnN0L=
+
+W
+VtYWlsUQQAAAADRB9odHRwczovL3d3dy5tZXNzYWdlc3lzdGVtcy5jb20vRwJ7fRM~>
+301 Howard Street, Suite 1330,  San Francisco, CA 94105
+Copyright =A92015  All rights reserved.
+
+
+--B_3525414310_144178646
+Content-type: text/html;
+	charset="ISO-8859-1"
+Content-transfer-encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+
+w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.0">
+
+<title>Verify Your Email Address</title>
+
+<style type=3D"text/css">
+
+@media(max-width:480px){
+
+        table[class=3Dmain_table],table[class=3Dlayout_table],table[class=3Dheade=
+
+r_table]{width:300px !important;}
+
+        table[class=3Dlayout_table] tbody tr td.header_image img{width:300px =
+
+!important;height:auto !important;}
+
+        table[class=3Dlogo_table],table[class=3Dcompany_table]{display:block !i=
+
+mportant;width:220px !important;}
+
+        table[class=3Dlogo_table] tbody tr td,table[class=3Dcompany_table] tbod=
+
+y tr td{width:220px !important;}
+
+        table[class=3Dcompany_table] tbody tr td span{text-align:center !impo=
+
+rtant;}
+
+        table[class=3Dfooter_table] tbody tr td.border_image img{width:300px =
+
+!important;height:2.5px !important;}
+
+}
+
+a{color:#37aadc}
+
+</style>
+
+</head>
+
+<body>
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+
+<tbody>
+
+<tr>
+
+<td align=3D"center" valign=3D"top"><!--  M A I N T A B L E  S T A R T  -->
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"main_table" width=3D=
+
+"600">
+
+<tbody>
+
+<tr>
+
+<td><!--  L A Y O U T _ T A B L E  S T A R T  -->
+
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"layout_table" styl=
+
+e=3D"border-collapse:collapse;border:1px solid #CCCCCC;" width=3D"100%">
+
+<tbody>
+
+<!--  H E A D E R R O W  S T A R T  -->
+
+<tr>
+
+<td align=3D"left" class=3D"header_image"><img alt=3D"Header Image" height=3D"140" =
+
+src=3D"http://pages.messagesystems.com/rs/messagesystems/images/responsive-em-=
+
+header.jpg" width=3D"600" style=3D"border:0;display:block;"></td>
+
+</tr>
+
+<!--  H E A D E R R O W  E N D  -->
+
+<tr>
+
+<td style=3D"font-family:Arial, Helvetica, sans-serif;font-size:13px;line-hei=
+
+ght:13px;margin:0;padding:0;">
+
+&nbsp;</td>
+
+</tr>
+
+<!--  B O D Y R O W  S T A R T  -->
+
+<tr>
+
+<td align=3D"center" valign=3D"top">
+
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"85%=
+
+">
+
+<tbody>
+
+<tr>
+
+<td align=3D"left">
+
+<div class=3D"mktEditable" id=3D"body_copy" style=3D"color:#6D6E6F;display:block;=
+
+font-family:Arial, Helvetica, sans-serif;font-size:14px;line-height:22px;mar=
+
+gin:0;padding:0;text-align:left;">
+
+<p></p>
+
+<center>This is my first test message sent from SparkPost.com!<br>
+
+<p>WooHoo!!!</center>
+
+</p>
+
+</div>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</td>
+
+</tr>
+
+<!--  B O D Y R O W  E N D  -->
+
+<tr>
+
+<td style=3D"font-family:Arial, Helvetica, sans-serif;font-size:53px;line-hei=
+
+ght:53px;margin:0;padding:0;">
+
+&nbsp;</td>
+
+</tr>
+
+<!--  F O O T E R R O W  S T A R T  -->
+
+<tr>
+
+<td bgcolor=3D"#55555A"><!--  F O O T E R _ T A B L E  S T A R T  -->
+
+<table border=3D"0" cellpadding=3D"40" cellspacing=3D"0" class=3D"footer_table" wid=
+
+th=3D"100%">
+
+<tbody>
+
+<tr>
+
+<td bgcolor=3D"#5DBAE3" style=3D"font-size:10px;line-height:10px;margin:0;paddi=
+
+ng:0;" class=3D"border_image">
+
+<img alt=3D"border" src=3D"http://pages.messagesystems.com/rs/messagesystems/im=
+
+ages/responsive-em-blue-border.jpg"></td>
+
+</tr>
+
+<tr>
+
+<td><!--  L O G O _ T A B L E  S T A R T  -->
+
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"logo_=
+
+table" width=3D"158">
+
+<tbody>
+
+<tr>
+
+<td align=3D"center"><a href=3D"https://spgo.io/e/bEizwgN1bxLXDIpOBQHsXg~~/AAAF=
+
+8QA~/RgRX3qhlP0EIAGr9eSmN8etCCgABZSP8VRAEuWpSH2NocmlzLndpbHNvbkBtZXNzYWdlc3l=
+
+zdGVtcy5jb21QDm15LWZpcnN0LWVtYWlsUQQAAAADRB9odHRwczovL3d3dy5tZXNzYWdlc3lzdGV=
+
+tcy5jb20vRwJ7fRM~" style=3D"margin:0;text-decoration:none;"><img alt=3D"Message =
+
+Systems Logo" height=3D"40" src=3D"http://pages.messagesystems.com/rs/messagesys=
+
+tems/images/responsive-em-logo.jpg" style=3D"display:block;border:0;" width=3D"1=
+
+59"></a></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<!--  L O G O T A B L E  E N D  --><!--  C O M P A N Y _ T A B L E  S T A R=
+
+ T  -->
+
+<table align=3D"right" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"comp=
+
+any_table" width=3D"300">
+
+<tbody>
+
+<tr>
+
+<td align=3D"right"><span id=3D"company_heading" class=3D"mktEditable" style=3D"col=
+
+or:#FFFFFF;display:block;font-family:Arial, Helvetica, sans-serif; font-size=
+
+:11px;font-weight:normal;line-height:16px;margin:0;padding:0;text-align:righ=
+
+t;">301 Howard Street, Suite 1330,
+
+ San Francisco, CA 94105</span></td>
+
+</tr>
+
+<tr>
+
+<td align=3D"right"><span id=3D"company_subheading" style=3D"color:#FFFFFF;displa=
+
+y:block;font-family:Arial, Helvetica, sans-serif; font-size:11px;font-weight=
+
+:normal;line-height:16px;margin:0;padding:0;text-align:right;">Copyright =A9<s=
+
+pan id=3D"copyright_year" class=3D"mktEditable">2015</span>
+
+ All rights reserved.</span></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<!--  C O M P A N Y _ T A B L E  E N D  --></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<!--  F O O T E R _ T A B L E  E N D  --></td>
+
+</tr>
+
+<!--  F O O T E R R O W  E N D  -->
+
+</tbody>
+
+</table>
+
+<!--  L A Y O U T _ T A B L E  E N D  --></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<!--  M A I N _ T A B L E  E N D  --></td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<img border=3D"0" width=3D"1" height=3D"1" src=3D"https://spgo.io/q/QQYlndXlGNzsIA4=
+
+z3PQZZg~~/AAAF8QA~/RgRX3qhlPkEIAGr9eSmN8etCCgABZSP8VRAEuWpSH2NocmlzLndpbHNvb=
+
+kBtZXNzYWdlc3lzdGVtcy5jb21QDm15LWZpcnN0LWVtYWlsUQQAAAADRwJ7fRM~">
+
+</body>
+
+</html>
+
+
+
+--B_3525414310_144178646--
+
