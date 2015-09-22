@@ -73,9 +73,7 @@ public class SendEmailSample extends SparkPostBaseApp {
 		RestConnection connection = new RestConnection(client, getEndPoint());
 		Response response = ResourceTransmissions.create(connection, 0, transmission);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Transmission Response: " + response);
-		}
+		logger.debug("Transmission Response: " + response);
 	}
 
 }

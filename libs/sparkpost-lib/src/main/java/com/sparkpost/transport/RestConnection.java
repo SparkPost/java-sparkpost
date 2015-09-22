@@ -175,13 +175,14 @@ public class RestConnection {
 		try {
 			lenStr = Integer.toString(data.getBytes("UTF-8").length);
 		} catch (UnsupportedEncodingException e) {
-			// This should never happen. UTF-8 should always be available but we have
+			// This should never happen. UTF-8 should always be available but we
+			// have
 			// to catch it so pass it on if it fails.
 			throw new SparkPostException(e);
 		}
 		conn.setRequestProperty("Content-Length", lenStr);
 		conn.setRequestProperty("Content-Type", "application/json");
-		
+
 		if (logger.isDebugEnabled()) {
 			logger.debug("Sending data (" + lenStr + " bytes): " + data);
 		}
@@ -225,10 +226,10 @@ public class RestConnection {
 	private Response receiveResponse(HttpURLConnection conn) throws SparkPostException {
 
 		if (!conn.getContentType().equalsIgnoreCase("application/json")) {
-			throw new SparkPostIllegalServerResponseException("Unexpected content type (" + conn.getContentType() + ") from " + conn.getURL());
+			throw new SparkPostIllegalServerResponseException(
+					"Unexpected content type (" + conn.getContentType() + ") from " + conn.getURL());
 		}
-		
-		
+
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));) {
 			// Buffer the result into a string:
@@ -246,7 +247,8 @@ public class RestConnection {
 			// an error.
 			lastResponse.setResponseBody("");
 		} catch (IOException ex) {
-			throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + lastResponse.getResponseMessage() + ")");
+			throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "("
+					+ lastResponse.getResponseMessage() + ")");
 		}
 
 		return lastResponse;
@@ -266,8 +268,7 @@ public class RestConnection {
 			if (logger.isDebugEnabled()) {
 				logger.debug("Server Response:" + lastResponse);
 			}
-			
-			
+
 			return lastResponse;
 		} finally {
 			if (conn != null) {
