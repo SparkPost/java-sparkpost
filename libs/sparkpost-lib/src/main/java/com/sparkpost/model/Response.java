@@ -1,5 +1,7 @@
 package com.sparkpost.model;
 
+import java.lang.reflect.Type;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.yepher.jsondoc.annotations.Description;
@@ -53,6 +55,21 @@ public class Response extends Base {
 		}
 		
 		return newReponse;
+	}
+	
+	public static <T extends Response> T genericDecode(Response response, Type typeOfT) {
+		Gson gson = new Gson();
+		
+		T newResponse = gson.fromJson(response.getResponseBody(), typeOfT);
+		if (newResponse != null) {
+			newResponse.setRequest(response.request);
+			newResponse.setRequestId(response.requestId);
+			newResponse.setResponseCode(response.responseCode);
+			newResponse.setResponseBody(response.responseBody);
+			newResponse.setResponseMessage(response.responseMessage);
+		}
+		
+		return (T) newResponse;
 	}
 
 }

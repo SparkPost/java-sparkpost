@@ -27,8 +27,8 @@ public class SaveRichTemplateFromFile extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SaveRichTemplateFromFile templateExample = new SaveRichTemplateFromFile();
-		templateExample.runApp();
+		SaveRichTemplateFromFile sample = new SaveRichTemplateFromFile();
+		sample.runApp();
 		
 	}
 	

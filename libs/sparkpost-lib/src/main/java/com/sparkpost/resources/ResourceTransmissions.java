@@ -2,6 +2,7 @@ package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Response;
+import com.sparkpost.model.TransmissionListResponse;
 import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.transport.RestConnection;
 
@@ -30,11 +31,15 @@ public class ResourceTransmissions {
 		return conn.get("transmissions/" + id);
 	}
 
-	public static Response list(RestConnection conn, String campaignId, String templateId) throws SparkPostException {
+	public static TransmissionListResponse list(RestConnection conn, String campaignId, String templateId) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("transmissions");
 		ep.addParam("campaign_id", campaignId);
 		ep.addParam("template_id", templateId);
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		 //listResponse = (TemplateListResponse)TemplateListResponse.decode(response, TemplateListResponse.class);
+		
+		TransmissionListResponse transmissionResponse = TransmissionListResponse.genericDecode(response, TransmissionListResponse.class);
+		return transmissionResponse;
 	}
 }

@@ -29,8 +29,8 @@ public class SendEmailSample extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SendEmailSample app = new SendEmailSample();
-		app.runApp();
+		SendEmailSample sample = new SendEmailSample();
+		sample.runApp();
 	}
 	
 	private void runApp() throws SparkPostException, IOException {

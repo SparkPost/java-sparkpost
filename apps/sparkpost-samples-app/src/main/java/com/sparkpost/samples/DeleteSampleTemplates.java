@@ -26,8 +26,8 @@ public class DeleteSampleTemplates extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		DeleteSampleTemplates app = new DeleteSampleTemplates();
-		app.runApp();
+		DeleteSampleTemplates sample = new DeleteSampleTemplates();
+		sample.runApp();
 	}
 	
 	private void runApp() throws SparkPostException, IOException {

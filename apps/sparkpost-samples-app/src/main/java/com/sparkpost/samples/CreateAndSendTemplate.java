@@ -25,8 +25,8 @@ public class CreateAndSendTemplate extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		CreateAndSendTemplate templateTest = new CreateAndSendTemplate();
-		templateTest.runApp();
+		CreateAndSendTemplate sample = new CreateAndSendTemplate();
+		sample.runApp();
 		
 	}
 	

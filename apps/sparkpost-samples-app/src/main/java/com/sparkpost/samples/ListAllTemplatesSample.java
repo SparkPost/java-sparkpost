@@ -27,8 +27,8 @@ public class ListAllTemplatesSample extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		ListAllTemplatesSample app = new ListAllTemplatesSample();
-		app.runApp();
+		ListAllTemplatesSample sample = new ListAllTemplatesSample();
+		sample.runApp();
 	}
 	
 	private void runApp() throws SparkPostException, IOException {

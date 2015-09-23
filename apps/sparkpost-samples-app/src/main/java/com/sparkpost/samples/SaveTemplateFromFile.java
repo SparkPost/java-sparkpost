@@ -27,8 +27,8 @@ public class SaveTemplateFromFile extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SaveTemplateFromFile templateExample = new SaveTemplateFromFile();
-		templateExample.runApp();
+		SaveTemplateFromFile sample = new SaveTemplateFromFile();
+		sample.runApp();
 		
 	}
 	
