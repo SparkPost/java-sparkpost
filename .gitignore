@@ -4,6 +4,7 @@
 config.properties
 output.eml
 src/main/resources/sparkpostsdk.properties
+apps/sparkpost-documentor-app/protocol.md
 
 
 # Java

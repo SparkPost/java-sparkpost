@@ -3,7 +3,7 @@
                              http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sparkpost</groupId>
-	<artifactId>sparkpost-sdk</artifactId>
+	<artifactId>sparkpost</artifactId>
 	<version>0.8-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>*** SparkPost Java Code ***</name>
@@ -11,7 +11,7 @@
 	<url>https://www.sparkpost.com</url>
 
 	<organization>
-		<name>Sparkpost</name>
+		<name>SparkPost</name>
 		<url>https://sparkpost.com</url>
 	</organization>
 
@@ -255,12 +255,21 @@
 				<version>1.16.6</version>
 				<scope>provided</scope>
 			</dependency>
-
+			<dependency>
+				<groupId>com.yepher.jsondoc</groupId>
+				<artifactId>annotations</artifactId>
+				<version>0.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>com.yepher.jsondoc</groupId>
+				<artifactId>documentor</artifactId>
+				<version>0.0.2</version>
+			</dependency>
 
 			<!-- INTERNAL LIBRARIES -->
 			<dependency>
 				<groupId>com.sparkpost</groupId>
-				<artifactId>sparkpost-api-lib</artifactId>
+				<artifactId>sparkpost-lib</artifactId>
 				<version>0.8-SNAPSHOT</version>
 			</dependency>
 

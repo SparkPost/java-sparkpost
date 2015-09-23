@@ -1,22 +1,24 @@
 <a href="http://sparkpost.com"><img src="https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg" width="200px"/></a>
 
-# SparkPost Java SDK
+You can sign up for a Stripe account at https://sparkpost.com
 
-Use this repository in Java applications to easily access the SparkPost Email APIs in your application.
+# SparkPost Java Library
+
+Use this library in Java applications to easily access the SparkPost Email API in your application.
 
 ## Getting Started
 
-The SparkPost Java API is available in this [Maven Repository](http://maven.apache.org/download.cgi):
+The SparkPost Java Library is available in this [Maven Repository](http://maven.apache.org/download.cgi):
 
 __NOTE: This is not published to Maven Repo yet!!!__
 
-`````
+```xml
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>client-server-protocol-lib</artifactId>
 	<version>0.8-SNAPSHOT</version>
 </dependency>
-`````
+```
 
 ## Building SparkPost4J
 
@@ -36,6 +38,7 @@ __NOTE: This is not published to Maven Repo yet!!!__
 
 5. Optionally setup [Eclipse](https://eclipse.org/) (will need Maven Plugin to import project)
 
+6. Optionally setup [IntelliJ](https://www.jetbrains.com/idea/)
 
 ### Building
 
@@ -44,28 +47,58 @@ __NOTE: This is not published to Maven Repo yet!!!__
  
 2. Build with Maven `mvn clean install`
 
-3. [OPTIONAL] Import project into Eclipse
+### GUI Editors
+
+#### Eclipse
+
+It is easiest if you build the project on the command-line first before importing project into Eclipse.
+
+* Import project into Eclipse
 	* Setup Lombok in Eclipse `./tools/bin/setupLombok.sh` (browse to and select eclipse.ini)
 	* Restart Eclipse
    * File -> Import -> Maven -> Existing Maven Projects
    * See "Prerequisites" above for environment variables needed for running examples
 
+#### IntelliJ
 
-## TODO: Examples
+* Import project into IntelliJ
+	* File -> New -> Project from Existing Sources
+	* Download and install the Lombok plugin https://plugins.jetbrains.com/plugin/6317
 
-## TODO: Contributions
+## Send Email Example
 
-## License: Apache 2
-Copyright (c) 2015
+```java
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+private void sendEmail(String from, String[] recipients, String email) throws SparkPostException {
+	TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
+	
+	// Populate Recipients
+	List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
+	for (String recipient : recipients) {
+	RecipientAttributes recipientAttribs = new RecipientAttributes();
+		recipientAttribs.setAddress(new AddressAttributes(recipient));
+		recipientArray.add(recipientAttribs);
+	}
+	transmission.setRecipientArray(recipientArray);
+		
+	transmission.setReturnPath(from);
+		
+	// Populate Substitution Data
+	Map<String, String> substitutionData = new HashMap<String, String>();
+	substitutionData.put("from", from);
+	transmission.setSubstitutionData(substitutionData);
+	
+	// Populate Email Body
+	TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
+	contentAttributes.setEmailRFC822(email);
+	transmission.setContentAttributes(contentAttributes);
+	
+	// Send the Email
+	RestConnection connection = new RestConnection(client, getEndPoint());
+	Response response = ResourceTransmissions.create(connection, 0, transmission);
+	
+	logger.debug("Transmission Response: " + response);
+}
 
-http://www.apache.org/licenses/LICENSE-2.0
+```
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.

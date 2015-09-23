@@ -1,0 +1,49 @@
+##
+# The URL to use for the SparkPost API If empty default will be used
+##
+#SPARKPOST_BASE_URL=https://api.sparkpost.com/api/v1/
+
+
+##
+# This your API key for SparkPost
+##
+SPARKPOST_API_KEY=YOUR SPARKPOST API KEY
+
+
+##
+# Username and password for SparkPost API
+# You should use API Key instead if possible
+##
+#USERNAME=
+#PASSWORD=
+
+
+##
+# The subject that will be put into templates
+# When messages are sent
+##
+SPARKPOST_SUBJECT=This is a sample subject
+
+
+##
+# 
+##
+SPARKPOST_SENDER_EMAIL=noreply@example.com
+
+
+##
+# 
+##
+SPARKPOST_FROM=from_address@example.com
+
+
+##
+#
+# SPARKPOST_RECIPIENTS
+# A comma delimited list of email addresses to send to
+#
+# Example: recipient_one@example.com, recipient_two@example.com
+##
+SPARKPOST_RECIPIENTS=recipient_one@example.com, recipient_two@example.com
+
+

@@ -3,15 +3,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<groupId>com.sparkpost</groupId>
-		<artifactId>sparkpost-sdk</artifactId>
+		<artifactId>sparkpost</artifactId>
 		<version>0.8-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apps</artifactId>
 	<packaging>pom</packaging>
-	<name>Sparkpost Examples</name>
+	<name>SparkPost Examples</name>
 	<url>/apps/</url>
 	<modules>
-		<module>sparkpost-attachment-app</module>
+		<module>sparkpost-samples-app</module>
+		<module>sparkpost-documentor-app</module>
 	</modules>
 </project>
