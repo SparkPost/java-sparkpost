@@ -84,6 +84,7 @@ public class SparkPostBaseApp {
 		return fromAddress;
 	}
 	
+	
 	public String getTemplate(String name) {
 		
 		try {

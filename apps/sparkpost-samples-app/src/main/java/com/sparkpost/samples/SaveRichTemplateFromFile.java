@@ -64,7 +64,7 @@ public class SaveRichTemplateFromFile extends SparkPostBaseApp {
 				logger.debug("Create Template Response: " + response);
 			}
 		} catch (SparkPostException e) {
-			logger.debug("Create Template Response: " + connection.getLastResponse());
+			logger.debug("Create Template Failed: ");
 			throw e;
 		}
 		

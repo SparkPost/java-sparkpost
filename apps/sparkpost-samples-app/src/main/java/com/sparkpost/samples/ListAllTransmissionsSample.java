@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.TransmissionBase;
 import com.sparkpost.model.TransmissionListResponse;
 import com.sparkpost.resources.ResourceTransmissions;
