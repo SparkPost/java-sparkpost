@@ -1,7 +1,8 @@
-package com.sparkpost.model;
+package com.sparkpost.model.responses;
 
 import java.util.List;
 
+import com.sparkpost.model.TemplateItem;
 import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;

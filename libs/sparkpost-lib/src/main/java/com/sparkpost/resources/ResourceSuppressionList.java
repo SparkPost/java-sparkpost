@@ -1,9 +1,9 @@
 package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.SuppressionList;
 import com.sparkpost.model.SuppressionListEntry;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.transport.RestConnection;
 
 /**

@@ -2,7 +2,7 @@ package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.RecipientList;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.transport.RestConnection;
 
 /**

@@ -7,9 +7,9 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateContentAttributes;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;

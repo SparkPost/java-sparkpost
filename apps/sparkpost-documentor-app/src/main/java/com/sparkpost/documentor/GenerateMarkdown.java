@@ -22,7 +22,6 @@ import com.sparkpost.model.SuppressionListEntry;
 import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.TemplateItem;
-import com.sparkpost.model.TemplateListResponse;
 import com.sparkpost.model.TemplateSubstitutionData;
 import com.sparkpost.model.TransmissionBase;
 import com.sparkpost.model.TransmissionWithRecipientArray;
@@ -30,6 +29,7 @@ import com.sparkpost.model.TransmissionWithRecipientList;
 import com.sparkpost.model.VerifyAttributes;
 import com.sparkpost.model.VerifyResponse;
 import com.sparkpost.model.Webhook;
+import com.sparkpost.model.responses.TemplateListResponse;
 import com.yepher.jsondoc.ClassListDriverBase;
 
 public class GenerateMarkdown  extends ClassListDriverBase {

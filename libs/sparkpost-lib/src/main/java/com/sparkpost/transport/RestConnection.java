@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.responses.Response;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
@@ -29,6 +29,9 @@ public class RestConnection {
 
 	private static final Logger logger = Logger.getLogger(RestConnection.class);
 
+	// TODO: set this up to be set by build machine.
+	private static final String VERSION = "0.0.1-SNAPSHOT";
+	
 	/**
 	 * Default endpoint to use for connections :
 	 * https://api.sparkpost.com/api/v1/
@@ -113,6 +116,8 @@ public class RestConnection {
 						.encodeAsString((client.getUsername() + ":" + client.getPassword()).getBytes("UTF-8"));
 				conn.setRequestProperty("Authorization", "Basic " + encoding);
 			}
+			
+			conn.setRequestProperty("User-Agent", "java-sparkpost/" + VERSION);
 
 			conn.setRequestProperty("Content-Type", "application/json");
 			switch (method) {
@@ -164,8 +169,7 @@ public class RestConnection {
 			lenStr = Integer.toString(data.getBytes("UTF-8").length);
 		} catch (UnsupportedEncodingException e) {
 			// This should never happen. UTF-8 should always be available but we
-			// have
-			// to catch it so pass it on if it fails.
+			// have to catch it so pass it on if it fails.
 			throw new SparkPostException(e);
 		}
 		conn.setRequestProperty("Content-Length", lenStr);
@@ -247,7 +251,6 @@ public class RestConnection {
 	private Response doHttpMethod(String path, Method method, String data, Response response) throws SparkPostException {
 		HttpURLConnection conn = null;
 		try {
-			response.reset();
 			response.setRequest(path);
 			conn = createConnectionObject(path, method);
 			sendRequest(conn, data, response);

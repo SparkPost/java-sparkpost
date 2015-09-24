@@ -1,9 +1,11 @@
 package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
-import com.sparkpost.model.TransmissionListResponse;
 import com.sparkpost.model.TransmissionWithRecipientArray;
+import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.TransmissionCreateResponse;
+import com.sparkpost.model.responses.TransmissionListResponse;
+import com.sparkpost.model.responses.TransmissionRetrieveResults;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -23,12 +25,17 @@ public class ResourceTransmissions {
 		Endpoint ep = new Endpoint("transmissions");
 		ep.addParam("num_rcpt_errors", numRcptErrors);
 		String json = trans.toJson();
-		return conn.post(ep.toString(), json);
+		Response response = conn.post(ep.toString(), json);
+		
+		TransmissionCreateResponse newResult = TransmissionCreateResponse.decode(response, TransmissionCreateResponse.class);
+		return newResult;
 	}
 
-	public static Response retrieve(RestConnection conn, String id) throws SparkPostException {
-
-		return conn.get("transmissions/" + id);
+	public static TransmissionRetrieveResults retrieve(RestConnection conn, String id) throws SparkPostException {
+		Response response = conn.get("transmissions/" + id); 
+		
+		TransmissionRetrieveResults newResult = TransmissionRetrieveResults.decode(response, TransmissionRetrieveResults.class);
+		return newResult;
 	}
 
 	public static TransmissionListResponse list(RestConnection conn, String campaignId, String templateId) throws SparkPostException {
@@ -37,9 +44,8 @@ public class ResourceTransmissions {
 		ep.addParam("campaign_id", campaignId);
 		ep.addParam("template_id", templateId);
 		Response response = conn.get(ep.toString());
-		 //listResponse = (TemplateListResponse)TemplateListResponse.decode(response, TemplateListResponse.class);
 		
-		TransmissionListResponse transmissionResponse = TransmissionListResponse.genericDecode(response, TransmissionListResponse.class);
+		TransmissionListResponse transmissionResponse = TransmissionListResponse.decode(response, TransmissionListResponse.class);
 		return transmissionResponse;
 	}
 }

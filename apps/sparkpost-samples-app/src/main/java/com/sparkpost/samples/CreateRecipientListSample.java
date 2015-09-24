@@ -12,7 +12,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.RecipientAttributes;
 import com.sparkpost.model.RecipientList;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceRecipientLists;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;

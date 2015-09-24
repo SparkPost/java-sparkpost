@@ -1,9 +1,10 @@
-package com.sparkpost.model;
+package com.sparkpost.model.responses;
 
 import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
+import com.sparkpost.model.Base;
 import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
@@ -32,32 +33,8 @@ public class Response extends Base {
 	@Description(value="The json of the response")
 	@SerializedName("json")
 	private String responseBody = null;
-
-
-	public void reset() {
-		request = null;
-		requestId = null;
-		responseCode = -1;
-		responseMessage = null;
-		responseBody = null;
-	}
 	
-	public static Response decode(Response response, Class<?> clazz) {
-		Gson gson = new Gson();
-		
-		Response newReponse = (Response) gson.fromJson(response.getResponseBody(), clazz);
-		if (newReponse != null) {
-			newReponse.request = response.request;
-			newReponse.requestId = response.requestId;
-			newReponse.responseCode = response.responseCode;
-			newReponse.responseBody = response.responseBody;
-			newReponse.responseMessage = response.responseMessage;
-		}
-		
-		return newReponse;
-	}
-	
-	public static <T extends Response> T genericDecode(Response response, Type typeOfT) {
+	public static <T extends Response> T decode(Response response, Type typeOfT) {
 		Gson gson = new Gson();
 		
 		T newResponse = gson.fromJson(response.getResponseBody(), typeOfT);
@@ -71,5 +48,5 @@ public class Response extends Base {
 		
 		return (T) newResponse;
 	}
-
+	
 }

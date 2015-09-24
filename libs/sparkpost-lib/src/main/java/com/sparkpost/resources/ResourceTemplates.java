@@ -1,10 +1,10 @@
 package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateAttributes;
-import com.sparkpost.model.TemplateListResponse;
 import com.sparkpost.model.TemplateSubstitutionData;
+import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.TemplateListResponse;
 import com.sparkpost.transport.RestConnection;
 
 /**
