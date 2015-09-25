@@ -66,6 +66,7 @@ public class ResourceTemplates {
 	public static Response delete(RestConnection conn, String id) throws SparkPostException {
 
 		Response response =  conn.delete("templates/" + id);
+		// Delete response is an empty dictionary so no need to deserialize the JSON object.
 		return response;
 	}
 }

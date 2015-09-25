@@ -206,6 +206,7 @@ public class RestConnection {
 			// stream from the server
 			int code = conn.getResponseCode();
 			response.setResponseCode(code);
+			response.setContentType(conn.getHeaderField("Content-Type"));
 			String msg = conn.getResponseMessage();
 			response.setResponseMessage(msg);
 
