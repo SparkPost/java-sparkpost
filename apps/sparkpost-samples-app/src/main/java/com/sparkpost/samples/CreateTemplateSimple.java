@@ -16,16 +16,16 @@ import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
-public class CreateAndSendTemplate extends SparkPostBaseApp {
+public class CreateTemplateSimple extends SparkPostBaseApp {
 
-	private static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+	private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 	private Client client;
 	
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		CreateAndSendTemplate sample = new CreateAndSendTemplate();
+		CreateTemplateSimple sample = new CreateTemplateSimple();
 		sample.runApp();
 		
 	}

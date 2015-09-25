@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.samples.CreateAndSendTemplate;
+import com.sparkpost.samples.CreateTemplateSimple;
 import com.sparkpost.transport.RestConnection;
 
 public class SparkPostBaseApp {
@@ -28,7 +28,7 @@ public class SparkPostBaseApp {
 	
 	private final Properties properties = new Properties();
 	
-	static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+	static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 	
 	public SparkPostBaseApp() {
 		super();

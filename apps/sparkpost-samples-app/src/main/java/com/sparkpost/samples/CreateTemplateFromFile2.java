@@ -19,15 +19,15 @@ import com.sparkpost.transport.RestConnection;
  * This class demonstrates how to store an HTML template in SparkPost
  * 
  */
-public class SaveRichTemplateFromFile extends SparkPostBaseApp {
-	private static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+public class CreateTemplateFromFile2 extends SparkPostBaseApp {
+	private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 	private Client client;
 	
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SaveRichTemplateFromFile sample = new SaveRichTemplateFromFile();
+		CreateTemplateFromFile2 sample = new CreateTemplateFromFile2();
 		sample.runApp();
 		
 	}

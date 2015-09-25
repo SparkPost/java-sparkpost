@@ -19,15 +19,15 @@ import com.sparkpost.transport.RestConnection;
  * 
  * Warning: RFC822 templates are only manageable via API and not from website directly.
  */
-public class SaveTemplateFromFile extends SparkPostBaseApp {
-	private static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+public class CreateTemplateFromFile extends SparkPostBaseApp {
+	private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 	private Client client;
 	
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SaveTemplateFromFile sample = new SaveTemplateFromFile();
+		CreateTemplateFromFile sample = new CreateTemplateFromFile();
 		sample.runApp();
 		
 	}

@@ -4,7 +4,9 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateSubstitutionData;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.TemplateCreateResponse;
 import com.sparkpost.model.responses.TemplateListResponse;
+import com.sparkpost.model.responses.TemplatePreviewResponse;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -18,17 +20,20 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceTemplates {
 
-	public static Response create(RestConnection conn, TemplateAttributes tpl) throws SparkPostException {
+	public static TemplateCreateResponse create(RestConnection conn, TemplateAttributes tpl) throws SparkPostException {
 
 		String json = tpl.toJson();
-		return conn.post("templates", json);
+		Response response = conn.post("templates", json);
+		TemplateCreateResponse createResponse = TemplateCreateResponse.decode(response, TemplateCreateResponse.class);
+		return createResponse;
 	}
 
 	public static Response retrieve(RestConnection conn, String id, Boolean draft) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("templates/" + id);
 		ep.addParam("draft", draft);
-		return conn.get(ep.toString());
+		Response response =  conn.get(ep.toString());
+		return response;
 	}
 
 	public static TemplateListResponse listAll(RestConnection conn) throws SparkPostException {
@@ -43,20 +48,24 @@ public class ResourceTemplates {
 		Endpoint ep = new Endpoint("templates/" + id);
 		ep.addParam("update_published", updatePublished);
 		String json = tpl.toJson();
-		return conn.put(ep.toString(), json);
+		Response response =  conn.put(ep.toString(), json);
+		return response;
 	}
 
-	public static Response preview(RestConnection conn, String id, Boolean draft, TemplateSubstitutionData subst)
+	public static TemplatePreviewResponse preview(RestConnection conn, String id, Boolean draft, TemplateSubstitutionData subst)
 			throws SparkPostException {
 
 		Endpoint ep = new Endpoint("templates/" + id + "/preview");
 		ep.addParam("draft", draft);
 		String json = subst.toJson();
-		return conn.put(ep.toString(), json);
+		Response response =  conn.post(ep.toString(), json);
+		TemplatePreviewResponse newResponse = TemplatePreviewResponse.decode(response, TemplatePreviewResponse.class);
+		return newResponse;
 	}
 
 	public static Response delete(RestConnection conn, String id) throws SparkPostException {
 
-		return conn.delete("templates/" + id);
+		Response response =  conn.delete("templates/" + id);
+		return response;
 	}
 }

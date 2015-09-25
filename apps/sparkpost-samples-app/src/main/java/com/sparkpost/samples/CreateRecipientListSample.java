@@ -33,7 +33,7 @@ import com.sparkpost.transport.RestConnection;
  */
 public class CreateRecipientListSample extends SparkPostBaseApp {
 
-			static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+			static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 			private Client client;
 			
