@@ -3,6 +3,7 @@ package com.sparkpost.resources;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Webhook;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -28,12 +29,13 @@ public class ResourceWebhooks {
 		return response;
 	}
 
-	public static Response listAll(RestConnection conn, String timezone) throws SparkPostException {
+	public static WebhookListAllResponse listAll(RestConnection conn, String timezone) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("webhooks");
 		ep.addParam("timezone", timezone);
 		Response response =  conn.get(ep.toString());
-		return response;
+		WebhookListAllResponse allWebhooks = WebhookListAllResponse.decode(response, WebhookListAllResponse.class);
+		return allWebhooks;
 	}
 
 	public static Response create(RestConnection conn, Webhook webhook) throws SparkPostException {
