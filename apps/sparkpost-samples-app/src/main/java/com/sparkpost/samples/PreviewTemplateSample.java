@@ -2,8 +2,8 @@ package com.sparkpost.samples;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -94,14 +94,18 @@ public class PreviewTemplateSample  extends SparkPostBaseApp {
 	}
 	
 	private void saveToFile(String html, String path) {
+		PrintWriter fileWriter = null;;
 		try {
 			File file = new File(path);
-			FileWriter fileWriter = new FileWriter(file);
+			fileWriter = new PrintWriter(file, "UTF-8");
 			fileWriter.write(html);
-			fileWriter.flush();
-			fileWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if (fileWriter != null) {
+				fileWriter.flush();
+				fileWriter.close();
+			}
 		}
 	}
 	
