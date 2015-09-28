@@ -218,7 +218,7 @@ public class RestConnection {
 	// Read response body from server
 	private Response receiveResponse(HttpURLConnection conn, Response response) throws SparkPostException {
 
-		if (!conn.getContentType().equalsIgnoreCase("application/json")) {
+		if (!conn.getContentType().toLowerCase().startsWith("application/json")) {
 			throw new SparkPostIllegalServerResponseException(
 					"Unexpected content type (" + conn.getContentType() + ") from " + conn.getURL());
 		}
