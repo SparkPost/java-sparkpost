@@ -62,7 +62,7 @@ public class CreateRecipientListSample extends SparkPostBaseApp {
 			private RecipientList createRecipientList() {
 				RecipientList recipientList = new RecipientList();
 				
-				recipientList.setName(SAMPLE_RECIPIENT_LIST_NAME);
+				recipientList.setName("100 List");
 				recipientList.setDescription("Demonstration of storing a recipient list on the server");
 				
 				List<RecipientAttributes> recipients = new ArrayList<RecipientAttributes>();

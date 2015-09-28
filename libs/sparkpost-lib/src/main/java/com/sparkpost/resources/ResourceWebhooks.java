@@ -16,45 +16,51 @@ import com.sparkpost.transport.RestConnection;
 public class ResourceWebhooks {
 
 	public static Response listSampleValuesAndEvents(RestConnection conn) throws SparkPostException {
-
-		return conn.get("webhooks/events/documentation");
+		Response response = conn.get("webhooks/events/documentation");
+		return response;
 	}
 
 	public static Response getSamplePayloadForEvents(RestConnection conn, String events) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("webhooks/events/samples");
 		ep.addParam("events", events);
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response listAll(RestConnection conn, String timezone) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("webhooks");
 		ep.addParam("timezone", timezone);
-		return conn.get(ep.toString());
+		Response response =  conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response create(RestConnection conn, Webhook webhook) throws SparkPostException {
 
 		String json = webhook.toJson();
-		return conn.post("webhooks", json);
+		Response response = conn.post("webhooks", json);
+		return response;
 	}
 
 	public static Response describe(RestConnection conn, String id, String timezone) throws SparkPostException {
 
 		Endpoint ep = new Endpoint("webhooks/" + id);
 		ep.addParam("timezone", timezone);
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response update(RestConnection conn, String id, Webhook webhook) throws SparkPostException {
 
 		String json = webhook.toJson();
-		return conn.post("webhooks/" + id, json);
+		Response response = conn.post("webhooks/" + id, json);
+		return response;
 	}
 
 	public static Response delete(RestConnection conn, String id) throws SparkPostException {
 
-		return conn.delete("webhooks/" + id);
+		Response response = conn.delete("webhooks/" + id);
+		return response;
 	}
 }

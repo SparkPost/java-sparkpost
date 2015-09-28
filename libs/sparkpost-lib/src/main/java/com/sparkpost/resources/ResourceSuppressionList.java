@@ -25,7 +25,8 @@ public class ResourceSuppressionList {
 		copy.setEmail(null);
 
 		String json = copy.toJson();
-		return conn.put("suppression-list/" + email, json);
+		Response response =  conn.put("suppression-list/" + email, json);
+		return response;
 	}
 
 	public static Response insertOrUpdateBulk(RestConnection conn, SuppressionList suppressionList)
@@ -43,16 +44,19 @@ public class ResourceSuppressionList {
 		ep.addParam("from", from);
 		ep.addParam("types", types);
 		ep.addParam("limit", limit);
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response check(RestConnection conn, String email) throws SparkPostException {
 
-		return conn.get("suppression-list/" + email);
+		Response response = conn.get("suppression-list/" + email);
+		return response;
 	}
 
 	public static Response remove(RestConnection conn, String email) throws SparkPostException {
 
-		return conn.delete("suppression-list/" + email);
+		Response response = conn.delete("suppression-list/" + email);
+		return response;
 	}
 }
