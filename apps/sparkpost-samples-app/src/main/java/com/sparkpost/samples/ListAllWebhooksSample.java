@@ -13,7 +13,7 @@ import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
 /**
- * List all templates stored in a SparkPost account
+ * List all Webhooks stored in a SparkPost account
  *
  */
 public class ListAllWebhooksSample extends SparkPostBaseApp {
