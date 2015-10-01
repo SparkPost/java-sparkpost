@@ -10,6 +10,7 @@ import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.DKIM;
 import com.sparkpost.model.DKIMResults;
 import com.sparkpost.model.DNSAttributes;
+import com.sparkpost.model.Match;
 import com.sparkpost.model.OptionsAttributes;
 import com.sparkpost.model.RecipientAttributes;
 import com.sparkpost.model.RecipientList;
@@ -29,7 +30,18 @@ import com.sparkpost.model.TransmissionWithRecipientList;
 import com.sparkpost.model.VerifyAttributes;
 import com.sparkpost.model.VerifyResponse;
 import com.sparkpost.model.Webhook;
+import com.sparkpost.model.responses.ListAllSendingDomiansResponse;
+import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.TemplateCreateResponse;
 import com.sparkpost.model.responses.TemplateListResponse;
+import com.sparkpost.model.responses.TemplatePreviewResponse;
+import com.sparkpost.model.responses.TransmissionCreateItem;
+import com.sparkpost.model.responses.TransmissionCreateResponse;
+import com.sparkpost.model.responses.TransmissionListResponse;
+import com.sparkpost.model.responses.TransmissionResponseInfo;
+import com.sparkpost.model.responses.TransmissionRetrieveResponseContainer;
+import com.sparkpost.model.responses.TransmissionRetrieveResults;
+import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.yepher.jsondoc.ClassListDriverBase;
 
 public class GenerateMarkdown  extends ClassListDriverBase {
@@ -40,11 +52,12 @@ public class GenerateMarkdown  extends ClassListDriverBase {
 	
 	private Set<Class<?>> pdusToExclude = new HashSet<Class<?>>();
 	
-	private List<Class<?>>      pdusToDocument = new ArrayList<Class<?>>(Arrays.asList(
+	private List<Class<?>> pdusToDocument = new ArrayList<Class<?>>(Arrays.asList(
             AddressAttributes.class,
             DKIM.class,
             DKIMResults.class,
             DNSAttributes.class,
+            Match.class,
             OptionsAttributes.class,
             RecipientAttributes.class,
             RecipientList.class,
@@ -64,7 +77,21 @@ public class GenerateMarkdown  extends ClassListDriverBase {
             TransmissionWithRecipientList.class,
             VerifyAttributes.class,
             VerifyResponse.class,
-            Webhook.class
+            Webhook.class,
+            
+            // Responses
+            ListAllSendingDomiansResponse.class,
+            Response.class,
+            TemplateCreateResponse.class,
+            TemplateListResponse.class,
+            TemplatePreviewResponse.class,
+            TransmissionCreateItem.class,
+            TransmissionCreateResponse.class,
+            TransmissionListResponse.class,
+            TransmissionResponseInfo.class,
+            TransmissionRetrieveResponseContainer.class,
+            TransmissionRetrieveResults.class,
+            WebhookListAllResponse.class
 
         ));
 	

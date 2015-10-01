@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true) 
 public class TransmissionListResponse extends Response {
 
-	@Description(value="List of TransmissionsBase items")
+	@Description(value="List of TransmissionsBase items",sample={""})
 	private List<TransmissionBase> results;
 
 }

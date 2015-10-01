@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TransmissionRetrieveResponseContainer extends Response {
 	
-	@Description(value = "The transmission information")
+	@Description(value = "The transmission information",sample={""})
 	private TransmissionResponseInfo transmission;
 }

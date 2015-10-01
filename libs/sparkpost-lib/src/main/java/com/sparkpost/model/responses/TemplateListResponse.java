@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=true)
 public class TemplateListResponse extends Response {
 
-	@Description(value="List of TemplateItems")
+	@Description(value="List of TemplateItems",sample={""})
 	private List<TemplateItem> results;
 
 }

@@ -23,7 +23,7 @@ public class TransmissionWithRecipientList extends TransmissionBase {
 	 * fields described in the Recipient List API documentation for Recipient
 	 * Attributes.
 	 */
-	@Description(value=" DTO for a transmission using a recipient list id (a recipient list stored at the server)")
+	@Description(value="Transmission using a recipient list id (a recipient list stored at the server)",sample={""})
 	@SerializedName("recipients")
 	private StoredRecipientList recipientList = null;
 

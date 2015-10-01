@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TemplateSubstitutionData extends Base {
 	
-	@Description(value="Data the will be substituted into the template")
+	@Description(value="Data the will be substituted into the template",sample={"Dictionary of ssubstitution data"})
 	@SerializedName("substitution_data")
 	private Map<String, String> substitutionData = new HashMap<String, String>();
 

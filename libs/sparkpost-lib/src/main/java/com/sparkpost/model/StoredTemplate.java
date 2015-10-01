@@ -20,7 +20,7 @@ public class StoredTemplate extends Base {
 	 * Specify this field when using a stored template. Maximum length -- 64
 	 * bytes
 	 */
-	@Description(value="ID of the stored template to use.  Specify this field when using a stored template. Maximum length -- 64 bytes")
+	@Description(value="ID of the stored template to use.  Specify this field when using a stored template. Maximum length -- 64 bytes",sample={"AbC123"})
 	@SerializedName("template_id")
 	private String templateId;
 
@@ -30,7 +30,7 @@ public class StoredTemplate extends Base {
 	 * If this field is set to true and no draft template exists, the
 	 * transmission will fail.
 	 */
-	@Description(value="Whether or not to use a draft template. If this field is set to true and no draft template exists, the transmission will fail.")
+	@Description(value="Whether or not to use a draft template. If this field is set to true and no draft template exists, the transmission will fail.",sample={"false"})
 	@SerializedName("use_draft_template")
 	private Boolean useDraftTemplate;
 }

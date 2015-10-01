@@ -19,7 +19,7 @@ public class DKIM extends Base {
 	 * 
 	 * The private key will be used to create the DKIM Signature.
 	 */
-	@Description(value="The private key will be used to create the DKIM Signature.")
+	@Description(value="The private key will be used to create the DKIM Signature.",sample={""})
 	@SerializedName("private")
 	private String privateKey;
 
@@ -28,7 +28,7 @@ public class DKIM extends Base {
 	 * 
 	 * The public key will be retrieved from DNS of the sending domain.
 	 */
-	@Description(value="The public key will be retrieved from DNS of the sending domain.")
+	@Description(value="The public key will be retrieved from DNS of the sending domain.",sample={""})
 	@SerializedName("public")
 	private String publicKey;
 
@@ -37,7 +37,7 @@ public class DKIM extends Base {
 	 * 
 	 * The DomainKey selector will be used to indicate the DKIM public key location.
 	 */
-	@Description(value="The DomainKey selector will be used to indicate the DKIM public key location.")
+	@Description(value="The DomainKey selector will be used to indicate the DKIM public key location.",sample={""})
 	private String selector;
 
 	/**

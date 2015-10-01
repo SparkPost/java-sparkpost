@@ -12,6 +12,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true) 
 public class WebhookListAllResponse extends Response {
 	
-	@Description(value="An array of Webhook data")
+	@Description(value="An array of Webhook data",sample={""})
 	List<Webhook> results;
 }

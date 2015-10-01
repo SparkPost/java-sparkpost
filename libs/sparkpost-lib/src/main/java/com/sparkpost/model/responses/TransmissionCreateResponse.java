@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true) 
 public class TransmissionCreateResponse extends Response {
 
-	@Description(value="Result of transmission")
+	@Description(value="Result of transmission",sample={""})
 	private TransmissionCreateItem results;
 }

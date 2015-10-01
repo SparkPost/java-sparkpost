@@ -31,7 +31,7 @@ public class OptionsAttributes extends Base {
 	 * If not specified, the setting at template level is used, or defaults to
 	 * true.
 	 */
-	@Description(value="Whether open tracking is enabled for this transmission. defaults to true")
+	@Description(value="Whether open tracking is enabled for this transmission. defaults to true",sample={""})
 	@SerializedName("open_tracking")
 	private Boolean openTracking;
 
@@ -41,7 +41,7 @@ public class OptionsAttributes extends Base {
 	 * If not specified, the setting at template level is used, or defaults to
 	 * true.
 	 */
-	@Description(value="Whether click tracking is enabled for this transmission. defaults to true")
+	@Description(value="Whether click tracking is enabled for this transmission. defaults to true",sample={""})
 	@SerializedName("click_tracking")
 	private Boolean clickTracking = true;
 
@@ -52,7 +52,7 @@ public class OptionsAttributes extends Base {
 	 * If not specified, the setting at template level is used, or defaults to
 	 * false.
 	 */
-	@Description(value="Whether message is transactional or non-transactional for unsubscribe and suppression purposes")
+	@Description(value="Whether message is transactional or non-transactional for unsubscribe and suppression purposes",sample={""})
 	private Boolean transactional = false;
 
 	/**
@@ -63,7 +63,7 @@ public class OptionsAttributes extends Base {
 	 * transmission only. Only applicable if your configuration supports this
 	 * parameter. ( Note: SparkPost Elite only )
 	 */
-	@Description(value="Unlike most other options, this flag is omitted on a GET transmission response unless the flag's value is true.")
+	@Description(value="Unlike most other options, this flag is omitted on a GET transmission response unless the flag's value is true.",sample={""})
 	@SerializedName("skip_suppression")
 	private Boolean skipSuppression;
 }
