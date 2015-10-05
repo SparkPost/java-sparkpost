@@ -82,7 +82,7 @@ local.properties
 
 
 # Keep Code Style Settings
-.settings/*
+.settings/
 !.settings/org.eclipse.jdt.ui.prefs
 !.settings/org.eclipse.jdt.core.prefs
 

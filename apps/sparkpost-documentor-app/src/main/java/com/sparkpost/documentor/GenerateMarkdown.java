@@ -1,3 +1,4 @@
+
 package com.sparkpost.documentor;
 
 import java.util.ArrayList;
@@ -44,109 +45,110 @@ import com.sparkpost.model.responses.TransmissionRetrieveResults;
 import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.yepher.jsondoc.ClassListDriverBase;
 
-public class GenerateMarkdown  extends ClassListDriverBase {
-	 
-	private String outputPath = "protocol.md";
-	
-	private String title = "SparkPost Protocol Library";
-	
-	private Set<Class<?>> pdusToExclude = new HashSet<Class<?>>();
-	
-	private List<Class<?>> pdusToDocument = new ArrayList<Class<?>>(Arrays.asList(
-            AddressAttributes.class,
-            DKIM.class,
-            DKIMResults.class,
-            DNSAttributes.class,
-            Match.class,
-            OptionsAttributes.class,
-            RecipientAttributes.class,
-            RecipientList.class,
-            SendingDomain.class,
-            StatusAttributes.class,
-            StoredRecipientList.class,
-            StoredTemplate.class,
-            SuppressionList.class,
-            SuppressionListEntry.class,
-            TemplateAttributes.class,
-            TemplateContentAttributes.class,
-            TemplateItem.class,
-            TemplateListResponse.class,
-            TemplateSubstitutionData.class,
-            TransmissionBase.class,
-            TransmissionWithRecipientArray.class,
-            TransmissionWithRecipientList.class,
-            VerifyAttributes.class,
-            VerifyResponse.class,
-            Webhook.class,
-            
-            // Responses
-            ListAllSendingDomiansResponse.class,
-            Response.class,
-            TemplateCreateResponse.class,
-            TemplateListResponse.class,
-            TemplatePreviewResponse.class,
-            TransmissionCreateItem.class,
-            TransmissionCreateResponse.class,
-            TransmissionListResponse.class,
-            TransmissionResponseInfo.class,
-            TransmissionRetrieveResponseContainer.class,
-            TransmissionRetrieveResults.class,
-            WebhookListAllResponse.class
+public class GenerateMarkdown extends ClassListDriverBase
+{
 
-        ));
-	
-	public static void main(String[] args) throws Exception {
-		
-		GenerateMarkdown generateMarkdown = new GenerateMarkdown();
-		generateMarkdown.run(args);
-		
-		System.out.println("Done...");
-		
-	}
-	
-	@Override
-	public void addPduToDocument(Class<?> clazz) {
-		System.out.println("addPduToDocument: " + clazz);
-	}
-	
+    private String outputPath = "protocol.md";
 
-	@Override
-	protected Set<Class<?>> getPdusToExclude() {
-		System.out.println("getPdusToExclude: ");
-		return pdusToExclude;
-	}
+    private String title = "SparkPost Protocol Library";
 
-	@Override
-	protected List<Class<?>> getPdusToDocument() {
-		System.out.println("getPdusToDocument: ");
-		
-//		Set<Class<?>> annotatedClasses;
-//		Reflections reflections = new Reflections("com.sparkpost.model");
-//		annotatedClasses = reflections.getTypesAnnotatedWith(RequestPDU.class, false);
-//		annotatedClasses.addAll(reflections.getTypesAnnotatedWith(ResponsePDU.class, false));
-//		annotatedClasses.addAll(reflections.getTypesAnnotatedWith(Description.class, false));
+    private Set<Class<?>> pdusToExclude = new HashSet<Class<?>>();
 
-		return pdusToDocument;
-	}
+    private List<Class<?>> pdusToDocument = new ArrayList<Class<?>>(
+            Arrays.asList(
+                    AddressAttributes.class,
+                    DKIM.class,
+                    DKIMResults.class,
+                    DNSAttributes.class,
+                    Match.class,
+                    OptionsAttributes.class,
+                    RecipientAttributes.class,
+                    RecipientList.class,
+                    SendingDomain.class,
+                    StatusAttributes.class,
+                    StoredRecipientList.class,
+                    StoredTemplate.class,
+                    SuppressionList.class,
+                    SuppressionListEntry.class,
+                    TemplateAttributes.class,
+                    TemplateContentAttributes.class,
+                    TemplateItem.class,
+                    TemplateListResponse.class,
+                    TemplateSubstitutionData.class,
+                    TransmissionBase.class,
+                    TransmissionWithRecipientArray.class,
+                    TransmissionWithRecipientList.class,
+                    VerifyAttributes.class,
+                    VerifyResponse.class,
+                    Webhook.class,
 
-	@Override
-	protected String getTitle() {
-		return title;
-	}
+                    // Responses
+                    ListAllSendingDomiansResponse.class,
+                    Response.class,
+                    TemplateCreateResponse.class,
+                    TemplateListResponse.class,
+                    TemplatePreviewResponse.class,
+                    TransmissionCreateItem.class,
+                    TransmissionCreateResponse.class,
+                    TransmissionListResponse.class,
+                    TransmissionResponseInfo.class,
+                    TransmissionRetrieveResponseContainer.class,
+                    TransmissionRetrieveResults.class,
+                    WebhookListAllResponse.class
 
-	@Override
-	protected void setOutputPath(String outputPath) {
-		this.outputPath = outputPath;
-	}
+    ));
 
-	@Override
-	protected String getOutputPath() {
-		return outputPath;
-	}
-	
-	public String getHeader() {
-		return "<a href=\"http://sparkpost.com\"><img src=\"https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg\" width=\"200px\"/></a>";
-	}
-	
-	
+    public static void main(String[] args) throws Exception 
+    {
+
+        GenerateMarkdown generateMarkdown = new GenerateMarkdown();
+        generateMarkdown.run(args);
+
+        System.out.println("Done...");
+
+    }
+
+    @Override
+    public void addPduToDocument(Class<?> clazz) {
+        System.out.println("addPduToDocument: " + clazz);
+    }
+
+    @Override
+    protected Set<Class<?>> getPdusToExclude() {
+        System.out.println("getPdusToExclude: ");
+        return this.pdusToExclude;
+    }
+
+    @Override
+    protected List<Class<?>> getPdusToDocument() {
+        System.out.println("getPdusToDocument: ");
+
+        //		Set<Class<?>> annotatedClasses;
+        //		Reflections reflections = new Reflections("com.sparkpost.model");
+        //		annotatedClasses = reflections.getTypesAnnotatedWith(RequestPDU.class, false);
+        //		annotatedClasses.addAll(reflections.getTypesAnnotatedWith(ResponsePDU.class, false));
+        //		annotatedClasses.addAll(reflections.getTypesAnnotatedWith(Description.class, false));
+
+        return this.pdusToDocument;
+    }
+
+    @Override
+    protected String getTitle() {
+        return this.title;
+    }
+
+    @Override
+    protected void setOutputPath(String outputPath) {
+        this.outputPath = outputPath;
+    }
+
+    @Override
+    protected String getOutputPath() {
+        return this.outputPath;
+    }
+
+    public String getHeader() {
+        return "<a href=\"http://sparkpost.com\"><img src=\"https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg\" width=\"200px\"/></a>";
+    }
+
 }

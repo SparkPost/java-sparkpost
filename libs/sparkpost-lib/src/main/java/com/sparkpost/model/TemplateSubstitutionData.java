@@ -1,3 +1,4 @@
+
 package com.sparkpost.model;
 
 import java.util.HashMap;
@@ -11,14 +12,13 @@ import lombok.EqualsAndHashCode;
 
 /**
  * DTO for storing substitution data (list of key=value).
- *
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TemplateSubstitutionData extends Base {
-	
-	@Description(value="Data the will be substituted into the template",sample={"Dictionary of ssubstitution data"})
-	@SerializedName("substitution_data")
-	private Map<String, String> substitutionData = new HashMap<String, String>();
+
+    @Description(value = "Data the will be substituted into the template", sample = {"Dictionary of ssubstitution data"})
+    @SerializedName("substitution_data")
+    private Map<String, String> substitutionData = new HashMap<String, String>();
 
 }

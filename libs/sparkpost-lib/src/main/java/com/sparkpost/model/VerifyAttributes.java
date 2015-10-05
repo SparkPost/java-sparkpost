@@ -1,3 +1,4 @@
+
 package com.sparkpost.model;
 
 import com.google.gson.annotations.SerializedName;
@@ -14,18 +15,18 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class VerifyAttributes extends Base {
-	
-	/**
-	 * Request verification of DKIM record
-	 */
-	@Description(value="Request verification of DKIM record",sample={"true"})
-	@SerializedName("dkim_verify")
-	private Boolean dkimVerify = null;
-	
-	/**
-	 * Request verification of SPF record
-	 */
-	@Description(value="Request verification of SPF record",sample={"true"})
-	@SerializedName("spf_verify")
-	private Boolean spfVerify = null;
+
+    /**
+     * Request verification of DKIM record
+     */
+    @Description(value = "Request verification of DKIM record", sample = {"true"})
+    @SerializedName("dkim_verify")
+    private Boolean dkimVerify = null;
+
+    /**
+     * Request verification of SPF record
+     */
+    @Description(value = "Request verification of SPF record", sample = {"true"})
+    @SerializedName("spf_verify")
+    private Boolean spfVerify = null;
 }

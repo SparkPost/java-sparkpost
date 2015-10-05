@@ -1,3 +1,4 @@
+
 package com.sparkpost.model.responses;
 
 import com.yepher.jsondoc.annotations.Description;
@@ -9,6 +10,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TransmissionRetrieveResults extends Response {
 
-	@Description(value = "The transmission result",sample={""})
-	private TransmissionRetrieveResponseContainer results;
+    @Description(value = "The transmission result", sample = {""})
+    private TransmissionRetrieveResponseContainer results;
 }

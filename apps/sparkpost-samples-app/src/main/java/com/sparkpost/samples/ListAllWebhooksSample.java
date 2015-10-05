@@ -1,3 +1,4 @@
+
 package com.sparkpost.samples;
 
 import java.io.IOException;
@@ -14,26 +15,25 @@ import com.sparkpost.transport.RestConnection;
 
 /**
  * List all Webhooks stored in a SparkPost account
- *
  */
 public class ListAllWebhooksSample extends SparkPostBaseApp {
 
-	static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
-	private Client client;
-	
-	public static void main(String[] args) throws SparkPostException, IOException {
-		Logger.getRootLogger().setLevel(Level.DEBUG);
+    private Client client;
 
-		ListAllWebhooksSample sample = new ListAllWebhooksSample();
-		sample.runApp();
-	}
-	
-	private void runApp() throws SparkPostException, IOException {
-		client = this.newConfiguredClient();
-		RestConnection connection = new RestConnection(client, getEndPoint());
-		WebhookListAllResponse response = ResourceWebhooks.listAll(connection, "America/Chicago");
-		System.out.println("Webhooks: " + response);
-		
-	}
+    public static void main(String[] args) throws SparkPostException, IOException {
+        Logger.getRootLogger().setLevel(Level.DEBUG);
+
+        ListAllWebhooksSample sample = new ListAllWebhooksSample();
+        sample.runApp();
+    }
+
+    private void runApp() throws SparkPostException, IOException {
+        client = this.newConfiguredClient();
+        RestConnection connection = new RestConnection(client, getEndPoint());
+        WebhookListAllResponse response = ResourceWebhooks.listAll(connection, "America/Chicago");
+        System.out.println("Webhooks: " + response);
+
+    }
 }

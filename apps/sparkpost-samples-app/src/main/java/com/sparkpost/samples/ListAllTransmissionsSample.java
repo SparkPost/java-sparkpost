@@ -1,3 +1,4 @@
+
 package com.sparkpost.samples;
 
 import java.io.IOException;
@@ -25,64 +26,60 @@ import com.sparkpost.transport.RestConnection;
  * <li>Multi-recipient transmissions for a campaign that use a specific template
  * </li>
  * </ul>
- * 
  * Note that single recipient transmissions are not returned.
- * 
  * By default, the list includes all transmissions for all campaigns. Use the
  * template_id parameter to specify a template and the campaign_id parameter to
  * specify a campaign. The response for transmissions using an inline template
  * will include "template_id":"inline". Inline templates cannot be specifically
  * queried.The example response shows a query on campaign_id=thanksgiving, with
  * template_id not specified as part of the query.
- *
  */
 public class ListAllTransmissionsSample extends SparkPostBaseApp {
-	private Client client;
 
-	public static void main(String[] args) throws SparkPostException, IOException {
-		Logger.getRootLogger().setLevel(Level.DEBUG);
+    private Client client;
 
-		ListAllTransmissionsSample sample = new ListAllTransmissionsSample();
-		sample.runApp();
+    public static void main(String[] args) throws SparkPostException, IOException {
+        Logger.getRootLogger().setLevel(Level.DEBUG);
 
-	}
+        ListAllTransmissionsSample sample = new ListAllTransmissionsSample();
+        sample.runApp();
 
-	private void runApp() throws SparkPostException, IOException {
-		client = this.newConfiguredClient();
-		listAllTransmissions();
-	}
+    }
 
-	/**
-	 * Demonstration how to retrieve the full list or transmission from server
-	 */
-	private TransmissionListResponse listAllTransmissions() throws SparkPostException {
-		RestConnection connection = new RestConnection(client, getEndPoint());
-		TransmissionListResponse response = ResourceTransmissions.list(connection, null, null);
+    private void runApp() throws SparkPostException, IOException {
+        client = this.newConfiguredClient();
+        listAllTransmissions();
+    }
 
-		if (response.getResponseCode() == 200) {
-			if (response.getResults() == null || response.getResults().size() == 0) {
-				System.out.println("There are no transmissions available.");
-				return response;
-			}
+    /**
+     * Demonstration how to retrieve the full list or transmission from server
+     */
+    private TransmissionListResponse listAllTransmissions() throws SparkPostException {
+        RestConnection connection = new RestConnection(client, getEndPoint());
+        TransmissionListResponse response = ResourceTransmissions.list(connection, null, null);
 
-			for (TransmissionBase transmission : response.getResults()) {
-				System.out.println("TransmissionId: " + transmission.getId() + " state: " + transmission.getState());
+        if (response.getResponseCode() == 200) {
+            if (response.getResults() == null || response.getResults().size() == 0) {
+                System.out.println("There are no transmissions available.");
+                return response;
+            }
 
-				// Fetch transmission detail
-				fetchTransmissionDetail(transmission, connection);
-			}
-		}
+            for (TransmissionBase transmission : response.getResults()) {
+                System.out.println("TransmissionId: " + transmission.getId() + " state: " + transmission.getState());
 
-		return response;
-	}
+                // Fetch transmission detail
+                fetchTransmissionDetail(transmission, connection);
+            }
+        }
 
-	
-	/**
-	 * This demonstrates how to retrieve the contents of a specific transmission using the transmissionId
-	 */
-	private void fetchTransmissionDetail(TransmissionBase transmission, RestConnection connection)
-			throws SparkPostException {
-		TransmissionRetrieveResults results = ResourceTransmissions.retrieve(connection, transmission.getId());
-		System.out.println("Result: " + results.getResults().getTransmission());
-	}
+        return response;
+    }
+
+    /**
+     * This demonstrates how to retrieve the contents of a specific transmission using the transmissionId
+     */
+    private void fetchTransmissionDetail(TransmissionBase transmission, RestConnection connection) throws SparkPostException {
+        TransmissionRetrieveResults results = ResourceTransmissions.retrieve(connection, transmission.getId());
+        System.out.println("Result: " + results.getResults().getTransmission());
+    }
 }

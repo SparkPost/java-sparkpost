@@ -144,12 +144,6 @@
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>rpm-maven-plugin</artifactId>
-					<version>2.1.13</version>
-					<!-- <version>2.0-beta-4</version> -->
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>taglist-maven-plugin</artifactId>
 					<version>2.4</version>
 				</plugin>
@@ -273,13 +267,8 @@
 				<version>0.8-SNAPSHOT</version>
 			</dependency>
 
-
-			<!-- LOGSTASH DEPENDENCIES -->
-
-
 		</dependencies>
 	</dependencyManagement>
-
 
 	<dependencies>
 		<dependency>
