@@ -46,7 +46,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
+#.settings/
 .loadpath
 
 # Eclipse Core
