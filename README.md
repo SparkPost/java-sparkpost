@@ -1,6 +1,6 @@
 <a href="http://sparkpost.com"><img src="https://www.sparkpost.com/sites/default/files/attachments/SparkPost_Logo_2-Color_Gray-Orange_RGB.svg" width="200px"/></a>
 
-You can sign up for a Stripe account at https://sparkpost.com
+You can sign up for a SparkPost account at https://sparkpost.com
 
 # SparkPost Java Library
 
