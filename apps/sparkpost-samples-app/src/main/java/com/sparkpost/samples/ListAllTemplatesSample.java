@@ -1,3 +1,4 @@
+
 package com.sparkpost.samples;
 
 import java.io.IOException;
@@ -16,32 +17,31 @@ import com.sparkpost.transport.RestConnection;
 
 /**
  * List all templates stored in a SparkPost account
- *
  */
 public class ListAllTemplatesSample extends SparkPostBaseApp {
 
-	static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
-	private Client client;
-	
-	public static void main(String[] args) throws SparkPostException, IOException {
-		Logger.getRootLogger().setLevel(Level.DEBUG);
+    private Client client;
 
-		ListAllTemplatesSample sample = new ListAllTemplatesSample();
-		sample.runApp();
-	}
-	
-	private void runApp() throws SparkPostException, IOException {
-		client = this.newConfiguredClient();
-		RestConnection connection = new RestConnection(client, getEndPoint());
-		TemplateListResponse listResponse = ResourceTemplates.listAll(connection);
-		
-		List<TemplateItem> results = listResponse.getResults();
-		
-		// Print out the templates
-		System.out.println("Found " + results.size() + " tempaltes");
-		for (TemplateItem item : results) {
-			System.out.println("\tName \"" + item.getName() + "\" updated " + item.getLastUpdateTime());
-		}
-	}
+    public static void main(String[] args) throws SparkPostException, IOException {
+        Logger.getRootLogger().setLevel(Level.DEBUG);
+
+        ListAllTemplatesSample sample = new ListAllTemplatesSample();
+        sample.runApp();
+    }
+
+    private void runApp() throws SparkPostException, IOException {
+        client = this.newConfiguredClient();
+        RestConnection connection = new RestConnection(client, getEndPoint());
+        TemplateListResponse listResponse = ResourceTemplates.listAll(connection);
+
+        List<TemplateItem> results = listResponse.getResults();
+
+        // Print out the templates
+        System.out.println("Found " + results.size() + " tempaltes");
+        for (TemplateItem item : results) {
+            System.out.println("\tName \"" + item.getName() + "\" updated " + item.getLastUpdateTime());
+        }
+    }
 }

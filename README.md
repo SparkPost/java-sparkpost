@@ -22,48 +22,7 @@ __NOTE: This is not published to Maven Repo yet!!!__
 
 ## Building SparkPost4J
 
-### Prerequisites
 
-1. Download and install [Java JDK](https://java.com/en/download/) >= 1.7
-
-2. Download and setup [Maven](https://maven.apache.org/) >= 3.3
-
-3. Setup an account at [SparkPost.com](http://sparkpost.com)
-
-4. Create API Key in your [SparkPost Account](https://app.sparkpost.com/account/credentials)
-
-4. For examples to run you will need to setup the following environment variables:
-	* `SPARKPOST_API_KEY="YOUR_SPARKPOST_API_KEY"`
-   * `SPARKPOST_SENDER_EMAIL="YOUR_EMAIL_FROM_ADDRESS"`
-
-5. Optionally setup [Eclipse](https://eclipse.org/) (will need Maven Plugin to import project)
-
-6. Optionally setup [IntelliJ](https://www.jetbrains.com/idea/)
-
-### Building
-
-1. Clone the repository
-  `git clone https://github.com/sparkpost/java-sparkpost`
- 
-2. Build with Maven `mvn clean install`
-
-### GUI Editors
-
-#### Eclipse
-
-It is easiest if you build the project on the command-line first before importing project into Eclipse.
-
-* Import project into Eclipse
-	* Setup Lombok in Eclipse `./tools/bin/setupLombok.sh` (browse to and select eclipse.ini)
-	* Restart Eclipse
-   * File -> Import -> Maven -> Existing Maven Projects
-   * See "Prerequisites" above for environment variables needed for running examples
-
-#### IntelliJ
-
-* Import project into IntelliJ
-	* File -> New -> Project from Existing Sources
-	* Download and install the Lombok plugin https://plugins.jetbrains.com/plugin/6317
 
 ## Send Email Example
 

@@ -13,5 +13,12 @@
 			<Bug code="IJU" />
 		</Not>
 	</Match>
+	<Match>
+		<!-- Reason for exclusion: This is sample code and this part is not expected to be reused. -->
+		<Class name="~.*\.SparkPostBaseApp" />
+		<Not>
+			<Bug code="DM_EXIT" />
+		</Not>
+	</Match>
 
 </FindBugsFilter>

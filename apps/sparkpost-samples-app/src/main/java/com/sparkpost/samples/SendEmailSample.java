@@ -1,3 +1,4 @@
+
 package com.sparkpost.samples;
 
 import java.io.IOException;
@@ -22,58 +23,58 @@ import com.sparkpost.transport.RestConnection;
 
 public class SendEmailSample extends SparkPostBaseApp {
 
-	static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
-	private Client client;
-	
-	public static void main(String[] args) throws SparkPostException, IOException {
-		Logger.getRootLogger().setLevel(Level.DEBUG);
+    private Client client;
 
-		SendEmailSample sample = new SendEmailSample();
-		sample.runApp();
-	}
-	
-	private void runApp() throws SparkPostException, IOException {
-		client = this.newConfiguredClient();
-		
-		// Loads an email to send from the file system
-		String template = getTemplate("sample_sp_email.eml");
-		String fromAddress = getFromAddress();
-		String[] recipients = getTestRecipients();
-		
-		sendEmail(fromAddress, recipients, template);
-		
-	}
-	
-	private void sendEmail(String from, String[] recipients, String email) throws SparkPostException {
-		TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
-		
-		// Populate Recipients
-		List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
-		for (String recipient : recipients) {
-			RecipientAttributes recipientAttribs = new RecipientAttributes();
-			recipientAttribs.setAddress(new AddressAttributes(recipient));
-			recipientArray.add(recipientAttribs);
-		}
-		transmission.setRecipientArray(recipientArray);
-		
-		transmission.setReturnPath(from);
-		
-		// Populate Substitution Data
-		Map<String, String> substitutionData = new HashMap<String, String>();
-		substitutionData.put("from", from);
-		transmission.setSubstitutionData(substitutionData);
-		
-		// Populate Email Body
-		TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
-		contentAttributes.setEmailRFC822(email);
-		transmission.setContentAttributes(contentAttributes);
-		
-		// Send the Email
-		RestConnection connection = new RestConnection(client, getEndPoint());
-		Response response = ResourceTransmissions.create(connection, 0, transmission);
-		
-		logger.debug("Transmission Response: " + response);
-	}
+    public static void main(String[] args) throws SparkPostException, IOException {
+        Logger.getRootLogger().setLevel(Level.DEBUG);
+
+        SendEmailSample sample = new SendEmailSample();
+        sample.runApp();
+    }
+
+    private void runApp() throws SparkPostException, IOException {
+        client = this.newConfiguredClient();
+
+        // Loads an email to send from the file system
+        String template = getTemplate("sample_sp_email.eml");
+        String fromAddress = getFromAddress();
+        String[] recipients = getTestRecipients();
+
+        sendEmail(fromAddress, recipients, template);
+
+    }
+
+    private void sendEmail(String from, String[] recipients, String email) throws SparkPostException {
+        TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
+
+        // Populate Recipients
+        List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
+        for (String recipient : recipients) {
+            RecipientAttributes recipientAttribs = new RecipientAttributes();
+            recipientAttribs.setAddress(new AddressAttributes(recipient));
+            recipientArray.add(recipientAttribs);
+        }
+        transmission.setRecipientArray(recipientArray);
+
+        transmission.setReturnPath(from);
+
+        // Populate Substitution Data
+        Map<String, String> substitutionData = new HashMap<String, String>();
+        substitutionData.put("from", from);
+        transmission.setSubstitutionData(substitutionData);
+
+        // Populate Email Body
+        TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
+        contentAttributes.setEmailRFC822(email);
+        transmission.setContentAttributes(contentAttributes);
+
+        // Send the Email
+        RestConnection connection = new RestConnection(client, getEndPoint());
+        Response response = ResourceTransmissions.create(connection, 0, transmission);
+
+        logger.debug("Transmission Response: " + response);
+    }
 
 }

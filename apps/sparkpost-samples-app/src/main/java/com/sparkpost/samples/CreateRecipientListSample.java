@@ -1,3 +1,4 @@
+
 package com.sparkpost.samples;
 
 import java.io.IOException;
@@ -25,56 +26,54 @@ import com.sparkpost.transport.RestConnection;
  * stored recipient list id attribute can be specified.The Recipient List API
  * operates on lists as a whole and does not currently support management of
  * individual recipients.
- * 
  * See:
  * https://www.sparkpost.com/api#/reference/recipient-lists/create-a-recipient-
  * list
- *
  */
 public class CreateRecipientListSample extends SparkPostBaseApp {
 
-			static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
-			private Client client;
-			
-			public static void main(String[] args) throws SparkPostException, IOException {
-				Logger.getRootLogger().setLevel(Level.DEBUG);
+    private Client client;
 
-				CreateRecipientListSample app = new CreateRecipientListSample();
-				app.runApp();
-			}
-			
-			private void runApp() throws SparkPostException, IOException {
+    public static void main(String[] args) throws SparkPostException, IOException {
+        Logger.getRootLogger().setLevel(Level.DEBUG);
 
-				RecipientList recipientList = createRecipientList();
-				
-				client = this.newConfiguredClient();
-				RestConnection connection = new RestConnection(client, getEndPoint());
-				
-				Response response = ResourceRecipientLists.create(connection, 0, recipientList);
-				
-				if (logger.isDebugEnabled()) {
-					logger.debug("Create Recipient List Response: " + response);
-				}
-				
-			}
+        CreateRecipientListSample app = new CreateRecipientListSample();
+        app.runApp();
+    }
 
-			private RecipientList createRecipientList() {
-				RecipientList recipientList = new RecipientList();
-				
-				recipientList.setName("100 List");
-				recipientList.setDescription("Demonstration of storing a recipient list on the server");
-				
-				List<RecipientAttributes> recipients = new ArrayList<RecipientAttributes>();
-				// Populate our recipient list attributes
-				for (String recipient : getTestRecipients()) {
-					RecipientAttributes attributes = new RecipientAttributes();
-					attributes.setAddress(new AddressAttributes(recipient));
-					recipients.add(attributes);
-				}
-				
-				recipientList.setRecipients(recipients);
-				
-				return recipientList;
-			}
+    private void runApp() throws SparkPostException, IOException {
+
+        RecipientList recipientList = createRecipientList();
+
+        client = this.newConfiguredClient();
+        RestConnection connection = new RestConnection(client, getEndPoint());
+
+        Response response = ResourceRecipientLists.create(connection, 0, recipientList);
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Create Recipient List Response: " + response);
+        }
+
+    }
+
+    private RecipientList createRecipientList() {
+        RecipientList recipientList = new RecipientList();
+
+        recipientList.setName("100 List");
+        recipientList.setDescription("Demonstration of storing a recipient list on the server");
+
+        List<RecipientAttributes> recipients = new ArrayList<RecipientAttributes>();
+        // Populate our recipient list attributes
+        for (String recipient : getTestRecipients()) {
+            RecipientAttributes attributes = new RecipientAttributes();
+            attributes.setAddress(new AddressAttributes(recipient));
+            recipients.add(attributes);
+        }
+
+        recipientList.setRecipients(recipients);
+
+        return recipientList;
+    }
 }
