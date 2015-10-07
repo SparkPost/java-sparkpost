@@ -1,7 +1,7 @@
 package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -31,7 +31,8 @@ public class ResourceMetrics {
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDeliverabilityMetricsByDomain(RestConnection conn, String from, String to, String domains,
@@ -49,7 +50,8 @@ public class ResourceMetrics {
 		ep.addParam("limit", limit);
 		ep.addParam("order_by", order_by);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 
 	}
 
@@ -68,7 +70,8 @@ public class ResourceMetrics {
 		ep.addParam("limit", limit);
 		ep.addParam("order_by", order_by);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDeliverabilityMetricsByTemplate(RestConnection conn, String from, String to, String domains,
@@ -86,7 +89,8 @@ public class ResourceMetrics {
 		ep.addParam("limit", limit);
 		ep.addParam("order_by", order_by);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDeliverabilityMetricsByWatchedDomain(RestConnection conn, String from, String to,
@@ -104,7 +108,8 @@ public class ResourceMetrics {
 		ep.addParam("limit", limit);
 		ep.addParam("order_by", order_by);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getTimeSeriesMetrics(RestConnection conn, String from, String to, String domains, String campaigns,
@@ -121,7 +126,8 @@ public class ResourceMetrics {
 		ep.addParam("metrics", metrics);
 		ep.addParam("timezone", timezone);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getBounceReasonMetrics(RestConnection conn, String from, String to, String domains,
@@ -138,7 +144,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getBounceReasonMetricsByDomain(RestConnection conn, String from, String to, String domains,
@@ -155,7 +162,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getBounceClassificationMetrics(RestConnection conn, String from, String to, String domains,
@@ -172,7 +180,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getRejectionReasonMetrics(RestConnection conn, String from, String to, String domains,
@@ -188,7 +197,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getRejectionReasonMetricsByDomain(RestConnection conn, String from, String to, String domains,
@@ -204,7 +214,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDelayReasonMetrics(RestConnection conn, String from, String to, String domains,
@@ -220,7 +231,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDelayReasonMetricsByDomain(RestConnection conn, String from, String to, String domains,
@@ -236,7 +248,8 @@ public class ResourceMetrics {
 		ep.addParam("timezone", timezone);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getEngagementDetails(RestConnection conn, String from, String to, String timezone, String metrics,
@@ -251,7 +264,8 @@ public class ResourceMetrics {
 		ep.addParam("templates", templates);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDeliveriesByAttempt(RestConnection conn, String from, String to, String domains,
@@ -264,7 +278,8 @@ public class ResourceMetrics {
 		ep.addParam("campaigns", campaigns);
 		ep.addParam("templates", templates);
 		ep.addParam("timezone", timezone);
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getCampaignsList(RestConnection conn, String match, String limit) throws SparkPostException {
@@ -273,7 +288,8 @@ public class ResourceMetrics {
 		ep.addParam("match", match);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 	public static Response getDomainsList(RestConnection conn, String match, String limit) throws SparkPostException {
@@ -282,7 +298,8 @@ public class ResourceMetrics {
 		ep.addParam("match", match);
 		ep.addParam("limit", limit);
 
-		return conn.get(ep.toString());
+		Response response = conn.get(ep.toString());
+		return response;
 	}
 
 }

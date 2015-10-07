@@ -18,7 +18,7 @@ public class TemplateAttributes extends Base {
 	 * 
 	 * After a template has been created, this property cannot be changed. Maximum length - 64 bytes
 	 */
-	@Description(value="Short, unique, alphanumeric ID used to reference the template. After a template has been created, this property cannot be changed. Maximum length - 64 bytes")
+	@Description(value="Short, unique, alphanumeric ID used to reference the template. After a template has been created, this property cannot be changed. Maximum length - 64 bytes",sample={"AbC123"})
 	private String id;
 
 	/**
@@ -26,7 +26,7 @@ public class TemplateAttributes extends Base {
 	 * 
 	 * For a full description, see the Content Attributes. Maximum length - 15 MBs
 	 */
-	@Description(value="Content that will be used to construct a message. For a full description, see the Content Attributes. Maximum length - 15 MBs")
+	@Description(value="Content that will be used to construct a message. For a full description, see the Content Attributes. Maximum length - 15 MBs",sample={"TemplateContentAttributes Dictionary"})
 	private TemplateContentAttributes content;
 
 	/**
@@ -34,7 +34,7 @@ public class TemplateAttributes extends Base {
 	 * 
 	 * A template cannot be changed from published to draft.
 	 */
-	@Description(value="Whether the template is published or is a draft version. A template cannot be changed from published to draft.")
+	@Description(value="Whether the template is published or is a draft version. A template cannot be changed from published to draft.",sample={"true"})
 	private Boolean published;
 
 	/**
@@ -42,7 +42,7 @@ public class TemplateAttributes extends Base {
 	 * 
 	 * The name does not have to be unique. Maximum length - 1024 bytes
 	 */
-	@Description(value="Editable display name. The name does not have to be unique. Maximum length - 1024 bytes")
+	@Description(value="Editable display name. The name does not have to be unique. Maximum length - 1024 bytes",sample={"Template Name"})
 	private String name;
 
 	/**
@@ -50,7 +50,7 @@ public class TemplateAttributes extends Base {
 	 * 
 	 * Maximum length - 1024 bytes
 	 */
-	@Description(value="Detailed description of the template. Maximum length - 1024 bytes.")
+	@Description(value="Detailed description of the template. Maximum length - 1024 bytes.",sample={"Template Description"})
 	private String description;
 
 	/**
@@ -58,7 +58,7 @@ public class TemplateAttributes extends Base {
 	 * 
 	 * For a full description, see the Options Attributes.
 	 */
-	@Description(value="TemplateOptions in which template options are defined. For a full description, see the Options Attributes.")
+	@Description(value="TemplateOptions in which template options are defined. For a full description, see the Options Attributes.",sample={"TemplateOptions Dictionary"})
 	private OptionsAttributes options;
 
 }

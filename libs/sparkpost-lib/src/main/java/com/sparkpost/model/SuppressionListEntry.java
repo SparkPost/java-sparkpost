@@ -39,7 +39,7 @@ public class SuppressionListEntry extends Base {
 	/**
 	 * 
 	 */
-	@Description(value="")
+	@Description(value="Email Address",sample={"address@example.com"})
 	private String email;
 
 	/**
@@ -47,7 +47,7 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * At a minimum, transactional or non_transactional is required upon creation of the entry.
 	 */
-	@Description(value="Whether the recipient requested to not receive any transactional messages. At a minimum, transactional or non_transactional is required upon creation of the entry.")
+	@Description(value="Whether the recipient requested to not receive any transactional messages. At a minimum, transactional or non_transactional is required upon creation of the entry.",sample={"true"})
 	private boolean transactional;
 
 	/**
@@ -55,7 +55,7 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * At a minimum, transactional or non_transactional is required upon creation of the entry.
 	 */
-	@Description(value="Whether the recipient requested to not receive any non-transactional messages. At a minimum, transactional or non_transactional is required upon creation of the entry.")
+	@Description(value="Whether the recipient requested to not receive any non-transactional messages. At a minimum, transactional or non_transactional is required upon creation of the entry.",sample={"false"})
 	@SerializedName("non_transactional")
 	private boolean nonTransactional;
 
@@ -66,13 +66,13 @@ public class SuppressionListEntry extends Base {
 	 * 
 	 * See StatusTypes
 	 */
-	@Description(value="Source responsible for inserting the list entry. Valid values include: FBL, List Unsubscribe, Bounce Rule, Unsubscribe Link, Manually Added, Compliance. Defaults to Manually Added on create")
+	@Description(value="Source responsible for inserting the list entry. Valid values include: FBL, List Unsubscribe, Bounce Rule, Unsubscribe Link, Manually Added, Compliance. Defaults to Manually Added on create",sample={"Manually Added"})
 	private String source = StatusTypes.MANUALLY_ADDED;
 
 	/**
 	 * Short explanation of the suppression
 	 */
-	@Description(value="Short explanation of the suppression")
+	@Description(value="Short explanation of the suppression",sample={""})
 	private String description;
 		
 }

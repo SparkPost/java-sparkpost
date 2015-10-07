@@ -8,9 +8,9 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateItem;
-import com.sparkpost.model.TemplateListResponse;
+import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.TemplateListResponse;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
@@ -26,8 +26,8 @@ public class DeleteSampleTemplates extends SparkPostBaseApp {
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		DeleteSampleTemplates app = new DeleteSampleTemplates();
-		app.runApp();
+		DeleteSampleTemplates sample = new DeleteSampleTemplates();
+		sample.runApp();
 	}
 	
 	private void runApp() throws SparkPostException, IOException {

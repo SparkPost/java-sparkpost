@@ -28,7 +28,7 @@ public class RecipientList extends Base {
 	 * 
 	 * If an id is not specified, one is generated. Maximum length - 64 bytes
 	 */
-	@Description(value="Short, unique, recipient list identifier. Maximum length - 64 bytes")
+	@Description(value="Short, unique, recipient list identifier. Maximum length - 64 bytes",sample={""})
 	private String id = null;
 
 	/**
@@ -36,7 +36,7 @@ public class RecipientList extends Base {
 	 * 
 	 * If a name is not specified, then defaults to the same value as id. Maximum length - 64 bytes
 	 */
-	@Description(value=" Short, pretty/readable recipient list display name, not required to be unique. Maximum length - 64 bytes")
+	@Description(value=" Short, pretty/readable recipient list display name, not required to be unique. Maximum length - 64 bytes",sample={""})
 	private String name = null;
 
 	/**
@@ -44,7 +44,7 @@ public class RecipientList extends Base {
 	 * 
 	 * Maximum length - 1024 bytes
 	 */
-	@Description(value="Detailed description of the recipient list. Maximum length - 1024 bytes")
+	@Description(value="Detailed description of the recipient list. Maximum length - 1024 bytes",sample={""})
 	private String description = null;
 
 	/**
@@ -52,7 +52,7 @@ public class RecipientList extends Base {
 	 * 
 	 * This JSON object allows users to store arbitrary metadata related to this list. This data is not used by the API. It is only for the user.
 	 */
-	@Description(value=" Recipient list attribute object")
+	@Description(value=" Recipient list attribute object",sample={""})
 	private Map<String, String> attributes = null;
 
 	/**
@@ -60,18 +60,15 @@ public class RecipientList extends Base {
 	 * 
 	 * For a full description, see the Recipient Attributes.
 	 */
-	@Description(value=" List of recipient objects")
+	@Description(value=" List of recipient objects",sample={""})
 	private List<RecipientAttributes> recipients = null;
 	
-	@Description(value="The number of recipients in this list that have been accepted")
+	@Description(value="The number of recipients in this list that have been accepted",sample={""})
 	@SerializedName("total_accepted_recipients")
 	private int totalAcceptedRecipients;
 	
-	@Description(value="The number of recipients in this list that have been rejected")
+	@Description(value="The number of recipients in this list that have been rejected",sample={""})
 	@SerializedName("total_rejected_recipients")
 	private int totalRejectedRecipients;
-	
-	
-	
-	
+
 }

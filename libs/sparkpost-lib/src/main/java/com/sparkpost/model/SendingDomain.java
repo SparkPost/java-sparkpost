@@ -31,7 +31,7 @@ public class SendingDomain extends Base {
 	/**
 	 * Status details, including whether this domain's ownership has been verified
 	 */
-	@Description(value="Status details, including whether this domain's ownership has been verified")
+	@Description(value="Status details, including whether this domain's ownership has been verified",sample={""})
 	private StatusAttributes status;
 
 	/**
@@ -39,7 +39,7 @@ public class SendingDomain extends Base {
 	 * 
 	 * For a full description, see the DKIM Attributes.
 	 */
-	@Description(value="DKIM key configuration. For a full description, see the DKIM Attributes.")
+	@Description(value="DKIM key configuration. For a full description, see the DKIM Attributes.",sample={""})
 	private DKIM dkim;
 
 }

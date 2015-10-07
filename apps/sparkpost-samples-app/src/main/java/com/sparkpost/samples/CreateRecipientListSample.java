@@ -12,7 +12,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.RecipientAttributes;
 import com.sparkpost.model.RecipientList;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceRecipientLists;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
@@ -33,7 +33,7 @@ import com.sparkpost.transport.RestConnection;
  */
 public class CreateRecipientListSample extends SparkPostBaseApp {
 
-			static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+			static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 			private Client client;
 			
@@ -62,7 +62,7 @@ public class CreateRecipientListSample extends SparkPostBaseApp {
 			private RecipientList createRecipientList() {
 				RecipientList recipientList = new RecipientList();
 				
-				recipientList.setName(SAMPLE_RECIPIENT_LIST_NAME);
+				recipientList.setName("100 List");
 				recipientList.setDescription("Demonstration of storing a recipient list on the server");
 				
 				List<RecipientAttributes> recipients = new ArrayList<RecipientAttributes>();

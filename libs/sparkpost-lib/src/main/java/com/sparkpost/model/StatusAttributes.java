@@ -12,14 +12,14 @@ public class StatusAttributes extends Base {
 	/**
 	 * 
 	 */
-	@Description(value="True if ownership is verified")
+	@Description(value="True if ownership is verified",sample={"true"})
 	@SerializedName("ownership_verified")
 	private Boolean ownershipVerified;
 	
 	/**
 	 * 
 	 */
-	@Description(value="Current SPF Status")
+	@Description(value="Current SPF Status. Valid values are \"unverified\", \"pending\", \"invalid\" or \"valid\".",sample={"valid"})
 	@SerializedName("spf_status")
 	private String spfStatus;
 	
@@ -27,28 +27,28 @@ public class StatusAttributes extends Base {
 	/**
 	 * 
 	 */
-	@Description(value="DKIM Compliance status")
+	@Description(value="DKIM Compliance status. Valid values are \"pending\", \"valid\", or \"blocked\".",sample={"valid"})
 	@SerializedName("compliance_status")
 	private String complianceStatus;
 	
 	/**
 	 * 
 	 */
-	@Description(value="DKIM status")
+	@Description(value="DKIM status. Valid values are \"unverified\", \"pending\", \"invalid\" or \"valid\".",sample={"valid"})
 	@SerializedName("dkim_status")
 	private String dkimStatus;
 	
 	/**
 	 * 
 	 */
-	@Description(value="Abuse status")
+	@Description(value="Abuse status. Valid values are \"unverified\", \"pending\", \"invalid\" or \"valid\".",sample={"valid"})
 	@SerializedName("abuse_at_status")
 	private String abuseAtStatus;
 	
 	/**
 	 * 
 	 */
-	@Description(value="Postmaster status")
+	@Description(value="Postmaster status. Valid values are \"unverified\", \"pending\", \"invalid\" or \"valid\".",sample={"valid"})
 	@SerializedName("postmaster_at_status")
 	private String postmasterAtStatus;
 }

@@ -7,34 +7,34 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateContentAttributes;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
 /**
- * This class demonstrates how to store and RFC822 template in SparkPost
+ * This class demonstrates how to store an HTML template in SparkPost
  * 
- * Warning: RFC822 templates are only manageable via API and not from website directly.
  */
-public class SaveTemplateFromFile extends SparkPostBaseApp {
-	private static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+public class CreateTemplateFromFile2 extends SparkPostBaseApp {
+	private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 	private Client client;
 	
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SaveTemplateFromFile templateExample = new SaveTemplateFromFile();
-		templateExample.runApp();
+		CreateTemplateFromFile2 sample = new CreateTemplateFromFile2();
+		sample.runApp();
 		
 	}
 	
 	private void runApp() throws SparkPostException, IOException {
 		client = this.newConfiguredClient();
-		String template = this.getTemplate("sample_email.txt");
+		String template = this.getTemplate("richContent.html");
 		createTemplate(template, SAMPLE_TEMPLATE_NAME);
 	}
 	
@@ -43,7 +43,7 @@ public class SaveTemplateFromFile extends SparkPostBaseApp {
 	 * 
 	 * @throws SparkPostException
 	 */
-	public void createTemplate(String rfc822Content, String name) throws SparkPostException {
+	public void createTemplate(String html, String name) throws SparkPostException {
 		if (logger.isDebugEnabled()) {
 			logger.debug("createTemplate()");
 		}
@@ -52,8 +52,9 @@ public class SaveTemplateFromFile extends SparkPostBaseApp {
 
 		TemplateContentAttributes content = new TemplateContentAttributes();
 		
-		//content.setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
-		content.setEmailRFC822(rfc822Content);
+		content.setSubject("Template Test");
+		content.setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
+		content.setHtml(html);
 		template.setContent(content);
 		
 		RestConnection connection = new RestConnection(client, getEndPoint());
@@ -63,7 +64,7 @@ public class SaveTemplateFromFile extends SparkPostBaseApp {
 				logger.debug("Create Template Response: " + response);
 			}
 		} catch (SparkPostException e) {
-			logger.debug("Create Template Response: " + connection.getLastResponse());
+			logger.debug("Create Template Failed: ");
 			throw e;
 		}
 		

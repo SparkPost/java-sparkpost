@@ -13,24 +13,24 @@ import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
 import com.sparkpost.model.RecipientAttributes;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.TransmissionWithRecipientArray;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
 public class SendEmailSample extends SparkPostBaseApp {
 
-	static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+	static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 	private Client client;
 	
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		SendEmailSample app = new SendEmailSample();
-		app.runApp();
+		SendEmailSample sample = new SendEmailSample();
+		sample.runApp();
 	}
 	
 	private void runApp() throws SparkPostException, IOException {

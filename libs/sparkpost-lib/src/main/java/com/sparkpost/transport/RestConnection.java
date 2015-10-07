@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
-import com.sparkpost.model.Response;
+import com.sparkpost.model.responses.Response;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
@@ -29,6 +29,9 @@ public class RestConnection {
 
 	private static final Logger logger = Logger.getLogger(RestConnection.class);
 
+	// TODO: set this up to be set by build machine.
+	private static final String VERSION = "0.0.1-SNAPSHOT";
+	
 	/**
 	 * Default endpoint to use for connections :
 	 * https://api.sparkpost.com/api/v1/
@@ -36,20 +39,9 @@ public class RestConnection {
 	 */
 	public final static String defaultApiEndpoint = "https://api.sparkpost.com/api/v1/";
 
-	private Client client;
+	private final Client client;
 
-	private String endpoint;
-
-	private Response lastResponse;
-
-	/**
-	 * Retrieve the response from the last HTTP request
-	 *
-	 * @return the response
-	 */
-	public Response getLastResponse() {
-		return lastResponse;
-	}
+	private final String endpoint;
 
 	/**
 	 * Supported HTTP methods
@@ -93,7 +85,6 @@ public class RestConnection {
 				this.endpoint = endpoint + '/';
 			}
 		}
-		lastResponse = new Response();
 	}
 
 	/**
@@ -125,6 +116,8 @@ public class RestConnection {
 						.encodeAsString((client.getUsername() + ":" + client.getPassword()).getBytes("UTF-8"));
 				conn.setRequestProperty("Authorization", "Basic " + encoding);
 			}
+			
+			conn.setRequestProperty("User-Agent", "java-sparkpost/" + VERSION);
 
 			conn.setRequestProperty("Content-Type", "application/json");
 			switch (method) {
@@ -176,8 +169,7 @@ public class RestConnection {
 			lenStr = Integer.toString(data.getBytes("UTF-8").length);
 		} catch (UnsupportedEncodingException e) {
 			// This should never happen. UTF-8 should always be available but we
-			// have
-			// to catch it so pass it on if it fails.
+			// have to catch it so pass it on if it fails.
 			throw new SparkPostException(e);
 		}
 		conn.setRequestProperty("Content-Length", lenStr);
@@ -198,7 +190,7 @@ public class RestConnection {
 	}
 
 	// Send HTTP request to server
-	private void sendRequest(HttpURLConnection conn, String data) throws SparkPostException {
+	private void sendRequest(HttpURLConnection conn, String data, Response response) throws SparkPostException {
 
 		if (data != null) {
 			sendData(conn, data);
@@ -213,9 +205,10 @@ public class RestConnection {
 			// getResponseCode() blocks until the response code is read from the
 			// stream from the server
 			int code = conn.getResponseCode();
-			lastResponse.setResponseCode(code);
+			response.setResponseCode(code);
+			response.setContentType(conn.getHeaderField("Content-Type"));
 			String msg = conn.getResponseMessage();
-			lastResponse.setResponseMessage(msg);
+			response.setResponseMessage(msg);
 
 		} catch (IOException ex) {
 			throw new SparkPostException("Connection error:" + ex.toString());
@@ -223,9 +216,9 @@ public class RestConnection {
 	}
 
 	// Read response body from server
-	private Response receiveResponse(HttpURLConnection conn) throws SparkPostException {
+	private Response receiveResponse(HttpURLConnection conn, Response response) throws SparkPostException {
 
-		if (!conn.getContentType().equalsIgnoreCase("application/json")) {
+		if (!conn.getContentType().toLowerCase().startsWith("application/json")) {
 			throw new SparkPostIllegalServerResponseException(
 					"Unexpected content type (" + conn.getContentType() + ") from " + conn.getURL());
 		}
@@ -238,38 +231,37 @@ public class RestConnection {
 				sb.append(line);
 			}
 
-			lastResponse.setResponseBody(sb.toString());
-			lastResponse.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
+			response.setResponseBody(sb.toString());
+			response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
 		} catch (FileNotFoundException ex) {
 			// We get here if the connection was closed:
 			// There are cases in REST where the server won't return a response
 			// body but only a response status. So if we get here , it is not
 			// an error.
-			lastResponse.setResponseBody("");
+			response.setResponseBody("");
 		} catch (IOException ex) {
 			throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "("
-					+ lastResponse.getResponseMessage() + ")");
+					+ response.getResponseMessage() + ")");
 		}
 
-		return lastResponse;
+		return response;
 	}
 
 	// This method actually performs an HTTP request.
 	// It is called by get(), put(), post() and delete() below
-	private Response doHttpMethod(String path, Method method, String data) throws SparkPostException {
+	private Response doHttpMethod(String path, Method method, String data, Response response) throws SparkPostException {
 		HttpURLConnection conn = null;
 		try {
-			lastResponse.reset();
-			lastResponse.setRequest(path);
+			response.setRequest(path);
 			conn = createConnectionObject(path, method);
-			sendRequest(conn, data);
-			receiveResponse(conn);
+			sendRequest(conn, data, response);
+			receiveResponse(conn, response);
 
 			if (logger.isDebugEnabled()) {
-				logger.debug("Server Response:" + lastResponse);
+				logger.debug("Server Response:" + response);
 			}
 
-			return lastResponse;
+			return response;
 		} finally {
 			if (conn != null) {
 				conn.disconnect();
@@ -288,7 +280,8 @@ public class RestConnection {
 	 * @throws SparkPostException
 	 */
 	public Response get(String path) throws SparkPostException {
-		return doHttpMethod(path, Method.GET, null);
+		Response response = new Response();
+		return doHttpMethod(path, Method.GET, null, response);
 	}
 
 	/**
@@ -304,7 +297,8 @@ public class RestConnection {
 	 * @throws SparkPostException
 	 */
 	public Response post(String path, String json) throws SparkPostException {
-		return doHttpMethod(path, Method.POST, json);
+		Response response = new Response();
+		return doHttpMethod(path, Method.POST, json, response);
 	}
 
 	/**
@@ -320,7 +314,8 @@ public class RestConnection {
 	 * @throws SparkPostException
 	 */
 	public Response put(String path, String json) throws SparkPostException {
-		return doHttpMethod(path, Method.PUT, json);
+		Response response = new Response();
+		return doHttpMethod(path, Method.PUT, json, response);
 	}
 
 	/**
@@ -334,6 +329,7 @@ public class RestConnection {
 	 * @throws SparkPostException
 	 */
 	public Response delete(String path) throws SparkPostException {
-		return doHttpMethod(path, Method.DELETE, null);
+		Response response = new Response();
+		return doHttpMethod(path, Method.DELETE, null, response);
 	}
 }

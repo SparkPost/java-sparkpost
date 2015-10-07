@@ -9,24 +9,24 @@ import org.apache.log4j.Logger;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
-import com.sparkpost.model.Response;
 import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateContentAttributes;
+import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
-public class CreateAndSendTemplate extends SparkPostBaseApp {
+public class CreateTemplateSimple extends SparkPostBaseApp {
 
-	private static final Logger logger = Logger.getLogger(CreateAndSendTemplate.class);
+	private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
 
 	private Client client;
 	
 	public static void main(String[] args) throws SparkPostException, IOException {
 		Logger.getRootLogger().setLevel(Level.DEBUG);
 
-		CreateAndSendTemplate templateTest = new CreateAndSendTemplate();
-		templateTest.runApp();
+		CreateTemplateSimple sample = new CreateTemplateSimple();
+		sample.runApp();
 		
 	}
 	

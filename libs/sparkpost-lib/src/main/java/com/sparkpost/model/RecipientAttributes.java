@@ -29,7 +29,7 @@ public class RecipientAttributes extends Base {
 	 * To support Variable Envelope Return Path (VERP), this field provides a
 	 * specific recipient a unique envelope MAIL FROM.
 	 */
-	@Description(value="Email to use for envelope FROM ( Note: SparkPost Elite only )")
+	@Description(value="Email to use for envelope FROM ( Note: SparkPost Elite only )",sample={""})
 	@SerializedName("return_path")
 	private String returnPath = null;
 
@@ -39,7 +39,7 @@ public class RecipientAttributes extends Base {
 	 * Tags are available in Webhook events. Maximum number of tags - 10 per
 	 * recipient, 100 system wide. Any tags over the limits are ignored.
 	 */
-	@Description(value="Array of text labels associated with a recipient Tags are available in Webhook events. Maximum number of tags - 10 per recipient, 100 system wide. Any tags over the limits are ignored.")
+	@Description(value="Array of text labels associated with a recipient Tags are available in Webhook events. Maximum number of tags - 10 per recipient, 100 system wide. Any tags over the limits are ignored.",sample={""})
 	private List<String> tags = null;
 
 	/**
@@ -51,7 +51,7 @@ public class RecipientAttributes extends Base {
 	 * metadata taking precedence over transmission metadata when there are
 	 * conflicts.
 	 */
-	@Description(value="Key/value pairs associated with a recipient")
+	@Description(value="Key/value pairs associated with a recipient,sample={\"\"}")
 	private Map<String, String> metadata = null;
 
 	/**
@@ -62,7 +62,7 @@ public class RecipientAttributes extends Base {
 	 * substitution data. Unlike metadata, substitution data is not included in
 	 * Webhook events.
 	 */
-	@Description(value="Key/value pairs associated with a recipient that are provided to the substitution engine")
+	@Description(value="Key/value pairs associated with a recipient that are provided to the substitution engine",sample={""})
 	@SerializedName("substitution_data")
 	private Map<String, String> substitutionData = null;
 

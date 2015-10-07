@@ -9,10 +9,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class DKIMResults extends Base {
 
-	@Description(value="DKIM status result.")
+	@Description(value="DKIM status result.",sample={""})
 	private StatusAttributes status;
 	
-	@Description(value="DKIM data")
+	@Description(value="DKIM data",sample={""})
 	private DKIM dkim;
 	
 }

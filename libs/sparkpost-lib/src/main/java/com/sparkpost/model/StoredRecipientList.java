@@ -21,7 +21,7 @@ public class StoredRecipientList extends Base {
 	 * 
 	 * Specify this field when using a stored recipient list.
 	 */
-	@Description(value="Identifier of the stored recipient list to use. Specify this field when using a stored recipient list.")
+	@Description(value="Identifier of the stored recipient list to use. Specify this field when using a stored recipient list.",sample={"AbC123"})
 	@SerializedName("list_id")
 	private String listId = null;
 

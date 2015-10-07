@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class VerifyResponse extends Base {
 	
-	@Description(value="")
+	@Description(value="DKIM results",sample={"DKIMResult Dictionary"})
 	private DKIMResults results;
 	
 	
