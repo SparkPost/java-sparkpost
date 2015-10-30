@@ -270,13 +270,13 @@ public class RestConnection {
 
     /**
      * Perform an HTTP GET request. This method throws an exception if the
-     * server returns anything else than a 200. In that case, you need to
-     * retrieve the response with {@link getLastResponse()}.
+     * server returns anything else than a 200.
      *
      * @param path
      *            API endpoint to send the request to.
      * @return Server response to the request.
      * @throws SparkPostException
+     *             if something goes wrong
      */
     public Response get(String path) throws SparkPostException {
         Response response = new Response();
@@ -285,8 +285,7 @@ public class RestConnection {
 
     /**
      * Perform an HTTP POST request. This method throws an exception if the
-     * server returns anything else than a 200. In that case, you need to
-     * retrieve the response with {@link getLastResponse()}.
+     * server returns anything else than a 200.
      *
      * @param path
      *            API endpoint to send the request to.
@@ -294,6 +293,7 @@ public class RestConnection {
      *            POST data block to send with the request. May be null.
      * @return Server response to the request.
      * @throws SparkPostException
+     *             if something goes wrong
      */
     public Response post(String path, String json) throws SparkPostException {
         Response response = new Response();
@@ -302,8 +302,7 @@ public class RestConnection {
 
     /**
      * Perform an HTTP PUT request. This method throws an exception if the
-     * server returns anything else than a 200. In that case, you need to
-     * retrieve the response with {@link getLastResponse()}.
+     * server returns anything else than a 200.
      *
      * @param path
      *            API endpoint to send the request to.
@@ -311,6 +310,7 @@ public class RestConnection {
      *            PUT data block to send with the request. May be null.
      * @return Server response to the request.
      * @throws SparkPostException
+     *             if something goes wrong
      */
     public Response put(String path, String json) throws SparkPostException {
         Response response = new Response();
@@ -319,13 +319,13 @@ public class RestConnection {
 
     /**
      * Perform an HTTP DELETE request. This method throws an exception if the
-     * server returns anything else than a 200. In that case, you need to
-     * retrieve the response with {@link getLastResponse()}.
+     * server returns anything else than a 200.
      *
      * @param path
      *            API endpoint to send the request to.
      * @return Server response to the request.
      * @throws SparkPostException
+     *             if something goes wrong
      */
     public Response delete(String path) throws SparkPostException {
         Response response = new Response();

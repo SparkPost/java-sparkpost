@@ -16,7 +16,7 @@ __NOTE: This is not published to Maven Repo yet!!!__
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>client-server-protocol-lib</artifactId>
-	<version>0.8-SNAPSHOT</version>
+	<version>0.8</version>
 </dependency>
 ```
 

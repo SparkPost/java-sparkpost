@@ -33,7 +33,7 @@ public class Client {
     }
 
     /**
-     * You can create and API Key here <a href="here https://app.sparkpost.com/account/credentials">SparkPost</a>
+     * You can create and API Key here <a href="https://app.sparkpost.com/account/credentials">SparkPost</a>
      * 
      * @param key
      *            SparkPost API Key
