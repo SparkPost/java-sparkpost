@@ -4,6 +4,8 @@
 
 # SparkPost Java Library
 
+[![Build Status](https://travis-ci.org/SparkPost/java-sparkpost.svg?branch=master)](https://travis-ci.org/SparkPost/java-sparkpost)
+
 Use this library in Java applications to easily access the SparkPost Email API in your application.
 
 ## Getting Started
@@ -30,7 +32,7 @@ __NOTE: This is not published to Maven Repo yet!!!__
 
 private void sendEmail(String from, String[] recipients, String email) throws SparkPostException {
 	TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
-	
+
 	// Populate Recipients
 	List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
 	for (String recipient : recipients) {
@@ -39,25 +41,24 @@ private void sendEmail(String from, String[] recipients, String email) throws Sp
 		recipientArray.add(recipientAttribs);
 	}
 	transmission.setRecipientArray(recipientArray);
-		
+
 	transmission.setReturnPath(from);
-		
+
 	// Populate Substitution Data
 	Map<String, String> substitutionData = new HashMap<String, String>();
 	substitutionData.put("from", from);
 	transmission.setSubstitutionData(substitutionData);
-	
+
 	// Populate Email Body
 	TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
 	contentAttributes.setEmailRFC822(email);
 	transmission.setContentAttributes(contentAttributes);
-	
+
 	// Send the Email
 	RestConnection connection = new RestConnection(client, getEndPoint());
 	Response response = ResourceTransmissions.create(connection, 0, transmission);
-	
+
 	logger.debug("Transmission Response: " + response);
 }
 
 ```
-
