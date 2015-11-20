@@ -12,7 +12,6 @@ Use this library in Java applications to easily access the SparkPost Email API i
 
 The SparkPost Java Library is available in this [Maven Repository](http://maven.apache.org/download.cgi):
 
-__NOTE: This is not published to Maven Repo yet!!!__
 
 ```xml
 <dependency>
