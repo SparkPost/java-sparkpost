@@ -10,6 +10,9 @@ import com.google.gson.GsonBuilder;
  */
 public class Base {
 
+    private static final String DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+    private static final GsonBuilder GSON_BUILDER = new GsonBuilder().setDateFormat(DATE_TIME_FORMAT);
+
     /**
      * Generate JSON for this request
      * 
@@ -25,12 +28,11 @@ public class Base {
      * @return json of object
      */
     public String toJson(boolean prettyPrint) {
-        GsonBuilder gsonBuilder = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Gson gson;
         if (prettyPrint) {
-            gson = gsonBuilder.setPrettyPrinting().create();
+            gson = GSON_BUILDER.setPrettyPrinting().create();
         } else {
-            gson = gsonBuilder.create();
+            gson = GSON_BUILDER.create();
         }
 
         return gson.toJson(this);
