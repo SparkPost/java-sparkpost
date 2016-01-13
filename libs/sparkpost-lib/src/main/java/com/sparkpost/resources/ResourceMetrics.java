@@ -46,10 +46,10 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/domain");
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -66,10 +66,10 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/campaign");
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -85,10 +85,10 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/template");
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
 
         Response response = conn.get(ep.toString());
@@ -105,10 +105,10 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/watched-domain");
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
 
         Response response = conn.get(ep.toString());
