@@ -183,7 +183,7 @@ public class RestConnection {
         }
         // Send data. At this point connection to server may not be established,
         // but writing data to it will trigger the connection.
-        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream());) {
+        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
 
             wr.writeBytes(data);
             wr.flush();
@@ -226,7 +226,7 @@ public class RestConnection {
         }
 
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), DEFAULT_CHARSET));) {
+        try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), DEFAULT_CHARSET))) {
             // Buffer the result into a string:
             String line;
             while ((line = rd.readLine()) != null) {
