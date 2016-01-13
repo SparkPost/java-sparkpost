@@ -30,13 +30,7 @@ public class ResourceMetrics {
             String timezone) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -52,18 +46,10 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/domain");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
-        ep.addParam("limit", limit);
-        ep.addParam("order_by", order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -80,18 +66,10 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/campaign");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
-        ep.addParam("limit", limit);
-        ep.addParam("order_by", order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -107,18 +85,11 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/template");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
-        ep.addParam("limit", limit);
-        ep.addParam("order_by", order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
+
 
         Response response = conn.get(ep.toString());
         return response;
@@ -134,18 +105,11 @@ public class ResourceMetrics {
             String metrics,
             String timezone,
             String limit,
-            String order_by) throws SparkPostException {
+            String orderBy) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/watched-domain");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
-        ep.addParam("limit", limit);
-        ep.addParam("order_by", order_by);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
+
 
         Response response = conn.get(ep.toString());
         return response;
@@ -163,14 +127,9 @@ public class ResourceMetrics {
             String timezone) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/time-series");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
+
         ep.addParam("precision", precision);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -188,14 +147,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -213,14 +167,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason/domain");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -238,14 +187,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/bounce-classification");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("metrics", metrics);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -262,13 +206,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -285,13 +225,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason/domain");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -308,13 +244,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/delay-reason");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -331,13 +263,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/delay-reason/domain");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("timezone", timezone);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -354,13 +282,9 @@ public class ResourceMetrics {
             String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/link-name");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("timezone", timezone);
-        ep.addParam("metrics", metrics);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
+
         ep.addParam("limit", limit);
+        ep.addCommonParams(from, to, null, campaigns, templates, metrics, timezone, null, null);
 
         Response response = conn.get(ep.toString());
         return response;
@@ -376,12 +300,8 @@ public class ResourceMetrics {
             String timezone) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/deliverability/attempt");
-        ep.addParam("from", from);
-        ep.addParam("to", to);
-        ep.addParam("domains", domains);
-        ep.addParam("campaigns", campaigns);
-        ep.addParam("templates", templates);
-        ep.addParam("timezone", timezone);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
+
         Response response = conn.get(ep.toString());
         return response;
     }

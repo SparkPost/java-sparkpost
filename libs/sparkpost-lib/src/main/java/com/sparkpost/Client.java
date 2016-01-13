@@ -1,10 +1,10 @@
 
 package com.sparkpost;
 
+import com.sparkpost.model.AddressAttributes;
+
 import java.util.List;
 import java.util.Map;
-
-import com.sparkpost.model.AddressAttributes;
 
 /**
  * The Client class stores everything specific to the SparkPost client:<BR>
@@ -77,7 +77,7 @@ public class Client {
         this.fromEmail = fromEmail;
     }
 
-    public void sendMessage(String termplateId, List<AddressAttributes> recipients, Map<String, String> args) {
+    public void sendMessage(String templateId, List<AddressAttributes> recipients, Map<String, String> args) {
 
     }
 

@@ -18,6 +18,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Response extends Base {
 
+    private static final Gson GSON = new Gson();
+
     @Description(value = "The URI of the request", sample = {""})
     private String request = null;
 
@@ -38,15 +40,13 @@ public class Response extends Base {
     private String responseBody = null;
 
     public static <T extends Response> T decode(Response response, Type typeOfT) {
-        Gson gson = new Gson();
-
         T newResponse = null;
 
         // Make sure this is a JSON response before we try and decode with GSON
         if (response.getContentType() != null && response.getContentType().toLowerCase().startsWith("application/json")) {
-            newResponse = gson.fromJson(response.getResponseBody(), typeOfT);
+            newResponse = GSON.fromJson(response.getResponseBody(), typeOfT);
         } else {
-            newResponse = gson.fromJson("{}", typeOfT);
+            newResponse = GSON.fromJson("{}", typeOfT);
         }
 
         if (newResponse != null) {

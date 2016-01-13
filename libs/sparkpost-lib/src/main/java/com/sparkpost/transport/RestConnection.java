@@ -33,6 +33,9 @@ public class RestConnection {
     // TODO: set this up to be set by build machine.
     private static final String VERSION = "0.0.1-SNAPSHOT";
 
+    private static final Base64 BASE64 = new Base64();
+    private static final String DEFAULT_CHARSET = "UTF-8";
+
     /**
      * Default endpoint to use for connections :
      * https://api.sparkpost.com/api/v1/
@@ -113,8 +116,7 @@ public class RestConnection {
             if (StringUtils.isNotEmpty(this.client.getAuthKey())) {
                 conn.setRequestProperty("Authorization", this.client.getAuthKey());
             } else if (StringUtils.isNotEmpty(this.client.getUsername()) && StringUtils.isNotEmpty(this.client.getPassword())) {
-                Base64 b = new Base64();
-                String encoding = b.encodeAsString((this.client.getUsername() + ":" + this.client.getPassword()).getBytes("UTF-8"));
+                String encoding = BASE64.encodeAsString((this.client.getUsername() + ":" + this.client.getPassword()).getBytes(DEFAULT_CHARSET));
                 conn.setRequestProperty("Authorization", "Basic " + encoding);
             }
 
@@ -167,7 +169,7 @@ public class RestConnection {
     private void sendData(HttpURLConnection conn, String data) throws SparkPostException {
         String lenStr;
         try {
-            lenStr = Integer.toString(data.getBytes("UTF-8").length);
+            lenStr = Integer.toString(data.getBytes(DEFAULT_CHARSET).length);
         } catch (UnsupportedEncodingException e) {
             // This should never happen. UTF-8 should always be available but we
             // have to catch it so pass it on if it fails.
@@ -181,7 +183,7 @@ public class RestConnection {
         }
         // Send data. At this point connection to server may not be established,
         // but writing data to it will trigger the connection.
-        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream());) {
+        try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
 
             wr.writeBytes(data);
             wr.flush();
@@ -224,7 +226,7 @@ public class RestConnection {
         }
 
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));) {
+        try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), DEFAULT_CHARSET))) {
             // Buffer the result into a string:
             String line;
             while ((line = rd.readLine()) != null) {
