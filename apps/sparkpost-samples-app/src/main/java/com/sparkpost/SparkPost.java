@@ -13,7 +13,7 @@ public class SparkPost {
                 "you@yourdomain.com",
                 "to@sparkpost.com",
                 "The subject of the message",
-                "The text pare of the email",
+                "The text part of the email",
                 "<b>The HTML part of the email</b>");
 
     }
