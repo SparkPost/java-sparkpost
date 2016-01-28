@@ -1,10 +1,17 @@
 
 package com.sparkpost;
 
-import com.sparkpost.model.AddressAttributes;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.model.AddressAttributes;
+import com.sparkpost.model.RecipientAttributes;
+import com.sparkpost.model.TemplateContentAttributes;
+import com.sparkpost.model.TransmissionWithRecipientArray;
+import com.sparkpost.model.responses.Response;
+import com.sparkpost.resources.ResourceTransmissions;
+import com.sparkpost.transport.RestConnection;
 
 /**
  * The Client class stores everything specific to the SparkPost client:<BR>
@@ -34,7 +41,7 @@ public class Client {
 
     /**
      * You can create and API Key here <a href="https://app.sparkpost.com/account/credentials">SparkPost</a>
-     * 
+     *
      * @param key
      *            SparkPost API Key
      */
@@ -47,7 +54,7 @@ public class Client {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -55,7 +62,7 @@ public class Client {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -66,7 +73,7 @@ public class Client {
      * @return the fromEmail
      */
     public String getFromEmail() {
-        return fromEmail;
+        return this.fromEmail;
     }
 
     /**
@@ -77,8 +84,37 @@ public class Client {
         this.fromEmail = fromEmail;
     }
 
-    public void sendMessage(String templateId, List<AddressAttributes> recipients, Map<String, String> args) {
+    public Response sendMessage(String from, String recipient, String subject, String text, String html) throws SparkPostException {
+        List<String> recipients = new ArrayList<>();
+        recipients.add(recipient);
+        return sendMessage(from, recipients, subject, text, html);
+    }
 
+    public Response sendMessage(String from, List<String> recipients, String subject, String text, String html) throws SparkPostException {
+        TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
+
+        List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
+        for (String recpient : recipients) {
+
+            RecipientAttributes recipientAttribs = new RecipientAttributes();
+            recipientAttribs.setAddress(new AddressAttributes(recpient));
+            recipientArray.add(recipientAttribs);
+        }
+        transmission.setRecipientArray(recipientArray);
+
+        TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
+
+        contentAttributes.setFrom(new AddressAttributes(from));
+
+        contentAttributes.setSubject(subject);
+        contentAttributes.setHtml(html);
+        contentAttributes.setText(text);
+        transmission.setContentAttributes(contentAttributes);
+
+        RestConnection connection = new RestConnection(this);
+        Response response = ResourceTransmissions.create(connection, 0, transmission);
+
+        return response;
     }
 
     @Override
