@@ -4,9 +4,9 @@
 	<parent>
 		<groupId>com.sparkpost</groupId>
 		<artifactId>libs</artifactId>
-		<version>0.9</version>
+		<version>0.10</version>
 	</parent>
-	<!-- <version>0.9</version> -->
+	<!-- <version>0.10</version> -->
 	<artifactId>sparkpost-lib</artifactId>
 	<name>SparkPost Library</name>
 	<url>/libs/sparkpost-lib/</url>
