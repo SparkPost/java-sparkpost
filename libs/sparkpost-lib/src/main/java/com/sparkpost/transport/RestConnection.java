@@ -16,6 +16,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
+import com.sparkpost.Build;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
@@ -31,7 +32,7 @@ public class RestConnection {
     private static final Logger logger = Logger.getLogger(RestConnection.class);
 
     // TODO: set this up to be set by build machine.
-    private static final String VERSION = "0.0.1-SNAPSHOT";
+    private static final String VERSION = Build.VERSION + " (" + Build.GIT_SHORT_HASH + ")";
 
     private static final Base64 BASE64 = new Base64();
     private static final String DEFAULT_CHARSET = "UTF-8";
