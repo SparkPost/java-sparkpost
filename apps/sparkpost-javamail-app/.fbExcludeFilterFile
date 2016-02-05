@@ -1,0 +1,24 @@
+<FindBugsFilter>
+
+	<Match>
+		<!-- Reason for exclusion: This is code from a third party. -->
+		<Class name="org.slf4j.impl.StaticLoggerBinder" />
+	</Match>
+
+	<Match>
+		<!-- Reason for exclusion: All bugs in test classes, except for JUnit-specific 
+			bugs -->
+		<Class name="~.*\.*Test" />
+		<Not>
+			<Bug code="IJU" />
+		</Not>
+	</Match>
+	<Match>
+		<!-- Reason for exclusion: This is sample code and this part is not expected to be reused. -->
+		<Class name="~.*\.SparkPostBaseApp" />
+		<Not>
+			<Bug code="DM_EXIT" />
+		</Not>
+	</Match>
+
+</FindBugsFilter>
