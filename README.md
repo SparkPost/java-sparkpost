@@ -4,7 +4,7 @@
 
 # SparkPost Java Library
 
-[![Build Status](https://travis-ci.org/SparkPost/java-sparkpost.svg?branch=master)](https://travis-ci.org/SparkPost/java-sparkpost)
+[![Build Status](https://travis-ci.org/SparkPost/java-sparkpost.svg?branch=master)](https://travis-ci.org/SparkPost/java-sparkpost) [![Slack Status](http://slack.sparkpost.com/badge.svg)](http://slack.sparkpost.com)
 
 Use this library in Java applications to easily access the SparkPost Email API in your application.
 
