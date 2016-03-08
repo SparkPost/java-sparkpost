@@ -184,8 +184,7 @@ public class RestConnection {
         // Send data. At this point connection to server may not be established,
         // but writing data to it will trigger the connection.
         try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
-
-            wr.writeBytes(data);
+            wr.write(data.getBytes(DEFAULT_CHARSET));
             wr.flush();
         } catch (IOException ex) {
             throw new SparkPostException("Error sending request data:" + ex.toString());
