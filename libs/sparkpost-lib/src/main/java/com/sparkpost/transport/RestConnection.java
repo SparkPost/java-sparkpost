@@ -167,14 +167,19 @@ public class RestConnection {
 
     // Send HTTP data (payload) to server
     private void sendData(HttpURLConnection conn, String data) throws SparkPostException {
-        String lenStr;
-        try {
-            lenStr = Integer.toString(data.getBytes(DEFAULT_CHARSET).length);
-        } catch (UnsupportedEncodingException e) {
+        byte[] bytes = null;
+        try
+        {
+            bytes = data.getBytes(DEFAULT_CHARSET);
+        }
+        catch (UnsupportedEncodingException e)
+        {
             // This should never happen. UTF-8 should always be available but we
             // have to catch it so pass it on if it fails.
             throw new SparkPostException(e);
         }
+
+        String lenStr = Integer.toString(bytes.length);
         conn.setRequestProperty("Content-Length", lenStr);
         conn.setRequestProperty("Content-Type", "application/json");
 
@@ -184,7 +189,7 @@ public class RestConnection {
         // Send data. At this point connection to server may not be established,
         // but writing data to it will trigger the connection.
         try (DataOutputStream wr = new DataOutputStream(conn.getOutputStream())) {
-            wr.write(data.getBytes(DEFAULT_CHARSET));
+            wr.write(bytes);
             wr.flush();
         } catch (IOException ex) {
             throw new SparkPostException("Error sending request data:" + ex.toString());
