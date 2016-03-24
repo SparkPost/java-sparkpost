@@ -60,4 +60,12 @@ public class OptionsAttributes extends Base {
     @Description(value = "Unlike most other options, this flag is omitted on a GET transmission response unless the flag's value is true.", sample = {""})
     @SerializedName("skip_suppression")
     private Boolean skipSuppression;
+
+    /**
+     * Whether or not to perform CSS inlining in HTML content
+     * Defaults to false
+     */
+    @Description(value = "Whether or not to perform CSS inlining in HTML content.", sample = {""})
+    @SerializedName("inline_css")
+    private Boolean inlineCss;
 }

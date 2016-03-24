@@ -36,7 +36,8 @@ public class RecipientAttributesTest {
             + "        \"place\": \"Bedrock\"\n"
             + "      },\n"
             + "      \"substitution_data\": {\n"
-            + "        \"customer_type\": \"Platinum\"\n"
+            + "        \"customer_type\": \"Platinum\",\n"
+            + "        \"array_data\": [ \"object1\", \"object2\", \"object3\" ]\n"
             + "      }\n"
             + "    }";
 
@@ -81,8 +82,15 @@ public class RecipientAttributesTest {
         Map<String, String> metadata = recipientAttributes.getMetadata();
         MatcherAssert.assertThat(metadata, Matchers.hasEntry("place", "Bedrock"));
 
-        Map<String, String> substitutionData = recipientAttributes.getSubstitutionData();
-        MatcherAssert.assertThat(substitutionData, Matchers.hasEntry("customer_type", "Platinum"));
+        String result = (String) recipientAttributes.getSubstitutionData().get("customer_type");
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result, "Platinum");
+
+        @SuppressWarnings("unchecked")
+        List<String> arrayData = (List<String>) recipientAttributes.getSubstitutionData().get("array_data");
+        Assert.assertNotNull(arrayData);
+        Assert.assertEquals(arrayData.size(), 3);
+
     }
 
     /**
@@ -114,8 +122,11 @@ public class RecipientAttributesTest {
         Map<String, String> metadata = recipientAttributes2.getMetadata();
         MatcherAssert.assertThat(metadata, Matchers.hasEntry("place", "Bedrock"));
 
-        Map<String, String> substitutionData = recipientAttributes.getSubstitutionData();
-        MatcherAssert.assertThat(substitutionData, Matchers.hasEntry("customer_type", "Platinum"));
+        Map<String, Object> substitutionData = recipientAttributes.getSubstitutionData();
+        String result = (String) substitutionData.get("customer_type");
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result, "Platinum");
+
     }
 
 }

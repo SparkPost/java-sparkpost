@@ -81,7 +81,7 @@ public class App extends SparkPostBaseApp {
 		transmission.setReturnPath(from);
 
 		// Populate Substitution Data
-		Map<String, String> substitutionData = new HashMap<String, String>();
+		Map<String, Object> substitutionData = new HashMap<String, Object>();
 		substitutionData.put("from", from);
 		
 		// SparkPost will set fields in HTML and/or Plain parts with the value here

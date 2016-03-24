@@ -1,0 +1,54 @@
+MIME-Version: 1.0
+Subject: {{subject}}
+To: {{address.email}}
+From: {{from}}
+Content-Type: multipart/alternative; boundary=001a113ed0b2fce06c052ecfc06d
+
+--001a113ed0b2fce06c052ecfc06d
+Content-Type: text/plain; charset=UTF-8
+
+Sample Email with Array Content
+
+Name,\tValue
+{{each row_array}}
+    {{loop_var.row}},\t {{loop_var.value}}
+{{end}}
+
+
+
+End of array data
+
+--001a113ed0b2fce06c052ecfc06d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+	<div class=3D"gmail_signature">
+		<div dir=3D"ltr">
+			<div>
+				<div>
+					<h1 id=3D"toc_0" style=3D"margin-right:0px;margin-bottom:10px;margin-left:0px;padding:0px;font-size:28px;color:rgb(0,0,0);font-family:Helvetica,arial,sans-serif;margin-top:0px!important">Sample Email with Array Content</h1>
+					<table style=3D"margin:15px 0px;padding:0px;border-collapse:collapse;color:rgb(0,0,0);font-family:Helvetica,arial,sans-serif;font-size:14px">
+						<thead>
+							<tr style=3D"border-top-width:1px;border-top-style:solid;border-top-color:rgb(204,204,204);margin:0px;padding:0px">
+								<th style=3D"border:1px solid rgb(204,204,204);margin:0px;padding:6px 13px">Name</th>
+								<th style=3D"border:1px solid rgb(204,204,204);margin:0px;padding:6px 13px;text-align:center">Value</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {{each row_array}}
+							<tr style=3D"border-top-width:1px;border-top-style:solid;border-top-color:rgb(204,204,204);margin:0px;padding:0px">
+								<td style=3D"border:1px solid rgb(204,204,204);padding:6px 13px">{{loop_var.row}}</td>
+								<td style=3D"border:1px solid rgb(204,204,204);padding:6px 13px;text-align:center">{{loop_var.value}}</td>
+							</tr>
+                            {{end}}
+						</tbody>
+					</table>
+					<p style=3D"margin-top:15px;margin-right:0px;margin-left:0px;color:rgb(0,0,0);font-family:Helvetica,arial,sans-serif;font-size:14px;margin-bottom:0px!important">End of array data</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+--001a113ed0b2fce06c052ecfc06d--
