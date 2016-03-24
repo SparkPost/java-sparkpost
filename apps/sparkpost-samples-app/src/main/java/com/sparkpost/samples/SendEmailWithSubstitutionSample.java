@@ -23,7 +23,7 @@ import com.sparkpost.transport.RestConnection;
 
 public class SendEmailWithSubstitutionSample extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = Logger.getLogger(SendEmailWithSubstitutionSample.class);
 
     private Client client;
 
