@@ -8,6 +8,12 @@
 
 Use this library in Java applications to easily access the SparkPost Email API in your application.
 
+## Version Compatibility Note
+
+### Version 0.12 -> 0.13
+
+Although we try to maintain library backward compatibility this migration may require some minor changes to your code. Substitution data was changed from `Map<String, String>` to `Map<String, Object>`. Most client code will just need to change their map to this new signature.
+
 ## Getting Started
 
 The SparkPost Java Library is available in this [Maven Repository](http://maven.apache.org/download.cgi):
@@ -17,7 +23,7 @@ The SparkPost Java Library is available in this [Maven Repository](http://maven.
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>sparkpost-lib</artifactId>
-	<version>0.12</version>
+	<version>0.13</version>
 </dependency>
 ```
 

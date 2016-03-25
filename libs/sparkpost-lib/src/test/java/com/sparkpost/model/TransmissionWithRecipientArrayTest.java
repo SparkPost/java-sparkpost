@@ -105,7 +105,7 @@ public class TransmissionWithRecipientArrayTest {
         Map<String, String> metadata = transmissionWithRecipientArray.getMetadata();
         Assert.assertNotNull(metadata);
 
-        Map<String, String> substitutionData = transmissionWithRecipientArray.getSubstitutionData();
+        Map<String, Object> substitutionData = transmissionWithRecipientArray.getSubstitutionData();
         Assert.assertNotNull(substitutionData);
 
         List<RecipientAttributes> recipientArray = transmissionWithRecipientArray.getRecipientArray();

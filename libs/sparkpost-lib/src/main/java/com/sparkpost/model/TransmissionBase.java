@@ -84,7 +84,7 @@ public class TransmissionBase extends Base {
             value = "Key/value pairs that are provided to the substitution engine. Recipient substitution data takes precedence over transmission substitution data. Unlike metadata, substitution data is not included in Webhook events.",
             sample = {""})
     @SerializedName("substitution_data")
-    private Map<String, String> substitutionData = null;
+    private Map<String, Object> substitutionData = null;
 
     /**
      * Email to use for envelope FROM ( Note: SparkPost Elite only )

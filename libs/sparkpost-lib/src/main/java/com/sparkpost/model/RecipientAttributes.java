@@ -62,6 +62,6 @@ public class RecipientAttributes extends Base {
      */
     @Description(value = "Key/value pairs associated with a recipient that are provided to the substitution engine", sample = {""})
     @SerializedName("substitution_data")
-    private Map<String, String> substitutionData = null;
+    private Map<String, Object> substitutionData = null;
 
 }
