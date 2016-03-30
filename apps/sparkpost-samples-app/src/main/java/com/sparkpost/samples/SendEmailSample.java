@@ -64,7 +64,7 @@ public class SendEmailSample extends SparkPostBaseApp {
 
         // Populate Email Body
         TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
-        contentAttributes.setFrom(new AddressAttributes(from));
+        //contentAttributes.setFrom(new AddressAttributes(from));
         contentAttributes.setSubject("Your subject content here. {{yourContent}}");
         contentAttributes.setText("Your Text content here.  {{yourContent}}");
         contentAttributes.setHtml("<p>Your <b>HTML</b> content here.  {{yourContent}}</p>");

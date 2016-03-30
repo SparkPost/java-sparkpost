@@ -169,12 +169,9 @@ public class RestConnection {
     // Send HTTP data (payload) to server
     private void sendData(HttpURLConnection conn, String data) throws SparkPostException {
         byte[] bytes = null;
-        try
-        {
+        try {
             bytes = data.getBytes(DEFAULT_CHARSET);
-        }
-        catch (UnsupportedEncodingException e)
-        {
+        } catch (UnsupportedEncodingException e) {
             // This should never happen. UTF-8 should always be available but we
             // have to catch it so pass it on if it fails.
             throw new SparkPostException(e);
@@ -247,10 +244,28 @@ public class RestConnection {
             // an error.
             response.setResponseBody("");
         } catch (IOException ex) {
+            String line = "";
+            try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), DEFAULT_CHARSET))) {
+
+                while ((line = rd.readLine()) != null) {
+                    sb.append(line);
+                }
+
+                response.setResponseBody(sb.toString());
+                response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
+
+                logger.error("Server Response:\n" + sb.toString() + "\n");
+
+            } catch (IOException ex2) {
+                // Ignore we are going to throw an exception anyway
+            }
+            if (logger.isDebugEnabled()) {
+                logger.error("Server Response:" + response);
+            }
             throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")");
         }
-
         return response;
+
     }
 
     // This method actually performs an HTTP request.
