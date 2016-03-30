@@ -59,7 +59,7 @@ public class SparkPost {
 
 ## Advanced Send Email Example
 
-With SparkPost you have complete control over all aspects of an email and a powerful tempting solution.
+With SparkPost you have complete control over all aspects of an email and a powerful templating solution.
 
 ```java
 
