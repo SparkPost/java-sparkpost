@@ -1,6 +1,7 @@
 
 package com.sparkpost.model;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
@@ -60,8 +61,21 @@ public class TemplateContentAttributes extends Base {
     private Map<String, String> headers = null;
 
     /**
+     * Attachments for a transmission
+     */
+    @Description(value = "List of AttachmentAttributes. Attachments are not valid with templateId.", sample = {""})
+    private List<AttachmentAttributes> attachments = null;
+
+    /**
+     * Inline images for a transmission
+     */
+    @Description(value = "List of InlineImageAttributes. Inline images are not valid with templateId.", sample = {""})
+    @SerializedName("inline_images")
+    private List<InlineImageAttributes> inlineImages = null;
+
+    /**
      * Alternatively, the email_rfc822 may be used *instead* of all the other fields.
-     * The email_rfc822 field is mutually exclusive with all of the above fields.
+     * The email_rfc822 field is mutually exclusive with all of the other fields in this class.
      */
     @Description(
             value = "Alternatively, the email_rfc822 may be used *instead* of all the other fields. The email_rfc822 field is mutually exclusive with all of the above fields.",
