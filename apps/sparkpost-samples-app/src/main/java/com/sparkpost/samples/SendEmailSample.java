@@ -38,15 +38,14 @@ public class SendEmailSample extends SparkPostBaseApp {
         this.client = this.newConfiguredClient();
 
         // Loads an email to send from the file system
-        String template = getTemplate("sample_sp_email.eml");
         String fromAddress = getFromAddress();
         String[] recipients = getTestRecipients();
 
-        sendEmail(fromAddress, recipients, template);
+        sendEmail(fromAddress, recipients);
 
     }
 
-    private void sendEmail(String from, String[] recipients, String email) throws SparkPostException {
+    private void sendEmail(String from, String[] recipients) throws SparkPostException {
         TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
 
         // Populate Recipients
@@ -58,16 +57,19 @@ public class SendEmailSample extends SparkPostBaseApp {
         }
         transmission.setRecipientArray(recipientArray);
 
-        transmission.setReturnPath(from);
-
         // Populate Substitution Data
         Map<String, Object> substitutionData = new HashMap<String, Object>();
-        substitutionData.put("from", from);
+        substitutionData.put("yourContent", "You can add substitution data too.");
         transmission.setSubstitutionData(substitutionData);
 
         // Populate Email Body
         TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
-        contentAttributes.setEmailRFC822(email);
+        contentAttributes.setFrom(new AddressAttributes(from));
+        contentAttributes.setSubject("Your subject content here. {{yourContent}}");
+        contentAttributes.setText("Your Text content here.  {{yourContent}}");
+        contentAttributes.setHtml("<p>Your <b>HTML</b> content here.  {{yourContent}}</p>");
+        transmission.setContentAttributes(contentAttributes);
+
         transmission.setContentAttributes(contentAttributes);
 
         // Send the Email
