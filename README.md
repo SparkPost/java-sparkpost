@@ -23,7 +23,7 @@ The SparkPost Java Library is available in this [Maven Repository](http://maven.
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>sparkpost-lib</artifactId>
-	<version>0.13</version>
+	<version>0.14</version>
 </dependency>
 ```
 
@@ -59,7 +59,7 @@ public class SparkPost {
 
 ## Advanced Send Email Example
 
-With SparkPost you have complete control over all aspects of an email and a powerful tempting solution.
+With SparkPost you have complete control over all aspects of an email and a powerful templating solution.
 
 ```java
 
@@ -75,17 +75,18 @@ private void sendEmail(String from, String[] recipients, String email) throws Sp
 	}
 	transmission.setRecipientArray(recipientArray);
 
-	transmission.setReturnPath(from);
+	 // Populate Substitution Data
+    Map<String, Object> substitutionData = new HashMap<String, Object>();
+    substitutionData.put("yourContent", "You can add substitution data too.");
+    transmission.setSubstitutionData(substitutionData);
 
-	// Populate Substitution Data
-	Map<String, String> substitutionData = new HashMap<String, String>();
-	substitutionData.put("from", from);
-	transmission.setSubstitutionData(substitutionData);
-
-	// Populate Email Body
-	TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
-	contentAttributes.setEmailRFC822(email);
-	transmission.setContentAttributes(contentAttributes);
+    // Populate Email Body
+    TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
+    contentAttributes.setFrom(new AddressAttributes(from));
+    contentAttributes.setSubject("Your subject content here. {{yourContent}}");
+    contentAttributes.setText("Your Text content here.  {{yourContent}}");
+    contentAttributes.setHtml("<p>Your <b>HTML</b> content here.  {{yourContent}}</p>");
+    transmission.setContentAttributes(contentAttributes);
 
 	// Send the Email
 	RestConnection connection = new RestConnection(client, getEndPoint());
