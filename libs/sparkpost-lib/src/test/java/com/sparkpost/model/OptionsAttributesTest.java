@@ -19,7 +19,9 @@ public class OptionsAttributesTest {
             + "      \"open_tracking\": true,\n"
             + "      \"click_tracking\": true,\n"
             + "      \"transactional\": true,\n"
-            + "      \"skip_suppression\": true\n"
+            + "      \"sandbox\": true,\n"
+            + "      \"skip_suppression\": true,\n"
+            + "      \"ip_pool\":\"sp_shared\"\n"
             + "}";
 
     @BeforeClass
@@ -52,7 +54,9 @@ public class OptionsAttributesTest {
         Assert.assertTrue(optionsAttributes.getClickTracking());
         Assert.assertTrue(optionsAttributes.getOpenTracking());
         Assert.assertTrue(optionsAttributes.getSkipSuppression());
+        Assert.assertEquals(optionsAttributes.getIpPool(), "sp_shared");
         Assert.assertTrue(optionsAttributes.getTransactional());
+        Assert.assertTrue(optionsAttributes.getSandbox());
 
     }
 
