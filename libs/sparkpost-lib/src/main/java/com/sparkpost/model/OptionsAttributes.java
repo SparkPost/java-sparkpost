@@ -51,6 +51,13 @@ public class OptionsAttributes extends Base {
     private Boolean transactional = false;
 
     /**
+     * Whether or not to use the sandbox sending domain ( Note: SparkPost only )
+     */
+    @Description(value = "Whether or not to use the sandbox sending domain ( Note: SparkPost only ). defaults to false.", sample = {""})
+    @SerializedName("sandbox")
+    private Boolean sandbox = false;
+
+    /**
      * Unlike most other options, this flag is omitted on a GET transmission
      * response unless the flag's value is true.
      * Whether or not to ignore customer suppression rules, for this
@@ -60,6 +67,16 @@ public class OptionsAttributes extends Base {
     @Description(value = "Unlike most other options, this flag is omitted on a GET transmission response unless the flag's value is true.", sample = {""})
     @SerializedName("skip_suppression")
     private Boolean skipSuppression;
+
+    /**
+     * The name of a dedicated IP pool associated with your account.
+     * If this field is not provided, the account's default dedicated IP pool is used (if such a pool exists).
+     * To explicitly bypass the account's default dedicated IP pool and instead fallback to the shared pool,
+     * specify a value of "sp_shared".
+     */
+    @Description(value = "The name of a dedicated IP pool associated with your account.", sample = {"sp_shared"})
+    @SerializedName("ip_pool")
+    private String ipPool;
 
     /**
      * Whether or not to perform CSS inlining in HTML content
