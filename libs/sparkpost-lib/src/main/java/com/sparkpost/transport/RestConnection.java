@@ -20,6 +20,8 @@ import com.sparkpost.Build;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
+import com.sparkpost.exception.SparkPostAccessForbiddenException;
+import com.sparkpost.exception.SparkPostAuthorizationFailedException;
 import com.sparkpost.model.responses.Response;
 
 /**
@@ -36,6 +38,9 @@ public class RestConnection {
 
     private static final Base64 BASE64 = new Base64();
     private static final String DEFAULT_CHARSET = "UTF-8";
+
+    private static final int UNAUTHORIZED_RESPONSE_STATUS_CODE = 401;
+    private static final int ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE = 403;
 
     /**
      * Default endpoint to use for connections :
@@ -262,7 +267,14 @@ public class RestConnection {
             if (logger.isDebugEnabled()) {
                 logger.error("Server Response:" + response);
             }
-            throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")");
+
+            if (response.getResponseCode() == UNAUTHORIZED_RESPONSE_STATUS_CODE) {
+                throw new SparkPostAuthorizationFailedException();
+            } else if (response.getResponseCode() == ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE) {
+                throw new SparkPostAccessForbiddenException();
+            } else {
+                throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")");
+            }
         }
         return response;
 
