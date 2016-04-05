@@ -20,7 +20,7 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceTransmissions {
 
-    public static Response create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans) throws SparkPostException {
+    public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans) throws SparkPostException {
 
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("num_rcpt_errors", numRcptErrors);
