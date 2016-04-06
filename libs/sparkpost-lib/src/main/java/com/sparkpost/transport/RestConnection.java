@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import com.sparkpost.exception.SparkPostErrorServerResponseException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -273,7 +274,10 @@ public class RestConnection {
             } else if (response.getResponseCode() == ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE) {
                 throw new SparkPostAccessForbiddenException();
             } else {
-                throw new SparkPostException("Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")");
+                throw new SparkPostErrorServerResponseException(
+                        "Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")",
+                        response.getResponseCode()
+                );
             }
         }
         return response;
