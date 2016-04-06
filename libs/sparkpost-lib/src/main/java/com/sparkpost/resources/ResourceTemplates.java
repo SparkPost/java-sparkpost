@@ -6,8 +6,10 @@ import com.sparkpost.model.TemplateAttributes;
 import com.sparkpost.model.TemplateSubstitutionData;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.TemplateCreateResponse;
+import com.sparkpost.model.responses.TemplateItemResponse;
 import com.sparkpost.model.responses.TemplateListResponse;
 import com.sparkpost.model.responses.TemplatePreviewResponse;
+import com.sparkpost.model.responses.TemplateRetrieveResponse;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -16,8 +18,6 @@ import com.sparkpost.transport.RestConnection;
  * <br>
  * See <a href="https://www.sparkpost.com/api#/reference/templates/">Templates
  * API</a>
- *
- * @author grava
  */
 public class ResourceTemplates {
 
@@ -29,12 +29,14 @@ public class ResourceTemplates {
         return createResponse;
     }
 
-    public static Response retrieve(RestConnection conn, String id, Boolean draft) throws SparkPostException {
+    public static TemplateRetrieveResponse retrieve(RestConnection conn, String id, Boolean draft) throws SparkPostException {
 
         Endpoint ep = new Endpoint("templates/" + id);
         ep.addParam("draft", draft);
         Response response = conn.get(ep.toString());
-        return response;
+
+        TemplateRetrieveResponse templateResponse = (TemplateRetrieveResponse) TemplateItemResponse.decode(response, TemplateRetrieveResponse.class);
+        return templateResponse;
     }
 
     public static TemplateListResponse listAll(RestConnection conn) throws SparkPostException {

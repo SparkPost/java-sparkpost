@@ -1,6 +1,9 @@
 
 package com.sparkpost.model;
 
+import com.sparkpost.model.responses.TemplateItemResponse;
+import com.sparkpost.model.responses.TemplateItemResponse.TemplateOptionsData;
+import com.sparkpost.model.responses.TemplateRetrieveResponse;
 import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
@@ -12,6 +15,36 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class TemplateAttributes extends Base {
+
+    public TemplateAttributes() {
+
+    }
+
+    public TemplateAttributes(TemplateRetrieveResponse response) {
+        TemplateItemResponse template = response.getResults();
+        if (template == null) {
+            return;
+        }
+
+        setName(template.getName());
+        setId(template.getId());
+        setPublished(template.getPublished());
+        setDescription(template.getDescription());
+
+        TemplateContentAttributes content = new TemplateContentAttributes();
+        TemplateContentAttributes otherContent = template.getContent();
+        content.setSubject(otherContent.getSubject());
+        content.setEmailRFC822(template.getContent().getEmailRFC822());
+        content.setText(otherContent.getText());
+        content.setHtml(otherContent.getHtml());
+        template.setContent(content);
+
+        OptionsAttributes options = new OptionsAttributes();
+        TemplateOptionsData otherOptions = template.getOptions();
+        options.setClickTracking(otherOptions.getClickTracking());
+        options.setOpenTracking(otherOptions.getOpenTracking());
+        //options.setInlineCss(otherOptions.getInlineCss());
+    }
 
     /**
      * Short, unique, alphanumeric ID used to reference the template
