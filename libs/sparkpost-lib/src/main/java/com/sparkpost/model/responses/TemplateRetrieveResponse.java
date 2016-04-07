@@ -10,12 +10,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TemplateRetrieveResponse extends Response {
 
-    @Data
-    public static final class Results {
-
-        private TemplateItemResponse templateItem;
-    }
-
     @Description(value = "", sample = {""})
     private TemplateItemResponse results;
 
