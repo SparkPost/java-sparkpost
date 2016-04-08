@@ -40,6 +40,7 @@ public class RestConnection {
     private static final Base64 BASE64 = new Base64();
     private static final String DEFAULT_CHARSET = "UTF-8";
 
+    private static final int SUCCESS_RESPONSE_STATUS_CODE = 200;
     private static final int UNAUTHORIZED_RESPONSE_STATUS_CODE = 401;
     private static final int ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE = 403;
 
@@ -221,6 +222,12 @@ public class RestConnection {
             String msg = conn.getResponseMessage();
             response.setResponseMessage(msg);
 
+            if (code == UNAUTHORIZED_RESPONSE_STATUS_CODE) {
+                throw new SparkPostAuthorizationFailedException();
+            } else if (code == ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE) {
+                throw new SparkPostAccessForbiddenException();
+            }
+
         } catch (IOException ex) {
             throw new SparkPostException("Connection error:" + ex.toString());
         }
@@ -241,8 +248,13 @@ public class RestConnection {
                 sb.append(line);
             }
 
-            response.setResponseBody(sb.toString());
-            response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
+            if (response.getResponseCode() == SUCCESS_RESPONSE_STATUS_CODE) {
+                response.setResponseBody(sb.toString());
+                response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
+            } else {
+                throw new SparkPostErrorServerResponseException(sb.toString(), response.getResponseCode());
+            }
+
         } catch (FileNotFoundException ex) {
             // We get here if the connection was closed:
             // There are cases in REST where the server won't return a response
@@ -269,16 +281,10 @@ public class RestConnection {
                 logger.error("Server Response:" + response);
             }
 
-            if (response.getResponseCode() == UNAUTHORIZED_RESPONSE_STATUS_CODE) {
-                throw new SparkPostAuthorizationFailedException();
-            } else if (response.getResponseCode() == ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE) {
-                throw new SparkPostAccessForbiddenException();
-            } else {
-                throw new SparkPostErrorServerResponseException(
-                        "Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")",
-                        response.getResponseCode()
-                );
-            }
+            throw new SparkPostErrorServerResponseException(
+                    "Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")",
+                    response.getResponseCode()
+            );
         }
         return response;
 
