@@ -13,6 +13,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class TemplateAttributes extends Base {
 
+    public TemplateAttributes() {
+
+    }
+
     /**
      * Short, unique, alphanumeric ID used to reference the template
      * After a template has been created, this property cannot be changed. Maximum length - 64 bytes
