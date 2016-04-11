@@ -2,8 +2,9 @@
 package com.sparkpost.samples;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
@@ -68,7 +69,8 @@ public class MandrillBlacklistImport extends SparkPostBaseApp {
 
         int row = 0;
         try {
-            br = new BufferedReader(new FileReader(csvFile));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(csvFile), "UTF-8"));
+
             while ((line = br.readLine()) != null) {
                 row++;
                 if (StringUtils.isEmpty(line)) {
