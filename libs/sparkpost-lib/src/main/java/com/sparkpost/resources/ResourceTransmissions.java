@@ -2,7 +2,9 @@
 package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.model.TransmissionBase;
 import com.sparkpost.model.TransmissionWithRecipientArray;
+import com.sparkpost.model.TransmissionWithRecipientList;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.TransmissionCreateResponse;
 import com.sparkpost.model.responses.TransmissionListResponse;
@@ -21,6 +23,16 @@ import com.sparkpost.transport.RestConnection;
 public class ResourceTransmissions {
 
     public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans) throws SparkPostException {
+
+        return createTransmission(conn, numRcptErrors, trans);
+    }
+
+    public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientList trans) throws SparkPostException {
+
+        return createTransmission(conn, numRcptErrors, trans);
+    }
+
+    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(RestConnection conn, Integer numRcptErrors, T trans) throws SparkPostException {
 
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("num_rcpt_errors", numRcptErrors);
