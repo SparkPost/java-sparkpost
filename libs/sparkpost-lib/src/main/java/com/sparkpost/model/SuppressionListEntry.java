@@ -38,10 +38,16 @@ public class SuppressionListEntry extends Base {
     }
 
     /**
-     * 
+     * Email is used when list is stored
      */
     @Description(value = "Email Address", sample = {"address@example.com"})
     private String email;
+
+    /**
+     * Recipient is used when a list is returned
+     */
+    @Description(value = "Email Address", sample = {"address@example.com"})
+    private String recipient;
 
     /**
      * Whether the recipient requested to not receive any transactional messages
