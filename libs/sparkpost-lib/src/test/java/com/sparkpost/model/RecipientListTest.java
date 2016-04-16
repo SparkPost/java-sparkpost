@@ -143,4 +143,16 @@ public class RecipientListTest {
         // Internal decoding of this data is tested in it's own tests
         Assert.assertNotNull(recipients);
     }
+
+    /**
+     *
+     */
+    @Test
+    public void testRecipientsListToStoredRecipientsListConvertation() {
+
+        Gson gson = new Gson();
+        RecipientList recipientList = gson.fromJson(this.RECIPIENT_LIST_JSON, RecipientList.class);
+        StoredRecipientList storedRecipientsList = recipientList.asStoredRecipientList();
+        Assert.assertEquals(storedRecipientsList.getListId(), "unique_id_4_graduate_students_list");
+    }
 }
