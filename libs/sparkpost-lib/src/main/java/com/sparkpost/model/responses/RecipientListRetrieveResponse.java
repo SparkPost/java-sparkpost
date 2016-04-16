@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class RecipientsListRetrieveResponse extends Response {
+public class RecipientListRetrieveResponse extends Response {
 
     @Description(value = "", sample = {""})
     private RecipientList results;

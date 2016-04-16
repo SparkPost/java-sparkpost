@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class RecipientsListsListAllResponse extends Response {
+public class RecipientListsListAllResponse extends Response {
 
     @Description(value = "List of RecipientList", sample = {""})
     private List<RecipientList> results;
