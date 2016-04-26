@@ -4,6 +4,7 @@ package com.sparkpost.resources;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Webhook;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.WebhookCreateResponse;
 import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.sparkpost.transport.RestConnection;
 
@@ -39,11 +40,12 @@ public class ResourceWebhooks {
         return allWebhooks;
     }
 
-    public static Response create(RestConnection conn, Webhook webhook) throws SparkPostException {
+    public static WebhookCreateResponse create(RestConnection conn, Webhook webhook) throws SparkPostException {
 
         String json = webhook.toJson();
         Response response = conn.post("webhooks", json);
-        return response;
+        WebhookCreateResponse webhookCreateResponse = WebhookCreateResponse.decode(response, WebhookCreateResponse.class);
+        return webhookCreateResponse;
     }
 
     public static Response describe(RestConnection conn, String id, String timezone) throws SparkPostException {
