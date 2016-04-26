@@ -18,7 +18,7 @@ public class AuthRequestDetails extends Base {
 
     @Data
     @EqualsAndHashCode(callSuper = true)
-    public class AuthRequestClientDetails extends Base {
+    public static class AuthRequestClientDetails extends Base {
 
         @Description(value = "OAuth 2.0 Client ID")
         @SerializedName("client_id")
