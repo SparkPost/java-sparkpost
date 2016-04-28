@@ -19,6 +19,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class Webhook extends Base {
 
+    @Description(value = "Webhook id")
+    private String id;
+
     @Description(value = "User-friendly name", sample = {"Inbound Customer Replies"})
     private String name;
 
