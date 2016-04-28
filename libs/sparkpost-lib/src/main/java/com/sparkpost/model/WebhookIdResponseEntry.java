@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class WebhookCreateResponseEntry extends Base {
+public class WebhookIdResponseEntry extends Base {
 
-    @Description(value = "Created webhook id.")
+    @Description(value = "Created or updated webhook id.")
     private String id;
 }
