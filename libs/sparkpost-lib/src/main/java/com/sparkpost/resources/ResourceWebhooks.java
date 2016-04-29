@@ -18,7 +18,7 @@ import com.sparkpost.transport.RestConnection;
  *
  * @author grava
  */
-public class ResourceWebhooks extends ResourceBase {
+public class ResourceWebhooks {
 
     private static final String DEFAULT_TIMEZONE = "UTC";
 
@@ -74,7 +74,7 @@ public class ResourceWebhooks extends ResourceBase {
 
     public static WebhookIdContainerResponse update(RestConnection conn, String id, WebhookDescription webhookDescription) throws SparkPostException {
 
-        String json = getObjectAsJsonForClass(webhookDescription, WebhookDescription.class);
+        String json = webhookDescription.toJson(WebhookDescription.class);
         Response response = conn.put("webhooks/" + id, json);
         WebhookIdContainerResponse webhookIdContainerResponse = WebhookIdContainerResponse.decode(
                 response,
