@@ -3,7 +3,10 @@ package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Webhook;
+import com.sparkpost.model.WebhookDescription;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.WebhookDescribeResponse;
+import com.sparkpost.model.responses.WebhookIdContainerResponse;
 import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.sparkpost.transport.RestConnection;
 
@@ -16,6 +19,8 @@ import com.sparkpost.transport.RestConnection;
  * @author grava
  */
 public class ResourceWebhooks {
+
+    private static final String DEFAULT_TIMEZONE = "UTC";
 
     public static Response listSampleValuesAndEvents(RestConnection conn) throws SparkPostException {
         Response response = conn.get("webhooks/events/documentation");
@@ -30,6 +35,10 @@ public class ResourceWebhooks {
         return response;
     }
 
+    public static WebhookListAllResponse listAll(RestConnection conn) throws SparkPostException {
+        return listAll(conn, DEFAULT_TIMEZONE);
+    }
+
     public static WebhookListAllResponse listAll(RestConnection conn, String timezone) throws SparkPostException {
 
         Endpoint ep = new Endpoint("webhooks");
@@ -39,26 +48,39 @@ public class ResourceWebhooks {
         return allWebhooks;
     }
 
-    public static Response create(RestConnection conn, Webhook webhook) throws SparkPostException {
+    public static WebhookIdContainerResponse create(RestConnection conn, Webhook webhook) throws SparkPostException {
 
         String json = webhook.toJson();
         Response response = conn.post("webhooks", json);
-        return response;
+        WebhookIdContainerResponse webhookIdContainerResponse = WebhookIdContainerResponse.decode(
+                response,
+                WebhookIdContainerResponse.class
+        );
+        return webhookIdContainerResponse;
     }
 
-    public static Response describe(RestConnection conn, String id, String timezone) throws SparkPostException {
+    public static WebhookDescribeResponse describe(RestConnection conn, String id) throws SparkPostException {
+        return describe(conn, id, DEFAULT_TIMEZONE);
+    }
+
+    public static WebhookDescribeResponse describe(RestConnection conn, String id, String timezone) throws SparkPostException {
 
         Endpoint ep = new Endpoint("webhooks/" + id);
         ep.addParam("timezone", timezone);
         Response response = conn.get(ep.toString());
-        return response;
+        WebhookDescribeResponse webhookDescribeResponse = WebhookDescribeResponse.decode(response, WebhookDescribeResponse.class);
+        return webhookDescribeResponse;
     }
 
-    public static Response update(RestConnection conn, String id, Webhook webhook) throws SparkPostException {
+    public static WebhookIdContainerResponse update(RestConnection conn, String id, WebhookDescription webhookDescription) throws SparkPostException {
 
-        String json = webhook.toJson();
-        Response response = conn.post("webhooks/" + id, json);
-        return response;
+        String json = webhookDescription.toJson(WebhookDescription.class);
+        Response response = conn.put("webhooks/" + id, json);
+        WebhookIdContainerResponse webhookIdContainerResponse = WebhookIdContainerResponse.decode(
+                response,
+                WebhookIdContainerResponse.class
+        );
+        return webhookIdContainerResponse;
     }
 
     public static Response delete(RestConnection conn, String id) throws SparkPostException {

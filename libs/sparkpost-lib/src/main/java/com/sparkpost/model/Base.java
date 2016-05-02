@@ -37,4 +37,13 @@ public class Base {
 
         return gson.toJson(this);
     }
+
+    /**
+     * Generate JSON from this object for required type.
+     * @param tClass - target Class.
+     * @return json of object.
+     */
+    public String toJson(Class tClass) {
+        return GSON_BUILDER.setPrettyPrinting().create().toJson(this, tClass);
+    }
 }
