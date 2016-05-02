@@ -66,4 +66,14 @@ public class RecipientList extends Base {
     @SerializedName("total_rejected_recipients")
     private int totalRejectedRecipients;
 
+    /**
+     * Returns object that can be used to create transmission.
+     * @return StoredRecipientList object
+     */
+    public StoredRecipientList asStoredRecipientList() {
+
+        StoredRecipientList storedRecipientList = new StoredRecipientList();
+        storedRecipientList.setListId(this.getId());
+        return storedRecipientList;
+    }
 }

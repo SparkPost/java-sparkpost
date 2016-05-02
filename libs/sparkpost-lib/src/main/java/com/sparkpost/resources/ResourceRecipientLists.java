@@ -3,6 +3,8 @@ package com.sparkpost.resources;
 
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.RecipientList;
+import com.sparkpost.model.responses.RecipientListRetrieveResponse;
+import com.sparkpost.model.responses.RecipientListsListAllResponse;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.transport.RestConnection;
 
@@ -26,16 +28,19 @@ public class ResourceRecipientLists {
         return response;
     }
 
-    public static Response retrieve(RestConnection conn, String recipientListId, Boolean showRecipients) throws SparkPostException {
+    public static RecipientListRetrieveResponse retrieve(RestConnection conn, String recipientListId, Boolean showRecipients) throws SparkPostException {
         Endpoint ep = new Endpoint("recipient-lists/" + recipientListId);
         ep.addParam("show_recipients", showRecipients);
         Response response = conn.get(ep.toString());
-        return response;
+
+        RecipientListRetrieveResponse retrieveResponse = RecipientListRetrieveResponse.decode(response, RecipientListRetrieveResponse.class);
+        return retrieveResponse;
     }
 
-    public static Response listAll(RestConnection conn) throws SparkPostException {
+    public static RecipientListsListAllResponse listAll(RestConnection conn) throws SparkPostException {
         Response response = conn.get("recipient-lists");
-        return response;
+        RecipientListsListAllResponse listResponse = RecipientListsListAllResponse.decode(response, RecipientListsListAllResponse.class);
+        return listResponse;
     }
 
     public static Response delete(RestConnection conn, String recipientListId) throws SparkPostException {
