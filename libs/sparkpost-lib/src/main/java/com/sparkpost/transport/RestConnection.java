@@ -12,17 +12,17 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import com.sparkpost.exception.SparkPostErrorServerResponseException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.sparkpost.Build;
 import com.sparkpost.Client;
-import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.exception.SparkPostAccessForbiddenException;
 import com.sparkpost.exception.SparkPostAuthorizationFailedException;
+import com.sparkpost.exception.SparkPostErrorServerResponseException;
+import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.model.responses.Response;
 
 /**
@@ -236,6 +236,14 @@ public class RestConnection {
     // Read response body from server
     private Response receiveResponse(HttpURLConnection conn, Response response) throws SparkPostException {
 
+        try {
+            if (conn.getResponseCode() == 204 || conn.getContentLength() == 0) {
+                return receiveEmptyResponse(conn, response);
+            }
+        } catch (IOException e) {
+            throw new SparkPostIllegalServerResponseException("Unexpected error (" + e.getMessage() + ")");
+        }
+
         if (!conn.getContentType().toLowerCase().startsWith("application/json")) {
             throw new SparkPostIllegalServerResponseException("Unexpected content type (" + conn.getContentType() + ") from " + conn.getURL());
         }
@@ -263,31 +271,43 @@ public class RestConnection {
             response.setResponseBody("");
         } catch (IOException ex) {
             String line = "";
-            try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), DEFAULT_CHARSET))) {
 
-                while ((line = rd.readLine()) != null) {
-                    sb.append(line);
+            try {
+
+                try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), DEFAULT_CHARSET))) {
+
+                    while ((line = rd.readLine()) != null) {
+                        sb.append(line);
+                    }
+
+                    response.setResponseBody(sb.toString());
+                    response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
+
+                    logger.error("Server Response:\n" + sb.toString() + "\n");
+
+                } catch (IOException ex2) {
+                    // Ignore we are going to throw an exception anyway
                 }
-
-                response.setResponseBody(sb.toString());
-                response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
-
-                logger.error("Server Response:\n" + sb.toString() + "\n");
-
-            } catch (IOException ex2) {
-                // Ignore we are going to throw an exception anyway
+            } catch (Exception e) {
+                // Log but ignore we are going to throw an exception anyway
+                logger.error("Error while handlign an HTTP response error. Ignoring and will use orginal exception", e);
             }
+
             if (logger.isDebugEnabled()) {
                 logger.error("Server Response:" + response);
             }
 
             throw new SparkPostErrorServerResponseException(
                     "Error reading server response: " + ex.toString() + ": " + sb.toString() + "(" + response.getResponseMessage() + ")",
-                    response.getResponseCode()
-            );
+                    response.getResponseCode());
         }
         return response;
 
+    }
+
+    private Response receiveEmptyResponse(HttpURLConnection conn, Response response) throws SparkPostException {
+        response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
+        return response;
     }
 
     // This method actually performs an HTTP request.
