@@ -1,5 +1,5 @@
 
-package com.sparkpost.samples;
+package com.sparkpost.error.samples;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.model.Webhook;
 import com.sparkpost.resources.ResourceWebhooks;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
@@ -43,7 +44,13 @@ public class ForceTransportError extends SparkPostBaseApp {
         RestConnection restConnection = new RestConnection(this.client);
         Webhook webhook = new Webhook();
         webhook.setName("name with spaces");
-        ResourceWebhooks.update(restConnection, webhook.getName(), webhook);
+        try {
+            ResourceWebhooks.update(restConnection, webhook.getName(), webhook);
+            throw new IllegalStateException("Error: Expected SparkPostIllegalServerResponseException");
+        } catch (SparkPostIllegalServerResponseException e) {
+            System.out.println("GOOD: Sucecssfuly got a SparkPostIllegalServerResponseException");
+
+        }
     }
 
 }
