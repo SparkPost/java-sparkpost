@@ -315,17 +315,15 @@ public class RestConnection {
         response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
 
         if (conn.getContentLength() == 0) {
-            throw new SparkPostIllegalServerResponseException(
+            throw new SparkPostErrorServerResponseException(
                     "Unexpected server response ContentType("
                             + conn.getContentType()
                             + ") from "
                             + conn.getURL()
-                            + " responseCode("
-                            + conn.getResponseCode()
-                            + ")"
                             + " contentLength("
                             + conn.getContentLength()
-                            + ")");
+                            + ")",
+                    conn.getResponseCode());
         }
         StringBuilder sb = new StringBuilder();
 
