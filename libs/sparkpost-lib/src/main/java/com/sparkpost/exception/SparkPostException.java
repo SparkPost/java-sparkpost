@@ -1,9 +1,6 @@
 
 package com.sparkpost.exception;
 
-/**
- * @author grava
- */
 public class SparkPostException extends Exception {
 
     private static final long serialVersionUID = 4017633480414265142L;
