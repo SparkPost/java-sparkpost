@@ -46,4 +46,7 @@ SPARKPOST_FROM=from_address@example.com
 ##
 SPARKPOST_RECIPIENTS=recipient_one@example.com, recipient_two@example.com
 
+SPARKPOST_CC_RECIPIENTS=cc_recipient_one@example.com, cc_recipient_two@example.com
+
+SPARKPOST_BCC_RECIPIENTS=bcc_recipient_one@example.com, bcc_recipient_two@example.com
 

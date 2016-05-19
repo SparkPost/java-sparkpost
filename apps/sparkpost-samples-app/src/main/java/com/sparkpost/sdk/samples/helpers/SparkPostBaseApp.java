@@ -55,6 +55,10 @@ public class SparkPostBaseApp {
         return client;
     }
 
+    protected String getProperty(String name, String defaultValue) {
+      return properties.getProperty(name, defaultValue);
+    }
+
     public String getEndPoint() {
         String endpoint = this.properties.getProperty("SPARKPOST_BASE_URL", RestConnection.defaultApiEndpoint);
 
@@ -100,17 +104,40 @@ public class SparkPostBaseApp {
     }
 
     public String[] getTestRecipients() {
-        String recipListString = properties.getProperty("SPARKPOST_RECIPIENTS", null);
-        if (StringUtils.isAnyEmpty(recipListString)) {
-            throw new IllegalStateException("This sample requires you to fill in `SPARKPOST_RECIPIENTS` in config.properties.");
-        }
-
-        String[] results = recipListString.split(",");
-        return results;
+        return getRecipientListProperty("SPARKPOST_RECIPIENTS");
     }
 
     public List<String> getTestRecipientsAsList() {
         return Arrays.asList(getTestRecipients());
     }
 
+    public String[] getCCRecipients() {
+        return getRecipientListProperty("SPARKPOST_CC_RECIPIENTS");
+    }
+
+    public String[] getBCCRecipients() {
+        return getRecipientListProperty("SPARKPOST_BCC_RECIPIENTS");
+    }
+
+    public String stringArrayToCSV(String[] lst) {
+        StringBuilder result = new StringBuilder();
+        for (int idx = 0; idx < lst.length; ++idx) {
+            result.append(lst[idx]);
+            if (idx < lst.length-1) {
+               result.append(",");
+            }
+        }
+        return result.toString();
+    }
+
+    private String[] getRecipientListProperty(String propName) {
+        String recipListString = getProperty(propName, null);
+        if (StringUtils.isAnyEmpty(recipListString)) {
+            throw new IllegalStateException("This sample requires you to fill in `" + propName + "` in config.properties.");
+        }
+
+        String[] results = recipListString.split(",");
+        return results;
+    }
 }
+
