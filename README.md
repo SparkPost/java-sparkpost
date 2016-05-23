@@ -96,3 +96,23 @@ private void sendEmail(String from, String[] recipients, String email) throws Sp
 }
 
 ```
+
+## Running The Sample Apps
+
+The sample apps are held in `apps/sparkpost-samples-app` with each sample's source code in `apps/sparkpost-samples-app/src/main/java/com/sparkpost/samples/`.
+
+To build the samples:
+
+```bash
+cd apps/sparkpost-samples-app
+mvn compile
+```
+
+One the samples are built, create `config.properties` by copying `apps/sparkpost-samples-app/config.properties.example` and filling in your SparkPost API key and other test parameters.
+
+You can now run your chosen sample through maven:
+
+```bash
+mvn exec:java -Dexec.mainClass=com.sparkpost.samples.SendEmailCCSample
+```
+
