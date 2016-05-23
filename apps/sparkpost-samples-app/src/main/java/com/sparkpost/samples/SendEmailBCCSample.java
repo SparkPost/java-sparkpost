@@ -8,8 +8,6 @@ import java.util.List;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
@@ -88,4 +86,3 @@ public class SendEmailBCCSample extends SparkPostBaseApp {
     }
 
 }
-
