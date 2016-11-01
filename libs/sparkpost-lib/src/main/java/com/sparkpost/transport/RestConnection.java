@@ -138,7 +138,7 @@ public class RestConnection {
                     // we write the POST data to the "output" stream:
                     conn.setDoOutput(true);
                     if (logger.isDebugEnabled()) {
-                        logger.debug("POST " + path);
+                        logger.debug("POST " + url);
                     }
                     break;
                 case PUT:
@@ -146,13 +146,13 @@ public class RestConnection {
                     // we write the POST data to the "output" stream:
                     conn.setDoOutput(true);
                     if (logger.isDebugEnabled()) {
-                        logger.debug("PUT " + path);
+                        logger.debug("PUT " + url);
                     }
                     break;
                 case DELETE:
                     conn.setRequestMethod("DELETE");
                     if (logger.isDebugEnabled()) {
-                        logger.debug("DELETE " + path);
+                        logger.debug("DELETE " + url);
                     }
                     break;
                 default:
