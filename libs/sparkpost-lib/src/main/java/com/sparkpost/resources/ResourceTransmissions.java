@@ -22,17 +22,19 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceTransmissions {
 
-    public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans) throws SparkPostException {
+    public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
+            throws SparkPostException {
 
-        return createTransmission(conn, numRcptErrors, trans);
+        return ResourceTransmissions.createTransmission(conn, numRcptErrors, trans);
     }
 
     public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientList trans) throws SparkPostException {
 
-        return createTransmission(conn, numRcptErrors, trans);
+        return ResourceTransmissions.createTransmission(conn, numRcptErrors, trans);
     }
 
-    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(RestConnection conn, Integer numRcptErrors, T trans) throws SparkPostException {
+    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(RestConnection conn, Integer numRcptErrors, T trans)
+            throws SparkPostException {
 
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("num_rcpt_errors", numRcptErrors);
@@ -59,5 +61,11 @@ public class ResourceTransmissions {
 
         TransmissionListResponse transmissionResponse = TransmissionListResponse.decode(response, TransmissionListResponse.class);
         return transmissionResponse;
+    }
+
+    public static Response delete(RestConnection conn, String id) throws SparkPostException {
+        Response response = conn.delete("transmissions/" + id);
+
+        return response;
     }
 }

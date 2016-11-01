@@ -30,8 +30,8 @@ public class ListAllWebhooksSample extends SparkPostBaseApp {
     }
 
     private void runApp() throws SparkPostException, IOException {
-        client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        this.client = this.newConfiguredClient();
+        RestConnection connection = new RestConnection(this.client, getEndPoint());
         WebhookListAllResponse response = ResourceWebhooks.listAll(connection, "America/Chicago");
         System.out.println("Webhooks: " + response);
 

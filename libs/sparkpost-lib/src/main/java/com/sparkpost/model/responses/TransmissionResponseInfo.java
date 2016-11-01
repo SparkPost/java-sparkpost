@@ -71,4 +71,7 @@ public class TransmissionResponseInfo extends Response {
     @Description(value = "Template contents", sample = {""})
     private TemplateContentAttributes content;
 
+    @Description(value = "State of the transmission. alid responses are “submitted”, “Generating”, “Success”, or “Canceled”.", sample = {"Generating"})
+    private String state;
+
 }
