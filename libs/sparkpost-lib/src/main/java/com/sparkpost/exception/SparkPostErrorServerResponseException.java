@@ -1,6 +1,7 @@
 
 package com.sparkpost.exception;
 
+import com.sparkpost.model.responses.ServerErrorResponses;
 import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Getter;
@@ -15,6 +16,11 @@ public class SparkPostErrorServerResponseException extends SparkPostException {
 
     public SparkPostErrorServerResponseException(String message, int responseCode) {
         super(message);
+        this.responseCode = responseCode;
+    }
+
+    public SparkPostErrorServerResponseException(String message, int responseCode, ServerErrorResponses errorResponses) {
+        super(message, errorResponses);
         this.responseCode = responseCode;
     }
 

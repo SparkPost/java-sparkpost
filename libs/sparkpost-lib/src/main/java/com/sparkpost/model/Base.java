@@ -15,7 +15,7 @@ public class Base {
 
     /**
      * Generate JSON for this request
-     * 
+     *
      * @return json of object
      */
     public String toJson() {
@@ -40,9 +40,12 @@ public class Base {
 
     /**
      * Generate JSON from this object for required type.
-     * @param tClass - target Class.
+     * 
+     * @param tClass
+     *            - target Class.
      * @return json of object.
      */
+    @SuppressWarnings("rawtypes")
     public String toJson(Class tClass) {
         return GSON_BUILDER.setPrettyPrinting().create().toJson(this, tClass);
     }

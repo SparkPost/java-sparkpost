@@ -7,7 +7,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import com.sparkpost.Client;
-import com.sparkpost.exception.SparkPostAuthorizationFailedException;
+import com.sparkpost.exception.SparkPostAccessForbiddenException;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.resources.ResourceSendingDomains;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
@@ -37,7 +37,7 @@ public class BadApiKeyErrorSample extends SparkPostBaseApp {
             ResourceSendingDomains.list(connection);
 
             throw new IllegalStateException("Error: Expected SparkPostAuthorizationFailedException");
-        } catch (SparkPostAuthorizationFailedException e) {
+        } catch (SparkPostAccessForbiddenException e) {
             System.out.println("GOOD: Sucecssfuly got a SparkPostAuthorizationFailedException");
         }
 

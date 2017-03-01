@@ -22,16 +22,16 @@ import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.RestConnection;
 
-public class SendEmailErrorSample extends SparkPostBaseApp {
+public class SendInvalidFromAddress extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(SendEmailErrorSample.class);
+    static final Logger logger = Logger.getLogger(SendInvalidFromAddress.class);
 
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
         Logger.getRootLogger().setLevel(Level.DEBUG);
 
-        SendEmailErrorSample sample = new SendEmailErrorSample();
+        SendInvalidFromAddress sample = new SendInvalidFromAddress();
         sample.runApp();
     }
 
@@ -39,7 +39,7 @@ public class SendEmailErrorSample extends SparkPostBaseApp {
         this.client = this.newConfiguredClient();
 
         // Loads an email to send from the file system
-        String fromAddress = getFromAddress();
+        String fromAddress = "invalid@sparkpost.com";
         String[] recipients = getTestRecipients();
 
         sendEmail(fromAddress, recipients);
@@ -66,27 +66,21 @@ public class SendEmailErrorSample extends SparkPostBaseApp {
         // Populate Email Body
         TemplateContentAttributes contentAttributes = new TemplateContentAttributes();
         contentAttributes.setFrom(new AddressAttributes(from));
-        contentAttributes.setSubject("Your subject content here. {{yourContent}}");
+        contentAttributes.setSubject("☰ Your subject content here. {{yourContent}}");
         contentAttributes.setText("Your Text content here.  {{yourContent}}");
         contentAttributes.setHtml("<p>Your <b>HTML</b> content here.  {{yourContent}}</p>");
-
-        // It is illegal to set a templateID with content
-        contentAttributes.setTemplateId("This_Is_Bad_When_There_Is_Inline_Content");
-
         transmission.setContentAttributes(contentAttributes);
 
         transmission.setContentAttributes(contentAttributes);
 
         // Send the Email
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
-
         try {
-
+            RestConnection connection = new RestConnection(this.client, getEndPoint());
             ResourceTransmissions.create(connection, 0, transmission);
 
-            throw new IllegalStateException("Error: Expected SparkPostErrorServerResponseException");
+            throw new IllegalStateException("Error: Expected Exception for invalid to address");
         } catch (SparkPostErrorServerResponseException e) {
-            System.out.println("GOOD: we got the expected SparkPostErrorServerResponseException");
+            System.out.println("GOOD: we got the expected exception");
             System.out.println(e.getMessage());
 
             if (e.getServerErrorResponses() != null) {
@@ -95,7 +89,6 @@ public class SendEmailErrorSample extends SparkPostBaseApp {
                 }
             }
         }
-
     }
 
 }
