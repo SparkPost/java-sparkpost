@@ -42,9 +42,9 @@ public class RestConnection {
 
     /**
      * Default endpoint to use for connections :
-     * https://api.sparkpost.com/api/v1/
+     * https://api.sparkpost.com/api/v1
      */
-    public final static String defaultApiEndpoint = "https://api.sparkpost.com/api/v1/";
+    public final static String defaultApiEndpoint = "https://api.sparkpost.com/api/v1";
 
     private final Client client;
 
@@ -70,7 +70,7 @@ public class RestConnection {
      * @throws SparkPostException
      */
     public RestConnection(Client client) throws SparkPostException {
-        this(client, null /* means:set to default endpoint */);
+        this(client, "" /* means:set to default endpoint */);
     }
 
     /**
@@ -84,15 +84,17 @@ public class RestConnection {
      * @throws SparkPostException
      */
     public RestConnection(Client client, String endpoint) throws SparkPostException {
+
         this.client = client;
         if (StringUtils.isAnyEmpty(endpoint)) {
             this.endpoint = defaultApiEndpoint;
         } else {
-            if (endpoint.endsWith("/")) {
-                this.endpoint = endpoint;
-            } else {
-                this.endpoint = endpoint + '/';
-            }
+
+            this.endpoint = endpoint;
+        }
+
+        if (endpoint.endsWith("/")) {
+            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + endpoint + "");
         }
     }
 
@@ -110,7 +112,11 @@ public class RestConnection {
         HttpURLConnection conn;
         try {
             URL url;
-            url = new URL(this.endpoint + path);
+            if (path.startsWith("/")) {
+                url = new URL(this.endpoint + path);
+            } else {
+                url = new URL(this.endpoint + "/" + path);
+            }
 
             // Retrieve the URLConnection object (but doesn't actually connect):
             // (HttpUrlConnection doesn't connect to the server until we've
@@ -160,10 +166,13 @@ public class RestConnection {
                     throw new SparkPostException("Invalid Method");
             }
         } catch (MalformedURLException ex) {
+
             throw new SparkPostException("Invalid path: " + path + ex.toString());
         } catch (ProtocolException ex) {
+
             throw new SparkPostException("Invalid method:" + ex.toString());
         } catch (IOException ex) {
+
             throw new SparkPostException("Error with connection to " + path + ex.toString());
         }
         return conn;

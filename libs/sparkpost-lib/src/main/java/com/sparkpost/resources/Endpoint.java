@@ -21,8 +21,17 @@ public class Endpoint {
         this.uriBuilder.addParameter(name, value);
     }
 
-    public Endpoint addCommonParams(String from, String to, String domains, String campaigns, String templates, String metrics,
-                                    String timezone, String limit, String orderBy) {
+    public Endpoint addCommonParams(
+            String from,
+            String to,
+            String domains,
+            String campaigns,
+            String templates,
+            String metrics,
+            String timezone,
+            String limit,
+            String orderBy) {
+
         addParam("from", from);
         addParam("to", to);
         addParam("domains", domains);
@@ -57,7 +66,14 @@ public class Endpoint {
 
     @Override
     public String toString() {
-        return this.uriBuilder.toString();
+        String result = this.uriBuilder.toString();
+
+        if (result.startsWith("/")) {
+            return result;
+        } else {
+
+            return "/" + this.uriBuilder.toString();
+        }
     }
 
 }

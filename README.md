@@ -10,6 +10,10 @@ Use this library in Java applications to easily access the SparkPost Email API i
 
 ## Version Compatibility Note
 
+### Version 0.6.2 -> 0.6.3
+
+Due to [issue 57](https://github.com/SparkPost/java-sparkpost/issues/57) and to maintain compatibility with old and new version of Apache HTTP Client `SPARKPOST_BASE_URL` must not end with a `/` slash.
+
 ### Version 0.12 -> 0.13
 
 Although we try to maintain library backward compatibility this migration may require some minor changes to your code. Substitution data was changed from `Map<String, String>` to `Map<String, Object>`. Most client code will just need to change their map to this new signature.

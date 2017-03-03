@@ -43,7 +43,7 @@ public class EndPointTest {
         endPoint.addParam("num_rcpt_errors", 3);
 
         String result = endPoint.toString();
-        Assert.assertEquals("transmissions?num_rcpt_errors=3", result);
+        Assert.assertEquals("/transmissions?num_rcpt_errors=3", result);
     }
 
     /**
@@ -55,7 +55,7 @@ public class EndPointTest {
         endPoint.addParam("myBool", new Boolean(true));
 
         String result = endPoint.toString();
-        Assert.assertEquals("transmissions?myBool=true", result);
+        Assert.assertEquals("/transmissions?myBool=true", result);
     }
 
     /**
@@ -67,7 +67,7 @@ public class EndPointTest {
         endPoint.addParam("myInteger", new Integer(100));
 
         String result = endPoint.toString();
-        Assert.assertEquals("transmissions?myInteger=100", result);
+        Assert.assertEquals("/transmissions?myInteger=100", result);
     }
 
     /**
@@ -81,7 +81,7 @@ public class EndPointTest {
         endPoint.addParam("MyInteger", new Integer(0));
 
         String result = endPoint.toString();
-        Assert.assertEquals("transmissions?num_rcpt_errors=3&myBool=false&MyInteger=0", result);
+        Assert.assertEquals("/transmissions?num_rcpt_errors=3&myBool=false&MyInteger=0", result);
     }
 
 }
