@@ -14,6 +14,7 @@ import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -58,7 +59,7 @@ public class CreateTemplateFromFile2 extends SparkPostBaseApp {
         content.setHtml(html);
         template.setContent(content);
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         try {
             Response response = ResourceTemplates.create(connection, template);
             if (logger.isDebugEnabled()) {

@@ -18,6 +18,7 @@ import com.sparkpost.model.SuppressionListEntry;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceSuppressionList;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -56,7 +57,7 @@ public class MandrillBlacklistImport extends SparkPostBaseApp {
     private void runApp() throws SparkPostException, IOException {
 
         this.client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
 
         SuppressionList suppressionList = new SuppressionList();
         suppressionList.setRecipients(new ArrayList<SuppressionListEntry>());

@@ -5,7 +5,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.SuppressionList;
 import com.sparkpost.model.SuppressionListEntry;
 import com.sparkpost.model.responses.Response;
-import com.sparkpost.transport.RestConnection;
+import com.sparkpost.transport.IRestConnection;
 
 /**
  * Resource collection that is a 1-to-1 match to the Suppression List SparkPost
@@ -18,24 +18,26 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceSuppressionList {
 
-    public static Response insertOrUpdate(RestConnection conn, String email, final SuppressionListEntry entry) throws SparkPostException {
+    public static Response insertOrUpdate(IRestConnection conn, String email, final SuppressionListEntry entry) throws SparkPostException {
 
         // we need a copy because we don't want the email field in the json:
         SuppressionListEntry copy = new SuppressionListEntry(entry);
         copy.setEmail(null);
 
         String json = copy.toJson();
-        Response response = conn.put("suppression-list/" + email, json);
+        Endpoint ep = new Endpoint("suppression-list/" + email);
+        Response response = conn.put(ep.toString(), json);
         return response;
     }
 
-    public static Response insertOrUpdateBulk(RestConnection conn, SuppressionList suppressionList) throws SparkPostException {
+    public static Response insertOrUpdateBulk(IRestConnection conn, SuppressionList suppressionList) throws SparkPostException {
 
         String json = suppressionList.toJson();
-        return conn.put("suppression-list/", json);
+        Endpoint ep = new Endpoint("suppression-list/");
+        return conn.put(ep.toString(), json);
     }
 
-    public static Response search(RestConnection conn, String to, String from, String types, String limit) throws SparkPostException {
+    public static Response search(IRestConnection conn, String to, String from, String types, String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("suppression-list");
         ep.addParam("to", to);
@@ -46,15 +48,16 @@ public class ResourceSuppressionList {
         return response;
     }
 
-    public static Response check(RestConnection conn, String email) throws SparkPostException {
+    public static Response check(IRestConnection conn, String email) throws SparkPostException {
 
-        Response response = conn.get("suppression-list/" + email);
+        Endpoint ep = new Endpoint("suppression-list/" + email);
+        Response response = conn.get(ep.toString());
         return response;
     }
 
-    public static Response remove(RestConnection conn, String email) throws SparkPostException {
-
-        Response response = conn.delete("suppression-list/" + email);
+    public static Response remove(IRestConnection conn, String email) throws SparkPostException {
+        Endpoint ep = new Endpoint("suppression-list/" + email);
+        Response response = conn.delete(ep.toString());
         return response;
     }
 }

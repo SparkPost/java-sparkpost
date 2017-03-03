@@ -14,6 +14,7 @@ import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 public class CreateTemplateSimple extends SparkPostBaseApp {
@@ -51,7 +52,7 @@ public class CreateTemplateSimple extends SparkPostBaseApp {
 		tpl.getContent().setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
 		tpl.getContent().setHtml("Hello!");
 		tpl.getContent().setSubject("Template Test");
-		RestConnection connection = new RestConnection(client, getEndPoint());
+		IRestConnection connection = new RestConnection(client, getEndPoint());
 		Response response = ResourceTemplates.create(connection, tpl);
 		
 		if (logger.isDebugEnabled()) {

@@ -12,6 +12,7 @@ import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTransmissions;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -118,7 +119,7 @@ public class Client {
             transmission.setOptions(options);
         }
 
-        RestConnection connection = new RestConnection(this);
+        IRestConnection connection = new RestConnection(this);
         Response response = ResourceTransmissions.create(connection, 0, transmission);
 
         return response;

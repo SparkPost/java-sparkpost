@@ -22,6 +22,7 @@ import com.sparkpost.model.responses.DomainListResponse;
 import com.sparkpost.model.responses.MetricLinkResponse;
 import com.sparkpost.resources.ResourceMetrics;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -214,7 +215,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String metrics = MetricsFields.ALL_FIELDS;
         String timezone = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getDeliverabilityMetricsSummary(connection, from, to, domains, campaigns, templates, metrics, timezone);
 
@@ -251,7 +252,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String orderBy = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getDeliverabilityMetricsByDomain(connection, from, to, domains, campaigns, templates, metrics, timezone, orderBy, limit);
 
@@ -283,7 +284,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String orderBy = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getDeliverabilityMetricsByCampaign(connection, from, to, domains, campaigns, templates, metrics, timezone, orderBy, limit);
 
@@ -315,7 +316,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String orderBy = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getDeliverabilityMetricsByTemplate(connection, from, to, domains, campaigns, templates, metrics, timezone, orderBy, limit);
 
@@ -348,7 +349,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String orderBy = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getDeliverabilityMetricsByWatchedDomain(connection, from, to, domains, campaigns, templates, metrics, timezone, orderBy, limit);
 
@@ -378,7 +379,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String metrics = MetricsFields.ALL_FIELDS;
         String timezone = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getTimeSeriesMetrics(connection, from, to, domains, campaigns, templates, precision, metrics, timezone);
 
@@ -410,7 +411,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getBounceReasonMetrics(connection, from, to, domains, campaigns, templates, metrics, timezone, limit);
 
@@ -441,7 +442,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getBounceReasonMetricsByDomain(connection, from, to, domains, campaigns, templates, metrics, timezone, limit);
 
@@ -472,7 +473,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getBounceClassificationMetrics(connection, from, to, domains, campaigns, templates, metrics, timezone, limit);
 
@@ -502,7 +503,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics.getRejectionReasonMetrics(connection, from, to, domains, campaigns, templates, timezone, limit);
 
         List<Map<String, Object>> results = response.getResults();
@@ -531,7 +532,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getRejectionReasonMetricsByDomain(connection, from, to, domains, campaigns, templates, timezone, limit);
 
@@ -561,7 +562,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics.getDelayReasonMetrics(connection, from, to, domains, campaigns, templates, timezone, limit);
 
         List<Map<String, Object>> results = response.getResults();
@@ -590,7 +591,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String timezone = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics
                 .getDelayReasonMetricsByDomain(connection, from, to, domains, campaigns, templates, timezone, limit);
 
@@ -620,7 +621,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String limit = null;
         String metrics = MetricsEngagementFields.ALL_FIELDS;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics.getEngagementDetails(connection, from, to, timezone, metrics, campaigns, templates, limit);
 
         List<Map<String, Object>> results = response.getResults();
@@ -646,7 +647,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String templates = null;
         String timezone = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DeliverabiltyMetricsResponse response = ResourceMetrics.getDeliveriesByAttempt(connection, from, to, domains, campaigns, templates, timezone);
 
         List<Map<String, Object>> results = response.getResults();
@@ -664,7 +665,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String match = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         CampaignListResponse response = ResourceMetrics.getCampaignsList(connection, match, limit);
 
         List<String> results = response.getCampaignList();
@@ -681,7 +682,7 @@ public class DeliverabilityMetricsSample extends SparkPostBaseApp {
         String match = null;
         String limit = null;
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         DomainListResponse response = ResourceMetrics.getDomainsList(connection, match, limit);
 
         List<String> results = response.getDomainList();

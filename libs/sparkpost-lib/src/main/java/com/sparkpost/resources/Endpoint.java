@@ -72,7 +72,7 @@ public class Endpoint {
             return result;
         } else {
 
-            return "/" + this.uriBuilder.toString();
+            return "/" + result;
         }
     }
 

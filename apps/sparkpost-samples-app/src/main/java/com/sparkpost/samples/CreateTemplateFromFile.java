@@ -13,6 +13,7 @@ import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -57,7 +58,7 @@ public class CreateTemplateFromFile extends SparkPostBaseApp {
         content.setEmailRFC822(rfc822Content);
         template.setContent(content);
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         try {
             Response response = ResourceTemplates.create(connection, template);
             if (logger.isDebugEnabled()) {

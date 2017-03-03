@@ -13,6 +13,7 @@ import com.sparkpost.model.responses.TransmissionListResponse;
 import com.sparkpost.model.responses.TransmissionRetrieveResults;
 import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -55,7 +56,7 @@ public class ListAllTransmissionsSample extends SparkPostBaseApp {
      * Demonstration how to retrieve the full list or transmission from server
      */
     private TransmissionListResponse listAllTransmissions() throws SparkPostException {
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         TransmissionListResponse response = ResourceTransmissions.list(connection, null, null);
 
         if (response.getResponseCode() == 200) {
@@ -78,7 +79,7 @@ public class ListAllTransmissionsSample extends SparkPostBaseApp {
     /**
      * This demonstrates how to retrieve the contents of a specific transmission using the transmissionId
      */
-    private void fetchTransmissionDetail(TransmissionBase transmission, RestConnection connection) throws SparkPostException {
+    private void fetchTransmissionDetail(TransmissionBase transmission, IRestConnection connection) throws SparkPostException {
         TransmissionRetrieveResults results = ResourceTransmissions.retrieve(connection, transmission.getId());
         System.out.println("Result: " + results.getResults().getTransmission());
     }

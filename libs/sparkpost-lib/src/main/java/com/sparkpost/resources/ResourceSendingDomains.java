@@ -5,7 +5,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.SendingDomain;
 import com.sparkpost.model.VerifyAttributes;
 import com.sparkpost.model.responses.Response;
-import com.sparkpost.transport.RestConnection;
+import com.sparkpost.transport.IRestConnection;
 
 /**
  * Resource collection that is a 1-to-1 match to the Sending Domains SparkPost
@@ -19,36 +19,40 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceSendingDomains {
 
-    public static Response create(RestConnection conn, SendingDomain domain) throws SparkPostException {
+    public static Response create(IRestConnection conn, SendingDomain domain) throws SparkPostException {
 
         String json = domain.toJson();
-        Response response = conn.post("sending-domains", json);
+        Endpoint ep = new Endpoint("sending-domains");
+        Response response = conn.post(ep.toString(), json);
         return response;
     }
 
-    public static Response retrieve(RestConnection conn, String domainName) throws SparkPostException {
+    public static Response retrieve(IRestConnection conn, String domainName) throws SparkPostException {
 
-        Response response = conn.get("sending-domains/" + domainName);
+        Endpoint ep = new Endpoint("sending-domains/" + domainName);
+        Response response = conn.get(ep.toString());
         return response;
     }
 
-    public static Response list(RestConnection conn) throws SparkPostException {
-
-        Response response = conn.get("sending-domains/");
+    public static Response list(IRestConnection conn) throws SparkPostException {
+        Endpoint ep = new Endpoint("sending-domains/");
+        Response response = conn.get(ep.toString());
         return response;
     }
 
-    public static Response update(RestConnection conn, String domainName, SendingDomain domain) throws SparkPostException {
+    public static Response update(IRestConnection conn, String domainName, SendingDomain domain) throws SparkPostException {
 
         String json = domain.toJson();
-        Response response = conn.put("sending-domains/" + domainName, json);
+        Endpoint ep = new Endpoint("sending-domains/" + domainName);
+        Response response = conn.put(ep.toString(), json);
         return response;
     }
 
-    public static Response verify(RestConnection conn, String domainName, VerifyAttributes verify) throws SparkPostException {
+    public static Response verify(IRestConnection conn, String domainName, VerifyAttributes verify) throws SparkPostException {
 
         String json = verify.toJson();
-        Response response = conn.post("sending-domains/" + domainName + "/verify", json);
+        Endpoint ep = new Endpoint("sending-domains/" + domainName + "/verify");
+        Response response = conn.post(ep.toString(), json);
         return response;
     }
 }

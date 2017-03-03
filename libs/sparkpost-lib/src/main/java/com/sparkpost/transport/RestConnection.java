@@ -28,7 +28,7 @@ import com.sparkpost.model.responses.ServerErrorResponses;
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
  */
-public class RestConnection {
+public class RestConnection implements IRestConnection {
 
     private static final Logger logger = Logger.getLogger(RestConnection.class);
 
@@ -39,12 +39,6 @@ public class RestConnection {
 
     private static final int UNAUTHORIZED_RESPONSE_STATUS_CODE = 401;
     private static final int ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE = 403;
-
-    /**
-     * Default endpoint to use for connections :
-     * https://api.sparkpost.com/api/v1
-     */
-    public final static String defaultApiEndpoint = "https://api.sparkpost.com/api/v1";
 
     private final Client client;
 
@@ -112,12 +106,8 @@ public class RestConnection {
         HttpURLConnection conn;
         try {
             URL url;
-            if (path.startsWith("/")) {
-                url = new URL(this.endpoint + path);
-            } else {
-                url = new URL(this.endpoint + "/" + path);
-            }
-
+            url = new URL(this.endpoint + path);
+            
             // Retrieve the URLConnection object (but doesn't actually connect):
             // (HttpUrlConnection doesn't connect to the server until we've
             // got one of its streams)
@@ -424,65 +414,37 @@ public class RestConnection {
         }
     }
 
-    /**
-     * Perform an HTTP GET request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /* (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#get(java.lang.String)
      */
+    @Override
     public Response get(String path) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.GET, null, response);
     }
 
-    /**
-     * Perform an HTTP POST request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @param json
-     *            POST data block to send with the request. May be null.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /* (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#post(java.lang.String, java.lang.String)
      */
+    @Override
     public Response post(String path, String json) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.POST, json, response);
     }
 
-    /**
-     * Perform an HTTP PUT request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @param json
-     *            PUT data block to send with the request. May be null.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /* (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#put(java.lang.String, java.lang.String)
      */
+    @Override
     public Response put(String path, String json) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.PUT, json, response);
     }
 
-    /**
-     * Perform an HTTP DELETE request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /* (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#delete(java.lang.String)
      */
+    @Override
     public Response delete(String path) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.DELETE, null, response);

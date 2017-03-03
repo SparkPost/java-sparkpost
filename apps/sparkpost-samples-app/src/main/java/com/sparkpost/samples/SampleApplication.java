@@ -20,6 +20,7 @@ import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.resources.ResourceTransmissions;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 import lombok.Data;
@@ -62,7 +63,7 @@ public class SampleApplication {
         // ---------------------------------------------------
         // Create a connection object:
         // ---------------------------------------------------
-        RestConnection conn = new RestConnection(client);
+        IRestConnection conn = new RestConnection(client);
 
         // ---------------------------------------------------
         // Create a template and store it at the server:
@@ -94,7 +95,7 @@ public class SampleApplication {
     }
 
     // Create a template and store it at the server:
-    private static String createTemplate(Client client, RestConnection conn) throws SparkPostException {
+    private static String createTemplate(Client client, IRestConnection conn) throws SparkPostException {
 
         TemplateAttributes tpl = new TemplateAttributes();
         tpl.setName("_TMP_TEMPLATE_TEST");
@@ -137,7 +138,7 @@ public class SampleApplication {
     }
 
     // Create a transmission using the stored template:
-    private static String createTransmission(Client client, RestConnection conn, String templateId) throws SparkPostException {
+    private static String createTransmission(Client client, IRestConnection conn, String templateId) throws SparkPostException {
 
         TransmissionWithRecipientArray trans = new TransmissionWithRecipientArray();
         trans.setCampaignId("sample_app_trans_test");
