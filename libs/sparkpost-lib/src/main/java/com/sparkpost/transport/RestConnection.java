@@ -23,6 +23,7 @@ import com.sparkpost.exception.SparkPostErrorServerResponseException;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.ServerErrorResponses;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
@@ -143,7 +144,7 @@ public class RestConnection {
                     break;
                 case PUT:
                     conn.setRequestMethod("PUT");
-                    // we write the POST data to the "output" stream:
+                    // we write the PUT data to the "output" stream:
                     conn.setDoOutput(true);
                     if (logger.isDebugEnabled()) {
                         logger.debug("PUT " + path);
@@ -240,16 +241,17 @@ public class RestConnection {
 
             } else {
                 // We got some other response from the server.
-                throw new SparkPostIllegalServerResponseException("Unexpected server response ContentType("
-                        + conn.getContentType()
-                        + ") from "
-                        + conn.getURL()
-                        + " responseCode("
-                        + conn.getResponseCode()
-                        + ")"
-                        + " contentLength("
-                        + conn.getContentLength()
-                        + ")");
+                throw new SparkPostIllegalServerResponseException(
+                        "Unexpected server response ContentType("
+                                + conn.getContentType()
+                                + ") from "
+                                + conn.getURL()
+                                + " responseCode("
+                                + conn.getResponseCode()
+                                + ")"
+                                + " contentLength("
+                                + conn.getContentLength()
+                                + ")");
             }
 
         } catch (IOException ex) {
@@ -326,6 +328,7 @@ public class RestConnection {
                     conn.getResponseCode());
         }
         StringBuilder sb = new StringBuilder();
+        ServerErrorResponses errorResponses = null;
 
         try {
             // We are in the success case handling but check the error stream anyway just in case
@@ -339,6 +342,14 @@ public class RestConnection {
                 response.setResponseBody(sb.toString());
 
                 logger.error("Server Response:\n" + sb.toString() + "\n");
+
+                try {
+                    errorResponses = (ServerErrorResponses) ServerErrorResponses.decode(response, ServerErrorResponses.class);
+                } catch (Exception e) {
+                    // Maybe there is something wrong where HTML is returned or some other very bad error. So we protect
+                    // ourselves from that exception so we can throw a more specific exception later.
+                    logger.error("Failed to parse server response:\n", e);
+                }
 
             } catch (IOException ex2) {
                 // Ignore since an exception is getting thrown anyway
@@ -360,7 +371,8 @@ public class RestConnection {
                             + response.getResponseMessage()
                             + ") responseCode("
                             + response.getResponseCode()
-                            + ")");
+                            + ")",
+                    errorResponses);
 
         } else if (response.getResponseCode() == ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE) {
             throw new SparkPostAccessForbiddenException(
@@ -370,12 +382,14 @@ public class RestConnection {
                             + response.getResponseMessage()
                             + ") responseCode("
                             + response.getResponseCode()
-                            + ")");
+                            + ")",
+                    errorResponses);
         } else {
 
             throw new SparkPostErrorServerResponseException(
                     "Error reading server response: " + sb.toString() + "(" + response.getResponseMessage() + ")",
-                    response.getResponseCode());
+                    response.getResponseCode(),
+                    errorResponses);
         }
     }
 

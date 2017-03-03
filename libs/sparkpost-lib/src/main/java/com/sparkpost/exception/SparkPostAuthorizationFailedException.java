@@ -1,6 +1,8 @@
 
 package com.sparkpost.exception;
 
+import com.sparkpost.model.responses.ServerErrorResponses;
+
 public class SparkPostAuthorizationFailedException extends SparkPostException {
 
     private static final long serialVersionUID = 3695537080454452130L;
@@ -16,6 +18,11 @@ public class SparkPostAuthorizationFailedException extends SparkPostException {
 
     public SparkPostAuthorizationFailedException(String serverMessage) {
         super(MESSAGE);
+        this.serverMessage = serverMessage;
+    }
+
+    public SparkPostAuthorizationFailedException(String serverMessage, ServerErrorResponses errorResponses) {
+        super(MESSAGE, errorResponses);
         this.serverMessage = serverMessage;
     }
 
