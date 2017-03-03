@@ -144,7 +144,7 @@ public class RestConnection {
                     break;
                 case PUT:
                     conn.setRequestMethod("PUT");
-                    // we write the POST data to the "output" stream:
+                    // we write the PUT data to the "output" stream:
                     conn.setDoOutput(true);
                     if (logger.isDebugEnabled()) {
                         logger.debug("PUT " + path);

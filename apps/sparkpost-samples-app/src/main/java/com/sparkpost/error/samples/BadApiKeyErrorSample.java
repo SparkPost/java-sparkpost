@@ -36,9 +36,9 @@ public class BadApiKeyErrorSample extends SparkPostBaseApp {
         try {
             ResourceSendingDomains.list(connection);
 
-            throw new IllegalStateException("Error: Expected SparkPostAuthorizationFailedException");
+            throw new IllegalStateException("Error: Expected SparkPostAccessForbiddenException");
         } catch (SparkPostAccessForbiddenException e) {
-            System.out.println("GOOD: Sucecssfuly got a SparkPostAuthorizationFailedException");
+            System.out.println("GOOD: Sucecssfuly got a SparkPostAccessForbiddenException");
         }
 
     }
