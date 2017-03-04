@@ -17,7 +17,7 @@ import com.sparkpost.model.responses.DeliverabiltyMetricsResponse;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.testhelpers.StubRestConnection;
 
-public class ResourceMetricTests {
+public class ResourceMetricTests extends BaseResourceTest {
 
     @BeforeClass
     public static void setUpClass() {
@@ -47,13 +47,6 @@ public class ResourceMetricTests {
         StubResponse stubResponse = new StubResponse();
         StubRestConnection conn = new StubRestConnection(stubResponse);
         return conn;
-    }
-
-    private void verifyWasGet(StubRestConnection conn) {
-        Assert.assertTrue(conn.wasGet());
-        Assert.assertFalse(conn.wasDelete());
-        Assert.assertFalse(conn.wasPut());
-        Assert.assertFalse(conn.wasPost());
     }
 
     @Test
