@@ -42,7 +42,7 @@ public class RestConnection implements IRestConnection {
 
     private final Client client;
 
-    private final String endpoint;
+    private final String baseUrl;
 
     /**
      * Supported HTTP methods
@@ -73,22 +73,22 @@ public class RestConnection implements IRestConnection {
      *
      * @param client
      *            Client object to use (in particular for authentication info)
-     * @param endpoint
+     * @param baseUrl
      *            Endpoint to use instead of the default defaultApiEndpoint
      * @throws SparkPostException
      */
-    public RestConnection(Client client, String endpoint) throws SparkPostException {
+    public RestConnection(Client client, String baseUrl) throws SparkPostException {
 
         this.client = client;
-        if (StringUtils.isAnyEmpty(endpoint)) {
-            this.endpoint = defaultApiEndpoint;
+        if (StringUtils.isAnyEmpty(baseUrl)) {
+            this.baseUrl = defaultApiEndpoint;
         } else {
 
-            this.endpoint = endpoint;
+            this.baseUrl = baseUrl;
         }
 
-        if (endpoint.endsWith("/")) {
-            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + endpoint + "");
+        if (baseUrl.endsWith("/")) {
+            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + baseUrl + "");
         }
     }
 
@@ -106,8 +106,8 @@ public class RestConnection implements IRestConnection {
         HttpURLConnection conn;
         try {
             URL url;
-            url = new URL(this.endpoint + path);
-            
+            url = new URL(this.baseUrl + path);
+
             // Retrieve the URLConnection object (but doesn't actually connect):
             // (HttpUrlConnection doesn't connect to the server until we've
             // got one of its streams)
@@ -311,7 +311,7 @@ public class RestConnection implements IRestConnection {
         return response;
     }
 
-    // This is used to handle 2xx HTTP responses
+    // This is used to handle non 2xx HTTP responses
     private Response receiveErrorResponse(HttpURLConnection conn, Response response) throws SparkPostException, IOException {
         response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
 
@@ -330,7 +330,6 @@ public class RestConnection implements IRestConnection {
         ServerErrorResponses errorResponses = null;
 
         try {
-            // We are in the success case handling but check the error stream anyway just in case
             try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), DEFAULT_CHARSET))) {
 
                 String line = "";
@@ -345,8 +344,8 @@ public class RestConnection implements IRestConnection {
                 try {
                     errorResponses = (ServerErrorResponses) ServerErrorResponses.decode(response, ServerErrorResponses.class);
                 } catch (Exception e) {
-                    // Maybe there is something wrong where HTML is returned or some other very bad error. So we protect
-                    // ourselves from that exception so we can throw a more specific exception later.
+                    // Maybe there is something wrong where HTML is returned or some other very bad error. Protect
+                    // against exception here so a more specific exception can be thrown later later.
                     logger.error("Failed to parse server response:\n", e);
                 }
 
@@ -355,7 +354,7 @@ public class RestConnection implements IRestConnection {
             }
         } catch (Exception e) {
             // Log but ignore since an exception is getting thrown anyway
-            logger.error("Error while handlign an HTTP response error. Ignoring and will use orginal exception", e);
+            logger.error("Error while handling an HTTP response error. Ignoring and will use orginal exception", e);
         }
 
         if (logger.isDebugEnabled()) {
@@ -392,7 +391,7 @@ public class RestConnection implements IRestConnection {
         }
     }
 
-    // This method actually performs an HTTP request.
+    // This method actually performs the HTTP request
     // It is called by get(), put(), post() and delete() below
     private Response doHttpMethod(String path, Method method, String data, Response response) throws SparkPostException {
         HttpURLConnection conn = null;
@@ -414,7 +413,8 @@ public class RestConnection implements IRestConnection {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#get(java.lang.String)
      */
     @Override
@@ -423,7 +423,8 @@ public class RestConnection implements IRestConnection {
         return doHttpMethod(path, Method.GET, null, response);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#post(java.lang.String, java.lang.String)
      */
     @Override
@@ -432,7 +433,8 @@ public class RestConnection implements IRestConnection {
         return doHttpMethod(path, Method.POST, json, response);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#put(java.lang.String, java.lang.String)
      */
     @Override
@@ -441,7 +443,8 @@ public class RestConnection implements IRestConnection {
         return doHttpMethod(path, Method.PUT, json, response);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#delete(java.lang.String)
      */
     @Override
