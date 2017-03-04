@@ -22,17 +22,20 @@ import com.sparkpost.transport.IRestConnection;
  */
 public class ResourceTransmissions {
 
-    public static TransmissionCreateResponse create(IRestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans) throws SparkPostException {
+    public static TransmissionCreateResponse create(IRestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
+            throws SparkPostException {
 
-        return createTransmission(conn, numRcptErrors, trans);
+        return ResourceTransmissions.createTransmission(conn, numRcptErrors, trans);
     }
 
-    public static TransmissionCreateResponse create(IRestConnection conn, Integer numRcptErrors, TransmissionWithRecipientList trans) throws SparkPostException {
+    public static TransmissionCreateResponse create(IRestConnection conn, Integer numRcptErrors, TransmissionWithRecipientList trans)
+            throws SparkPostException {
 
-        return createTransmission(conn, numRcptErrors, trans);
+        return ResourceTransmissions.createTransmission(conn, numRcptErrors, trans);
     }
 
-    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(IRestConnection conn, Integer numRcptErrors, T trans) throws SparkPostException {
+    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(IRestConnection conn, Integer numRcptErrors, T trans)
+            throws SparkPostException {
 
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("num_rcpt_errors", numRcptErrors);
@@ -44,7 +47,8 @@ public class ResourceTransmissions {
     }
 
     public static TransmissionRetrieveResults retrieve(IRestConnection conn, String id) throws SparkPostException {
-        Response response = conn.get("transmissions/" + id);
+        Endpoint ep = new Endpoint("transmissions/" + id);
+        Response response = conn.get(ep.toString());
 
         TransmissionRetrieveResults newResult = TransmissionRetrieveResults.decode(response, TransmissionRetrieveResults.class);
         return newResult;
