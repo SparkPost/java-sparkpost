@@ -35,6 +35,39 @@ public class EndPointTest {
     }
 
     /**
+     * Test of "/" is added to empty Endoint
+     */
+    @Test
+    public void testSimpleEmptyEndPoint() {
+        Endpoint endPoint = new Endpoint("");
+
+        String result = endPoint.toString();
+        Assert.assertEquals("/", result);
+    }
+
+    /**
+     * Test if "/" URI starts with only one `/`
+     */
+    @Test
+    public void testSimpleEmptyEndPoint2() {
+        Endpoint endPoint = new Endpoint("/");
+
+        String result = endPoint.toString();
+        Assert.assertEquals("/", result);
+    }
+
+    /**
+     * Test if "/" URI starts with only one `/`
+     */
+    @Test
+    public void testSimpleEndPointLeadingSlash() {
+        Endpoint endPoint = new Endpoint("/test");
+
+        String result = endPoint.toString();
+        Assert.assertEquals("/test", result);
+    }
+
+    /**
      * Test of Simple EndPoint
      */
     @Test
