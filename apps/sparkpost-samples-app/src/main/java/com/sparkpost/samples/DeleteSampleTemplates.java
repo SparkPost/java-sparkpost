@@ -14,6 +14,7 @@ import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.TemplateListResponse;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -34,7 +35,7 @@ public class DeleteSampleTemplates extends SparkPostBaseApp {
 
     private void runApp() throws SparkPostException, IOException {
         client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
 
         // Get All Templates
         TemplateListResponse listResponse = ResourceTemplates.listAll(connection);
@@ -49,7 +50,7 @@ public class DeleteSampleTemplates extends SparkPostBaseApp {
         }
     }
 
-    private void deleteTemplate(RestConnection connection, String templateId) throws SparkPostException {
+    private void deleteTemplate(IRestConnection connection, String templateId) throws SparkPostException {
         Response deleteResponse = ResourceTemplates.delete(connection, templateId);
         if (deleteResponse.getResponseCode() == 200) {
             System.out.println("\tdeleted: " + templateId);

@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
-import com.sparkpost.transport.RestConnection;
+import com.sparkpost.transport.IRestConnection;
 
 /**
  * A simple class to setup up the SparkPost client with the API KEY from a property file. 
@@ -52,7 +52,7 @@ public class SparkPostBaseApp {
     }
 
     public String getEndPoint() {
-        String endpoint = this.properties.getProperty("SPARKPOST_BASE_URL", RestConnection.defaultApiEndpoint);
+        String endpoint = this.properties.getProperty("SPARKPOST_BASE_URL", IRestConnection.defaultApiEndpoint);
 
         return endpoint;
     }

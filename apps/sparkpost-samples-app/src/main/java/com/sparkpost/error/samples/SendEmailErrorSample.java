@@ -20,6 +20,7 @@ import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.model.responses.ServerErrorResponse;
 import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 public class SendEmailErrorSample extends SparkPostBaseApp {
@@ -78,7 +79,7 @@ public class SendEmailErrorSample extends SparkPostBaseApp {
         transmission.setContentAttributes(contentAttributes);
 
         // Send the Email
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
 
         try {
 

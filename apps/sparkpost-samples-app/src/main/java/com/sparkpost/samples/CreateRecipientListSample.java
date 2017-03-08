@@ -16,6 +16,7 @@ import com.sparkpost.model.RecipientList;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceRecipientLists;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -48,7 +49,7 @@ public class CreateRecipientListSample extends SparkPostBaseApp {
         RecipientList recipientList = createRecipientList();
 
         client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
 
         Response response = ResourceRecipientLists.create(connection, 0, recipientList);
 

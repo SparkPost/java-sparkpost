@@ -24,11 +24,12 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.ServerErrorResponses;
+import com.sparkpost.resources.Endpoint;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
  */
-public class RestConnection {
+public class RestConnection implements IRestConnection {
 
     private static final Logger logger = Logger.getLogger(RestConnection.class);
 
@@ -40,15 +41,9 @@ public class RestConnection {
     private static final int UNAUTHORIZED_RESPONSE_STATUS_CODE = 401;
     private static final int ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE = 403;
 
-    /**
-     * Default endpoint to use for connections :
-     * https://api.sparkpost.com/api/v1/
-     */
-    public final static String defaultApiEndpoint = "https://api.sparkpost.com/api/v1/";
-
     private final Client client;
 
-    private final String endpoint;
+    private final String baseUrl;
 
     /**
      * Supported HTTP methods
@@ -70,7 +65,7 @@ public class RestConnection {
      * @throws SparkPostException
      */
     public RestConnection(Client client) throws SparkPostException {
-        this(client, null /* means:set to default endpoint */);
+        this(client, "" /* means:set to default endpoint */);
     }
 
     /**
@@ -79,20 +74,22 @@ public class RestConnection {
      *
      * @param client
      *            Client object to use (in particular for authentication info)
-     * @param endpoint
+     * @param baseUrl
      *            Endpoint to use instead of the default defaultApiEndpoint
      * @throws SparkPostException
      */
-    public RestConnection(Client client, String endpoint) throws SparkPostException {
+    public RestConnection(Client client, String baseUrl) throws SparkPostException {
+
         this.client = client;
-        if (StringUtils.isAnyEmpty(endpoint)) {
-            this.endpoint = defaultApiEndpoint;
+        if (StringUtils.isAnyEmpty(baseUrl)) {
+            this.baseUrl = defaultApiEndpoint;
         } else {
-            if (endpoint.endsWith("/")) {
-                this.endpoint = endpoint;
-            } else {
-                this.endpoint = endpoint + '/';
-            }
+
+            this.baseUrl = baseUrl;
+        }
+
+        if (baseUrl.endsWith("/")) {
+            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + baseUrl + "");
         }
     }
 
@@ -110,7 +107,7 @@ public class RestConnection {
         HttpURLConnection conn;
         try {
             URL url;
-            url = new URL(this.endpoint + path);
+            url = new URL(this.baseUrl + path);
 
             // Retrieve the URLConnection object (but doesn't actually connect):
             // (HttpUrlConnection doesn't connect to the server until we've
@@ -160,10 +157,13 @@ public class RestConnection {
                     throw new SparkPostException("Invalid Method");
             }
         } catch (MalformedURLException ex) {
+
             throw new SparkPostException("Invalid path: " + path + ex.toString());
         } catch (ProtocolException ex) {
+
             throw new SparkPostException("Invalid method:" + ex.toString());
         } catch (IOException ex) {
+
             throw new SparkPostException("Error with connection to " + path + ex.toString());
         }
         return conn;
@@ -312,7 +312,7 @@ public class RestConnection {
         return response;
     }
 
-    // This is used to handle 2xx HTTP responses
+    // This is used to handle non 2xx HTTP responses
     private Response receiveErrorResponse(HttpURLConnection conn, Response response) throws SparkPostException, IOException {
         response.setRequestId(conn.getHeaderField("X-SparkPost-Request-Id"));
 
@@ -331,7 +331,6 @@ public class RestConnection {
         ServerErrorResponses errorResponses = null;
 
         try {
-            // We are in the success case handling but check the error stream anyway just in case
             try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), DEFAULT_CHARSET))) {
 
                 String line = "";
@@ -346,8 +345,8 @@ public class RestConnection {
                 try {
                     errorResponses = (ServerErrorResponses) ServerErrorResponses.decode(response, ServerErrorResponses.class);
                 } catch (Exception e) {
-                    // Maybe there is something wrong where HTML is returned or some other very bad error. So we protect
-                    // ourselves from that exception so we can throw a more specific exception later.
+                    // Maybe there is something wrong where HTML is returned or some other very bad error. Protect
+                    // against exception here so a more specific exception can be thrown later later.
                     logger.error("Failed to parse server response:\n", e);
                 }
 
@@ -356,7 +355,7 @@ public class RestConnection {
             }
         } catch (Exception e) {
             // Log but ignore since an exception is getting thrown anyway
-            logger.error("Error while handlign an HTTP response error. Ignoring and will use orginal exception", e);
+            logger.error("Error while handling an HTTP response error. Ignoring and will use orginal exception", e);
         }
 
         if (logger.isDebugEnabled()) {
@@ -393,7 +392,30 @@ public class RestConnection {
         }
     }
 
-    // This method actually performs an HTTP request.
+    // This method actually performs the HTTP request
+    // It is called by get(), put(), post() and delete() below
+    private Response doHttpMethod(Endpoint endpoint, Method method, String data, Response response) throws SparkPostException {
+        HttpURLConnection conn = null;
+        try {
+            String path = endpoint.toString();
+            response.setRequest(path);
+            conn = createConnectionObject(path, method);
+            sendRequest(conn, data, response);
+            receiveResponse(conn, response);
+
+            if (logger.isDebugEnabled()) {
+                logger.debug("Server Response:" + response);
+            }
+
+            return response;
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+    }
+
+    // This method actually performs the HTTP request
     // It is called by get(), put(), post() and delete() below
     private Response doHttpMethod(String path, Method method, String data, Response response) throws SparkPostException {
         HttpURLConnection conn = null;
@@ -415,67 +437,88 @@ public class RestConnection {
         }
     }
 
-    /**
-     * Perform an HTTP GET request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#get(java.lang.String)
      */
+    @Override
+    @Deprecated
     public Response get(String path) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.GET, null, response);
     }
 
-    /**
-     * Perform an HTTP POST request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @param json
-     *            POST data block to send with the request. May be null.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#get(com.sparkpost.resources.Endpoint)
      */
+    @Override
+    @Deprecated
+    public Response get(Endpoint endpoint) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.GET, null, response);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#post(java.lang.String, java.lang.String)
+     */
+    @Override
+    @Deprecated
     public Response post(String path, String json) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.POST, json, response);
     }
 
-    /**
-     * Perform an HTTP PUT request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @param json
-     *            PUT data block to send with the request. May be null.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#post(com.sparkpost.resources.Endpoint, java.lang.String)
      */
+    @Override
+    public Response post(Endpoint endpoint, String json) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.POST, json, response);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#put(java.lang.String, java.lang.String)
+     */
+    @Override
+    @Deprecated
     public Response put(String path, String json) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.PUT, json, response);
     }
 
-    /**
-     * Perform an HTTP DELETE request. This method throws an exception if the
-     * server returns anything else than a 200.
-     *
-     * @param path
-     *            API endpoint to send the request to.
-     * @return Server response to the request.
-     * @throws SparkPostException
-     *             if something goes wrong
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#put(com.sparkpost.resources.Endpoint, java.lang.String)
      */
+    @Override
+    public Response put(Endpoint endpoint, String json) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.PUT, json, response);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#delete(java.lang.String)
+     */
+    @Override
+    @Deprecated
     public Response delete(String path) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.DELETE, null, response);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#delete(com.sparkpost.resources.Endpoint)
+     */
+    @Override
+    public Response delete(Endpoint endpoint) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.DELETE, null, response);
     }
 }

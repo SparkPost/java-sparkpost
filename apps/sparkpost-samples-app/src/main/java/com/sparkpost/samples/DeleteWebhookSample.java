@@ -12,6 +12,7 @@ import com.sparkpost.model.Webhook;
 import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.sparkpost.resources.ResourceWebhooks;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -32,7 +33,7 @@ public class DeleteWebhookSample extends SparkPostBaseApp {
 
     private void runApp() throws SparkPostException, IOException {
         this.client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
         WebhookListAllResponse response = ResourceWebhooks.listAll(connection, "America/Chicago");
 
         int deletedCount = 0;

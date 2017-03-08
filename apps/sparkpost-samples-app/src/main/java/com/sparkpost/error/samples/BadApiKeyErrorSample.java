@@ -11,6 +11,7 @@ import com.sparkpost.exception.SparkPostAccessForbiddenException;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.resources.ResourceSendingDomains;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -32,7 +33,7 @@ public class BadApiKeyErrorSample extends SparkPostBaseApp {
     private void runApp() throws SparkPostException, IOException {
         this.client = this.newConfiguredClient();
         this.client.setAuthKey("This_is_a_bad_api_key");
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
         try {
             ResourceSendingDomains.list(connection);
 

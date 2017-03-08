@@ -32,6 +32,7 @@ import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sample.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -96,7 +97,7 @@ public class App extends SparkPostBaseApp {
 		transmission.setContentAttributes(contentAttributes);
 
 		// Send the Email
-		RestConnection connection = new RestConnection(sparkpostClient, getEndPoint());
+		IRestConnection connection = new RestConnection(sparkpostClient, getEndPoint());
 
 		Response response = ResourceTransmissions.create(connection, 0, transmission);
 		if (response.getResponseCode() == 200) {

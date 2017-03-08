@@ -9,7 +9,7 @@ import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.TransmissionCreateResponse;
 import com.sparkpost.model.responses.TransmissionListResponse;
 import com.sparkpost.model.responses.TransmissionRetrieveResults;
-import com.sparkpost.transport.RestConnection;
+import com.sparkpost.transport.IRestConnection;
 
 /**
  * Resource collection that is a 1-to-1 match to the Transmissions SparkPost
@@ -22,40 +22,44 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceTransmissions {
 
-    public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans) throws SparkPostException {
+    public static TransmissionCreateResponse create(IRestConnection conn, Integer numRcptErrors, TransmissionWithRecipientArray trans)
+            throws SparkPostException {
 
-        return createTransmission(conn, numRcptErrors, trans);
+        return ResourceTransmissions.createTransmission(conn, numRcptErrors, trans);
     }
 
-    public static TransmissionCreateResponse create(RestConnection conn, Integer numRcptErrors, TransmissionWithRecipientList trans) throws SparkPostException {
+    public static TransmissionCreateResponse create(IRestConnection conn, Integer numRcptErrors, TransmissionWithRecipientList trans)
+            throws SparkPostException {
 
-        return createTransmission(conn, numRcptErrors, trans);
+        return ResourceTransmissions.createTransmission(conn, numRcptErrors, trans);
     }
 
-    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(RestConnection conn, Integer numRcptErrors, T trans) throws SparkPostException {
+    private static <T extends TransmissionBase> TransmissionCreateResponse createTransmission(IRestConnection conn, Integer numRcptErrors, T trans)
+            throws SparkPostException {
 
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("num_rcpt_errors", numRcptErrors);
         String json = trans.toJson();
-        Response response = conn.post(ep.toString(), json);
+        Response response = conn.post(ep, json);
 
         TransmissionCreateResponse newResult = TransmissionCreateResponse.decode(response, TransmissionCreateResponse.class);
         return newResult;
     }
 
-    public static TransmissionRetrieveResults retrieve(RestConnection conn, String id) throws SparkPostException {
-        Response response = conn.get("transmissions/" + id);
+    public static TransmissionRetrieveResults retrieve(IRestConnection conn, String id) throws SparkPostException {
+        Endpoint ep = new Endpoint("transmissions/" + id);
+        Response response = conn.get(ep);
 
         TransmissionRetrieveResults newResult = TransmissionRetrieveResults.decode(response, TransmissionRetrieveResults.class);
         return newResult;
     }
 
-    public static TransmissionListResponse list(RestConnection conn, String campaignId, String templateId) throws SparkPostException {
+    public static TransmissionListResponse list(IRestConnection conn, String campaignId, String templateId) throws SparkPostException {
 
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("campaign_id", campaignId);
         ep.addParam("template_id", templateId);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
 
         TransmissionListResponse transmissionResponse = TransmissionListResponse.decode(response, TransmissionListResponse.class);
         return transmissionResponse;

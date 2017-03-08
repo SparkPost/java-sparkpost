@@ -6,7 +6,7 @@ import com.sparkpost.model.responses.CampaignListResponse;
 import com.sparkpost.model.responses.DeliverabiltyMetricsResponse;
 import com.sparkpost.model.responses.DomainListResponse;
 import com.sparkpost.model.responses.Response;
-import com.sparkpost.transport.RestConnection;
+import com.sparkpost.transport.IRestConnection;
 
 /**
  * Resource collection that is a 1-to-1 match to the Metrics SparkPost API.<br>
@@ -18,12 +18,13 @@ import com.sparkpost.transport.RestConnection;
  */
 public class ResourceMetrics {
 
-    public static Response getDiscoverabilityLinks(RestConnection conn) throws SparkPostException {
-        return conn.get("metrics/");
+    public static Response getDiscoverabilityLinks(IRestConnection conn) throws SparkPostException {
+        Endpoint ep = new Endpoint("metrics/");
+        return conn.get(ep);
     }
 
     public static DeliverabiltyMetricsResponse getDeliverabilityMetricsSummary(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -35,14 +36,14 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getDeliverabilityMetricsByDomain(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -56,7 +57,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/domain");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -64,7 +65,7 @@ public class ResourceMetrics {
     }
 
     public static DeliverabiltyMetricsResponse getDeliverabilityMetricsByCampaign(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -78,7 +79,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/campaign");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -86,7 +87,7 @@ public class ResourceMetrics {
     }
 
     public static DeliverabiltyMetricsResponse getDeliverabilityMetricsByTemplate(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -100,14 +101,14 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/template");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getDeliverabilityMetricsByWatchedDomain(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -121,14 +122,14 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/watched-domain");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getTimeSeriesMetrics(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -143,14 +144,14 @@ public class ResourceMetrics {
         ep.addParam("precision", precision);
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getBounceReasonMetrics(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -162,17 +163,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getBounceReasonMetricsByDomain(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -184,17 +184,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/bounce-reason/domain");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getBounceClassificationMetrics(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -206,17 +205,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/bounce-classification");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getRejectionReasonMetrics(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -227,17 +225,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getRejectionReasonMetricsByDomain(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -248,17 +245,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/rejection-reason/domain");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getDelayReasonMetrics(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -269,17 +265,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/delay-reason");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getDelayReasonMetricsByDomain(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -290,17 +285,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/delay-reason/domain");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
+        ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getEngagementDetails(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String timezone,
@@ -311,17 +305,16 @@ public class ResourceMetrics {
 
         Endpoint ep = new Endpoint("metrics/deliverability/link-name");
 
-        ep.addParam("limit", limit);
-        ep.addCommonParams(from, to, null, campaigns, templates, metrics, timezone, null, null);
+        ep.addCommonParams(from, to, null, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
     public static DeliverabiltyMetricsResponse getDeliveriesByAttempt(
-            RestConnection conn,
+            IRestConnection conn,
             String from,
             String to,
             String domains,
@@ -332,31 +325,31 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/attempt");
         ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
     }
 
-    public static CampaignListResponse getCampaignsList(RestConnection conn, String match, String limit) throws SparkPostException {
+    public static CampaignListResponse getCampaignsList(IRestConnection conn, String match, String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/campaigns");
         ep.addParam("match", match);
         ep.addParam("limit", limit);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         CampaignListResponse newResponse = CampaignListResponse.decode(response, CampaignListResponse.class);
 
         return newResponse;
     }
 
-    public static DomainListResponse getDomainsList(RestConnection conn, String match, String limit) throws SparkPostException {
+    public static DomainListResponse getDomainsList(IRestConnection conn, String match, String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("metrics/domains");
         ep.addParam("match", match);
         ep.addParam("limit", limit);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DomainListResponse newResponse = DomainListResponse.decode(response, DomainListResponse.class);
 
         return newResponse;

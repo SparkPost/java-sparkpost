@@ -21,6 +21,7 @@ import com.sparkpost.model.responses.TemplateCreateResponse;
 import com.sparkpost.model.responses.TemplatePreviewResponse;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -65,7 +66,7 @@ public class PreviewTemplateSample extends SparkPostBaseApp {
         content.setHtml(html);
         template.setContent(content);
 
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         try {
             TemplateCreateResponse response = ResourceTemplates.create(connection, template);
             String templateId = response.getResults().getId();
@@ -79,7 +80,7 @@ public class PreviewTemplateSample extends SparkPostBaseApp {
         }
     }
 
-    private void showTemplatePreview(String templateId, RestConnection connection) throws SparkPostException {
+    private void showTemplatePreview(String templateId, IRestConnection connection) throws SparkPostException {
         TemplateSubstitutionData substitutionData = new TemplateSubstitutionData();
 
         TemplatePreviewResponse response = ResourceTemplates.preview(connection, templateId, true, substitutionData);

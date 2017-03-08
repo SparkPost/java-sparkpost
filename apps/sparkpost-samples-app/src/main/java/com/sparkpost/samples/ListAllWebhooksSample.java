@@ -11,6 +11,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.responses.WebhookListAllResponse;
 import com.sparkpost.resources.ResourceWebhooks;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -31,7 +32,7 @@ public class ListAllWebhooksSample extends SparkPostBaseApp {
 
     private void runApp() throws SparkPostException, IOException {
         client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(client, getEndPoint());
+        IRestConnection connection = new RestConnection(client, getEndPoint());
         WebhookListAllResponse response = ResourceWebhooks.listAll(connection, "America/Chicago");
         System.out.println("Webhooks: " + response);
 

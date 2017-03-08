@@ -12,6 +12,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.Webhook;
 import com.sparkpost.resources.ResourceWebhooks;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 public class ForceTransportError extends SparkPostBaseApp {
@@ -41,7 +42,7 @@ public class ForceTransportError extends SparkPostBaseApp {
     private void foceFourHundredError() throws SparkPostException, IOException {
         this.client = this.newConfiguredClient();
 
-        RestConnection restConnection = new RestConnection(this.client);
+        IRestConnection restConnection = new RestConnection(this.client);
         Webhook webhook = new Webhook();
         webhook.setName("name with spaces");
         try {

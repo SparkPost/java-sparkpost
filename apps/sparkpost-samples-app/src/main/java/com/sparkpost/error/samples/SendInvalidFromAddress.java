@@ -20,6 +20,7 @@ import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.model.responses.ServerErrorResponse;
 import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 public class SendInvalidFromAddress extends SparkPostBaseApp {
@@ -75,7 +76,7 @@ public class SendInvalidFromAddress extends SparkPostBaseApp {
 
         // Send the Email
         try {
-            RestConnection connection = new RestConnection(this.client, getEndPoint());
+            IRestConnection connection = new RestConnection(this.client, getEndPoint());
             ResourceTransmissions.create(connection, 0, transmission);
 
             throw new IllegalStateException("Error: Expected Exception for invalid to address");

@@ -17,6 +17,7 @@ import com.sparkpost.model.TransmissionWithRecipientArray;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 public class SendEmailBCCSample extends SparkPostBaseApp {
@@ -79,7 +80,7 @@ public class SendEmailBCCSample extends SparkPostBaseApp {
         transmission.setContentAttributes(contentAttributes);
 
         // Send the Email
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
         Response response = ResourceTransmissions.create(connection, 0, transmission);
 
         logger.debug("Transmission Response: " + response);

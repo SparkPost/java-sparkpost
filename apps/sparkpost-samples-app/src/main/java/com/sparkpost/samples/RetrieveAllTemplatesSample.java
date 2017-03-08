@@ -14,6 +14,7 @@ import com.sparkpost.model.responses.TemplateListResponse;
 import com.sparkpost.model.responses.TemplateRetrieveResponse;
 import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
+import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
 
 /**
@@ -34,7 +35,7 @@ public class RetrieveAllTemplatesSample extends SparkPostBaseApp {
 
     private void runApp() throws SparkPostException, IOException {
         this.client = this.newConfiguredClient();
-        RestConnection connection = new RestConnection(this.client, getEndPoint());
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
         TemplateListResponse listResponse = ResourceTemplates.listAll(connection);
 
         List<TemplateItem> results = listResponse.getResults();

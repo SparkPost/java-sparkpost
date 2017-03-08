@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.sparkpost</groupId>
 		<artifactId>apps</artifactId>
-		<version>0.16.2</version>
+		<version>0.17</version>
 	</parent>
 	<groupId>com.sparkpost.sample</groupId>
 	<artifactId>sparkpost-javamail-app</artifactId>
