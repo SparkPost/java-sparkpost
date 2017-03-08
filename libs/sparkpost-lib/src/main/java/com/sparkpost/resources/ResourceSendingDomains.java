@@ -23,20 +23,20 @@ public class ResourceSendingDomains {
 
         String json = domain.toJson();
         Endpoint ep = new Endpoint("sending-domains");
-        Response response = conn.post(ep.toString(), json);
+        Response response = conn.post(ep, json);
         return response;
     }
 
     public static Response retrieve(IRestConnection conn, String domainName) throws SparkPostException {
 
         Endpoint ep = new Endpoint("sending-domains/" + domainName);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         return response;
     }
 
     public static Response list(IRestConnection conn) throws SparkPostException {
         Endpoint ep = new Endpoint("sending-domains/");
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         return response;
     }
 
@@ -44,7 +44,7 @@ public class ResourceSendingDomains {
 
         String json = domain.toJson();
         Endpoint ep = new Endpoint("sending-domains/" + domainName);
-        Response response = conn.put(ep.toString(), json);
+        Response response = conn.put(ep, json);
         return response;
     }
 
@@ -52,7 +52,7 @@ public class ResourceSendingDomains {
 
         String json = verify.toJson();
         Endpoint ep = new Endpoint("sending-domains/" + domainName + "/verify");
-        Response response = conn.post(ep.toString(), json);
+        Response response = conn.post(ep, json);
         return response;
     }
 }

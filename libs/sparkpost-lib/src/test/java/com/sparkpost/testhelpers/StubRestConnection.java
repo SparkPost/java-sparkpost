@@ -3,11 +3,14 @@ package com.sparkpost.testhelpers;
 
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.resources.Endpoint;
 import com.sparkpost.transport.IRestConnection;
 
 public class StubRestConnection implements IRestConnection {
 
     private String path;
+
+    private Endpoint endpoint;
 
     private String json;
 
@@ -56,12 +59,57 @@ public class StubRestConnection implements IRestConnection {
         return this.response;
     }
 
+    @Override
+    public Response get(Endpoint endpoint) throws SparkPostException {
+        this.endpoint = endpoint;
+        this.wasGet = true;
+        return this.response;
+    }
+
+    @Override
+    public Response post(Endpoint endpoint, String json) throws SparkPostException {
+        this.endpoint = endpoint;
+        this.wasPost = true;
+        this.json = json;
+        return this.response;
+    }
+
+    @Override
+    public Response put(Endpoint endpoint, String json) throws SparkPostException {
+        this.endpoint = endpoint;
+        this.wasPut = true;
+        this.json = json;
+        return this.response;
+    }
+
+    @Override
+    public Response delete(Endpoint endpoint) throws SparkPostException {
+        this.endpoint = endpoint;
+        this.wasDelete = true;
+        return this.response;
+    }
+
     public String getPath() {
         return this.path;
     }
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Endpoint getEndpoint() {
+        return this.endpoint;
+    }
+
+    public void setEndpoint(Endpoint endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    public String getRequestUri() {
+        if (this.endpoint != null && this.endpoint.toString() != null) {
+            return this.endpoint.toString();
+        }
+        return this.path;
     }
 
     public String getJson() {

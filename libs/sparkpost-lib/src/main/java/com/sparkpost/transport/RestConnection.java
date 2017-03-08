@@ -24,6 +24,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.exception.SparkPostIllegalServerResponseException;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.ServerErrorResponses;
+import com.sparkpost.resources.Endpoint;
 
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
@@ -393,6 +394,29 @@ public class RestConnection implements IRestConnection {
 
     // This method actually performs the HTTP request
     // It is called by get(), put(), post() and delete() below
+    private Response doHttpMethod(Endpoint endpoint, Method method, String data, Response response) throws SparkPostException {
+        HttpURLConnection conn = null;
+        try {
+            String path = endpoint.toString();
+            response.setRequest(path);
+            conn = createConnectionObject(path, method);
+            sendRequest(conn, data, response);
+            receiveResponse(conn, response);
+
+            if (logger.isDebugEnabled()) {
+                logger.debug("Server Response:" + response);
+            }
+
+            return response;
+        } finally {
+            if (conn != null) {
+                conn.disconnect();
+            }
+        }
+    }
+
+    // This method actually performs the HTTP request
+    // It is called by get(), put(), post() and delete() below
     private Response doHttpMethod(String path, Method method, String data, Response response) throws SparkPostException {
         HttpURLConnection conn = null;
         try {
@@ -418,6 +442,7 @@ public class RestConnection implements IRestConnection {
      * @see com.sparkpost.transport.IRestConnection#get(java.lang.String)
      */
     @Override
+    @Deprecated
     public Response get(String path) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.GET, null, response);
@@ -425,9 +450,21 @@ public class RestConnection implements IRestConnection {
 
     /*
      * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#get(com.sparkpost.resources.Endpoint)
+     */
+    @Override
+    @Deprecated
+    public Response get(Endpoint endpoint) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.GET, null, response);
+    }
+
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#post(java.lang.String, java.lang.String)
      */
     @Override
+    @Deprecated
     public Response post(String path, String json) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.POST, json, response);
@@ -435,9 +472,20 @@ public class RestConnection implements IRestConnection {
 
     /*
      * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#post(com.sparkpost.resources.Endpoint, java.lang.String)
+     */
+    @Override
+    public Response post(Endpoint endpoint, String json) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.POST, json, response);
+    }
+
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#put(java.lang.String, java.lang.String)
      */
     @Override
+    @Deprecated
     public Response put(String path, String json) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.PUT, json, response);
@@ -445,11 +493,32 @@ public class RestConnection implements IRestConnection {
 
     /*
      * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#put(com.sparkpost.resources.Endpoint, java.lang.String)
+     */
+    @Override
+    public Response put(Endpoint endpoint, String json) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.PUT, json, response);
+    }
+
+    /*
+     * (non-Javadoc)
      * @see com.sparkpost.transport.IRestConnection#delete(java.lang.String)
      */
     @Override
+    @Deprecated
     public Response delete(String path) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(path, Method.DELETE, null, response);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.sparkpost.transport.IRestConnection#delete(com.sparkpost.resources.Endpoint)
+     */
+    @Override
+    public Response delete(Endpoint endpoint) throws SparkPostException {
+        Response response = new Response();
+        return doHttpMethod(endpoint, Method.DELETE, null, response);
     }
 }

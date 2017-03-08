@@ -73,7 +73,7 @@ public class ResourceRecipientListsTests extends BaseResourceTest {
         Response response = ResourceRecipientLists.create(conn, maxNumberOfRecipientErrors, recipientList);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/recipient-lists?num_rcpt_errors=0");
+        Assert.assertEquals(conn.getRequestUri(), "/recipient-lists?num_rcpt_errors=0");
         verifyWasPost(conn);
     }
 
@@ -85,7 +85,7 @@ public class ResourceRecipientListsTests extends BaseResourceTest {
         Response response = ResourceRecipientLists.retrieve(conn, recipientListId, Boolean.TRUE);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/recipient-lists/recipientListId?show_recipients=true");
+        Assert.assertEquals(conn.getRequestUri(), "/recipient-lists/recipientListId?show_recipients=true");
         verifyWasGet(conn);
     }
 
@@ -95,7 +95,7 @@ public class ResourceRecipientListsTests extends BaseResourceTest {
         Response response = ResourceRecipientLists.listAll(conn);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/recipient-lists");
+        Assert.assertEquals(conn.getRequestUri(), "/recipient-lists");
         verifyWasGet(conn);
     }
 
@@ -107,7 +107,7 @@ public class ResourceRecipientListsTests extends BaseResourceTest {
         Response response = ResourceRecipientLists.delete(conn, recipientListId);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/recipient-lists/recipientListId");
+        Assert.assertEquals(conn.getRequestUri(), "/recipient-lists/recipientListId");
         verifyWasDelete(conn);
     }
 

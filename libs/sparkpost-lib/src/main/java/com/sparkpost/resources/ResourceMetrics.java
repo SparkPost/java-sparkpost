@@ -20,7 +20,7 @@ public class ResourceMetrics {
 
     public static Response getDiscoverabilityLinks(IRestConnection conn) throws SparkPostException {
         Endpoint ep = new Endpoint("metrics/");
-        return conn.get(ep.toString());
+        return conn.get(ep);
     }
 
     public static DeliverabiltyMetricsResponse getDeliverabilityMetricsSummary(
@@ -36,7 +36,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -57,7 +57,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/domain");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -79,7 +79,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/campaign");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -101,7 +101,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/template");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -122,7 +122,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/watched-domain");
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -144,7 +144,7 @@ public class ResourceMetrics {
         ep.addParam("precision", precision);
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, null, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -165,7 +165,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -186,7 +186,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -207,7 +207,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -227,7 +227,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -247,7 +247,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -267,7 +267,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -287,7 +287,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -307,7 +307,7 @@ public class ResourceMetrics {
 
         ep.addCommonParams(from, to, null, campaigns, templates, metrics, timezone, limit, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -325,7 +325,7 @@ public class ResourceMetrics {
         Endpoint ep = new Endpoint("metrics/deliverability/attempt");
         ep.addCommonParams(from, to, domains, campaigns, templates, null, timezone, null, null);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DeliverabiltyMetricsResponse newResponse = DeliverabiltyMetricsResponse.decode(response, DeliverabiltyMetricsResponse.class);
 
         return newResponse;
@@ -337,7 +337,7 @@ public class ResourceMetrics {
         ep.addParam("match", match);
         ep.addParam("limit", limit);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         CampaignListResponse newResponse = CampaignListResponse.decode(response, CampaignListResponse.class);
 
         return newResponse;
@@ -349,7 +349,7 @@ public class ResourceMetrics {
         ep.addParam("match", match);
         ep.addParam("limit", limit);
 
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         DomainListResponse newResponse = DomainListResponse.decode(response, DomainListResponse.class);
 
         return newResponse;

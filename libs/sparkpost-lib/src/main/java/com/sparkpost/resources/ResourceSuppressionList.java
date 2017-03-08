@@ -26,7 +26,7 @@ public class ResourceSuppressionList {
 
         String json = copy.toJson();
         Endpoint ep = new Endpoint("suppression-list/" + email);
-        Response response = conn.put(ep.toString(), json);
+        Response response = conn.put(ep, json);
         return response;
     }
 
@@ -34,7 +34,7 @@ public class ResourceSuppressionList {
 
         String json = suppressionList.toJson();
         Endpoint ep = new Endpoint("suppression-list/");
-        return conn.put(ep.toString(), json);
+        return conn.put(ep, json);
     }
 
     public static Response search(IRestConnection conn, String to, String from, String types, String limit) throws SparkPostException {
@@ -44,20 +44,20 @@ public class ResourceSuppressionList {
         ep.addParam("from", from);
         ep.addParam("types", types);
         ep.addParam("limit", limit);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         return response;
     }
 
     public static Response check(IRestConnection conn, String email) throws SparkPostException {
 
         Endpoint ep = new Endpoint("suppression-list/" + email);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         return response;
     }
 
     public static Response remove(IRestConnection conn, String email) throws SparkPostException {
         Endpoint ep = new Endpoint("suppression-list/" + email);
-        Response response = conn.delete(ep.toString());
+        Response response = conn.delete(ep);
         return response;
     }
 }

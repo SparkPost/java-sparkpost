@@ -57,7 +57,7 @@ public class ResourceSendingDomainsTests extends BaseResourceTest {
         Response response = ResourceSendingDomains.create(conn, sendingDomain);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/sending-domains");
+        Assert.assertEquals(conn.getRequestUri(), "/sending-domains");
         verifyWasPost(conn);
     }
 
@@ -69,7 +69,7 @@ public class ResourceSendingDomainsTests extends BaseResourceTest {
         Response response = ResourceSendingDomains.retrieve(conn, domainName);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/sending-domains/" + domainName);
+        Assert.assertEquals(conn.getRequestUri(), "/sending-domains/" + domainName);
         verifyWasGet(conn);
     }
 
@@ -82,7 +82,7 @@ public class ResourceSendingDomainsTests extends BaseResourceTest {
         Response response = ResourceSendingDomains.update(conn, domainName, sendingDomain);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/sending-domains/" + domainName);
+        Assert.assertEquals(conn.getRequestUri(), "/sending-domains/" + domainName);
         verifyWasPut(conn);
     }
 
@@ -95,7 +95,7 @@ public class ResourceSendingDomainsTests extends BaseResourceTest {
         Response response = ResourceSendingDomains.verify(conn, domainName, verifyAttributes);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/sending-domains/" + domainName + "/verify");
+        Assert.assertEquals(conn.getRequestUri(), "/sending-domains/" + domainName + "/verify");
         verifyWasPost(conn);
     }
 

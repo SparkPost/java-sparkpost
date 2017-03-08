@@ -75,7 +75,7 @@ public class ResourceTransmissionsTests extends BaseResourceTest {
         Response response = ResourceTransmissions.create(conn, numRcptErrors, trans);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/transmissions?num_rcpt_errors=0");
+        Assert.assertEquals(conn.getRequestUri(), "/transmissions?num_rcpt_errors=0");
         verifyWasPost(conn);
     }
 
@@ -88,7 +88,7 @@ public class ResourceTransmissionsTests extends BaseResourceTest {
         Response response = ResourceTransmissions.create(conn, numRcptErrors, trans);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/transmissions?num_rcpt_errors=0");
+        Assert.assertEquals(conn.getRequestUri(), "/transmissions?num_rcpt_errors=0");
         verifyWasPost(conn);
     }
 
@@ -100,7 +100,7 @@ public class ResourceTransmissionsTests extends BaseResourceTest {
         Response response = ResourceTransmissions.retrieve(conn, id);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/transmissions/" + id);
+        Assert.assertEquals(conn.getRequestUri(), "/transmissions/" + id);
         verifyWasGet(conn);
     }
 
@@ -113,7 +113,7 @@ public class ResourceTransmissionsTests extends BaseResourceTest {
         Response response = ResourceTransmissions.list(conn, campaignId, templateId);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/transmissions?campaign_id=campaignId&template_id=templateId");
+        Assert.assertEquals(conn.getRequestUri(), "/transmissions?campaign_id=campaignId&template_id=templateId");
         verifyWasGet(conn);
     }
 

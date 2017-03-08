@@ -24,7 +24,7 @@ public class ResourceWebhooks {
 
     public static Response listSampleValuesAndEvents(IRestConnection conn) throws SparkPostException {
         Endpoint ep = new Endpoint("webhooks/events/documentation");
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         return response;
     }
 
@@ -32,7 +32,7 @@ public class ResourceWebhooks {
 
         Endpoint ep = new Endpoint("webhooks/events/samples");
         ep.addParam("events", events);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         return response;
     }
 
@@ -44,7 +44,7 @@ public class ResourceWebhooks {
 
         Endpoint ep = new Endpoint("webhooks");
         ep.addParam("timezone", timezone);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         WebhookListAllResponse allWebhooks = WebhookListAllResponse.decode(response, WebhookListAllResponse.class);
         return allWebhooks;
     }
@@ -53,7 +53,7 @@ public class ResourceWebhooks {
 
         String json = webhook.toJson();
         Endpoint ep = new Endpoint("webhooks");
-        Response response = conn.post(ep.toString(), json);
+        Response response = conn.post(ep, json);
         WebhookIdContainerResponse webhookIdContainerResponse = WebhookIdContainerResponse.decode(response, WebhookIdContainerResponse.class);
         return webhookIdContainerResponse;
     }
@@ -66,7 +66,7 @@ public class ResourceWebhooks {
 
         Endpoint ep = new Endpoint("webhooks/" + id);
         ep.addParam("timezone", timezone);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         WebhookDescribeResponse webhookDescribeResponse = WebhookDescribeResponse.decode(response, WebhookDescribeResponse.class);
         return webhookDescribeResponse;
     }
@@ -75,7 +75,7 @@ public class ResourceWebhooks {
 
         String json = webhookDescription.toJson(WebhookDescription.class);
         Endpoint ep = new Endpoint("webhooks/" + id);
-        Response response = conn.put(ep.toString(), json);
+        Response response = conn.put(ep, json);
         WebhookIdContainerResponse webhookIdContainerResponse = WebhookIdContainerResponse.decode(response, WebhookIdContainerResponse.class);
         return webhookIdContainerResponse;
     }
@@ -83,7 +83,7 @@ public class ResourceWebhooks {
     public static Response delete(IRestConnection conn, String id) throws SparkPostException {
 
         Endpoint ep = new Endpoint("webhooks/" + id);
-        Response response = conn.delete(ep.toString());
+        Response response = conn.delete(ep);
         return response;
     }
 }

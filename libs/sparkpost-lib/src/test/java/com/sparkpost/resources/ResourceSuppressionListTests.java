@@ -58,7 +58,7 @@ public class ResourceSuppressionListTests extends BaseResourceTest {
         Response response = ResourceSuppressionList.insertOrUpdate(conn, email, entry);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/suppression-list/" + email);
+        Assert.assertEquals(conn.getRequestUri(), "/suppression-list/" + email);
         verifyWasPut(conn);
     }
 
@@ -70,7 +70,7 @@ public class ResourceSuppressionListTests extends BaseResourceTest {
         Response response = ResourceSuppressionList.insertOrUpdateBulk(conn, suppressionList);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/suppression-list/");
+        Assert.assertEquals(conn.getRequestUri(), "/suppression-list/");
         verifyWasPut(conn);
     }
 
@@ -85,7 +85,7 @@ public class ResourceSuppressionListTests extends BaseResourceTest {
         Response response = ResourceSuppressionList.search(conn, to, from, types, limit);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/suppression-list?to=to&from=from&types=types&limit=limit");
+        Assert.assertEquals(conn.getRequestUri(), "/suppression-list?to=to&from=from&types=types&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -97,7 +97,7 @@ public class ResourceSuppressionListTests extends BaseResourceTest {
         Response response = ResourceSuppressionList.check(conn, email);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/suppression-list/" + email);
+        Assert.assertEquals(conn.getRequestUri(), "/suppression-list/" + email);
         verifyWasGet(conn);
     }
 
@@ -109,7 +109,7 @@ public class ResourceSuppressionListTests extends BaseResourceTest {
         Response response = ResourceSuppressionList.remove(conn, email);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/suppression-list/" + email);
+        Assert.assertEquals(conn.getRequestUri(), "/suppression-list/" + email);
         verifyWasDelete(conn);
     }
 

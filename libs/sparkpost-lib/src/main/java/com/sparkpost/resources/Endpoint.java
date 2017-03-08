@@ -5,8 +5,6 @@ import org.apache.http.client.utils.URIBuilder;
 
 /**
  * Used internally to the SparkPost Library to write URL queries.
- *
- * @author grava
  */
 public class Endpoint {
 

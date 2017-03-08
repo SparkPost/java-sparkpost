@@ -40,7 +40,7 @@ public class ResourceTransmissions {
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("num_rcpt_errors", numRcptErrors);
         String json = trans.toJson();
-        Response response = conn.post(ep.toString(), json);
+        Response response = conn.post(ep, json);
 
         TransmissionCreateResponse newResult = TransmissionCreateResponse.decode(response, TransmissionCreateResponse.class);
         return newResult;
@@ -48,7 +48,7 @@ public class ResourceTransmissions {
 
     public static TransmissionRetrieveResults retrieve(IRestConnection conn, String id) throws SparkPostException {
         Endpoint ep = new Endpoint("transmissions/" + id);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
 
         TransmissionRetrieveResults newResult = TransmissionRetrieveResults.decode(response, TransmissionRetrieveResults.class);
         return newResult;
@@ -59,7 +59,7 @@ public class ResourceTransmissions {
         Endpoint ep = new Endpoint("transmissions");
         ep.addParam("campaign_id", campaignId);
         ep.addParam("template_id", templateId);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
 
         TransmissionListResponse transmissionResponse = TransmissionListResponse.decode(response, TransmissionListResponse.class);
         return transmissionResponse;

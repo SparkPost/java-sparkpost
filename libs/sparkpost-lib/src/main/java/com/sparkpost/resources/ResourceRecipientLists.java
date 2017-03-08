@@ -24,14 +24,14 @@ public class ResourceRecipientLists {
         String json = recipientList.toJson();
         Endpoint ep = new Endpoint("recipient-lists");
         ep.addParam("num_rcpt_errors", maxNumberOfRecipientErrors);
-        Response response = conn.post(ep.toString(), json);
+        Response response = conn.post(ep, json);
         return response;
     }
 
     public static RecipientListRetrieveResponse retrieve(IRestConnection conn, String recipientListId, Boolean showRecipients) throws SparkPostException {
         Endpoint ep = new Endpoint("recipient-lists/" + recipientListId);
         ep.addParam("show_recipients", showRecipients);
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
 
         RecipientListRetrieveResponse retrieveResponse = RecipientListRetrieveResponse.decode(response, RecipientListRetrieveResponse.class);
         return retrieveResponse;
@@ -39,14 +39,14 @@ public class ResourceRecipientLists {
 
     public static RecipientListsListAllResponse listAll(IRestConnection conn) throws SparkPostException {
         Endpoint ep = new Endpoint("recipient-lists");
-        Response response = conn.get(ep.toString());
+        Response response = conn.get(ep);
         RecipientListsListAllResponse listResponse = RecipientListsListAllResponse.decode(response, RecipientListsListAllResponse.class);
         return listResponse;
     }
 
     public static Response delete(IRestConnection conn, String recipientListId) throws SparkPostException {
         Endpoint ep = new Endpoint("recipient-lists/" + recipientListId);
-        Response response = conn.delete(ep.toString());
+        Response response = conn.delete(ep);
         return response;
     }
 }

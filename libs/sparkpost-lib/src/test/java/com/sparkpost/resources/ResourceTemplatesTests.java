@@ -89,7 +89,7 @@ public class ResourceTemplatesTests extends BaseResourceTest {
         Response response = ResourceTemplates.create(conn, tpl);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/templates");
+        Assert.assertEquals(conn.getRequestUri(), "/templates");
         verifyWasPost(conn);
     }
 
@@ -102,7 +102,7 @@ public class ResourceTemplatesTests extends BaseResourceTest {
         Response response = ResourceTemplates.retrieve(conn, id, draft);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/templates/id?draft=true");
+        Assert.assertEquals(conn.getRequestUri(), "/templates/id?draft=true");
         verifyWasGet(conn);
     }
 
@@ -113,7 +113,7 @@ public class ResourceTemplatesTests extends BaseResourceTest {
         Response response = ResourceTemplates.listAll(conn);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/templates/");
+        Assert.assertEquals(conn.getRequestUri(), "/templates/");
         verifyWasGet(conn);
     }
 
@@ -127,7 +127,7 @@ public class ResourceTemplatesTests extends BaseResourceTest {
         Response response = ResourceTemplates.update(conn, id, updatePublished, tpl);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/templates/id?update_published=true");
+        Assert.assertEquals(conn.getRequestUri(), "/templates/id?update_published=true");
         verifyWasPut(conn);
     }
 
@@ -141,7 +141,7 @@ public class ResourceTemplatesTests extends BaseResourceTest {
         Response response = ResourceTemplates.preview(conn, id, draft, subst);
         Assert.assertNotNull(response);
 
-        Assert.assertEquals(conn.getPath(), "/templates/" + id + "/preview?draft=true");
+        Assert.assertEquals(conn.getRequestUri(), "/templates/" + id + "/preview?draft=true");
         verifyWasPost(conn);
     }
 
@@ -153,8 +153,8 @@ public class ResourceTemplatesTests extends BaseResourceTest {
         Response response = ResourceTemplates.delete(conn, id);
         Assert.assertNotNull(response);
 
-        System.out.println(conn.getPath());
-        Assert.assertEquals(conn.getPath(), "/templates/" + id);
+        System.out.println(conn.getRequestUri());
+        Assert.assertEquals(conn.getRequestUri(), "/templates/" + id);
         verifyWasDelete(conn);
     }
 
