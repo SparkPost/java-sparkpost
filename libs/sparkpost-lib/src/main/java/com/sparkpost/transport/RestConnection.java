@@ -63,13 +63,14 @@ public class RestConnection implements IRestConnection {
      * @param client
      *            Client object to use (in particular for authentication info)
      * @throws SparkPostException
+     *             if something goes wrong
      */
     public RestConnection(Client client) throws SparkPostException {
         this(client, "" /* means:set to default endpoint */);
     }
 
     /**
-     * Create a REST connection object. The given {@link endpoint} will be used
+     * Create a REST connection object. The given baseUrl will be used
      * for connections
      *
      * @param client
@@ -77,6 +78,7 @@ public class RestConnection implements IRestConnection {
      * @param baseUrl
      *            Endpoint to use instead of the default defaultApiEndpoint
      * @throws SparkPostException
+     *             if something goes wrong
      */
     public RestConnection(Client client, String baseUrl) throws SparkPostException {
 
@@ -102,6 +104,7 @@ public class RestConnection implements IRestConnection {
      *            HTTP method for the connection
      * @return the connection object
      * @throws SparkPostException
+     *             if something goes wrong
      */
     private HttpURLConnection createConnectionObject(String path, Method method) throws SparkPostException {
         HttpURLConnection conn;
