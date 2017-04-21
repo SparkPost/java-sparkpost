@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.AddressAttributes;
+import com.sparkpost.model.OptionsAttributes;
 import com.sparkpost.model.RecipientAttributes;
 import com.sparkpost.model.TemplateContentAttributes;
 import com.sparkpost.model.TransmissionWithRecipientArray;
@@ -110,6 +111,12 @@ public class Client {
         contentAttributes.setHtml(html);
         contentAttributes.setText(text);
         transmission.setContentAttributes(contentAttributes);
+
+        if (from.toLowerCase().contains("@sparkpostbox.com")) {
+            OptionsAttributes options = new OptionsAttributes();
+            options.setSandbox(true);
+            transmission.setOptions(options);
+        }
 
         RestConnection connection = new RestConnection(this);
         Response response = ResourceTransmissions.create(connection, 0, transmission);
