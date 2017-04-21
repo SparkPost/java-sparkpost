@@ -1,0 +1,1 @@
+Rendered code goes in the `gen` directory.
