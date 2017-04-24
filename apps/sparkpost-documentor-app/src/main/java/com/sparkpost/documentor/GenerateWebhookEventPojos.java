@@ -64,20 +64,25 @@ public class GenerateWebhookEventPojos {
         builder.append("import java.util.List;\n");
         builder.append("import java.util.Map;\n");
         builder.append("import com.yepher.jsondoc.annotations.Description;\n");
-
+        builder.append("import com.google.gson.annotations.SerializedName;\n");
+        builder.append("import com.sparkpost.model.Base;\n");
         builder.append("import lombok.Data;\n");
         builder.append("import lombok.EqualsAndHashCode;\n");
 
         builder.append("\n\n/**\n").append(eventInfo.optString("description").trim()).append("\n*/\n\n");
         builder.append("@Data\n");
-        builder.append("@EqualsAndHashCode()\n");
-        builder.append("public class " + convertToCamelCase(eventInfo.getString("display_name"), true) + "Event {\n\n");
+        builder.append("@EqualsAndHashCode(callSuper = true)\n");
+        builder.append("public class " + convertToCamelCase(eventInfo.getString("display_name"), true) + "Event  extends Base {\n\n");
 
         JSONObject fields = eventInfo.getJSONObject("event");
         Set<String> fieldNames = fields.keySet();
 
         for (String fieldName : fieldNames) {
             JSONObject field = fields.getJSONObject(fieldName);
+
+            if (fieldName.contains("_")) {
+                builder.append("\t@SerializedName(\"" + fieldName + "\")\n");
+            }
 
             //@Description(
             //        value = "A suppression list - or exclusion list, as it is sometimes called - stores a recipient's opt-out preferences.",
