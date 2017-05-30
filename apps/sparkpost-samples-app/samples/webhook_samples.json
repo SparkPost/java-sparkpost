@@ -1,0 +1,359 @@
+[
+  {
+    "msys": {
+      "message_event": {
+        "template_id": "template_120632847835523516",
+        "routing_domain": "example.com",
+        "num_retries": "0",
+        "event_id": "120632847947746861",
+        "customer_id": "1521",
+        "rcpt_meta": {},
+        "timestamp": "1496154610",
+        "ip_pool": "shared",
+        "friendly_from": "test@test.example.com",
+        "ip_address": "74.125.28.27",
+        "rcpt_to": "test@example.com",
+        "msg_size": "2911",
+        "rcpt_tags": [],
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "type": "delivery",
+        "sending_ip": "52.39.182.248",
+        "campaign_id": "test",
+        "queue_time": "366",
+        "template_version": "0",
+        "delv_method": "esmtp",
+        "subject": "My Subject Value",
+        "message_id": "0006f2812d59b5a6a1dc",
+        "transmission_id": "120632847835523516",
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "track_event": {
+        "customer_id": "1521",
+        "user_agent": "Mozilla/5.0 (Windows NT 5.1; rv:11.0) Gecko Firefox/11.0 (via ggpht.com GoogleImageProxy)",
+        "template_id": "template_120632847835523516",
+        "rcpt_to": "test@example.com",
+        "type": "open",
+        "ip_address": "66.102.6.159",
+        "ip_pool": "shared",
+        "timestamp": "1496154625",
+        "sending_ip": "52.39.26.144",
+        "message_id": "0006f2812d59b5a69edc",
+        "template_version": "0",
+        "rcpt_tags": [],
+        "rcpt_meta": {},
+        "campaign_id": "test",
+        "transmission_id": "120632847835523516",
+        "delv_method": "esmtp",
+        "event_id": "30565043016610442",
+        "friendly_from": "test@test.example.com",
+        "routing_domain": "example.com",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "msg_size": "2903",
+        "subject": "My Subject Value",
+        "geo_ip": {
+          "country": "US",
+          "region": "CA",
+          "city": "Mountain View",
+          "latitude": 37.4192,
+          "longitude": -122.0574
+        },
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "ip_address": "173.194.219.27",
+        "sending_ip": "52.39.26.144",
+        "template_id": "template_120632847835523516",
+        "ip_pool": "shared",
+        "routing_domain": "example.com",
+        "timestamp": "1496154611",
+        "num_retries": "0",
+        "customer_id": "1521",
+        "message_id": "0006f2812d59b5a69edc",
+        "queue_time": "1282",
+        "template_version": "0",
+        "rcpt_to": "test@example.com",
+        "event_id": "120632847947747682",
+        "delv_method": "esmtp",
+        "subject": "My Subject Value",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "campaign_id": "test",
+        "rcpt_tags": [],
+        "rcpt_meta": {},
+        "type": "delivery",
+        "friendly_from": "test@test.example.com",
+        "msg_size": "2903",
+        "transmission_id": "120632847835523516",
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+   {
+    "msys": {
+      "track_event": {
+        "message_id": "0006f2812d59b5a6a1dc",
+        "customer_id": "1521",
+        "user_agent": "Mozilla/5.0 (Windows NT 5.1; rv:11.0) Gecko Firefox/11.0 (via ggpht.com GoogleImageProxy)",
+        "template_id": "template_120632847835523516",
+        "template_version": "0",
+        "type": "open",
+        "ip_pool": "shared",
+        "rcpt_to": "test@example.com",
+        "event_id": "120632847947757453",
+        "rcpt_meta": {},
+        "transmission_id": "120632847835523516",
+        "rcpt_tags": [],
+        "delv_method": "esmtp",
+        "sending_ip": "52.39.182.248",
+        "timestamp": "1496154625",
+        "campaign_id": "test",
+        "ip_address": "127.0.0.1",
+        "routing_domain": "example.com",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "subject": "My Subject Value",
+        "msg_size": "2911",
+        "friendly_from": "test@test.example.com",
+        "geo_ip": {
+          "country": "US",
+          "region": "CA",
+          "city": "Mountain View",
+          "latitude": 37.4192,
+          "longitude": -122.0574
+        },
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "friendly_from": "test@test.example.com",
+        "routing_domain": "example.com",
+        "event_id": "120632847947746465",
+        "template_id": "template_120632847835523516",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "sending_ip": "52.39.26.144",
+        "customer_id": "1521",
+        "message_id": "0006f2812d59b5a69edc",
+        "rcpt_to": "test@example.com",
+        "campaign_id": "test",
+        "rcpt_tags": [],
+        "msg_size": "2903",
+        "subject": "My Subject Value",
+        "rcpt_meta": {},
+        "type": "injection",
+        "transmission_id": "120632847835523516",
+        "ip_pool": "shared",
+        "timestamp": "1496154610",
+        "template_version": "0",
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "ip_pool": "shared",
+        "event_id": "120632847947746472",
+        "rcpt_to": "test@example.com",
+        "routing_domain": "example.com",
+        "sending_ip": "52.39.182.248",
+        "rcpt_tags": [],
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "message_id": "0006f2812d59b5a6a1dc",
+        "customer_id": "1521",
+        "rcpt_meta": {},
+        "campaign_id": "test",
+        "subject": "My Subject Value",
+        "template_id": "template_120632847835523516",
+        "transmission_id": "120632847835523516",
+        "type": "injection",
+        "msg_size": "2911",
+        "template_version": "0",
+        "friendly_from": "test@test.example.com",
+        "timestamp": "1496154610",
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+   {
+    "msys": {
+      "track_event": {
+        "delv_method": "esmtp",
+        "transmission_id": "102618457580291306",
+        "rcpt_to": "test@example.com",
+        "ip_address": "73.208.71.254",
+        "accept_language": "en-US,en;q=0.8",
+        "template_id": "template_102618457580291306",
+        "template_version": "0",
+        "event_id": "120632847947644777",
+        "sending_ip": "52.39.182.248",
+        "target_link_url": "http://example.com/yourUri",
+        "customer_id": "1521",
+        "ip_pool": "shared",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+        "rcpt_tags": [],
+        "message_id": "000541812d59f83f9db8",
+        "rcpt_meta": {
+          "myKey": "myVal"
+        },
+        "campaign_id": "test",
+        "type": "click",
+        "timestamp": "1496154493",
+        "msg_size": "3100",
+        "subject": "My Sample Subject",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "friendly_from": "test@test.example.com",
+        "routing_domain": "google.com",
+        "geo_ip": {
+          "country": "US",
+          "region": "IL",
+          "city": "Lake In The Hills",
+          "latitude": 42.187,
+          "longitude": -88.3465
+        },
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "track_event": {
+        "ip_address": "66.102.6.151",
+        "rcpt_tags": [],
+        "rcpt_to": "test@example.com",
+        "ip_pool": "shared",
+        "timestamp": "1496154491",
+        "message_id": "000541812d59f83f9db8",
+        "delv_method": "esmtp",
+        "user_agent": "Mozilla/5.0 (Windows NT 5.1; rv:11.0) Gecko Firefox/11.0 (via ggpht.com GoogleImageProxy)",
+        "type": "open",
+        "campaign_id": "test",
+        "event_id": "120632847947642968",
+        "sending_ip": "52.39.182.248",
+        "transmission_id": "102618457580291306",
+        "template_version": "0",
+        "template_id": "template_102618457580291306",
+        "customer_id": "1521",
+        "rcpt_meta": {
+          "myKey": "myVal"
+        },
+        "msg_size": "3100",
+        "subject": "My Sample Subject",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "friendly_from": "test@test.example.com",
+        "routing_domain": "google.com",
+        "geo_ip": {
+          "country": "US",
+          "region": "CA",
+          "city": "Mountain View",
+          "latitude": 37.4192,
+          "longitude": -122.0574
+        },
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "routing_domain": "example.com",
+        "type": "bounce",
+        "bounce_class": "10",
+        "friendly_from": "test@test.example.com",
+        "error_code": "550",
+        "timestamp": "1496154451",
+        "rcpt_to": "as78df9as9d0f8as90df8a9s0df890asdf890asdf@example.com",
+        "template_version": "0",
+        "transmission_id": "48575267445821468",
+        "rcpt_meta": {
+          "myKey": "myVal"
+        },
+        "num_retries": "0",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "message_id": "000253812d59ed483127",
+        "ip_address": "74.125.28.26",
+        "msg_size": "3328",
+        "rcpt_tags": [],
+        "queue_time": "379",
+        "event_id": "48575267555968293",
+        "subject": "My Sample Subject",
+        "sending_ip": "35.160.182.156",
+        "ip_pool": "shared",
+        "template_id": "template_48575267445821468",
+        "raw_reason": "550-5.1.1 The email account that you tried to reach does not exist. Please try\r\n550-5.1.1 double-checking the recipient's email address for typos or\r\n550-5.1.1 unnecessary spaces. Learn more at\r\n550 5.1.1  https://support.google.com/mail/?p=NoSuchUser h7si13242232pgc.400 - gsmtp",
+        "campaign_id": "test",
+        "reason": "550-5.1.1 The email account that you tried to reach does not exist. Please try\r\n550-5.1.1 double-checking the recipient's email address for typos or\r\n550-5.1.1 unnecessary spaces. Learn more at\r\n550 5.1.1  https://support.google.com/mail/?p=NoSuch... - gsmtp",
+        "customer_id": "1521",
+        "raw_rcpt_to": "as78df9as9d0f8as90df8a9s0df890asdf890asdf@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "ip_pool": "shared",
+        "rcpt_to": "as78df9as9d0f8as90df8a9s0df890asdf890asdf@example.com",
+        "message_id": "000253812d59ed483127",
+        "template_version": "0",
+        "campaign_id": "test",
+        "transmission_id": "48575267445821468",
+        "sending_ip": "35.160.182.156",
+        "rcpt_tags": [],
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "type": "injection",
+        "customer_id": "1521",
+        "rcpt_meta": {
+          "myKey": "myVal"
+        },
+        "subject": "My Sample Subject",
+        "event_id": "48575267555967899",
+        "template_id": "template_48575267445821468",
+        "friendly_from": "test@test.example.com",
+        "timestamp": "1496154451",
+        "routing_domain": "example.com",
+        "msg_size": "3328",
+        "raw_rcpt_to": "as78df9as9d0f8as90df8a9s0df890asdf890asdf@example.com"
+      }
+    }
+  },
+  {
+    "msys": {
+      "message_event": {
+        "customer_id": "1521",
+        "rcpt_meta": {
+          "myKey": "myVal"
+        },
+        "sending_ip": "52.39.182.248",
+        "rcpt_tags": [],
+        "subject": "My Sample Subject",
+        "timestamp": "1496154433",
+        "msg_from": "msprvs1=17323JExI9Mwb=bounces-1521@spmailt.com",
+        "routing_domain": "google.com",
+        "type": "delivery",
+        "ip_address": "74.125.28.26",
+        "queue_time": "424",
+        "event_id": "102618457692014774",
+        "friendly_from": "test@test.example.com",
+        "ip_pool": "shared",
+        "campaign_id": "test",
+        "transmission_id": "102618457580291306",
+        "template_id": "template_102618457580291306",
+        "rcpt_to": "test@example.com",
+        "msg_size": "3100",
+        "num_retries": "0",
+        "delv_method": "esmtp",
+        "message_id": "000541812d59f83f9db8",
+        "template_version": "0",
+        "raw_rcpt_to": "test@example.com"
+      }
+    }
+  }
+]
