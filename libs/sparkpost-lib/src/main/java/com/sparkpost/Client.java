@@ -34,6 +34,12 @@ public class Client {
 
     private String fromEmail;
 
+    private boolean disconnectAfterRequest = false;
+
+    private int httpConnectTimeout = 0; // 0 - system default
+
+    private int httpReadTimeout = 0; // 0 - system default
+
     public Client() {
     }
 
@@ -76,6 +82,49 @@ public class Client {
      */
     public String getFromEmail() {
         return this.fromEmail;
+    }
+
+    /**
+     * If true will be more aggressive about disconnecting idle HTTP connections
+     *
+     * @return true
+     */
+    public boolean isDisconnectAfterRequest() {
+        return this.disconnectAfterRequest;
+    }
+
+    /**
+     * If true the underlying HTTP transport will be more aggressive about closing idle HTTP connection so may not resuse TCP sockets as much.
+     *
+     * @param disconnectAfterRequest
+     *            default is false
+     */
+    public void setDisconnectAfterRequest(boolean disconnectAfterRequest) {
+        this.disconnectAfterRequest = disconnectAfterRequest;
+    }
+
+    public int getHttpConnectTimeout() {
+        return this.httpConnectTimeout;
+    }
+
+    /**
+     * Sets a specified timeout value, in milliseconds, to be used
+     * when opening a communications link to the resource referenced
+     * by this URLConnection. If the timeout expires before the
+     * connection can be established, a
+     * java.net.SocketTimeoutException is raised. A timeout of zero is
+     * interpreted as an infinite timeout.
+     **/
+    public void setHttpConnectTimeout(int timeout) {
+        this.httpConnectTimeout = timeout;
+    }
+
+    public int getHttpReadTimeout() {
+        return this.httpReadTimeout;
+    }
+
+    public void setHttpReadTimeout(int httpReadTimeout) {
+        this.httpReadTimeout = httpReadTimeout;
     }
 
     /**

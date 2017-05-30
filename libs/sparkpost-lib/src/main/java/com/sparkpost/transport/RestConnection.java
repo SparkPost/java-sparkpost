@@ -117,6 +117,9 @@ public class RestConnection implements IRestConnection {
             // got one of its streams)
             conn = (HttpURLConnection) url.openConnection();
 
+            conn.setConnectTimeout(this.client.getHttpConnectTimeout());
+            conn.setReadTimeout(this.client.getHttpReadTimeout());
+
             if (StringUtils.isNotEmpty(this.client.getAuthKey())) {
                 conn.setRequestProperty("Authorization", this.client.getAuthKey());
             } else if (StringUtils.isNotEmpty(this.client.getUsername()) && StringUtils.isNotEmpty(this.client.getPassword())) {
@@ -412,7 +415,8 @@ public class RestConnection implements IRestConnection {
 
             return response;
         } finally {
-            if (conn != null) {
+            if (this.client.isDisconnectAfterRequest() && conn != null) {
+                // Disconnect will more aggressively close idle connections but it is preferred to cache as much as possible
                 conn.disconnect();
             }
         }
@@ -434,7 +438,7 @@ public class RestConnection implements IRestConnection {
 
             return response;
         } finally {
-            if (conn != null) {
+            if (this.client.isDisconnectAfterRequest() && conn != null) {
                 conn.disconnect();
             }
         }
