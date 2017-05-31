@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.sparkpost</groupId>
 		<artifactId>sparkpost</artifactId>
-		<version>0.17</version>
+		<version>0.18</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>apps</artifactId>
