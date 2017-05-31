@@ -9,7 +9,6 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.google.gson.Gson;
 import com.sparkpost.model.webhook.event.AbstractWebhookEvent;
 import com.sparkpost.model.webhook.event.BounceEvent;
 import com.sparkpost.model.webhook.event.ClickEvent;
@@ -32,11 +31,14 @@ import com.sparkpost.model.webhook.event.SmsStatusEvent;
 import com.sparkpost.model.webhook.event.SpamComplaintEvent;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 
+/**
+ * NOTE: Webhook events are experimental code and are subject to change.
+ */
 @SuppressWarnings("rawtypes")
 public class WebhookDecoderSample extends SparkPostBaseApp {
 
     private final static Map<String, Class> classMap;
-    private static final Gson GSON = new Gson();
+    //private static final Gson GSON = new Gson();
 
     public WebhookDecoderSample() {
 
@@ -49,10 +51,10 @@ public class WebhookDecoderSample extends SparkPostBaseApp {
 
         List<AbstractWebhookEvent> events = decoder.decodeEvents(json);
 
-        System.out.println("Found " + events.size() + " events.");
+        System.out.println("Found " + events.size() + " events:");
 
         for (AbstractWebhookEvent event : events) {
-            System.out.println("\t " + event.getType());
+            System.out.println("\t " + event.getType() + " - " + event.getClass().getSimpleName());
         }
 
     }
@@ -86,9 +88,8 @@ public class WebhookDecoderSample extends SparkPostBaseApp {
                 continue;
             }
 
-            @SuppressWarnings("unchecked")
-            AbstractWebhookEvent eventObj = GSON.fromJson(eventData.toString(), c);
-            webhookEvents.add(eventObj);
+            //AbstractWebhookEvent eventObj = GSON.fromJson(eventData.toString(), c);
+            //webhookEvents.add(eventObj);
 
         }
 
