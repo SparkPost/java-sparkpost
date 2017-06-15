@@ -145,10 +145,10 @@ public class Client {
         TransmissionWithRecipientArray transmission = new TransmissionWithRecipientArray();
 
         List<RecipientAttributes> recipientArray = new ArrayList<RecipientAttributes>();
-        for (String recpient : recipients) {
+        for (String recipient : recipients) {
 
             RecipientAttributes recipientAttribs = new RecipientAttributes();
-            recipientAttribs.setAddress(new AddressAttributes(recpient));
+            recipientAttribs.setAddress(new AddressAttributes(recipient));
             recipientArray.add(recipientAttribs);
         }
         transmission.setRecipientArray(recipientArray);
