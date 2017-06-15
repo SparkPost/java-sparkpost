@@ -1,6 +1,8 @@
 
 package com.sparkpost;
 
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +107,16 @@ public class Client {
 
     public int getHttpConnectTimeout() {
         return this.httpConnectTimeout;
+    }
+
+    private Proxy proxy = null;
+
+    public void setProxy(String hostname, int port) {
+        proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(hostname, port));
+    }
+
+    public Proxy getProxy() {
+        return this.proxy;
     }
 
     /**

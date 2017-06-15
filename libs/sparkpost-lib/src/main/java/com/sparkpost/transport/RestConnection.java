@@ -115,7 +115,12 @@ public class RestConnection implements IRestConnection {
             // Retrieve the URLConnection object (but doesn't actually connect):
             // (HttpUrlConnection doesn't connect to the server until we've
             // got one of its streams)
-            conn = (HttpURLConnection) url.openConnection();
+            if(this.client.getProxy() != null) {
+                System.out.println("Using proxy here!");
+                conn = (HttpURLConnection) url.openConnection(this.client.getProxy());
+            } else {
+                conn = (HttpURLConnection) url.openConnection();
+            }
 
             conn.setConnectTimeout(this.client.getHttpConnectTimeout());
             conn.setReadTimeout(this.client.getHttpReadTimeout());
