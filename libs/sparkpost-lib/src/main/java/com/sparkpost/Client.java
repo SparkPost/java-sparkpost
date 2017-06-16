@@ -36,6 +36,8 @@ public class Client {
 
     private String fromEmail;
 
+    private Proxy proxy;
+
     private boolean disconnectAfterRequest = false;
 
     private int httpConnectTimeout = 0; // 0 - system default
@@ -109,10 +111,8 @@ public class Client {
         return this.httpConnectTimeout;
     }
 
-    private Proxy proxy = null;
-
     public void setProxy(String hostname, int port) {
-        proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(hostname, port));
+        this.proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(hostname, port));
     }
 
     public Proxy getProxy() {

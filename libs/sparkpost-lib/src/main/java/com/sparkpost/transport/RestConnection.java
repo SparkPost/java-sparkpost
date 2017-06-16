@@ -113,14 +113,13 @@ public class RestConnection implements IRestConnection {
             url = new URL(this.baseUrl + path);
 
             /*
+             * Retrieve the URLConnection object (but doesn't actually connect):
+             * (HttpUrlConnection doesn't connect to the server until we've
+             * got one of its streams)
+             * Enable Client to set up proxy if need be
+             */
 
-             Retrieve the URLConnection object (but doesn't actually connect):
-             (HttpUrlConnection doesn't connect to the server until we've
-             got one of its streams)
-             Enable Client to set up proxy if need be
-              */
-
-            if(this.client.getProxy() != null) {
+            if (this.client.getProxy() != null) {
                 conn = (HttpURLConnection) url.openConnection(this.client.getProxy());
             } else {
                 conn = (HttpURLConnection) url.openConnection();
