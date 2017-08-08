@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.model.MessageEventsQueryBuilder;
 import com.sparkpost.model.responses.MessageEventsResponse;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.transport.IRestConnection;
@@ -18,16 +19,27 @@ import com.sparkpost.transport.IRestConnection;
 public class ResourceMessageEvents {
 
     public static MessageEventsResponse searchMessageEvents(IRestConnection conn) throws SparkPostException {
-        Endpoint ep = new Endpoint("message-events");
-        Response response = conn.get(ep);
-
-        MessageEventsResponse messageResponse = MessageEventsResponse.decode(response, MessageEventsResponse.class);
-        return messageResponse;
+        return ResourceMessageEvents.searchMessageEvents(conn, 0, null);
     }
 
     public static MessageEventsResponse searchMessageEvents(IRestConnection conn, int perPage) throws SparkPostException {
+        return ResourceMessageEvents.searchMessageEvents(conn, perPage, null);
+    }
+
+    public static MessageEventsResponse searchMessageEvents(IRestConnection conn, MessageEventsQueryBuilder queryBuilder) throws SparkPostException {
+        return ResourceMessageEvents.searchMessageEvents(conn, 0, queryBuilder);
+    }
+
+    public static MessageEventsResponse searchMessageEvents(IRestConnection conn, int perPage, MessageEventsQueryBuilder queryBuilder)
+            throws SparkPostException {
         Endpoint ep = new Endpoint("message-events");
-        ep.addParam("per_page", perPage);
+        if (queryBuilder != null) {
+            queryBuilder.buildQuery(ep);
+        }
+
+        if (perPage > 0) {
+            ep.addParam("per_page", perPage);
+        }
         Response response = conn.get(ep);
 
         MessageEventsResponse messageResponse = MessageEventsResponse.decode(response, MessageEventsResponse.class);

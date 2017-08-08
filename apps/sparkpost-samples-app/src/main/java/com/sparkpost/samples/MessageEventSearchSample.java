@@ -4,7 +4,6 @@ package com.sparkpost.samples;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -12,6 +11,7 @@ import org.apache.log4j.Logger;
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostErrorServerResponseException;
 import com.sparkpost.exception.SparkPostException;
+import com.sparkpost.model.MessageEventsQueryBuilder;
 import com.sparkpost.model.responses.MessageEventsResponse;
 import com.sparkpost.resources.ResourceMessageEvents;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
@@ -41,14 +41,20 @@ public class MessageEventSearchSample extends SparkPostBaseApp {
         MessageEventsResponse response = null;
         do {
             if (response == null) {
-                response = ResourceMessageEvents.searchMessageEvents(connection, 10);
+
+                // Message events can be filtered with the Message Event Query Builder
+                MessageEventsQueryBuilder query = null;
+                //query = new MessageEventsQueryBuilder();
+                //query.addMessageId("Message ID Here");
+
+                response = ResourceMessageEvents.searchMessageEvents(connection, 10, query);
             } else {
                 try {
                     response = ResourceMessageEvents.nextMessageEvents(connection, response);
                 } catch (SparkPostErrorServerResponseException e) {
                     if (e.getResponseCode() == 429) {
                         // We hit rate limit. Retry request again after a delay
-                        System.out.println("Hit the rate limit!!! Will retry after delay...");
+                        System.out.println("Hit the rate limit!!! Continue after delay...");
                         Thread.sleep(30000);
                         continue;
                     }
@@ -69,10 +75,8 @@ public class MessageEventSearchSample extends SparkPostBaseApp {
                 List<Map<String, Object>> results = response.getResults();
                 for (Map<String, Object> result : results) {
                     System.out.println("\nResult (" + result.get("type") + ")");
-                    Set<String> keySet = result.keySet();
-                    for (String key : keySet) {
-                        // Print out result
-                        System.out.println("\t" + key + " = " + result.get(key));
+                    for (Map.Entry<String, Object> entry : result.entrySet()) {
+                        System.out.println("\t" + entry.getKey() + "=" + entry.getValue());
                     }
                 }
             }
@@ -80,7 +84,7 @@ public class MessageEventSearchSample extends SparkPostBaseApp {
             System.out.println("Links: " + response.getLinks());
             System.out.println("Has Next Page: " + response.hasNext());
 
-        } while (response != null && response.hasNext());
+        } while (response.hasNext());
     }
 
 }
