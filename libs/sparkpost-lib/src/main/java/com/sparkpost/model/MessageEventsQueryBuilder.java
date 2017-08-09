@@ -1,7 +1,11 @@
 
 package com.sparkpost.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +13,8 @@ import org.apache.commons.lang3.StringUtils;
 import com.sparkpost.resources.Endpoint;
 
 public class MessageEventsQueryBuilder {
+
+    private boolean sortOutput = false;
 
     private Set<BounceClass> bounceClasses = new HashSet<BounceClass>();
     private Set<String> campaignIds = new HashSet<String>();
@@ -224,19 +230,19 @@ public class MessageEventsQueryBuilder {
 
     public void buildQuery(Endpoint endpoint) {
         if (this.bounceClasses.size() > 0) {
-            endpoint.addParam("bounce_classes", StringUtils.join(this.bounceClasses, ","));
+            endpoint.addParam("bounce_classes", setAsString(this.bounceClasses, ","));
         }
 
         if (this.campaignIds.size() > 0) {
-            endpoint.addParam("campaign_ids", StringUtils.join(this.campaignIds, ','));
+            endpoint.addParam("campaign_ids", setAsString(this.campaignIds, ","));
         }
 
         if (this.events.size() > 0) {
-            endpoint.addParam("events", StringUtils.join(this.events, ','));
+            endpoint.addParam("events", setAsString(this.events, ","));
         }
 
         if (this.friendlyFroms.size() > 0) {
-            endpoint.addParam("friendly_froms", StringUtils.join(this.friendlyFroms, ','));
+            endpoint.addParam("friendly_froms", setAsString(this.friendlyFroms, ","));
         }
 
         if (StringUtils.isNotEmpty(this.fromDateTime)) {
@@ -248,7 +254,7 @@ public class MessageEventsQueryBuilder {
         }
 
         if (this.messageIds.size() > 0) {
-            endpoint.addParam("message_ids", StringUtils.join(this.messageIds, ','));
+            endpoint.addParam("message_ids", setAsString(this.messageIds, ","));
         }
 
         if (StringUtils.isNotEmpty(this.reason)) {
@@ -256,15 +262,15 @@ public class MessageEventsQueryBuilder {
         }
 
         if (this.recipients.size() > 0) {
-            endpoint.addParam("recipients", StringUtils.join(this.recipients, ','));
+            endpoint.addParam("recipients", setAsString(this.recipients, ","));
         }
 
         if (this.subaccounts.size() > 0) {
-            endpoint.addParam("subaccounts", StringUtils.join(this.subaccounts, ','));
+            endpoint.addParam("subaccounts", setAsString(this.subaccounts, ","));
         }
 
         if (this.templateIds.size() > 0) {
-            endpoint.addParam("template_ids", StringUtils.join(this.templateIds, ','));
+            endpoint.addParam("template_ids", setAsString(this.templateIds, ","));
         }
 
         if (StringUtils.isNotEmpty(this.timezone)) {
@@ -272,8 +278,37 @@ public class MessageEventsQueryBuilder {
         }
 
         if (this.transmissionIds.size() > 0) {
-            endpoint.addParam("transmission_ids", StringUtils.join(this.transmissionIds, ','));
+            endpoint.addParam("transmission_ids", setAsString(this.transmissionIds, ","));
         }
+    }
+
+    // To make test easier output can be sorted so value content is deterministic
+    public void setSortOutput(boolean sortOutput) {
+        this.sortOutput = sortOutput;
+    }
+
+    private String setAsString(@SuppressWarnings("rawtypes") Set set, String separator) {
+
+        List<String> list = new ArrayList<String>();
+        for (Object obj : set) {
+            list.add(Objects.toString(obj));
+        }
+
+        if (this.sortOutput) {
+            Collections.sort(list);
+        }
+
+        StringBuilder result = new StringBuilder();
+        boolean isFirstElement = true;
+        for (String val : list) {
+            if (!isFirstElement) {
+                result.append(separator);
+            }
+            result.append(val);
+            isFirstElement = false;
+        }
+
+        return result.toString();
     }
 
 }
