@@ -20,14 +20,14 @@ Although we try to maintain library backward compatibility this migration may re
 
 ## Getting Started
 
-The SparkPost Java Library is available in this [Maven Repository](http://maven.apache.org/download.cgi):
+The SparkPost Java Library is available in this [Maven Repository](https://repo.maven.apache.org/maven2/com/sparkpost/sparkpost-lib) or in GitHub [Releases](https://github.com/SparkPost/java-sparkpost/releases).
 
 
 ```xml
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>sparkpost-lib</artifactId>
-	<version>0.18</version>
+	<version>0.19</version>
 </dependency>
 ```
 
