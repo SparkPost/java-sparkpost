@@ -69,7 +69,6 @@ public class SendEmailSample extends SparkPostBaseApp {
         contentAttributes.setSubject("☰ Your subject content here. {{yourContent}}");
         contentAttributes.setText("Your Text content here.  {{yourContent}}");
         contentAttributes.setHtml("<p>Your <b>HTML</b> content here.  {{yourContent}}</p>");
-        transmission.setContentAttributes(contentAttributes);
 
         transmission.setContentAttributes(contentAttributes);
 
