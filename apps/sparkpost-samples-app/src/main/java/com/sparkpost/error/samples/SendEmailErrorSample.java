@@ -76,8 +76,6 @@ public class SendEmailErrorSample extends SparkPostBaseApp {
 
         transmission.setContentAttributes(contentAttributes);
 
-        transmission.setContentAttributes(contentAttributes);
-
         // Send the Email
         IRestConnection connection = new RestConnection(this.client, getEndPoint());
 
