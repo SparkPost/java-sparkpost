@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-
+import lombok.Getter;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -43,6 +43,7 @@ public class RestConnection implements IRestConnection {
 
     private final Client client;
 
+    @Getter
     private final String baseUrl;
 
     /**
@@ -90,8 +91,8 @@ public class RestConnection implements IRestConnection {
             this.baseUrl = baseUrl;
         }
 
-        if (baseUrl.endsWith("/")) {
-            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + baseUrl + "");
+        if (this.baseUrl.endsWith("/")) {
+            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + this.baseUrl + "");
         }
     }
 
