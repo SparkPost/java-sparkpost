@@ -64,6 +64,7 @@ public class PreviewTemplateSample extends SparkPostBaseApp {
         content.setSubject("Template Test");
         content.setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
         content.setHtml(html);
+        content.setText("Template Test Text");
         template.setContent(content);
 
         IRestConnection connection = new RestConnection(client, getEndPoint());
