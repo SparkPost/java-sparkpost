@@ -21,6 +21,9 @@ public class TemplatePreviewResponse extends Response {
         private AddressAttributes from;
 
         @Description(value = "", sample = {""})
+        private String text;
+
+        @Description(value = "", sample = {""})
         private String html;
     }
 
