@@ -22,6 +22,9 @@ public class TemplatePreviewResponse extends Response {
 
         @Description(value = "", sample = {""})
         private String html;
+
+        @Description(value = "", sample = {""})
+        private String text;
     }
 
     @Description(value = "", sample = {""})
