@@ -10,6 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +36,8 @@ import lombok.Getter;
  */
 public class RestConnection implements IRestConnection {
 
+    private static final String X_MSYS_SUBACCOUNT = "X-MSYS-SUBACCOUNT";
+
     private static final Logger logger = Logger.getLogger(RestConnection.class);
 
     private static final String VERSION = Build.VERSION + " (" + Build.GIT_SHORT_HASH + ")";
@@ -44,6 +49,9 @@ public class RestConnection implements IRestConnection {
     private static final int ACCESS_FORBIDDEN_RESPONSE_STATUS_CODE = 403;
 
     private final Client client;
+
+    @Getter
+    private Map<String, String> additionalRequestHeaders = new HashMap<>();
 
     @Getter
     private final String baseUrl;
@@ -139,6 +147,18 @@ public class RestConnection implements IRestConnection {
             }
 
             conn.setRequestProperty("User-Agent", "java-sparkpost/" + VERSION);
+
+            if (this.additionalRequestHeaders != null && !this.additionalRequestHeaders.isEmpty()) {
+                java.util.Iterator<Entry<String, String>> it = this.additionalRequestHeaders.entrySet().iterator();
+                while (it.hasNext()) {
+                    Entry<String, String> pair = it.next();
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("Adding Header: " + pair.getKey() + " = " + pair.getValue());
+                    }
+                    conn.setRequestProperty(pair.getKey(), pair.getValue());
+                    it.remove();
+                }
+            }
 
             conn.setRequestProperty("Content-Type", "application/json");
             switch (method) {
@@ -537,5 +557,10 @@ public class RestConnection implements IRestConnection {
     public Response delete(Endpoint endpoint) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(endpoint, Method.DELETE, null, response);
+    }
+
+    @Override
+    public void setSubAccountId(String subAccountId) {
+        this.additionalRequestHeaders.put(X_MSYS_SUBACCOUNT, subAccountId);
     }
 }

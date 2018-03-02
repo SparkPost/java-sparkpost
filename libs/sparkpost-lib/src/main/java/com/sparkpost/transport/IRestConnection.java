@@ -1,6 +1,8 @@
 
 package com.sparkpost.transport;
 
+import java.util.Map;
+
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.Endpoint;
@@ -123,5 +125,9 @@ public interface IRestConnection {
      *             if something goes wrong
      */
     Response delete(Endpoint endpoint) throws SparkPostException;
+
+    Map<String, String> getAdditionalRequestHeaders();
+
+    void setSubAccountId(String subAccountId);
 
 }
