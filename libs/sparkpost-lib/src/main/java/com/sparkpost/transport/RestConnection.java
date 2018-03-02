@@ -26,6 +26,8 @@ import com.sparkpost.model.responses.Response;
 import com.sparkpost.model.responses.ServerErrorResponses;
 import com.sparkpost.resources.Endpoint;
 
+import lombok.Getter;
+
 /**
  * The REST connection class wraps HTTP requests to the SparkPost API.
  */
@@ -43,6 +45,7 @@ public class RestConnection implements IRestConnection {
 
     private final Client client;
 
+    @Getter
     private final String baseUrl;
 
     /**
@@ -90,8 +93,8 @@ public class RestConnection implements IRestConnection {
             this.baseUrl = baseUrl;
         }
 
-        if (baseUrl.endsWith("/")) {
-            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + baseUrl + "");
+        if (this.baseUrl.endsWith("/")) {
+            throw new IllegalStateException("SPARKPOST_BASE_URL should not end with a '/',  SPARKPOST_BASE_URL=" + this.baseUrl + "");
         }
     }
 
