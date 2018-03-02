@@ -471,7 +471,6 @@ public class RestConnection implements IRestConnection {
      * @see com.sparkpost.transport.IRestConnection#get(com.sparkpost.resources.Endpoint)
      */
     @Override
-    @Deprecated
     public Response get(Endpoint endpoint) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(endpoint, Method.GET, null, response);
