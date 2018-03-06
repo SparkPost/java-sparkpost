@@ -1,12 +1,17 @@
 
 package com.sparkpost.testhelpers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.Endpoint;
 import com.sparkpost.transport.IRestConnection;
 
 public class StubRestConnection implements IRestConnection {
+
+    private static final String X_MSYS_SUBACCOUNT = "X-MSYS-SUBACCOUNT";
 
     private String path;
 
@@ -23,6 +28,8 @@ public class StubRestConnection implements IRestConnection {
     private boolean wasPut;
 
     private boolean wasDelete;
+
+    private Map<String, String> additionalRequestHeaders = new HashMap<>();
 
     public StubRestConnection(Response response) {
         this.response = response;
@@ -142,6 +149,16 @@ public class StubRestConnection implements IRestConnection {
 
     public boolean wasDelete() {
         return this.wasDelete;
+    }
+
+    @Override
+    public Map<String, String> getAdditionalRequestHeaders() {
+        return this.additionalRequestHeaders;
+    }
+
+    @Override
+    public void setSubAccountId(String subAccountId) {
+        this.additionalRequestHeaders.put(X_MSYS_SUBACCOUNT, subAccountId);
     }
 
 }
