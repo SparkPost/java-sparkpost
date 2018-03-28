@@ -27,7 +27,7 @@ The SparkPost Java Library is available in this [Maven Repository](https://repo.
 <dependency>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>sparkpost-lib</artifactId>
-	<version>0.20</version>
+	<version>0.21</version>
 </dependency>
 ```
 
