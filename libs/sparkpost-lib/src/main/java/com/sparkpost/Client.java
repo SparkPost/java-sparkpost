@@ -44,11 +44,20 @@ public class Client {
 
     private int httpReadTimeout = 0; // 0 - system default
 
+    private String baseUrl = IRestConnection.SPC_US_ENDPOINT;
+
     public Client() {
+
     }
 
     public Client(String key) {
         setAuthKey(key);
+    }
+
+    public Client(String key, String baseUrl) {
+        setAuthKey(key);
+
+        this.baseUrl = baseUrl;
     }
 
     /**
@@ -63,6 +72,14 @@ public class Client {
 
     public String getAuthKey() {
         return this.authKey;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
+
+    public String getBaseUrl() {
+        return this.baseUrl;
     }
 
     public String getUsername() {
@@ -180,7 +197,7 @@ public class Client {
             transmission.setOptions(options);
         }
 
-        IRestConnection connection = new RestConnection(this);
+        IRestConnection connection = new RestConnection(this, this.baseUrl);
         Response response = ResourceTransmissions.create(connection, 0, transmission);
 
         return response;

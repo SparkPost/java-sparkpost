@@ -7,11 +7,15 @@ import com.sparkpost.resources.Endpoint;
 
 public interface IRestConnection {
 
+    String SPC_EU_ENDPOINT = "https://api.eu.sparkpost.com/api/v1";
+
+    String SPC_US_ENDPOINT = "https://api.sparkpost.com/api/v1";
+
     /**
      * Default endpoint to use for connections :
      * https://api.sparkpost.com/api/v1
      */
-    String defaultApiEndpoint = "https://api.sparkpost.com/api/v1";
+    String defaultApiEndpoint = SPC_US_ENDPOINT;
 
     /**
      * Perform an HTTP GET request. This method throws an exception if the
