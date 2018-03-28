@@ -10,7 +10,7 @@ public class SparkPost {
         String API_KEY = "YOUR API KEY HERE!!!";
 
         // To use the SparkPost EU use IRestConnection.SPC_EU_ENDPOINT instead of the SPC_US_ENDPOINT
-        Client client = new Client(API_KEY, IRestConnection.SPC_US_ENDPOINT);
+        Client client = new Client(API_KEY, IRestConnection.SPC_EU_ENDPOINT);
 
         client.sendMessage(
                 "you@yourdomain.com",
