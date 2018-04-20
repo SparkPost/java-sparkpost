@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostErrorServerResponseException;
@@ -24,11 +24,9 @@ import com.sparkpost.transport.RestConnection;
  */
 public class MessageEventSearchSample extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = LoggerFactory.getLogger(CreateTemplateSimple.class);
 
     public static void main(String[] args) throws SparkPostException, IOException, InterruptedException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-
         MessageEventSearchSample app = new MessageEventSearchSample();
         app.doSearch();
     }

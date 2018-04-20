@@ -1,10 +1,11 @@
+
 package com.sparkpost.samples;
 
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -19,54 +20,50 @@ import com.sparkpost.transport.RestConnection;
 
 public class CreateTemplateSimple extends SparkPostBaseApp {
 
-	private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    private static final Logger logger = LoggerFactory.getLogger(CreateTemplateSimple.class);
 
-	private Client client;
-	
-	public static void main(String[] args) throws SparkPostException, IOException {
-		Logger.getRootLogger().setLevel(Level.DEBUG);
+    private Client client;
 
-		CreateTemplateSimple sample = new CreateTemplateSimple();
-		sample.runApp();
-		
-	}
-	
-	private void runApp() throws SparkPostException, IOException {
-		client = this.newConfiguredClient();
-		createTemplate();
-	}
-	
-	/**
-	 * Demonstrates how to store an email template in SparkPost
-	 * 
-	 * @throws SparkPostException
-	 */
-	public void createTemplate() throws SparkPostException {
-		if (logger.isDebugEnabled()) {
-			logger.debug("createTemplate()");
-		}
-		TemplateAttributes tpl = new TemplateAttributes();
+    public static void main(String[] args) throws SparkPostException, IOException {
+        CreateTemplateSimple sample = new CreateTemplateSimple();
+        sample.runApp();
 
-		tpl.setName(SAMPLE_TEMPLATE_NAME);
-		tpl.setContent(new TemplateContentAttributes());
-		tpl.getContent().setFrom(new AddressAttributes(client.getFromEmail(), "me", null));
-		tpl.getContent().setHtml("Hello!");
-		tpl.getContent().setSubject("Template Test");
-		IRestConnection connection = new RestConnection(client, getEndPoint());
-		Response response = ResourceTemplates.create(connection, tpl);
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("Create Template Response: " + response);
-		}
-	}
-	
-	public void sendEmail(String templateName, List<String> recipients) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("sendEmail(...)");
-		}
-		
-	}
-	
-	
-	
+    }
+
+    private void runApp() throws SparkPostException, IOException {
+        this.client = this.newConfiguredClient();
+        createTemplate();
+    }
+
+    /**
+     * Demonstrates how to store an email template in SparkPost
+     * 
+     * @throws SparkPostException
+     */
+    public void createTemplate() throws SparkPostException {
+        if (logger.isDebugEnabled()) {
+            logger.debug("createTemplate()");
+        }
+        TemplateAttributes tpl = new TemplateAttributes();
+
+        tpl.setName(SAMPLE_TEMPLATE_NAME);
+        tpl.setContent(new TemplateContentAttributes());
+        tpl.getContent().setFrom(new AddressAttributes(this.client.getFromEmail(), "me", null));
+        tpl.getContent().setHtml("Hello!");
+        tpl.getContent().setSubject("Template Test");
+        IRestConnection connection = new RestConnection(this.client, getEndPoint());
+        Response response = ResourceTemplates.create(connection, tpl);
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Create Template Response: " + response);
+        }
+    }
+
+    public void sendEmail(String templateName, List<String> recipients) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("sendEmail(...)");
+        }
+
+    }
+
 }

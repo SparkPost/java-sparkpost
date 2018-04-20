@@ -1,13 +1,10 @@
 
 package com.sparkpost;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sparkpost.resources.Endpoint;
@@ -15,11 +12,6 @@ import com.sparkpost.resources.Endpoint;
 public class EndPointTest {
 
     public EndPointTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
     }
 
     @AfterClass
@@ -85,7 +77,7 @@ public class EndPointTest {
     @Test
     public void testEndPointWithBoolean() {
         Endpoint endPoint = new Endpoint("transmissions");
-        endPoint.addParam("myBool", new Boolean(true));
+        endPoint.addParam("myBool", Boolean.TRUE);
 
         String result = endPoint.toString();
         Assert.assertEquals("/transmissions?myBool=true", result);
@@ -97,7 +89,7 @@ public class EndPointTest {
     @Test
     public void testEndPointWithInteger() {
         Endpoint endPoint = new Endpoint("transmissions");
-        endPoint.addParam("myInteger", new Integer(100));
+        endPoint.addParam("myInteger", Integer.valueOf(100));
 
         String result = endPoint.toString();
         Assert.assertEquals("/transmissions?myInteger=100", result);
@@ -110,8 +102,8 @@ public class EndPointTest {
     public void testEndPointWithMultipleParameters() {
         Endpoint endPoint = new Endpoint("transmissions");
         endPoint.addParam("num_rcpt_errors", 3);
-        endPoint.addParam("myBool", new Boolean(false));
-        endPoint.addParam("MyInteger", new Integer(0));
+        endPoint.addParam("myBool", Boolean.FALSE);
+        endPoint.addParam("MyInteger", Integer.valueOf(0));
 
         String result = endPoint.toString();
         Assert.assertEquals("/transmissions?num_rcpt_errors=3&myBool=false&MyInteger=0", result);

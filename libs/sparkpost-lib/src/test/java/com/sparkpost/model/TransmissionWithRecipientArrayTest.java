@@ -4,13 +4,10 @@ package com.sparkpost.model;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -69,11 +66,6 @@ public class TransmissionWithRecipientArrayTest {
             + "            \"html\": \"<p>Hi {{address.name}} \\nSave big this Christmas in your area {{place}}! \\nClick http://www.mysite.com and get huge discount\\n</p><p>Hurry, this offer is only to {{user_type}}\\n</p><p>{{sender}}</p>\"\n"
             + "          }\n"
             + "        }";
-
-    @BeforeClass
-    public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-    }
 
     @AfterClass
     public static void tearDownClass() {
