@@ -39,4 +39,7 @@ public class WebhookDescription extends Base {
             sample = {"\"match\": { \"protocol\": \"SMTP\", \"domain\": \"replies.customer.example\" }"})
     private Match match;
 
+    @Description(value = "Describes status of the webhook")
+    private Boolean active;
+
 }
