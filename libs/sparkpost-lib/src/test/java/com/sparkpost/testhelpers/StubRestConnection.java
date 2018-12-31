@@ -1,6 +1,9 @@
 
 package com.sparkpost.testhelpers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.responses.Response;
 import com.sparkpost.resources.Endpoint;
@@ -11,6 +14,8 @@ public class StubRestConnection implements IRestConnection {
     private String path;
 
     private Endpoint endpoint;
+    
+    private final Map<String, String> extraHeaders = new HashMap<String, String>();
 
     private String json;
 
@@ -144,4 +149,9 @@ public class StubRestConnection implements IRestConnection {
         return this.wasDelete;
     }
 
+    @Override
+    public void addHeader(String key, String value) {
+        this.extraHeaders.put(key, value);
+
+    }
 }

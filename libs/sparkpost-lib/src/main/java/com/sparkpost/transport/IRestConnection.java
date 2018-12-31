@@ -11,11 +11,21 @@ public interface IRestConnection {
 
     String SPC_US_ENDPOINT = "https://api.sparkpost.com/api/v1";
 
+    String SUBACCOUNT_HEADER = "X-MSYS-SUBACCOUNT";
+
     /**
      * Default endpoint to use for connections :
      * https://api.sparkpost.com/api/v1
      */
     String defaultApiEndpoint = SPC_US_ENDPOINT;
+
+    /**
+     * @param key
+     *            The HTTP header key
+     * @param value
+     *            The HTTP header value
+     */
+    void addHeader(String key, String value);
 
     /**
      * Perform an HTTP GET request. This method throws an exception if the

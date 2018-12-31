@@ -38,5 +38,8 @@ public class WebhookDescription extends Base {
             value = "Restrict which inbound messages will be relayed to the target",
             sample = {"\"match\": { \"protocol\": \"SMTP\", \"domain\": \"replies.customer.example\" }"})
     private Match match;
+    
+    @Description(value = "Describes status of the webhook")
+    private Boolean active;
 
 }

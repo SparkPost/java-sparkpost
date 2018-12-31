@@ -10,6 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
@@ -47,6 +51,8 @@ public class RestConnection implements IRestConnection {
 
     @Getter
     private final String baseUrl;
+
+    private final Map<String, String> extraHeaders = new HashMap<String, String>();
 
     /**
      * Supported HTTP methods
@@ -417,6 +423,13 @@ public class RestConnection implements IRestConnection {
             String path = endpoint.toString();
             response.setRequest(path);
             conn = createConnectionObject(path, method);
+
+            // Add additional request headers
+            Set<Entry<String, String>> entrySet = this.extraHeaders.entrySet();
+            for (Entry<String, String> entry : entrySet) {
+                conn.setRequestProperty(entry.getKey(), entry.getValue());
+            }
+
             sendRequest(conn, data, response);
             receiveResponse(conn, response);
 
@@ -537,5 +550,11 @@ public class RestConnection implements IRestConnection {
     public Response delete(Endpoint endpoint) throws SparkPostException {
         Response response = new Response();
         return doHttpMethod(endpoint, Method.DELETE, null, response);
+    }
+
+    @Override
+    public void addHeader(String key, String value) {
+        this.extraHeaders.put(key, value);
+
     }
 }
