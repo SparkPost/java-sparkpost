@@ -64,8 +64,8 @@ public class SendEmailTemplateSample extends SparkPostBaseApp {
         substitutionData.put("yourContent", "You can add substitution data too.");
         transmission.setSubstitutionData(substitutionData);
 
-        // You can use Jackson, GSON or whatever you standard JSON decoding library is to
-        // Build this structure.
+        // You can use Jackson, GSON or whatever your standard JSON decoding library
+        // is to build this structure.
         List<Map<String, String>> offers = new ArrayList<Map<String, String>>();
         for (int i = 0; i < 2; i++) {
 
