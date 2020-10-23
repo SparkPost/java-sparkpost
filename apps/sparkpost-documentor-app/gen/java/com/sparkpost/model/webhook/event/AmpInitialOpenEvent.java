@@ -10,12 +10,12 @@ import lombok.EqualsAndHashCode;
 
 
 /**
-Message was classified as spam by the recipient.
+Recipient opened an AMP message in a mail client, thus rendering a tracking pixel at the top of the message.
 */
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SpamComplaintEvent  extends Base {
+public class AmpInitialOpenEvent  extends Base {
 
 	@SerializedName("template_version")
 	@Description(
@@ -60,7 +60,7 @@ public class SpamComplaintEvent  extends Base {
 
 	@Description(
 		value = "Type of event this record describes",
-		sample = "spam_complaint")
+		sample = "amp_initial_open")
 	private String type;
 
 	@SerializedName("num_retries")
@@ -81,17 +81,17 @@ public class SpamComplaintEvent  extends Base {
 		sample = "sender@example.com")
 	private String msgFrom;
 
+	@SerializedName("geo_ip")
+	@Description(
+		value = "Geographic location based on the IP address, including latitude, longitude, city, country, region, and zip",
+		sample = "{\"zip\":21046,\"country\":\"US\",\"city\":\"Columbia\",\"latitude\":39.1749,\"region\":\"MD\",\"postal_code\":\"21046\",\"longitude\":-76.8375}")
+	private Map<String, String> geoIp;
+
 	@SerializedName("rcpt_to")
 	@Description(
 		value = "Lowercase version of recipient address used on this message's SMTP envelope",
 		sample = "recipient@example.com")
 	private String rcptTo;
-
-	@SerializedName("report_to")
-	@Description(
-		value = "Address to which this spam report is to be delivered",
-		sample = "abuse.example.com")
-	private String reportTo;
 
 	@SerializedName("subaccount_id")
 	@Description(
@@ -111,10 +111,11 @@ public class SpamComplaintEvent  extends Base {
 		sample = "Example Campaign Name")
 	private String campaignId;
 
+	@SerializedName("user_agent")
 	@Description(
-		value = "Type of spam report entered against this message (see [RFC 5965 § 7.3](http://tools.ietf.org/html/rfc5965#section-7.3))",
-		sample = "abuse")
-	private String fbtype;
+		value = "Value of the browser's User-Agent header",
+		sample = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36")
+	private String userAgent;
 
 	@Description(
 		value = "Event date and time, in Unix timestamp format (integer seconds since 00:00:00 GMT 1970-01-01)",
@@ -126,6 +127,12 @@ public class SpamComplaintEvent  extends Base {
 		value = "A/B test version that was used for this event.",
 		sample = "1")
 	private String abTestVersion;
+
+	@SerializedName("click_tracking")
+	@Description(
+		value = "Indicates whether or not click tracking was enabled",
+		sample = "true")
+	private int clickTracking;
 
 	@SerializedName("rcpt_meta")
 	@Description(
@@ -145,6 +152,12 @@ public class SpamComplaintEvent  extends Base {
 		sample = "127.0.0.1")
 	private String ipAddress;
 
+	@SerializedName("initial_pixel")
+	@Description(
+		value = "Indicates whether or not initial open pixel tracking was enabled",
+		sample = "true")
+	private int initialPixel;
+
 	@SerializedName("rcpt_type")
 	@Description(
 		value = "Indicates that a recipient address appeared in the Cc or Bcc header or the archive JSON array",
@@ -162,12 +175,6 @@ public class SpamComplaintEvent  extends Base {
 		value = "Domain part of the recipient address used on this message's SMTP envelope",
 		sample = "example.com")
 	private String recipientDomain;
-
-	@SerializedName("report_by")
-	@Description(
-		value = "Address of the entity reporting this message as spam",
-		sample = "server.email.com")
-	private String reportBy;
 
 	@SerializedName("event_id")
 	@Description(
@@ -187,6 +194,12 @@ public class SpamComplaintEvent  extends Base {
 		sample = "127.0.0.1")
 	private String sendingIp;
 
+	@SerializedName("amp_enabled")
+	@Description(
+		value = "Indicates whether or not amp format was enabled",
+		sample = "true")
+	private int ampEnabled;
+
 	@SerializedName("template_id")
 	@Description(
 		value = "Slug of the template used to construct this message",
@@ -204,6 +217,12 @@ public class SpamComplaintEvent  extends Base {
 		value = "SparkPost-customer identifier through which this message was sent",
 		sample = "1")
 	private String customerId;
+
+	@SerializedName("open_tracking")
+	@Description(
+		value = "Indicates whether or not open tracking was enabled",
+		sample = "true")
+	private int openTracking;
 
 	@SerializedName("rcpt_hash")
 	@Description(

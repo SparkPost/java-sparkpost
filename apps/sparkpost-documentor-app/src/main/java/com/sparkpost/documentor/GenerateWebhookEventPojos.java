@@ -107,6 +107,10 @@ public class GenerateWebhookEventPojos {
                 builder.append("\t\tsample = \"" + field.getInt("sampleValue") + "\")\n");
                 builder.append("\tprivate int " + prettyFieldName + ";\n");
 
+            } else if (isFieldBool(field, "sampleValue")) {
+                builder.append("\t\tsample = \"" + field.getBoolean("sampleValue") + "\")\n");
+                builder.append("\tprivate int " + prettyFieldName + ";\n");
+
             } else {
                 builder.append("\t\tsample = \"" + "\")\n");
                 builder.append("\tUnknown Field Type: " + prettyFieldName + "\n");
@@ -161,6 +165,15 @@ public class GenerateWebhookEventPojos {
     private boolean isFieldInt(JSONObject obj, String field) {
         try {
             obj.getInt(field);
+            return true;
+        } catch (JSONException e) {
+            return false;
+        }
+    }
+
+    private boolean isFieldBool(JSONObject obj, String field) {
+        try {
+            obj.getBoolean(field);
             return true;
         } catch (JSONException e) {
             return false;
