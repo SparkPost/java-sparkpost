@@ -1,10 +1,11 @@
 package com.sparkpost.model.webhook.event;
 
 import java.util.List;
-import java.util.Map;
-import com.yepher.jsondoc.annotations.Description;
+
 import com.google.gson.annotations.SerializedName;
 import com.sparkpost.model.Base;
+import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
