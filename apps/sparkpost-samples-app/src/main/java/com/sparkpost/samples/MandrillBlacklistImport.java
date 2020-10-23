@@ -109,8 +109,7 @@ public class MandrillBlacklistImport extends SparkPostBaseApp {
                 entry.setDescription("MBL: " + line);
                 entry.setEmail(entryRow[Fields.EMAIL_COL]);
                 // Assumes Mandrill blacklist is only for non-transactional email
-                entry.setTransactional(false);
-                entry.setNonTransactional(true);
+                entry.setType(SuppressionListEntry.TypeTypes.TRANSACTIONAL_TYPE);
 
                 // Leave off source so it is set to "Manually Added"
                 // entry.setSource(null);

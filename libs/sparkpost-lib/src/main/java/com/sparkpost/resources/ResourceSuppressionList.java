@@ -5,6 +5,7 @@ import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.SuppressionList;
 import com.sparkpost.model.SuppressionListEntry;
 import com.sparkpost.model.responses.Response;
+import com.sparkpost.model.responses.SupressionListResponse;
 import com.sparkpost.transport.IRestConnection;
 
 /**
@@ -27,17 +28,21 @@ public class ResourceSuppressionList {
         String json = copy.toJson();
         Endpoint ep = new Endpoint("suppression-list/" + email);
         Response response = conn.put(ep, json);
-        return response;
+
+        SupressionListResponse suppressionListResponse = (SupressionListResponse) SupressionListResponse.decode(response, SupressionListResponse.class);
+        return suppressionListResponse;
     }
 
-    public static Response insertOrUpdateBulk(IRestConnection conn, SuppressionList suppressionList) throws SparkPostException {
+    public static SupressionListResponse insertOrUpdateBulk(IRestConnection conn, SuppressionList suppressionList) throws SparkPostException {
 
         String json = suppressionList.toJson();
         Endpoint ep = new Endpoint("suppression-list/");
-        return conn.put(ep, json);
+        Response response = conn.put(ep, json);
+        SupressionListResponse suppressionListResponse = (SupressionListResponse) SupressionListResponse.decode(response, SupressionListResponse.class);
+        return suppressionListResponse;
     }
 
-    public static Response search(IRestConnection conn, String to, String from, String types, String limit) throws SparkPostException {
+    public static SupressionListResponse search(IRestConnection conn, String to, String from, String types, String limit) throws SparkPostException {
 
         Endpoint ep = new Endpoint("suppression-list");
         ep.addParam("to", to);
@@ -45,19 +50,25 @@ public class ResourceSuppressionList {
         ep.addParam("types", types);
         ep.addParam("limit", limit);
         Response response = conn.get(ep);
-        return response;
+
+        SupressionListResponse suppressionListResponse = (SupressionListResponse) SupressionListResponse.decode(response, SupressionListResponse.class);
+        return suppressionListResponse;
     }
 
-    public static Response check(IRestConnection conn, String email) throws SparkPostException {
+    public static SupressionListResponse check(IRestConnection conn, String email) throws SparkPostException {
 
         Endpoint ep = new Endpoint("suppression-list/" + email);
         Response response = conn.get(ep);
-        return response;
+
+        SupressionListResponse suppressionListResponse = (SupressionListResponse) SupressionListResponse.decode(response, SupressionListResponse.class);
+        return suppressionListResponse;
     }
 
-    public static Response remove(IRestConnection conn, String email) throws SparkPostException {
+    public static SupressionListResponse remove(IRestConnection conn, String email) throws SparkPostException {
         Endpoint ep = new Endpoint("suppression-list/" + email);
         Response response = conn.delete(ep);
-        return response;
+
+        SupressionListResponse suppressionListResponse = (SupressionListResponse) SupressionListResponse.decode(response, SupressionListResponse.class);
+        return suppressionListResponse;
     }
 }

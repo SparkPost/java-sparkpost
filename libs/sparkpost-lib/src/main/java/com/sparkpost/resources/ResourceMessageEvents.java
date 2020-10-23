@@ -32,7 +32,7 @@ public class ResourceMessageEvents {
 
     public static MessageEventsResponse searchMessageEvents(IRestConnection conn, int perPage, MessageEventsQueryBuilder queryBuilder)
             throws SparkPostException {
-        Endpoint ep = new Endpoint("message-events");
+        Endpoint ep = new Endpoint("events/message");
         if (queryBuilder != null) {
             queryBuilder.buildQuery(ep);
         }
@@ -63,7 +63,7 @@ public class ResourceMessageEvents {
             if (query.length() > 0) {
                 String[] split = query.split("&");
                 for (String element : split) {
-                    String[] fields = element.split("=");
+                    String[] fields = element.split("=", 2);
                     ep.addParam(fields[0], fields[1]);
                 }
             }

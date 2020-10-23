@@ -44,7 +44,13 @@ public class MessageEventSearchSample extends SparkPostBaseApp {
 
                 // Message events can be filtered with the Message Event Query Builder
                 MessageEventsQueryBuilder query = null;
-                //query = new MessageEventsQueryBuilder();
+                query = new MessageEventsQueryBuilder();
+
+                // Query by date range
+                //query.setFromDateTime("2020-09-27T00:00");
+                //query.setToDateTime("2020-10-01T00:00");
+
+                // Query by Message Id
                 //query.addMessageId("Message ID Here");
 
                 response = ResourceMessageEvents.searchMessageEvents(connection, 10, query);

@@ -72,7 +72,7 @@ public class TransmissionBase extends Base {
     @Description(
             value = "Transmission level metadata containing key/value pairs. Metadata is available during events through the Webhooks and is provided to the substitution engine. A maximum of 1000 bytes of merged metadata (transmission level + recipient level) is available with recipient metadata taking precedence over transmission metadata when there are conflicts.",
             sample = {""})
-    private Map<String, String> metadata = null;
+    private Map<String, Object> metadata = null;
 
     /**
      * Key/value pairs that are provided to the substitution engine

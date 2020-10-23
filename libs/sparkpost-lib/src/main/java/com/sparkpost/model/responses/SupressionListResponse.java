@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
+import com.sparkpost.model.SuppressionListEntry;
 import com.yepher.jsondoc.annotations.Description;
 
 import lombok.Data;
@@ -12,17 +13,15 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MessageEventsResponse extends Response {
+public class SupressionListResponse extends Response {
 
-    // {"results":[],"total_count":0,"links":[]}
-    @Description(value = "results", sample = {"\"results\": [ {\"count_injected\": 633,...}]"})
-    @SerializedName("results")
-    private List<Map<String, Object>> results;
+    @Description(value = "Type of suppression record.", sample = {"transactional or non_transactional"})
+    private String type;
 
-    @Description(
-            value = "links",
-            sample = {
-                    "{ \"next\": \"/api/v1/events/message?events=delivery&per_page=1000&cursor=WycyMDE4LTExLTA1VDIyOjQ1OjM5LjAwMFonLCAnc3BjLTM4MTQ1MjY3MjMyNTA2NTEwJ10=\" }"})
+    @Description(value = "List of TemplateItems", sample = {""})
+    private List<SuppressionListEntry> results;
+
+    @Description(value = "links", sample = {""})
     @SerializedName("links")
     private Map<String, String> links;
 

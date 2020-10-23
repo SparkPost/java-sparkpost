@@ -102,7 +102,7 @@ public class TransmissionWithRecipientArrayTest {
         Assert.assertEquals(transmissionWithRecipientArray.getCampaignId(), "christmas_campaign");
         Assert.assertEquals(transmissionWithRecipientArray.getReturnPath(), "bounces-christmas-campaign@flintstone.com");
 
-        Map<String, String> metadata = transmissionWithRecipientArray.getMetadata();
+        Map<String, Object> metadata = transmissionWithRecipientArray.getMetadata();
         Assert.assertNotNull(metadata);
 
         Map<String, Object> substitutionData = transmissionWithRecipientArray.getSubstitutionData();

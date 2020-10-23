@@ -40,6 +40,10 @@ public class TemplateContentAttributes extends Base {
     @Description(value = "HTML Content of email", sample = {"HTML Content"})
     private String html = null;
 
+    @Description(value = "Amp HTML Content of email", sample = {"AMP HTML Content"})
+    @SerializedName("amp_html")
+    private String ampHtml = null;
+
     @Description(value = "Text content for the email's text/plain MIME part", sample = {"Text Content"})
     private String text = null;
 

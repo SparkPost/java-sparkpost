@@ -14,7 +14,7 @@ public class StubRestConnection implements IRestConnection {
     private String path;
 
     private Endpoint endpoint;
-    
+
     private final Map<String, String> extraHeaders = new HashMap<String, String>();
 
     private String json;
@@ -31,37 +31,6 @@ public class StubRestConnection implements IRestConnection {
 
     public StubRestConnection(Response response) {
         this.response = response;
-    }
-
-    @Override
-    public Response get(String path) throws SparkPostException {
-        this.wasGet = true;
-        this.path = path;
-        return this.response;
-    }
-
-    @Override
-    public Response post(String path, String json) throws SparkPostException {
-        this.wasPost = true;
-        this.path = path;
-        this.json = json;
-
-        return this.response;
-    }
-
-    @Override
-    public Response put(String path, String json) throws SparkPostException {
-        this.wasPut = true;
-        this.path = path;
-        this.json = json;
-        return this.response;
-    }
-
-    @Override
-    public Response delete(String path) throws SparkPostException {
-        this.wasDelete = true;
-        this.path = path;
-        return this.response;
     }
 
     @Override

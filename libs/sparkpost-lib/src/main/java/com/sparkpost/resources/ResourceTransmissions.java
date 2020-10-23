@@ -64,4 +64,14 @@ public class ResourceTransmissions {
         TransmissionListResponse transmissionResponse = TransmissionListResponse.decode(response, TransmissionListResponse.class);
         return transmissionResponse;
     }
+
+    public static TransmissionListResponse delete(IRestConnection conn, String campaignId) throws SparkPostException {
+
+        Endpoint ep = new Endpoint("transmissions");
+        ep.addParam("campaign_id", campaignId);
+        Response response = conn.delete(ep);
+
+        TransmissionListResponse transmissionResponse = TransmissionListResponse.decode(response, TransmissionListResponse.class);
+        return transmissionResponse;
+    }
 }
