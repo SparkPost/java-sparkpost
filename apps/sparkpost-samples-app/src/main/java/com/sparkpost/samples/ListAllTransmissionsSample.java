@@ -3,9 +3,6 @@ package com.sparkpost.samples;
 
 import java.io.IOException;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
 import com.sparkpost.model.TransmissionBase;
@@ -40,15 +37,13 @@ public class ListAllTransmissionsSample extends SparkPostBaseApp {
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-
         ListAllTransmissionsSample sample = new ListAllTransmissionsSample();
         sample.runApp();
 
     }
 
     private void runApp() throws SparkPostException, IOException {
-        client = this.newConfiguredClient();
+        this.client = this.newConfiguredClient();
         listAllTransmissions();
     }
 

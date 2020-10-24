@@ -4,13 +4,10 @@ package com.sparkpost.model;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -79,11 +76,6 @@ public class RecipientListTest {
             + "}";
 
     //private List<String> expected = Arrays.asList("greeting", "prehistoric", "fred", "flintstone");
-
-    @BeforeClass
-    public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-    }
 
     @AfterClass
     public static void tearDownClass() {

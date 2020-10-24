@@ -1,13 +1,10 @@
 
 package com.sparkpost.model;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -15,11 +12,6 @@ import com.google.gson.Gson;
 public class StoredRecipientListTest {
 
     private String STORED_RECIPIENT_LIST_JSON = "{ \"list_id\":\"123412341234\" }";
-
-    @BeforeClass
-    public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-    }
 
     @AfterClass
     public static void tearDownClass() {

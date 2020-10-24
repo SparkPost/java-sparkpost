@@ -1,13 +1,10 @@
 
 package com.sparkpost.model;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -30,11 +27,6 @@ public class DKIMResultsTest {
             + "      \"selector\": \"hello_selector\"\n"
             + "    }\n"
             + "}";
-
-    @BeforeClass
-    public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-    }
 
     @AfterClass
     public static void tearDownClass() {

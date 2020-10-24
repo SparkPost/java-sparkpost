@@ -17,7 +17,8 @@ import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sparkpost.Build;
 import com.sparkpost.Client;
@@ -37,7 +38,7 @@ import lombok.Getter;
  */
 public class RestConnection implements IRestConnection {
 
-    private static final Logger logger = Logger.getLogger(RestConnection.class);
+    private static final Logger logger = LoggerFactory.getLogger(RestConnection.class);
 
     private static final String VERSION = Build.VERSION + " (" + Build.GIT_SHORT_HASH + ")";
 

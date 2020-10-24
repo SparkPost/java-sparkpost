@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -26,7 +26,7 @@ import com.sparkpost.transport.RestConnection;
  */
 public class MandrillBlacklistImport extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(MandrillBlacklistImport.class);
+    static final Logger logger = LoggerFactory.getLogger(MandrillBlacklistImport.class);
 
     private Client client;
 
@@ -44,8 +44,6 @@ public class MandrillBlacklistImport extends SparkPostBaseApp {
     }
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-
         MandrillBlacklistImport sample = new MandrillBlacklistImport();
         sample.runApp();
     }

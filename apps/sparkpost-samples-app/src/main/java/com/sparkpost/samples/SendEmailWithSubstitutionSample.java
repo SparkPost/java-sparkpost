@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -24,13 +24,11 @@ import com.sparkpost.transport.RestConnection;
 
 public class SendEmailWithSubstitutionSample extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(SendEmailWithSubstitutionSample.class);
+    static final Logger logger = LoggerFactory.getLogger(SendEmailWithSubstitutionSample.class);
 
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-
         SendEmailWithSubstitutionSample sample = new SendEmailWithSubstitutionSample();
         sample.runApp();
     }

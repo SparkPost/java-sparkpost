@@ -3,13 +3,10 @@ package com.sparkpost.resources;
 
 import java.lang.reflect.Type;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sparkpost.exception.SparkPostException;
@@ -18,11 +15,6 @@ import com.sparkpost.model.responses.Response;
 import com.sparkpost.testhelpers.StubRestConnection;
 
 public class ResourceMetricTests extends BaseResourceTest {
-
-    @BeforeClass
-    public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
-    }
 
     @AfterClass
     public static void tearDownClass() {

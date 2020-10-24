@@ -11,8 +11,8 @@ import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.BasicConfigurator;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -29,11 +29,10 @@ public class SparkPostBaseApp {
 
     private final Properties properties = new Properties();
 
-    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = LoggerFactory.getLogger(CreateTemplateSimple.class);
 
     public SparkPostBaseApp() {
         super();
-        BasicConfigurator.configure();
         this.loadProperties();
     }
 
@@ -49,7 +48,7 @@ public class SparkPostBaseApp {
         }
 
         if (logger.isDebugEnabled()) {
-            logger.debug(client);
+            logger.debug(client.toString());
         }
 
         return client;
