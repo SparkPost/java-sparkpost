@@ -3,8 +3,9 @@ package com.sparkpost.samples;
 
 import java.io.IOException;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -14,18 +15,19 @@ import com.sparkpost.resources.ResourceWebhooks;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
+import org.apache.logging.log4j.core.config.Configurator;
 
 /**
  * Delete all webhooks with "deleteme" in their name
  */
 public class DeleteWebhookSample extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = LogManager.getLogger(CreateTemplateSimple.class);
 
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
 
         DeleteWebhookSample sample = new DeleteWebhookSample();
         sample.runApp();

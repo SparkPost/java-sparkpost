@@ -4,8 +4,9 @@ package com.sparkpost.samples;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -16,18 +17,19 @@ import com.sparkpost.resources.ResourceTemplates;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
+import org.apache.logging.log4j.core.config.Configurator;
 
 /**
  * Delete all test templates created by the sample code
  */
 public class DeleteSampleTemplates extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(DeleteSampleTemplates.class);
+    static final Logger logger = LogManager.getLogger(DeleteSampleTemplates.class);
 
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
 
         DeleteSampleTemplates sample = new DeleteSampleTemplates();
         sample.runApp();

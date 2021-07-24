@@ -5,8 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -45,7 +45,7 @@ public class RecipientAttributesTest {
 
     @BeforeClass
     public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
     }
 
     @AfterClass

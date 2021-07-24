@@ -8,8 +8,10 @@ import java.io.PrintWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -29,12 +31,12 @@ import com.sparkpost.transport.RestConnection;
  */
 public class PreviewTemplateSample extends SparkPostBaseApp {
 
-    private static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    private static final Logger logger = LogManager.getLogger(CreateTemplateSimple.class);
 
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
 
         PreviewTemplateSample sample = new PreviewTemplateSample();
         sample.runApp();
