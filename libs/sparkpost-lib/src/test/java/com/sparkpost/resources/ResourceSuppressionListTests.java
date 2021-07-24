@@ -3,8 +3,8 @@ package com.sparkpost.resources;
 
 import java.lang.reflect.Type;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -22,7 +22,7 @@ public class ResourceSuppressionListTests extends BaseResourceTest {
 
     @BeforeClass
     public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
     }
 
     @AfterClass

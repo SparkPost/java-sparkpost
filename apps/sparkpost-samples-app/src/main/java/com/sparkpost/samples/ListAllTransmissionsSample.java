@@ -3,8 +3,7 @@ package com.sparkpost.samples;
 
 import java.io.IOException;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -15,6 +14,7 @@ import com.sparkpost.resources.ResourceTransmissions;
 import com.sparkpost.sdk.samples.helpers.SparkPostBaseApp;
 import com.sparkpost.transport.IRestConnection;
 import com.sparkpost.transport.RestConnection;
+import org.apache.logging.log4j.core.config.Configurator;
 
 /**
  * List an array of transmission summary objects. A transmission summary object
@@ -40,7 +40,7 @@ public class ListAllTransmissionsSample extends SparkPostBaseApp {
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
 
         ListAllTransmissionsSample sample = new ListAllTransmissionsSample();
         sample.runApp();
