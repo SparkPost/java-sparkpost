@@ -4,14 +4,6 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="%-5p %c{1} - %m%n"/>
         </Console>
-
-        <RollingFile name="testFile" fileName="/logs/testing.log">
-            <PatternLayout pattern="%-5p %c{1} - %m%n"/>
-            <Policies>
-                <SizeBasedTriggeringPolicy size="20 MB"/>
-            </Policies>
-            <DefaultRolloverStrategy max="10"/>
-        </RollingFile>
     </Appenders>
     <Loggers>
         <Root level="debug">

@@ -173,7 +173,7 @@
 									<pluginExecutionFilter>
 										<groupId>org.codehaus.mojo</groupId>
 										<artifactId>findbugs-maven-plugin</artifactId>
-										<versionRange>[3.0.4,)</versionRange>
+										<versionRange>[3.0.2,)</versionRange>
 										<goals>
 											<goal>check</goal>
 										</goals>
@@ -193,7 +193,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.4</version>
+				<version>3.0.2</version>
 				<configuration>
 					<excludeFilterFile>${basedir}/../../findbugs-exclude.xml</excludeFilterFile>
 				</configuration>
