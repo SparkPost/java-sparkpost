@@ -3,7 +3,7 @@
 # Do everything relative to the tools/bin directory
 cd "$(dirname $0)"
 
-VERSION=0.23
+VERSION=0.24
 
 cd ../..
 
