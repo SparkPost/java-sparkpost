@@ -2,6 +2,7 @@ package com.sparkpost.model.responses;
 
 import com.sparkpost.model.WebhookIdResponseEntry;
 import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

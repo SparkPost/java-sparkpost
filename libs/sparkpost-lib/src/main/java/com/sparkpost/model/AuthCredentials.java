@@ -2,6 +2,7 @@ package com.sparkpost.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

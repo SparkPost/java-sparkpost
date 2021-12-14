@@ -1,6 +1,7 @@
 package com.sparkpost.model;
 
 import com.yepher.jsondoc.annotations.Description;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
