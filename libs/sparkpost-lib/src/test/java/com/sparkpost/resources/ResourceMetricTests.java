@@ -3,8 +3,8 @@ package com.sparkpost.resources;
 
 import java.lang.reflect.Type;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -21,7 +21,7 @@ public class ResourceMetricTests extends BaseResourceTest {
 
     @BeforeClass
     public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
     }
 
     @AfterClass
@@ -73,9 +73,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getDeliverabilityMetricsSummary(conn, from, to, domains, campaigns, templates, metrics, timezone);
         Assert.assertNotNull(discoverabilityLinks);
 
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone");
         verifyWasGet(conn);
     }
 
@@ -96,9 +97,10 @@ public class ResourceMetricTests extends BaseResourceTest {
                 .getDeliverabilityMetricsByDomain(conn, from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
         Assert.assertNotNull(discoverabilityLinks);
 
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
         verifyWasGet(conn);
     }
 
@@ -119,9 +121,10 @@ public class ResourceMetricTests extends BaseResourceTest {
                 .getDeliverabilityMetricsByCampaign(conn, from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
         Assert.assertNotNull(discoverabilityLinks);
 
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/campaign?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/campaign?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
         verifyWasGet(conn);
     }
 
@@ -142,9 +145,10 @@ public class ResourceMetricTests extends BaseResourceTest {
                 .getDeliverabilityMetricsByTemplate(conn, from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
         Assert.assertNotNull(discoverabilityLinks);
 
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/template?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/template?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
         verifyWasGet(conn);
     }
 
@@ -165,9 +169,10 @@ public class ResourceMetricTests extends BaseResourceTest {
                 .getDeliverabilityMetricsByWatchedDomain(conn, from, to, domains, campaigns, templates, metrics, timezone, limit, orderBy);
         Assert.assertNotNull(discoverabilityLinks);
 
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/watched-domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/watched-domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit&order_by=orderBy");
         verifyWasGet(conn);
     }
 
@@ -186,9 +191,10 @@ public class ResourceMetricTests extends BaseResourceTest {
 
         Assert.assertNotNull(discoverabilityLinks);
 
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/time-series?precision=precision&from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/time-series?precision=precision&from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone");
         verifyWasGet(conn);
     }
 
@@ -205,9 +211,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         String limit = "limit";
         Response discoverabilityLinks = ResourceMetrics.getBounceReasonMetrics(conn, from, to, domains, campaigns, templates, metrics, timezone, limit);
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/bounce-reason?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/bounce-reason?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -226,9 +233,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getBounceReasonMetricsByDomain(conn, from, to, domains, campaigns, templates, metrics, timezone, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/bounce-reason/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/bounce-reason/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -247,9 +255,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getBounceClassificationMetrics(conn, from, to, domains, campaigns, templates, metrics, timezone, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/bounce-classification?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/bounce-classification?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -267,9 +276,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getRejectionReasonMetrics(conn, from, to, domains, campaigns, templates, timezone, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/rejection-reason?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/rejection-reason?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -287,9 +297,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getRejectionReasonMetricsByDomain(conn, from, to, domains, campaigns, templates, timezone, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/rejection-reason/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/rejection-reason/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -307,9 +318,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getDelayReasonMetrics(conn, from, to, domains, campaigns, templates, timezone, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/delay-reason?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/delay-reason?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -327,9 +339,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getDelayReasonMetricsByDomain(conn, from, to, domains, campaigns, templates, timezone, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/delay-reason/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/delay-reason/domain?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -347,9 +360,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getEngagementDetails(conn, from, to, timezone, metrics, campaigns, templates, limit);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/link-name?from=from%40domain.com&to=to%40domain.com&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/link-name?from=from%40domain.com&to=to%40domain.com&campaigns=comapigns&templates=templates&metrics=metrics&timezone=timezone&limit=limit");
         verifyWasGet(conn);
     }
 
@@ -366,9 +380,10 @@ public class ResourceMetricTests extends BaseResourceTest {
         Response discoverabilityLinks = ResourceMetrics.getDeliveriesByAttempt(conn, from, to, domains, campaigns, templates, timezone);
 
         Assert.assertNotNull(discoverabilityLinks);
-        Assert.assertEquals(
-                conn.getRequestUri(),
-                "/metrics/deliverability/attempt?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone");
+        Assert
+                .assertEquals(
+                        conn.getRequestUri(),
+                        "/metrics/deliverability/attempt?from=from%40domain.com&to=to%40domain.com&domains=domains&campaigns=comapigns&templates=templates&timezone=timezone");
         verifyWasGet(conn);
     }
 

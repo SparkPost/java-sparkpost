@@ -1,8 +1,8 @@
 
 package com.sparkpost.model;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -23,7 +23,7 @@ public class DKIMTest {
 
     @BeforeClass
     public static void setUpClass() {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
     }
 
     @AfterClass
@@ -50,18 +50,20 @@ public class DKIMTest {
 
         /**
          * "{\n" +
-         * "      \"headers\": \"from:to:subject:date\",\n" +
-         * "      \"public\": \"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+W6scd3XWwvC/hPRksfDYFi3ztgyS9OSqnnjtNQeDdTSD1DRx/xFar2wjmzxp2+SnJ5pspaF77VZveN3P/HVmXZVghr3asoV9WBx/uW1nDIUxU35L4juXiTwsMAbgMyh3NqIKTNKyMDy4P8vpEhtH1iv/BrwMdBjHDVCycB8WnwIDAQAB\",\n"
+         * " \"headers\": \"from:to:subject:date\",\n" +
+         * " \"public\":
+         * \"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+W6scd3XWwvC/hPRksfDYFi3ztgyS9OSqnnjtNQeDdTSD1DRx/xFar2wjmzxp2+SnJ5pspaF77VZveN3P/HVmXZVghr3asoV9WBx/uW1nDIUxU35L4juXiTwsMAbgMyh3NqIKTNKyMDy4P8vpEhtH1iv/BrwMdBjHDVCycB8WnwIDAQAB\",\n"
          * +
-         * "      \"private\": \"some private key\",\n" +
-         * "      \"selector\": \"hello_selector\"\n" +
-         * "    }";
+         * " \"private\": \"some private key\",\n" +
+         * " \"selector\": \"hello_selector\"\n" +
+         * " }";
          */
         Assert.assertNotNull(dkim);
         Assert.assertEquals(dkim.getHeaders(), "from:to:subject:date");
-        Assert.assertEquals(
-                dkim.getPublicKey(),
-                "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+W6scd3XWwvC/hPRksfDYFi3ztgyS9OSqnnjtNQeDdTSD1DRx/xFar2wjmzxp2+SnJ5pspaF77VZveN3P/HVmXZVghr3asoV9WBx/uW1nDIUxU35L4juXiTwsMAbgMyh3NqIKTNKyMDy4P8vpEhtH1iv/BrwMdBjHDVCycB8WnwIDAQAB");
+        Assert
+                .assertEquals(
+                        dkim.getPublicKey(),
+                        "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+W6scd3XWwvC/hPRksfDYFi3ztgyS9OSqnnjtNQeDdTSD1DRx/xFar2wjmzxp2+SnJ5pspaF77VZveN3P/HVmXZVghr3asoV9WBx/uW1nDIUxU35L4juXiTwsMAbgMyh3NqIKTNKyMDy4P8vpEhtH1iv/BrwMdBjHDVCycB8WnwIDAQAB");
         Assert.assertEquals(dkim.getPrivateKey(), "some private key");
         Assert.assertEquals(dkim.getSelector(), "hello_selector");
     }
@@ -82,12 +84,13 @@ public class DKIMTest {
 
         /**
          * "{\n" +
-         * "      \"headers\": \"from:to:subject:date\",\n" +
-         * "      \"public\": \"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+W6scd3XWwvC/hPRksfDYFi3ztgyS9OSqnnjtNQeDdTSD1DRx/xFar2wjmzxp2+SnJ5pspaF77VZveN3P/HVmXZVghr3asoV9WBx/uW1nDIUxU35L4juXiTwsMAbgMyh3NqIKTNKyMDy4P8vpEhtH1iv/BrwMdBjHDVCycB8WnwIDAQAB\",\n"
+         * " \"headers\": \"from:to:subject:date\",\n" +
+         * " \"public\":
+         * \"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC+W6scd3XWwvC/hPRksfDYFi3ztgyS9OSqnnjtNQeDdTSD1DRx/xFar2wjmzxp2+SnJ5pspaF77VZveN3P/HVmXZVghr3asoV9WBx/uW1nDIUxU35L4juXiTwsMAbgMyh3NqIKTNKyMDy4P8vpEhtH1iv/BrwMdBjHDVCycB8WnwIDAQAB\",\n"
          * +
-         * "      \"private\": \"some private key\",\n" +
-         * "      \"selector\": \"hello_selector\"\n" +
-         * "    }";
+         * " \"private\": \"some private key\",\n" +
+         * " \"selector\": \"hello_selector\"\n" +
+         * " }";
          */
         Assert.assertEquals(dkim.getHeaders(), dkim2.getHeaders());
         Assert.assertEquals(dkim.getPublicKey(), dkim2.getPublicKey());

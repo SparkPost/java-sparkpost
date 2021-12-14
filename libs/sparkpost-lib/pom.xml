@@ -13,8 +13,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
 		</dependency>
 
 		<dependency>
@@ -25,15 +25,15 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.3</version>
+			<version>4.5.13</version>
 		</dependency>
 
 		<!-- the following two dependencies are required for correct jmockit operation 
 			under maven see http://code.google.com/p/jmockit/issues/detail?id=128 comment 
 			#8 -->
 		<dependency>
-			<groupId>com.googlecode.jmockit</groupId>
-			<artifactId>jmockit</artifactId>
+		 	<groupId>org.jmock</groupId>
+			<artifactId>jmock-junit4</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -48,10 +48,6 @@
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.google.code.findbugs</groupId>
-			<artifactId>annotations</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>

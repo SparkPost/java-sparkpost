@@ -20,8 +20,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.core.config.Configurator;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -41,7 +41,7 @@ import com.sparkpost.transport.RestConnection;
 public class App extends SparkPostBaseApp {
 
 	public static void main(String[] args) throws Exception {
-		Logger.getRootLogger().setLevel(Level.DEBUG);
+		Configurator.setRootLevel(Level.DEBUG);
 		
 		App app = new App();
 		app.runApp();

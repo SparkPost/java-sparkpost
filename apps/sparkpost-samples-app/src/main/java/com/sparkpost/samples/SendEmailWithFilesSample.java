@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
 import com.sparkpost.Client;
 import com.sparkpost.exception.SparkPostException;
@@ -24,12 +26,12 @@ import com.sparkpost.transport.RestConnection;
 
 public class SendEmailWithFilesSample extends SparkPostBaseApp {
 
-    static final Logger logger = Logger.getLogger(CreateTemplateSimple.class);
+    static final Logger logger = LogManager.getLogger(CreateTemplateSimple.class);
 
     private Client client;
 
     public static void main(String[] args) throws SparkPostException, IOException {
-        Logger.getRootLogger().setLevel(Level.DEBUG);
+        Configurator.setRootLevel(Level.DEBUG);
 
         SendEmailWithFilesSample sample = new SendEmailWithFilesSample();
         sample.runApp();

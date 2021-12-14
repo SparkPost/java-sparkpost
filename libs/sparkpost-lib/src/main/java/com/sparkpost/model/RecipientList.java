@@ -68,6 +68,7 @@ public class RecipientList extends Base {
 
     /**
      * Returns object that can be used to create transmission.
+     *
      * @return StoredRecipientList object
      */
     public StoredRecipientList asStoredRecipientList() {
