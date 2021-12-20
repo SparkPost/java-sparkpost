@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.sparkpost</groupId>
 		<artifactId>libs</artifactId>
-		<version>0.26</version>
+		<version>0.27</version>
 	</parent>
 	<!-- <version>0.10</version> -->
 	<artifactId>sparkpost-lib</artifactId>
