@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sparkpost</groupId>
 	<artifactId>sparkpost</artifactId>
-	<version>0.27</version>
+	<version>0.28</version>
 	<packaging>pom</packaging>
 	<name>*** SparkPost Java Code ***</name>
 	<description>SparkPost client library for Java https://www.sparkpost.com/</description>
