@@ -133,7 +133,7 @@ public class ListUnsubscribeEvent  extends Base {
 	@Description(
 		value = "Indicates whether or not click tracking was enabled",
 		sample = "true")
-	private int clickTracking;
+	private boolean clickTracking;
 
 	@SerializedName("rcpt_meta")
 	@Description(
